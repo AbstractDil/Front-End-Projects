@@ -15,7 +15,7 @@
 
     -khtml-user-select: none;
 
-    
+
 }
 
 
@@ -44,8 +44,8 @@
     margin-right:320px;
     pointer-events: none;
     font-weight: 700;
-    
-    
+
+
   }
 
 .questionNumber .questionNumberLink{
@@ -112,7 +112,7 @@
 
   }
 
- 
+
 
   .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
 
@@ -129,7 +129,7 @@
       /* Sidebar User details  */
 
       .user-details{
-        
+
         margin: 10px 0px 0px 0px !important;
 
       }
@@ -157,7 +157,7 @@
 
       /* Scrollbar Style */
 
-     
+
       .float-left{
         float: left;
       }
@@ -182,7 +182,7 @@
 
       .save-next-btn-show-right{
         margin-right:0px !important;
-        
+
       }
 
       .mark-for-review-btn{
@@ -190,7 +190,7 @@
         color: #fff;
       }
 
-     
+
 
       .footer{
         position: fixed;
@@ -199,7 +199,7 @@
         background-color: #f8f8f8;
         padding: 10px 20px;
         border-top: 1px solid #ddd;
-        /* z-index: -1000; */
+        /* z-index: -1000; it is not necessary */
         box-shadow: 0px 0px 5px 0px #bebcbc;
 
       }
@@ -216,7 +216,7 @@
         bottom: 0;
       }
 
-     
+
       .submit-btn{
         margin:8px 0 8px 0;
         text-transform: uppercase;
@@ -260,7 +260,7 @@
         overflow-x: hidden;
         padding-top: 60px;
         box-shadow: -1px 0 3px 0 rgb(25 63 85 / 20%);
-        transition: all linear 0.1s; 
+        transition: all linear 0.1s;
         -webkit-transition: all linear 0.1s;
         overflow-y: scroll;
 
@@ -368,7 +368,7 @@ button:focus {
 
 ::-webkit-scrollbar {
   width: 10px;
- 
+
 }
 
 ::-webkit-scrollbar-track {
@@ -387,7 +387,7 @@ button:focus {
 
 /* Scrollbar ends */
 
-      
+
 
       @media(max-width: 767px){
 
@@ -447,7 +447,7 @@ button:focus {
         text-align: center;
         margin-right:0px !important;
         margin-bottom: 7px;
-        
+
 
       }
 
