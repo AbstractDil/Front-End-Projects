@@ -1,0 +1,269 @@
+<html style="user-select: none;">
+<head>
+    <meta charset="UTF-8">
+    <title>Oliveboard | SSC Typing Testapp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://discuss.oliveboard.in/ssctt/css/style.css?version=3"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/iefav.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body style="user-select: none;">
+    <div class="wrapper">
+        <header class="header-group">
+            <div class="container">
+            <div class="header-group-inner">
+                    <h1 class="pagetitle">Typing Test</h1>
+                    <!-- <img class="hidden-xs" src="img/dlogo.svg" alt="Oliveboard" width="199px"> -->
+            </div>
+            </div>
+        </header>
+        <div class="subheader">
+            <div class="container">
+            <div class="subheader-inner">
+            <span class="examname">SSC CGL</span>
+                <span class="btn-instr"><span><img src="#" alt=""></span>Instructions</span>
+            </div> 
+            </div> 
+        </div>
+        <div class="maincontent">
+            <div class="container"><!--container-->
+                <div class="tt-row">
+                    <div class="tt-col">
+                        <div class="tt-card">
+                            <div class="tt-card-title">
+                                <h3>Language: English</h3>
+                            </div>
+                            <div id="tt-card-content" class="tt-card-content">
+                                <textarea id="text-original" class="text-original" readonly="" maxlength="0">
+                                    Ram is a very good boy.
+                                </textarea>
+                                <form spellcheck="false" autocapitalize="off" autocorrect="off" data-gramm="false">
+                                <textarea data-gramm="false" spellcheck="false" id="text-typed" class="text-typed"></textarea>
+                                </form>
+                                <h3 class="onlyresults" style="display:none;">Your Typed Input</h3>
+                                <div id="text-output1" class="text-output"></div>
+                                <hr>
+                                <h3 class="onlyresults" style="display:none;">Differences with Original Text </h3>
+                                <div id="text-output" class="text-output"></div>
+            
+                                <p class="indicators">
+                                    <span class="ic-circle blue1"></span><span class="txt-indicator">Difference</span>
+                                </p>
+
+                                <div class="data-blk">
+                                    <span>Chars&nbsp;</span><span id="chars-count">0,&nbsp;</span>
+                                    <span>Words&nbsp;</span><span id="words-count">0,&nbsp;</span>
+                                </div>
+                            </div>
+                            <div id="result-group" class="result-group">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tt-col">
+                        <div id="timer" class="timer">
+                                <div>Time Left: <span id="hour">00</span><span id="mins">15</span>:<span id="secs">00</span></div>
+                        </div>
+                        <span class="img-user"><img src="https://s3-ap-southeast-1.amazonaws.com/sg.oliveboard.in/testapp/cand_img.png" alt=""></span>
+                        <span class="username">nandysagar</span>
+                         <button type="button" id="btn-submit" class="btn-primary btn-submit">Submit</button>
+                    </div>
+                </div>
+            </div><!--container-->
+        </div>
+    </div>
+<div class="modal fade instrModal show" id="instrModal" tabindex="-1" aria-labelledby="instrModalLabel" aria-hidden="true" style="display: block;">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="instrModalLabel">Instructions</h5>
+    <button type="button" class="close instr-close" style="display: none;"><span aria-hidden="true">×</span></button>
+  </div>
+  <div class="modal-body" style="height:15vh;overflow-y:scroll">
+    <p><b>Please read the following instructions carefully.</b></p>
+    <ol>
+    <li>The Test is for 15 minutes duration</li>
+        <li>The Test is case sensitive.</li>
+        <li>Do not give extra space between the words.</li>
+        <li>The passage given should be typed only once. </li>
+        <li>If spare time is available candidates may utilise the time for checking the type script and making corrections.</li>
+        <li>If the time finishes before you complete the passage the typed text will automatically be saved and considered for evaluation.</li>
+        <li>The Test passage should be typed using Backspace and Arrow keys(Up, Down, Left, Right).</li>
+    </ol>
+  </div>
+  <div class="modal-footer">
+    <button type="button" id="btn-start" class="btn-primary">Start</button>
+  </div>
+</div>
+</div>
+</div>
+<div class="modal-backdrop fade in show"></div>
+<!-- buy modal -->
+<script src="https://s3-ap-southeast-1.amazonaws.com/sg2.oliveboard.in/static/js/jquery.js"></script>
+<script src="js/rclickdisabler.js"></script>
+<script>
+var totaltime = 900;
+$(document).ready(function(){
+$("#instrModal").addClass("show");
+$("#instrModal").show();
+$(".modal-backdrop").addClass("show");
+$(".modal-backdrop").show();
+$(".instr-close").hide();
+
+$('#text-typed').on("paste",function(e) {
+  e.preventDefault();
+});
+var txtowordc = $("#text-original").val().length;
+$("#text-original").prop("maxlength", txtowordc);
+lang = 'English';
+});
+$("#select-lang").on("change", function(){
+lang = $("#select-lang").val();
+});
+function getQuestion(){
+var data = {};
+data["testid"] = '51';
+data["lang"] = lang;
+data["coursename"] = "ssctt";
+$.post("/cgi/ssctt/getquestion.cgi", data, function(result){
+    var result = JSON.parse(result);
+    if(result){
+        $('#text-original').html(result["question"]);
+    }else{
+        alert("Something went wrong! Please contact admin");
+    }
+});
+}
+$('#text-typed').keypress(function(e) {
+var set = $("#text-original").val().length;
+var tval = $('#text-typed').val(),
+    tlength = tval.length,
+    remain = parseInt(set - tlength);
+if (remain <= 0 && e.which !== 0 && e.charCode !== 0) {
+    return false;
+}
+})
+
+$(".instr-close").on("click",function(){
+$("#instrModal").removeClass("show");
+$("#instrModal").hide();
+$(".modal-backdrop").removeClass("show");
+$(".modal-backdrop").hide();
+});
+$("#btn-start").on("click",function(){
+$("#instrModal").removeClass("show");
+$("#instrModal").hide();
+$(".modal-backdrop").removeClass("show");
+$(".modal-backdrop").hide();
+timerActivate(totaltime);
+$(".instr-close").show();
+getQuestion();
+});
+var intId;
+function timerActivate(totaltime)
+{
+intId=setInterval(function changeTime()
+{
+ if(totaltime<=0)
+ {
+   submitfunc();
+   clearInterval(intId);
+ }
+ minst=parseInt((totaltime/60)%60);
+ hourt=parseInt(totaltime/3600);
+ secst=parseInt(totaltime%60);
+ var newmin = minst+60*hourt;
+ if(newmin<10)
+ {
+   newmin="0"+newmin;
+ }
+ if(minst<10)
+ {
+   minst="0"+minst;
+ }
+ if(secst<10)
+ {
+   secst="0"+secst;
+ }
+ if(hourt<10)
+ {
+   hourt="0"+hourt;
+ }
+ $("#mins").html(newmin);
+ $("#secs").html(secst);
+ totaltime-=1;
+}
+   ,1000);
+}
+$("#btn-submit").on("click", function(){
+submitfunc();
+clearInterval(intId);
+});
+
+function submitfunc(){
+var ttext = $("#text-typed").val();
+if(ttext != ''){
+    var data = {};
+    data["texttyped"] = ttext;
+    data["testid"] = 51;
+    data["coursename"] = 'ssctt';
+    $.post("/cgi/ssctt/submit.cgi", data, function(result){
+        if(result){
+            result = result.trim();
+            result = result.split("^^");
+            $("#text-typed").hide();
+        htm = '';
+        htm += '<table class="table responsive">';
+        htm += '<thead><tr><th>Total Words Typed</th><th>Actual Key Depressions</th><th>Key Depressions by the Candidate</th></tr></thead>';
+        htm += '<tbody><tr><td><strong>' + result[0] + '</strong></td><td><strong>' + result[1] + '</strong></td><td><strong>' + result[2] + '</strong></td></tr></tbody>';
+        htm += '<thead><tr><th>Error</th><th>Half Mistakes</th><th>Full Mistakes</th></tr></thead>';
+        htm += '<tbody><tr><td><strong>' + result[3] + '% </strong></td><td><strong>' + result[4] + '</strong></td><td><strong>' + result[5] + '</strong></td></tr></tbody>';
+        htm += '<thead><tr><th>Omission of word(Full Mistakes)</th><th>Substitution (Full Mistakes)</th><th>Spelling Errors (Full Mistakes)</th></tr></thead>';
+        htm += '<tbody><tr><td><strong>' + result[12] + '</strong></td><td><strong>' + result[13] + '</strong></td><td><strong>' + result[14] + '</strong></td></tr></tbody>';
+        htm += '<thead><tr><th>Repetition of words(Full Mistakes)</th><th>Incomplete Words (Full Mistakes)</th><th>Addition Errors (Full Mistakes)</th></tr></thead>';
+        htm += '<tbody><tr><td><strong>' + result[15] + '</strong></td><td><strong>' + result[16] + '</strong></td><td><strong>'+result[17]+'</strong></td></tr></tbody>';
+        htm += '<thead><tr><th>Spacing Errors (Half Mistakes)</th><th>Wrong Capitalizations (Half Mistakes)</th><th>Punctuation Errors (Half Mistakes)</th></tr></thead>';
+        htm += '<tbody><tr><td><strong>' + result[9] + '</strong></td><td><strong>' + result[10] + '</strong></td><td><strong>' + result[11] + '</strong></td></tr></tbody>';
+        htm += '</table>';
+            $("#text-output").html(result[6]);
+            $("#text-output1").html(result[7]);
+            $(".text-output").show();
+            $(".indicators").show();
+            $("#result-group").html(htm);
+            $("#btn-submit").hide();
+            $("#text-typed").attr('readonly','readonly'); 
+            $('.onlyresults').show();
+        }else{
+            alert("Something went wrong! Please contact admin.");
+        }
+    });
+}else{
+    alert("Field can't be empty");
+}
+}
+$("#text-typed").keyup(function(){
+var charscount = $(this).val().length;
+var value = $(this).val();
+var regex = /\s+/gi;
+var wordcount = value.trim().replace(regex, ' ').split(' ');
+var warr = wordcount.filter(Boolean);
+warr=warr.length;
+$("#chars-count").html(charscount+",&nbsp");
+$("#words-count").html(warr+",&nbsp");
+});
+$(function() {
+$('#text-typed').on('keydown', function(e) {
+if (e.keyCode == 9 || e.which == 9) {
+  e.preventDefault();
+  var s = this.selectionStart;
+  $(this).val(function(i, v) {
+    return v.substring(0, s) + "\t" + v.substring(this.selectionEnd)
+  });
+  this.selectionEnd = s + 1;
+}
+});
+});
+</script>
+
+
+
+</body></html>

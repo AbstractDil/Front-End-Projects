@@ -1,0 +1,109 @@
+* {
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    -webkit-touch-callout: none;
+
+    -moz-user-select: none;
+
+    -ms-user-select: none;
+
+    -khtml-user-select: none;
+}
+
+footer {
+    background-color: #fff;
+    color: #4f5050;
+
+    text-align: center;
+    font-size: 12px;
+    border-top: 1px solid #000;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+}
+
+
+.btn-red {
+    background-color: rgb(250, 5, 5) !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+/*  Set textarea disabled colour to white */
+
+
+
+
+textarea:disabled {
+    background-color: white !important;
+    resize: none !important;
+    border: 1px solid black !important;
+    cursor: default !important;
+}
+
+
+/* disable select in disable textarea */
+
+textarea:disabled::selection {
+    background: transparent;
+}
+
+
+
+textarea {
+    background-color: white !important;
+    resize: none !important;
+    border: 1px solid black !important;
+    cursor: default !important;
+    font-size: 14px !important;
+  
+
+}
+
+/* Set textarea  select border colour to black */
+
+textarea:focus {
+    border-color: black !important;
+    box-shadow: none !important;
+}
+
+/* Set button box shadow none */
+
+button:focus {
+    box-shadow: none !important;
+}
+
+/* Scrollbar  */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 50px;
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Scrollbar ends */
+
+
+@media (max-width: 768px) {
+    .mob-mt-2 {
+        margin-top: 1.5rem !important;
+    }
+}

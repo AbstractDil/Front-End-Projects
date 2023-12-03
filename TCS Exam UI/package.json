@@ -1,0 +1,16 @@
+
+
+
+{
+  "name": "mathhub-online-examination-system",
+  "description": "This is a Online Examination System for Organization",
+  "version": "1.2.1",
+  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AbstractDil/Front-End-Projects/tree/main/TCS%20Exam%20UI"
+  },
+  "keywords": [],
+  "author": "Sagar Nandy <nandysagar@yahoo.com>",
+  "homepage": "https://mathhub.me/Front-End-Projects/TCS%20Exam%20UI/index.html"
+}

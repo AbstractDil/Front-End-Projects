@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@500&family=Teko:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+:root{
+    --bg-green : #5eff84;
+    --text-green-2 : #00C853;
+    --text-green-1 : #B2FF59;
+    --border-light-green : #8cffa7;
+    --bg-dark : #242222;
+    
+}
+
+.bg-dark{
+    background-color: var(--bg-dark) !important;
+}
+.navbar-dark .navbar-toggler .navbar-toggler-icon{
+    color: #fff !important;
+}
+.logo-img{
+    width:36px;
+    height: 36px;
+    border-radius: 50%;
+    /* margin-right: 10px; */
+    border : 4px solid var(--bg-green);
+}
+.logo-text{
+    font-weight: 800;
+    font-size:28px;
+    /* color: #000; */
+    font-family: 'Poppins', sans-serif;
+
+}
+
+
+
+.logo-text,.client-name{
+    background: linear-gradient(to left, var(--text-green-2), var(--text-green-1));
+    -webkit-text-fill-color: transparent; 
+    -webkit-background-clip: text;
+}
+
+.client-name{
+    font-family: 'Teko', sans-serif;
+    /* font-size: 4rem;  */
+}
+
+.hero-image{
+        /* border-style: solid;
+        border-width: 20px;
+         border-image: linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66)) 1; 
+        border-radius: 50% !important; */
+        border: 20px solid var(--bg-green);
+        width: 316px;
+        box-shadow: 0 0 40px var(--border-light-green);
+        animation: shadow 0.5s ease-in-out infinite alternate;
+    
+    }
+
+    @keyframes shadow{
+        0%{
+          box-shadow: 0 0 20px var(--border-light-green);
+        }
+        100%{
+          box-shadow: 0 0 40px var(--border-light-green);
+        }
+      }
+
+    .lead-text{
+        font-size: 16px;
+    }
+
+    .navbar .navbar-brand{
+        padding: 5px 16px;
+    }
+
+    /* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #181818; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(-45deg,var(--border-light-green),var(--text-green-2)); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+    /* Responsive Design */
+
+    @media only screen and (max-width: 600px) {
+
+        .for-mob-text-center{
+            text-align: center;
+        }
+
+        .hero-image{
+            width: 300px !important;
+        }
+        
+    }

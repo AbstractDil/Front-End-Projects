@@ -1,0 +1,489 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    -webkit-touch-callout: none;
+
+    -moz-user-select: none;
+
+    -ms-user-select: none;
+
+    -khtml-user-select: none;
+
+    
+}
+
+
+/* Hide Button Click Effect */
+
+.btn{
+  outline-style: none !important;
+}
+
+.panel-title{
+  font-size: 14px !important;
+}
+
+.navbar{
+    z-index: 1000;
+    border-radius: 0px !important;
+    box-shadow: 0px 0px 5px 0px #bebcbc;
+    background-color: #fff;
+    padding:2px 8px !important;
+    margin-bottom: 0px !important;
+  }
+
+ 
+  .show-timer{
+
+    float: right;
+    margin-right:320px;
+    pointer-events: none;
+    font-weight: 700;
+    
+    
+  }
+
+.questionNumber .questionNumberLink{
+    float: left;
+    margin-left: 10px;
+    background-color: #a8a5a5;
+    color: white;
+    padding: 5px 14px !important;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 5px;
+    margin: 8px 5px;
+}
+
+.questionNumber .questionNumberLink:hover{
+    background-color: #6f0585;
+    color: white;
+    padding: 5px 15px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 5px;
+    margin: 8px 5px;
+}
+
+
+.questionNumber .questionNumberLink:active{
+    background-color: #298057;
+    color: white;
+    padding: 5px 15px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 5px;
+    margin: 8px 5px;
+}
+
+.questionNumber .questionNumberLink:visited{
+    background-color: #f50808;
+    color: white;
+    padding: 5px 15px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 5px;
+    margin: 8px 5px;
+}
+
+
+
+
+.sign .label{
+    margin-left:5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 400;
+
+}
+
+.sign .signName{
+  margin: 3px 0px;
+}
+
+  .navbar .navbar-header a, .navbar .navbar-header a :hover{
+    color: black;
+
+
+  }
+
+ 
+
+  .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+
+
+      background-color: #1e94a3 !important;
+      color: #fff;
+      padding: 6px 16px !important;
+      margin-top: 3px;
+      margin-bottom: 0px !important;
+      font-weight: 700;
+
+  }
+
+  .nav ul li a:hover{
+    background-color: #1e94a3 !important;
+
+  }
+
+      /* Sidebar User details  */
+
+      .user-details{
+        
+        margin: 10px 0px 0px 0px !important;
+
+      }
+
+      hr{
+        border-bottom:2px solid #ddd;
+        width: auto;
+        margin-top: 5px;
+        margin-bottom: 0px;
+      }
+
+      /* .sidenav {
+        position:fixed;
+        top:5.2rem;
+        right: 0px;
+        height: calc(100vh - 60px);
+        width: 320px;
+        background-color: #fbfcfe;
+        box-shadow: -1px 0 3px 0 rgb(25 63 85 / 20%);
+        transition: all 0.5s;
+        -webkit-transition: all 0.25s;
+        overflow-y: auto;
+
+      } */
+
+      /* Scrollbar Style */
+
+     
+      .float-left{
+        float: left;
+      }
+
+      .float-right{
+        float: right;
+      }
+
+      .float-center{
+        float: center;
+      }
+
+      .mx-5{
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      .mx-2{
+        margin-left: 2px !important;
+        margin-right: 2px !important;
+      }
+
+      .text-center{
+        text-align : center;
+      }
+
+      
+
+      .save-next-btn{
+        float: right;
+        margin-right:320px;
+      }
+
+      .save-next-btn-show-right{
+        margin-right:0px !important;
+        
+      }
+
+      .mark-for-review-btn{
+        background-color: #6f0585 !important;
+        color: #fff;
+      }
+
+     
+
+      .footer{
+        position:fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f8f8f8;
+        padding: 10px 20px;
+        border-top: 1px solid #ddd;
+        z-index: -1000;
+        box-shadow: 0px 0px 5px 0px #bebcbc;
+
+      }
+
+      .footer-one{
+        position:relative;
+        float: left;
+        width:100%;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 400;
+        color: #333;
+        height: 100%;
+        bottom: 0;
+      }
+
+     
+      .submit-btn{
+        margin:8px 0 8px 0;
+        text-transform: uppercase;
+      }
+      .collapsed {
+        right: 0;
+      }
+
+      .sidebar-toggle {
+        position: fixed;
+        top:12px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .mob-clear-btn{
+        display: none;
+      }
+      .mob-mark-for-review-btn{
+        display: none;
+      }
+
+
+      /****** Sidenav added on 17/09/2023 *****/
+       .sidenav {
+        /* height: calc(100vh - 0px); */
+        height: 100%;
+        width:320px;
+        position: fixed;
+        /* z-index: 1; */
+        top: 0;
+        right: 0;
+        background-color: #fbfcfe;
+        overflow-x: hidden;
+        padding-top: 60px;
+        box-shadow: -1px 0 3px 0 rgb(25 63 85 / 20%);
+        transition: all linear 0.1s; 
+        -webkit-transition: all linear 0.1s;
+        overflow-y: scroll;
+
+      }
+
+      .sidenav-active{
+        width: 0px;
+        overflow-y: scroll;
+
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+      }
+
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      /*
+      .sidenav::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .sidenav::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      .sidenav::-webkit-scrollbar-thumb {
+        background: #acaaaa;
+      }
+
+      .sidenav::-webkit-scrollbar-thumb:hover {
+        background: #747373;
+      }
+
+      .sidenav::-webkit-scrollbar-thumb:active {
+        background: #a09e9e;
+      }
+
+      .sidenav::-webkit-scrollbar-thumb:vertical {
+        border-radius: 5px;
+      }
+      */
+
+
+
+      /*  Set textarea disabled colour to white */
+
+
+
+
+textarea:disabled {
+  background-color: white !important;
+  resize: none !important;
+  border: 1px solid black !important;
+  cursor: default !important;
+}
+
+
+/* disable select in disable textarea */
+
+textarea:disabled::selection {
+  background: transparent;
+}
+
+
+
+textarea {
+  background-color: white !important;
+  resize: none !important;
+  border: 1px solid black !important;
+  cursor: default !important;
+  font-size: 14px !important;
+
+
+}
+
+/* Set textarea  select border colour to black */
+
+textarea:focus {
+  border-color: black !important;
+  box-shadow: none !important;
+}
+
+/* Set button box shadow none */
+
+button:focus {
+  box-shadow: none !important;
+}
+
+/* Scrollbar  */
+
+::-webkit-scrollbar {
+  width: 10px;
+ 
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #acaaaa;
+  /* border-radius: 5px; */
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #747373;
+}
+
+/* Scrollbar ends */
+
+      
+
+      @media(max-width: 768px){
+
+        .sidenav{
+          /* height: calc(100vh - 116px); */
+          height: 100%;
+          width: 0px !important;
+        }
+
+        .sidenav-active{
+          width: 320px !important;
+          overflow-y :scroll !important;
+
+        }
+
+        .submit-btn{
+          margin-top: 0px !important;
+        }
+
+       .navbar-header a{
+        white-space: nowrap;
+        width:75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+       }
+
+       .navbar-header .nav-pills li a{
+        white-space: nowrap;
+        width:78px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+       }
+
+       .show-timer{
+
+        float: right;
+        margin-right:0px !important;
+        background-color: rgb(218, 3, 39);
+        color: white;
+        padding: 5px 15px;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 5px;
+
+
+      }
+
+      .save-next-btn{
+        text-align: center;
+        margin-right:0px !important;
+        margin-top: 5px;
+
+      }
+
+      .mark-for-review-btn{
+        text-align: center;
+        margin-right:0px !important;
+        margin-bottom: 7px;
+        
+
+      }
+
+      .mob-clear-btn{
+        display: block;
+        margin-right:0px !important;
+        margin-bottom: 7px;
+
+      }
+
+      .clear-btn{
+        display: none;
+      }
+
+      .mob-mark-for-review-btn{
+        display: block;
+        margin-right:0px !important;
+        margin-bottom: 7px;
+        background-color: #6f0585 !important;
+        color: #fff;
+
+      }
+      .mark-for-review-btn{
+        display: none;
+      }
+
+
+    }

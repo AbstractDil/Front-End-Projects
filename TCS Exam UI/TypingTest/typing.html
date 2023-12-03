@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+    <style>
+        *{
+            background-color: black;
+            color: rgb(9, 228, 9)
+        }
+        h3{
+            color: rgb(9, 60, 228);
+        }
+        h3 #keystrokeCount, h3 #wordCount{
+            color: rgb(228, 9, 9);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Keystroke Count  -->
+    
+    <h1>Keystroke Count</h1>
+    <p>Press any key on the keyboard to count the keystrokes.</p>
+    <h3>Total Keystrokes: <span id="keystrokeCount">0</span></h3>
+
+    <!-- Total Word Count -->
+
+    <h1>Word Count</h1>
+  <textarea id="myTextarea" rows="4" cols="50"></textarea>
+  <h3>Total Words: <span id="wordCount">0</span></h3>
+
+    <!-- Spelling Error Count -->
+
+    <h1>Spelling Error Count</h1>
+    <p>Given Word: <span id="givenWord">There is a tiger.</span></p>
+    <textarea type="text" id="typedWord" placeholder="Type the word"></textarea> 
+    <h3>Total Spelling Errors: <span id="errorCount">0</span></h3>
+
+    <!-- Spacing Error Count -->
+
+    <h1>Spacing Error Count</h1>
+  <p>Enter the paragraph:<span id="givenParagraph">There is a tiger.</span></p>
+  <textarea  id="paragraphInput" rows="4" cols="50"></textarea>
+  <p>Total Spacing Errors: <span id="spacingErrorCount">0</span></p>
+
+
+  <!-- Check Wrong Capitalization -->
+
+  <h1>Capitalization Check</h1>
+
+  <label for="sentence">Enter a sentence:</label>
+  <input type="text" id="sentence" />
+
+  <button onclick="checkCapitalization()">Check</button>
+
+  <p id="result"></p>
+
+<script src="typing.js"></script>
+</body>
+</html>

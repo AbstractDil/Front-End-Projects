@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        SSC Typing Test
+    </title>
+
+    <!-- cdn links starts  -->
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"> </script>
+    <!-- cdn links ends  -->
+
+
+</head>
+
+<body>
+
+
+
+
+    <!-- Header Start -->
+
+    <header>
+        <nav class="navbar fixed-top navbar-light bg-white mb-2 border-bottom">
+            <a class="navbar-brand">
+                <strong>
+
+                    SSC Typing Test
+                </strong>
+            </a>
+            <div class="d-flex">
+
+
+                <!-- Show timer -->
+
+                <div class="btn btn-warning btn-sm mr-1" id="showTimer">
+                    <i class="fa fa-clock-o"></i>
+                    Time Left:
+                    <span id="timer">00:00</span>
+                </div>
+
+                <!-- Show timer ends -->
+        </nav>
+
+    </header>
+    <!-- Header Ends -->
+
+    <!-- Show Alert Msg -->
+
+    <!-- Main Content Starts -->
+    <main class="bg-light  pt-5 pb-5">
+        <div class="container">
+            <div class="row py-3">
+                <div class="col-md-12" id="alertMessage">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- show alert msg ends -->
+
+
+        <div class="container">
+            <div class="row  pb-5">
+                <!-- Typing Div Starts -->
+
+                <div class="col-md-9 order-md-1 order-2">
+
+                    <!-- Typing Div -->
+
+
+                    <div class="form-group mob-mt-2">
+                        <label for="OriginalText">
+                            <h4>
+                                Original Text
+                            </h4>
+                        </label>
+                        <div class="card">
+                            <div class="card-body table-responsive" style="height: 180px;border: 1px solid #000;font-size: 15px;">
+
+                                <div id="OriginalText" class="text-secondary">
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <small class="my-3 text-muted">
+                            <span id="totalWordsOT"></span>
+                            <span id="totalSpaceOT"></span>
+
+                            <span id="totalCharactersOT"></span>
+                            <span id="totalKeyStokesOT"></span>
+
+                        </small>
+                    </div>
+
+
+                    <form spellcheck="false" autocapitalize="off" autocorrect="off" data-gramm="false" id="FormTT"
+                        method="POST">
+
+
+                        <div class="form-group">
+                            <label for="TypedText">
+                                <h4>
+                                    Type Here
+                                </h4>
+                            </label>
+                            <textarea class="form-control typedAnswer" id="TypedText" rows="8" spellcheck="false" data-gramm_editor="false" name="typedtext"></textarea>
+
+                            <small class="my-3 text-muted">
+                                <span id="totalWordsTT"></span>
+                                <span id="totalSpaceTT"></span>
+                                <span id="totalCharactersTT"></span>
+                                <span id="totalKeyStokesTT"></span>
+                                <span id="wrongCharCountTT"></span>
+
+
+                            </small>
+
+                        </div>
+
+
+
+
+                        <button type="submit" class="btn btn-info ">
+
+                            <i class="fa fa-check"></i>
+
+                            Submit Test
+
+                        </button>
+                    </form>
+
+                </div>
+
+                <!-- Typing Div Ends -->
+
+
+                <!-- User Div Starts -->
+
+                <!-- Show user name  -->
+
+                <aside class="col-md-3  order-md-2 order-1">
+
+
+                    <div class="card">
+
+
+
+                        <div class="card-body">
+                            <div class="media">
+                                <img class="media-object" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                    alt="Candidate Photo" width="48" height="48">
+
+
+
+                                <div class="media-body">
+                                    <h5 class="mt-0 mx-3" style="font-size: 16px;">
+                                        <span id="Candidate_Name">
+                                            Sagar Nandy
+                                        </span>
+                                    </h5>
+                                    <h6 class="mx-3" style="font-size: 13px;">
+                                        Roll No : <span id="Candidate_RollNo"> 6295980525 </span>
+                                    </h6>
+                                    <h6 class="mx-3" style="font-size: 13px;">
+                                        Language : <span id="Candidate_RollNo"> English</span>
+                                    </h6>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="text-center mt-3">
+                                <a type="button" class="btn btn-outline-danger btn-block" title="Logout">
+                                    <i class="fa fa-power-off"></i>
+                                    System Logout
+                                </a>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+
+                </aside>
+
+
+
+            </div>
+        </div>
+
+        <!-- Instruction Modal Starts -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="InstructionModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="InstructionModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info text-white">
+                        <h5 class="modal-title" id="InstructionModalLabel">
+                            <i class="fa fa-info-circle"></i>
+                            Instructions
+                        </h5>
+                        <!-- <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true" class="text-white">&times;</span>
+      </button> -->
+                    </div>
+                    <div class="modal-body">
+                        <p><b>Please read the following instructions carefully.</b></p>
+                        <ol>
+                            <li>The Test is for 15 minutes duration</li>
+                            <li>The Test is case sensitive.</li>
+                            <li>Do not give extra space between the words.</li>
+                            <li>The passage given should be typed only once. </li>
+                            <li>If spare time is available candidates may utilise the time for checking the type script
+                                and
+                                making corrections.</li>
+                            <li>If the time finishes before you complete the passage the typed text will automatically
+                                be
+                                saved and considered for evaluation.</li>
+                            <li>The Test passage should be typed using Backspace and Arrow keys(Up, Down, Left, Right).
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="modal-footer">
+
+
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="StartTest">
+                            <i class="fa fa-check"></i>
+                            Start Test
+                        </button>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Instruction Modal Ends -->
+
+
+
+    </main>
+
+
+
+
+    <!-- Main Content Ends -->
+
+
+
+
+    <footer class="border-top">
+        <p class="pt-2 pb-0 mb-0">
+            <span id="Year"></span> MathHub Online Examination System -
+            <span id="systemVersion"></span>
+        </p>
+        <p class="mb-1">
+            <small class="text-muted">
+                Design &amp; Developed by <a href="https://www.nandysagar.in" target="_blank"> Sagar Nandy</a>
+            </small>
+        </p>
+    </footer>
+
+</body>
+
+<!-- Timer.JS is Requried -->
+
+<script src="js/timer.js"></script>
+
+<!-- Security.js is Required -->
+
+<script src="js/security.js"></script>
+
+
+<script>
+
+    // Make modal onload of page
+
+    $(window).on('load', function () {
+        //var delayMs = 2000; // delay in milliseconds
+
+        setTimeout(function () {
+            $('#InstructionModal').modal('show');
+        });
+    });
+
+
+
+    /* Count total words and characters in original text*/
+
+    var originalText = document.getElementById("OriginalText").value;
+
+
+    var texts =
+
+    {
+        text: `    The rapid growth of the quick commerce model has garnered lots of attention in the past few months. With 15X growth in less than five years, the Q-Commerce model is showing a growth trajectory that makes it a force to reckon with. Conditioned by the disruptions during the pandemic, online buyers adopted a new normal way of life. The pandemic also changed their buying patterns considerably. While buyers choose safety over visiting local stores, they still craved the joy of instant gratification. Ordering their desired products online and waiting for days at a stretch to get them delivered was frustrating. Customers were looking for ways to get their orders delivered within 15-30 minutes. That's when retail brands in the grocery and FMCG vertical decided to go for the quick commerce model. Pivoting to quick commerce and fast hyperlocal deliveries not only helped the players in the grocery and FMCG sector tap the huge demand for everyday essentials but also helped them gain a competitive edge by winning over loyal customers. Quick commerce brands have not looked back ever since! The model has proven to be a formula for quick success and enterprise brands are eager to adopt it for the following reasons. Customers no longer want to wait in lengthy queues for buying the products they need. They prefer the brands to come to their doorsteps. During Covid, buyers were concerned about safety and ease of shopping. Now, they demand only two things while shopping online- the convenience of placing orders in a few clicks and delivery within a few minutes. And the Q-Commerce concept ensures they get both these wishes fulfilled. In the past few years, internet penetration and smartphone usage have exploded. In a few years, India is going to cross the 1 billion smartphone user mark. With smartphones and mobile internet at their disposal more and more buyers have shifted towards online shopping. With smartphones at their disposal, customers from the hinterland are also accustomed to online shopping and brands can easily leverage this behaviour shift to solidify their presence in new markets. However, it's just a matter of time when the q commerce brands can quickly gain a strong foothold in tier 2, 3 and beyond cities that have a huge population conditioned to the ease of online shopping. Consumers are looking for seamless buying experiences and are eager to explore new online brands that make everyday essentials shopping easier and faster. The Q-Commerce model is primarily based on the micro warehouses set up, which includes setting up small warehouses in different locations to enable quick delivery. However, this set-up is labour and resource-intensive, especially when planning expansion quickly. Alternatively, brands can leverage the hyperlocal marketplace solution and onboard local Kirana and other stores as vendors. Q-Commerce brands can easily tie-up with new store-owners in new geographies and route the customer orders from the nearest seller from clients' locations. . Expanding the quick commerce brand to new markets is easy and thus accelerates the growth of q-commerce.Quick Commerce has paved the way for a new era in the e-commerce domain. The segment is growing rapidly and offers unlimited opportunities for growth. The enterprise brands however need solutions that help them launch to new markets, implement personalization and plan strategic marketing for growth. Right now, the fight amongst brands is to win the customers' interest and loyalty. Brands planning to win the quick commerce race need to focus on user experience and quick adaptability to changing market dynamics. Quick commerce is offering the new-age, tech-savvy buyers all that they were missing in traditional e-commerce. With fast deliveries, extended hours of service and adapting quickly to local tastes and demands quick commerce brands are poised for stupendous growth in coming years.`
+    }
+
+
+
+    var originalText = texts.text;
+
+    // show text in original text area
+
+    // document.getElementById("OriginalText").innerHTML = originalText;
+
+    var originalTextWords = originalText.trim().split(" ");
+    //console.log(originalTextWords);
+    var originalTextWordsCount = originalTextWords.length;
+
+    // count characters in words in original text
+
+    var originalTextCharactersCount = 0;
+
+    for (var i = 0; i < originalTextWordsCount; i++) {
+
+        document.getElementById("OriginalText").innerHTML += '<span wordnr=\"' + i + '\" class=\"\" id=\"sp' + i + '\">' + originalTextWords[i].replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;') + '</span>';
+        document.getElementById("OriginalText").innerHTML += " ";
+        // console.log(i);
+        originalTextCharactersCount += originalTextWords[i].length;
+    }
+
+   var totalSpaceCount = originalText.match(/ /g).length;
+
+    //var totalSpaceCount = originalTextWordsCount - 1;
+
+    console.log("Total Space : " + totalSpaceCount);
+
+    var totalKeyStokes = originalText.length;
+
+    console.log("Total Key Storkes : " + totalKeyStokes);
+
+
+    // Display total words and characters in original text
+
+    document.getElementById("totalWordsOT").innerHTML = " Words : " + originalTextWordsCount + ",";
+    document.getElementById("totalSpaceOT").innerHTML = " Spaces : " + totalSpaceCount + ",";
+
+    document.getElementById("totalCharactersOT").innerHTML = " Characters : " + originalTextCharactersCount + ",";
+    document.getElementById("totalKeyStokesOT").innerHTML = "Key Stokes : " + totalKeyStokes;
+
+
+    console.log("Total Words in origial text : " + originalTextWordsCount);
+    console.log("Total character in origial text : " + originalTextCharactersCount);
+
+
+    /* count typed words, character and keystokes */
+
+    var typedText = document.getElementById("TypedText");
+
+    typedText.addEventListener("keyup", function () {
+        var typedTextValue = typedText.value;
+        var typedTextWords = typedTextValue.trim().split(" ");
+        var typedTextWordsCount = typedTextWords.length;
+
+
+       var totalSpaceCount = typedTextValue.match(/ /g).length;
+
+        //var totalSpaceCount = typedTextWordsCount - 1; // no of words - 1 = total space count
+        var typedTextCharactersCount = 0;
+        var wrongCharCount = 0;
+
+        for (var i = 0; i < typedTextWordsCount; i++) {
+            typedTextCharactersCount += typedTextWords[i].length;
+            if(typedTextWords[i] != originalTextWords[i]){
+             wrongCharCount++;
+		}
+        }
+
+        var totalKeyStokesTT = typedTextValue.length;
+
+        document.getElementById("totalWordsTT").innerHTML = " Words : " + typedTextWordsCount + ",";
+        document.getElementById("totalSpaceTT").innerHTML = " Spaces : " + totalSpaceCount + ",";
+        document.getElementById("totalCharactersTT").innerHTML = " Characters : " + typedTextCharactersCount + ",";
+        document.getElementById("totalKeyStokesTT").innerHTML = "Key Stokes : " + totalKeyStokesTT + ",";
+        document.getElementById("wrongCharCountTT").innerHTML = " Wrong Character Count : " + wrongCharCount + ",";
+    
+
+    });
+
+
+    
+
+
+
+
+
+
+</script>
+
+</html>

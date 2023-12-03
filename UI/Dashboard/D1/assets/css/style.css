@@ -1,0 +1,26 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+.navbar{
+    border-radius: 0;
+    margin-bottom: 0px !important;
+}
+.navbar-inverse{
+    background-color: #33485e;
+}
+.navbar-brand {
+    padding: 5px 15px;
+}
+
+.navbar-nav li a {
+    color: rgb(224, 224, 224) !important;
+}
+
+.navbar-nav .dropdown-menu li a {
+    color: rgb(83, 82, 82) !important;
+
+}
+
+.jumbotron{
+    padding-bottom: 10px !important;
+    padding-top: 8px !important;
+}

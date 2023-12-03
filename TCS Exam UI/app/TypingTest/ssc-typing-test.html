@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Typing Test For SSC CGL &amp; CHSL Examination - MathHub Online
+    Examination System
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/asscessment.css" />
+ 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body onload="checkSession();">
+  <!-- =============================== navbar ======================== -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a type="button" class="navbar-brand text-uppercase" title="Combined Graduate Level Examination, 2023" href="#"
+          data-toggle="tooltip" data-placement="right">
+          <span id="examName">
+            Combined Graduate Level Examination, 2023
+          </span>
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+  <!-- =============================  navbar ends ========================== -->
+
+  <div class="panel panel-default" style="margin-bottom: 0px">
+    <div class="panel-heading" style="padding: 4px 30px">
+      <div class="row">
+        <button class="btn btn-default btn-sm" style="pointer-events: none;background-color: #000;color:#fff200;">
+          <b style="text-transform: uppercase">
+            <span class="glyphicon glyphicon-info-sign"></span>
+             Sections :</b>
+        </button>
+        <button class="btn btn-danger btn-sm show-timer">
+          <span class="glyphicon glyphicon-time"></span>
+          Time Left :
+          <span id="timer"> 00:00:00 </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--======================== Tab Sections Starts ================================-->
+
+  <div style="margin-left: 5px; border-bottom: 2px solid #ddd">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <!-- Tabs sections starts -->
+        <ul class="nav nav-pills ">
+          <li role="presentation" class="active">
+            <a href="#TypingTest" class=" btn btn-sm" data-toggle="pill"> Typing Test </a>
+          </li>
+        </ul>
+
+        <!-- Tab Section Ends -->
+      </div>
+    </div>
+  </div>
+  <!--=============================== Tab Sections Ends ================================ -->
+
+      <!-- container starts -->
+
+      <div class="container-fluid">
+        <!-- row starts  -->
+        <div class="row">
+          <!-- main content starts  -->
+          <div class="col-xs-12 col-sm-9">
+
+         <table class="table">
+    <tbody>
+            <!-- Tab Content Starts -->
+            <div class="tab-content">
+              <!-- GI Section Starts -->
+              <div id="TypingTest" class="tab-pane fade in active">
+                <div class="tab-content">
+                  <div id="TTQ1" class="tab-pane fade active in">
+                    <div class="form-group">
+                      <label for="OriginalText">
+                        <h4>QNo.-1</h4>
+                      </label>
+                      <textarea class="form-control" name="" id="OriginalText" rows="8" disabled>
+                        </textarea>
+                      <small class="text-muted">
+                        <span id="totalWordsOT"></span>
+                        <span id="totalSpaceOT"></span>
+
+                        <span id="totalCharactersOT"></span>
+                        <span id="totalKeyStokesOT"></span>
+                      </small>
+                    </div>
+
+                    <form spellcheck="false" autocapitalize="off" autocorrect="off" data-gramm="false" id="FormTT"
+                      method="POST">
+                      <div class="form-group">
+                        <label for="TypedText">
+                          <h4>Type Here</h4>
+                        </label>
+                        <textarea class="form-control" id="TypedText" rows="8" spellcheck="false"
+                          data-gramm_editor="false" name="typedtext"></textarea>
+
+                  
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Tab Content Ends -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- main content ends  -->
+  <!--========================== sidebar starts ========================= -->
+  <div class="sidenav" id="mySidenav">
+    <div class="col-xs-12 col-sm-12">
+      <!-- User name and Photo -->
+      <div class="media user-details">
+        <div class="media-left">
+          <a href="#">
+            <img class="media-object" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Candidate Photo"
+              width="48" height="48" />
+          </a>
+        </div>
+
+        <div class="media-body">
+          <h4 class="media-heading" style="margin-top: 14px; font-weight: 600">
+            <span id="Candidate_Name"> Rohini Singh </span>
+          </h4>
+          <h5>
+            Roll No : <span id="Candidate_RollNo"> 1234567890 </span>
+          </h5>
+        </div>
+      </div>
+      <!-- User name and Photo ends -->
+
+      <hr />
+
+      <!-- Signs colour Start -->
+      <div class="container-fluid" style="margin-top: 12px">
+        <!-- Green colour for answered question -->
+
+        <div class="sign">
+          <div class="row">
+            <!-- Answered -->
+            <div class="col-md-12">
+              <h5 class="text-primary">
+                You are viewing :
+                <b id="sectionName"> Typing Test </b>
+              </h5>
+
+                <div class="text-primary" id="candidateTT" style="margin-top: 5px;">
+                 
+                    <h5 id="totalWordsTT"> Total Word Count : 0 </h5>
+                    <h5 id="totalSpaceTT">Total Spaces Count : 0 </h5>
+                    <h5 id="totalCharactersTT">
+                      Total Characters Count : 0 
+                    </h5>
+                    <h5 id="totalKeyStokesTT">
+                      Total Keystokes Count : 0 
+                    </h5>
+                    <span id="WrongCharCountTT"></span>
+                 
+                </div>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Signs Ends -->
+
+      <hr />
+
+      <!-- Section Name and Show Question Numbers-->
+
+      <div class="panel panel-default" style="margin-top: 12px">
+        <div class="panel-heading">
+          <h3 class="panel-title" style="font-weight: 700">
+            <span class="glyphicon glyphicon-info-sign"></span> Read Instructions
+          </h3>
+        </div>
+
+        <div class="panel-body" style="height: 25rem; overflow-y: scroll">
+          <ol style="padding:6px 12px">
+            <li>The Test is for 15 minutes duration</li>
+            <li>The Test is case sensitive.</li>
+            <li>Do not give extra space between the words.</li>
+            <li>The passage given should be typed only once.</li>
+            <li>
+              If spare time is available candidates may utilise the time
+              for checking the type script and making corrections.
+            </li>
+            <li>
+              If the time finishes before you complete the passage the
+              typed text will automatically be saved and considered for
+              evaluation.
+            </li>
+            <li>
+              The Test passage should be typed using Backspace and Arrow
+              keys(Up, Down, Left, Right).
+            </li>
+          </ol>
+
+          Kindly note, Upon timeout, the system will automatically save
+          all your responses.
+        </div>
+      </div>
+      <!-- Section Name and Show Question number ends -->
+
+      <div class="footer-one">
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success btn-block submit-btn" onclick="onClickSubmitTestBtn();" id="submitBtn" title="When the time is up, our system will automatically submit your response.">
+              Submit Test
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--======================== sidebar ends ==================  -->
+  <!-- sidebar toggle button  -->
+  <button class="btn btn-info btn-sm sidebar-toggle" onclick="toggleNav();">
+    <span class="glyphicon glyphicon-menu-hamburger"></span>
+  </button>
+  <!-- sidebar toggle button ends  -->
+  </div>
+  <!-- row ends  -->
+  </div>
+  <!-- container ends -->
+
+  <div class="footer">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Save & Next Button Right Side -->
+
+        <div class="save-next-btn" >
+          <button class="btn btn-primary" id="FinishExam" onclick="onClickSubmitTestBtn();"
+          title="This button will activate when there are 10 minutes remaining."
+          >
+            Finish Test
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </button>
+        </div>
+        <!-- Save & Next Button Right Side Ends -->
+      </div>
+    </div>
+
+    <!-- Mark For Review -->
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/sidenav.js"></script>
+  <script src="assets/js/ssc-typing-test.js"></script>
+
+  <script></script>
+</body>
+
+</html>

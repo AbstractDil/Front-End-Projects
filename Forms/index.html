@@ -1,0 +1,98 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Feedback</title>
+     <link rel="stylesheet" href="style.css">
+
+ </head>
+ <body>
+    <div class="container">
+        <header><h3>FEEDBACK FORM  </h3></header>
+        <form action="/action_page.php">
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">First Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="fname" name="firstname" placeholder="Your first name..">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Last Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+          </div>
+        </div>
+       
+        <div class="row">
+          <div class="col-25">
+            <label for="country">Sagar is your </label>
+          </div>
+          <div class="col-75">
+            <select id="country" name="country">
+              <option value="australia">Choose any one</option>
+
+              <option value="australia">Friend</option>
+              <option value="australia">Enemy</option>
+
+              <option value="canada">Close Friend</option>
+              <option value="usa">Best Friend</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="Behave">Behaviour of Sagar is</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="Behave" name="Behaviour" placeholder="According to you">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="AsFr">As a Friend Sagar is</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="AsFr" name="AsFriend" placeholder="According to you">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="country">According to you Sagar is  </label>
+            </div>
+            <div class="col-75">
+              <select id="country" name="country">
+                <option value="australia">Choose any one</option>
+  
+                <option value="australia">Harmful</option>
+                <option value="australia">Helpful</option>
+  
+                
+              </select>
+            </div>
+          </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="subject">Any Suggestion For Sagar</label>
+          </div>
+          <div class="col-75">
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <button type="submit" >Submit</button>
+        </div>
+        </form>
+      </div>
+      
+     
+
+    <script src="main.js"></script>
+ </body>
+ </html>

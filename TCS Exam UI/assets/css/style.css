@@ -1,0 +1,234 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+  padding: 0px;
+  margin: 0px;
+  user-select: none;
+
+  -webkit-user-select: none;
+
+  -webkit-touch-callout: none;
+
+  -moz-user-select: none;
+
+  -ms-user-select: none;
+
+  -khtml-user-select: none;
+}
+html,
+body,
+p {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: auto;
+  font-size: 12px;
+  background-color: #fafbfc;
+}
+
+#wrapper {
+  width: 100%;
+  display: block;
+  min-width: 600px;
+  min-height: 100%;
+}
+
+#minwidth {
+  min-width: 600px;
+  min-height: 100%;
+  height: 100%;
+}
+
+/* Font Styles */
+
+.fs-1 {
+  font-size: 5rem;
+}
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-44 {
+  font-size: 44px;
+
+  color: #fff200;
+}
+
+.fs-lead {
+  font-size: 16px !important;
+}
+
+i {
+  font-size: 2rem;
+}
+
+/* font colors */
+
+.fc-white {
+  color: #fff;
+}
+
+.fc-black {
+  color: #000;
+}
+
+.fc-yellow {
+  color: yellow;
+}
+
+/* Padding & Margins*/
+
+.p-1 {
+  padding: 8px 0px 8px 10px;
+}
+
+.p-0 {
+  padding: 0px !important;
+}
+
+.m-0 {
+  margin: 0px !important;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-5 {
+  margin-top: 50px;
+}
+
+/* Background Colour */
+
+.bg-grey {
+  background-color: #4f5050;
+}
+
+.bg-light {
+  background-color: #f1f1f1;
+}
+
+/* Navbar */
+
+.navbar {
+  background-color: aliceblue;
+  border: none;
+  margin-top: 2px;
+}
+
+.navbar .navbar-header{
+  border: 5px solid black;
+  background-color: #fff8d0;
+  padding: 3px;
+}
+
+.navbar .navbar-header a {
+  color: black;
+  font-weight: 700;
+  padding-left: 23px;
+}
+
+/* Jumbotron */
+
+.jumbotron {
+  background-color: #4f5050;
+  color: #fff;
+  padding: 0px;
+  height: 162px;
+}
+
+.jumbotron .userinfo {
+  margin-left: 20px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.jumbotron .username {
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.username .name2 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.username .details2 {
+  color: #fff200;
+  font-size: 34px;
+  margin-left: 5px;
+  text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.username .Candidate_Photo,
+.jumbotron .Candidate_Photo {
+  background: #fafbfc;
+  border: 1px solid #444;
+  float: right;
+  height: 100%;
+  vertical-align: middle;
+  width: 137px;
+}
+
+.jumbotron .Candidate_Photo img {
+  margin: 18px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  /* STYLES HERE */
+
+  .jumbotron {
+    height: 290px;
+  }
+
+  .jumbotron .username {
+    float: left;
+  }
+
+  .jumbotron .Candidate_Photo {
+    float: right;
+    margin-top: 10px;
+  }
+}
+
+/* Login Section & Cautions starts*/
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel,
+.alert {
+  width: 400px;
+}
+
+.panel .panel-heading {
+  font-size: 18px;
+}
+
+.input-group {
+  margin: 10px 0px 10px 0px;
+}
+
+/*Mobile and Tablet*/
+
+@media screen and (max-width: 768px) {
+  .jumbotron {
+    height: 200px;
+  }
+  .jumbotron .Candidate_Photo img {
+    width: 60%;
+  }
+  .panel {
+    width: 100%;
+  }
+}

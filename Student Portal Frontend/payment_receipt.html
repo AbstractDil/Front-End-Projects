@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Receipt</title>
+    <style>
+        * {
+            -moz-box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+            .page {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    margin: 1cm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+.subpage {
+  padding: 1cm;
+  border: 5px red solid;
+  height: 256mm;
+  outline: 2cm #FFEAEA solid;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+ 
+}
+
+     
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            border : 1px solid #ccc;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+            font-size: 14px;
+            color: #555;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .payment-status {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size:22px;
+            
+        }
+
+        /* .invoice-total {
+            text-align: right;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        } */
+
+        .header{
+            /* background-color:  #333; */
+           
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 12px;
+            
+        }
+
+        .header h1{
+            color: #0b51b9;
+            font-size:22px;
+            margin-top:8px;
+            margin-bottom:12px;
+            text-align: center;
+        }  
+
+        .print_button{
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button{
+            background-color: #0b51b9;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #1b66d8;
+        }
+        
+        @media print{
+            
+            body{
+                background-color: #fff;
+            }
+            .container{
+                margin-top: 20px;
+                box-shadow: none;
+            }
+            .page {
+                margin: 0;
+                border: initial;
+                border-radius: initial;
+                width: initial;
+                min-height: initial;
+                box-shadow: initial;
+                background: initial;
+                page-break-after: always;
+            }
+        }
+
+        .footer {
+            background-color: #ccc;
+            color: #000;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        @media only screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+                box-shadow: none;
+            }
+            body{
+                background-color: #fff;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 5px;
+            }
+            .footer {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container page">
+
+<div class="subpage">
+
+
+    <div>
+        <!-- Header -->
+        <div class="header">
+            <img src="https://students.nandysagar.in/assets/images/logo-2.png"  alt="Avatar" style="width:
+            240px">
+            <h1 style="color:rgb(14, 26, 129);">Guardian Copy</h1>
+            <h3>Payment e-Receipt</h3>
+        </div>
+        
+        <!-- Payment status -->
+        <div class="payment-status">
+            <span style="color: green;font-weight: 900; ">Paid</span>
+            <span style="color: red;font-weight: 900; ">Due</span>
+        </div>
+        <table>
+            <tr>
+                <th>Payment ID</th>
+                <td>#123456</td>
+            </tr>
+            <tr>
+                <th>Date of Payment</th>
+                <td>March 30, 2023</td>
+            </tr>
+            <tr>
+                <th>Student ID</th>
+                <td>#123456</td>
+            </tr>
+            <tr>
+                <th>Student Name</th>
+                <td>Sagar Nandy</td>
+            </tr>
+            <tr>
+                <th>Tuition Fees 
+            
+                </th>
+                <td>
+                    &#8377; 800 /-
+
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Amount Paid
+                </th>
+                <td>
+                    &#8377; 800 /-
+
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    For Month
+                </th>
+                <td>
+                    March 2023
+
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Due Amount 
+                </th>
+                <td>
+                    &#8377; 800 /-
+                </td>
+            </tr>
+           
+            <tr>
+                <th>Payment Method</th>
+                <td>Credit Card</td>
+            </tr>
+            <tr>
+                <th>Payment Status</th>
+                <td>
+                    <span style="color: green;font-weight: 900; font-size:18px;">Paid</span>
+                    <span style="color: red;font-weight: 900; font-size:18px;">Due</span>
+
+                </td>
+            </tr>
+            
+        </table>
+        <!-- <div class="invoice-total">
+            Total: $100.00
+        </div> -->
+    </div>
+    <div class="footer">
+        <p>
+            <strong>Please Note:</strong>
+            
+            This is a computer generated receipt and does not require any signature.
+
+        </p>
+    </div>
+
+    
+    <div class="print_button">
+    
+        <button onclick="window.print();">
+            Click here to print receipt
+         </button>
+    </div>
+
+</div>
+</div>
+
+
+</body>
+</html>

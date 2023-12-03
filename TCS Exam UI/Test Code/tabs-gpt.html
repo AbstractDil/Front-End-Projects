@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Page</title>
+ <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.header-section {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  margin-top: 20px;
+}
+
+.sidebar {
+  background-color: #f0f0f0;
+  padding: 20px;
+  width: 20%;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.content {
+  background-color: #fff;
+  flex: 1;
+  padding: 20px;
+}
+
+ </style>
+</head>
+<body>
+  <header>
+    <div class="header-section" id="reasoning">Reasoning</div>
+    <div class="header-section" id="gk">General Knowledge</div>
+    <div class="header-section" id="quant">Quantitative</div>
+    <div class="header-section" id="english">English</div>
+  </header>
+  <div class="container">
+    <aside class="sidebar">
+      <ul>
+        <li onclick="showQuestion('reasoning', 1)">Question 1</li>
+        <li onclick="showQuestion('reasoning', 2)">Question 2</li>
+        <li onclick="showQuestion('reasoning', 3)">Question 3</li>
+        <!-- Add more questions for reasoning section -->
+        
+        <li onclick="showQuestion('gk', 1)">Question 1</li>
+        <li onclick="showQuestion('gk', 2)">Question 2</li>
+        <!-- Add more questions for general knowledge section -->
+        
+        <li onclick="showQuestion('quant', 1)">Question 1</li>
+        <!-- Add more questions for quantitative section -->
+        
+        <li onclick="showQuestion('english', 1)">Question 1</li>
+        <li onclick="showQuestion('english', 2)">Question 2</li>
+        <!-- Add more questions for English section -->
+      </ul>
+    </aside>
+    <main class="content">
+      <div id="question-container">
+        <!-- Question content will be dynamically added here -->
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function showQuestion(section, questionNumber) {
+  const questionContainer = document.getElementById("question-container");
+  let questionContent = "";
+
+  // Replace the following lines with your actual questions for each section and question number
+  if (section === "reasoning") {
+    if (questionNumber === 1) {
+      questionContent = "This is the first reasoning question.";
+    } else if (questionNumber === 2) {
+      questionContent = "This is the second reasoning question.";
+    } else if (questionNumber === 3) {
+      questionContent = "This is the third reasoning question.";
+    }
+    // Add more questions for reasoning section
+  } else if (section === "gk") {
+    if (questionNumber === 1) {
+      questionContent = "This is the first general knowledge question.";
+    } else if (questionNumber === 2) {
+      questionContent = "This is the second general knowledge question.";
+    }
+    // Add more questions for general knowledge section
+  } else if (section === "quant") {
+    if (questionNumber === 1) {
+      questionContent = "This is the first quantitative question.";
+    }
+    // Add more questions for quantitative section
+  } else if (section === "english") {
+    if (questionNumber === 1) {
+      questionContent = "This is the first English question.";
+    } else if (questionNumber === 2) {
+      questionContent = "This is the second English question.";
+    }
+    // Add more questions for English section
+  }
+
+  questionContainer.innerHTML = `<h2>Section: ${section.toUpperCase()}</h2><p>${questionContent}</p>`;
+}
+
+  </script>
+</body>
+</html>

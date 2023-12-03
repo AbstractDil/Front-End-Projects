@@ -1,0 +1,357 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+html,
+body,
+p {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: auto;
+  font-size: 12px;
+  cursor: default;
+
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+/* Safari syntax */
+:-webkit-full-screen {
+  background-color: yellow;
+}
+
+/* IE11 */
+:-ms-fullscreen {
+  background-color: yellow;
+}
+
+/* Standard syntax */
+:fullscreen {
+  background-color: yellow;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+:root {
+  --bg-black: #4f5050;
+  --bg-light: #fafbfc;
+  --bg-primary: #007bff;
+  --bg-light-blue: #e6f2ff;
+  --bg-white: #fff;
+  --bg-yellow: #fff200;
+  --font-white: #fff;
+  --font-black: #000;
+  --font-yellow: #fff200;
+  --font-grey: #aaadad;
+  --bg-grey: #aaadad;
+  --bg-dark-mode: #000;
+}
+
+#ExamWindow {
+  /* width: 100%;
+  display: block;
+  /* min-width: 600px; */
+ /* min-height: 100%; */
+  background-color: var(--bg-light);
+  
+}
+
+/* Font Styles */
+
+.fs-1 {
+  font-size: 5rem;
+}
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-40 {
+  font-size: 40px;
+
+  color: #fff200;
+}
+
+.fs-lead {
+  font-size: 16px !important;
+}
+
+i {
+  font-size: 2rem;
+}
+
+/* font colors */
+
+.fc-white {
+  color: #fff;
+}
+
+.fc-black {
+  color: #000;
+}
+
+.fc-yellow {
+  color: yellow;
+}
+
+/* Padding & Margins*/
+
+.p-1 {
+  padding: 8px 0px 8px 10px;
+}
+
+.p-0 {
+  padding: 0px !important;
+}
+
+.m-0 {
+  margin: 0px !important;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-5px {
+  margin-top: 5px;
+}
+
+.mt-50px {
+  margin-top: 50px;
+}
+.ml-20px {
+  margin-left: 20px;
+}
+
+/* Background Colour */
+
+.bg-grey {
+  background-color: #4f5050;
+}
+
+.bg-light {
+  background-color: #f1f1f1;
+}
+
+/* Show Exam Name*/
+
+
+.show-exam-name {
+  border: 5px solid black;
+  background-color: #fff8d0;
+ 
+  
+}
+
+
+
+ .show-exam-name a {
+  cursor: default;
+  padding:0;
+   color: black;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+
+
+/* Login Section & Cautions starts*/
+
+
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cautionMsg {
+  width: 400px;
+}
+
+.alert-danger {
+  background-color: red;
+  color: #fff;
+  font-size: 14px;
+}
+
+.panel .panel-heading {
+  font-size: 18px;
+}
+
+.input-group {
+  margin: 10px 0px 10px 0px;
+}
+
+.login-container {
+  margin-top: 50px;
+
+  /* Display center */
+
+ 
+
+}
+
+.timer-section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: red;
+  font-size: 15px;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Exam Info Section Styles */
+
+/* Jumbotron */
+
+.jumbotron {
+  background-color: var(--bg-black);
+  color: var(--text-light);
+  padding: 0px;
+  min-height: 162px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#examInfo {
+  color: var(--font-white);
+}
+
+
+@media screen and (max-width: 768px) {
+  #examInfo {
+    padding: 2% 0 2% 0;
+    margin-left: 0px !important;; 
+  }
+}
+
+
+#sysName {
+  font-size: 18px;
+  margin-top: 5px;
+  margin-left:0px;
+  text-align: left;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  #sysName {
+    font-size: 14px;
+  }
+}
+
+#sysNumber {
+  font-size: 40px;
+  margin-top: 0px !important;
+  margin-left: 0px;
+  text-align: left;
+  color: var(--font-yellow);
+}
+
+@media screen and (max-width: 768px) {
+  #sysNumber {
+    font-size: 24px;
+  }
+}
+
+.msg {
+  font-size: 16px;
+  margin-top: 5px;
+  margin-left: 0px;
+  text-align: left;
+  color: #fff;
+}
+
+.msg a {
+  color: #fff;
+  text-decoration: none;
+}
+.d-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.userName,
+.userRollNumber,
+.subject {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+#displayCandidateName,
+#displayRollNumber {
+  margin-top: 0px;
+  font-size: 18px;
+  color: var(--font-yellow);
+}
+
+@media screen and (max-width: 768px) {
+  #displayCandidateName,
+  #displayRollNumber {
+    font-size: 14px;
+  }
+}
+
+.subjectName {
+  color: var(--font-yellow);
+}
+
+.CandidatePhoto {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* Exam Info Section Styles Ends */
+
+footer {
+  background-color: #fff;
+  color: #4f5050;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #000;
+}
+
+/* Side Scrollbar  */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-grey);
+}
+
+
+
+
+
+

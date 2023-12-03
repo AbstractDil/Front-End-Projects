@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.101.0">
+    <title>Login</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/dashboard/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="assets/css/dashboard.css" rel="stylesheet">
+<!-- font awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
+
+
+    <!-- Favicons -->
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+
+
+    
+  
+  </head>
+  <body>
+   
+
+    <!-- topnav start here -->
+    
+<nav class="navbar navbar-dark sticky-top bg-info flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 font-weight-bold" href="#">
+    <img src="assets/images/logo.png" width="35" height="35" alt="">
+
+    MSMS Admin 
+    
+  </a>
+  <button class="navbar-toggler text-white position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon text-white"></span>
+  </button>
+  
+  <ul class="navbar-nav px-3">
+    
+    <li class="nav-item ">
+      <a class="text-white nav-link" href="#">
+        <i class="fa fa-sign-out"></i>
+         Sign out</a>
+    </li>
+  </ul>
+</nav>
+ <!-- topnav ends here -->
+
+<!-- container-fluid starts here -->
+<div class="container-fluid">
+  <!-- row starts here -->
+  <div class="row">
+    <!-- sidebar starts here -->
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <!-- sidebar sticky div start here -->
+      <div class="sidebar-sticky pt-3">
+        <!-- section one start -->
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Students information</span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column ">
+          <li class="nav-item">
+            <a class="nav-link active " href="#">
+              <i class="fa fa-dashboard"></i>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">
+              <i class="fa fa-home"></i>
+             Home 
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              Products
+            </a>
+          </li>
+         
+        </ul>
+        <!-- section one ends -->
+
+        <!-- section two starts -->
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Examination System</span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2 ">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Current month
+            </a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Year-end sale
+            </a>
+          </li>
+        </ul>
+        <!-- section two ends -->
+      </div>
+      <!-- sidebar sticky div ends here -->
+
+    </nav>
+
+    <!-- sidebar ends here -->
+
+    <!-- main content starts here -->
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+        </div>
+
+     <!-- Login form  starts -->
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card shadow">
+                        <div class="card-header bg-deep-orange">
+                            <h5 class="text-center text-white">Login</h5>
+                        </div>
+                         <div class="card-body">
+               
+                            <form action="" method="post">
+                                <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+                                </div>
+                                <div class="form-group
+                                ">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+                                </div>
+                                <div class="form-group">
+                                <input type="submit" name="login" value="Proceed to login" class="btn btn-success btn-block">
+                                </div>
+                             </form>
+                        </div>
+                    </div>
+       
+
+
+               
+                </div>
+            </div>
+        </div>
+
+     <!-- Login form  ends -->
+
+
+      
+    </main>
+    <!-- main content ends here -->
+  </div>
+  <!-- row ends here  -->
+</div>
+<!-- container-fluid ends here -->
+
+
+
+<!-- footer start -->
+<footer class="d-inline-block w-100 float-left bg-dark-info text-white fixed-bottom">
+    <div class="float-left w-100 pt-3 text-center">
+       <div class="container">
+          <div class="float-left w-100 text-center">
+           <div class="row">
+             <div class=" col-md-6 ">
+               <p>© <span id="Year"></span> <span class="text-warning">MSMS</span>  |   All Rights Reserved.</p>
+             </div>
+             <div class=" col-md-6">
+               <span> Designed &amp; Developed by <span class="text-warning">Sagar Nandy</span></span>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+</footer>
+<!-- footer ends -->
+
+
+
+ 
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+ <script>
+document.getElementById("Year").innerHTML = new Date().getFullYear();
+
+
+
+
+
+
+ </script>
+
+    
+  </body>
+</html>

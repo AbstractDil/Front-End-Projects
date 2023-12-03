@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+    Instructions
+  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <!-- Custom Style Css -->
+  <link rel="stylesheet" href="assets/css/loginUI.css" />
+  <link rel="stylesheet" href="assets/css/Instruction.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+ 
+
+</head>
+
+<body onload="checkSession();">
+  <div id="ExamWindow">
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+      <div class="row"  style="padding-top:8px;background-color: aliceblue;padding-bottom: 2px;">
+        <div class="col-md-6">
+
+          <div style="font-size: 17px;" >
+            <div class="panel-heading exam-name">
+              <a
+                class="text-uppercase"
+                href="javascript:void();"
+                title="Name of the Examination : Combined Graduate Level Examination, 2023"
+              >
+                <span id="examName">
+                  Combined Graduate Level Examination, 2023
+                </span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+
+<!-- 
+          <div class="col-md-6" >
+
+             Show Setting Dropdown button 
+            
+            <div class="dropdown pull-right" style="margin-bottom:8px;margin-top: 3px;">
+              <button
+                class="btn btn-default btn-lg dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+                title="Settings"
+              >
+                <span class="glyphicon glyphicon-cog"></span>
+                Settings
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a type="button" onclick="openFullscreen();"
+                  title="Open Fullscreen"
+                  >
+                    Open Fullscreen
+                  </a>
+                </li>
+                <li>
+                  <a type="button" onclick="closeFullscreen();"
+                  title="Close Fullscreen"
+                  >
+                    Close Fullscreen
+                  </a>
+                </li>
+
+               
+                </ul>
+                </div>
+
+          </div> -->
+
+      </div>
+    </div>
+    <!-- Navbar ends -->
+
+    <!-- Main section -->
+
+    <main>
+
+      <div class="container-fluid">
+        <div class="row">
+
+
+          <!-- Left Side Bar Starts Here -->
+
+          <div class=" col-md-9">
+
+
+            <div id="leftSideBar">
+
+              
+              <!-- First Instruction Panel Starts -->
+
+              <div id="insPanelOne">
+
+                <div class="panel panel-info panel-instruction" >
+                  <div class="panel-heading bg-info" style="padding:15px">
+                    <h3 class="panel-title">
+                      <span class="glyphicon glyphicon-info-sign text-info"></span>
+                      <strong class="text-info text-uppercase">
+                        Instructions
+                      </strong>
+                    </h3>
+                  </div>
+  
+                  <div class="panel-body">
+  
+                    <table class="table">
+  
+  
+                    
+                      <tbody>
+                  
+  
+  
+  
+                        <tr>
+  
+                          <td>
+                            <center>
+                              <font size="5" style="text-transform: capitalize;">Please Read The instructions carefully </font>
+                            </center>
+                            <h4><strong><u>General Instructions:</u></strong></h4>
+                            <ol style="text-align: left; list-style-type:decimal; padding-left:  4%; padding-top: 3px">
+                              <li>Total duration of examination is <span class="completeDuration">15</span> minutes.</li>
+                              <li>
+                                Please refrain from pressing the back button or refreshing the exam window during the online examination.
+                              </li>
+
+                              <li>
+                                The 'Finish Test' button will appear after 5 minutes of the exam starting. 
+                              </li>
+
+                              <li>
+                                Your IP Address will be stored in our system for security reasons.
+                              </li>
+
+                              <li>The clock will be set at the server. The countdown timer in the top right corner of screen
+                                will display the remaining time available for you to complete the examination. When the
+                                timer reaches zero, the examination will end by itself. You will not be required to end or
+                                submit your examination.</li>
+                            </ol>
+                        
+                              
+                              
+                          </td>
+                      
+                        </tr>  
+                        
+                      
+                </tbody>
+  
+  
+  
+                  </table>
+  
+                  <!-- Show Instructions   Starts-->
+  
+  
+  
+  
+                  <!-- Show Instructions  Ends-->
+  
+  
+                </div>
+  
+  
+                </div>
+              </div>
+
+
+          <!-- First Instruction panel Ends -->
+
+          <!-- Second Instruction Panel Starts  -->
+
+          <div id="insPanelTwo">
+
+            <div class="panel panel-info panel-instruction">
+              <div class="panel-heading bg-info" style="padding:15px">
+                <h3 class="panel-title">
+                  <span class="glyphicon glyphicon-info-sign text-info"></span>
+                  <strong class="text-info text-uppercase">
+                    Other Important Instructions
+                  </strong>
+                </h3>
+              </div>
+  
+              <div class="panel-body">
+  
+                <table class="table">
+  
+  
+  
+                  <tbody>
+                    <tr>
+                      <td>
+  
+  
+                        <div style="border:1px solid grey; padding:8px;"><span style="color:#e74c3c;"><b>Write the
+                              statement given below (either Hindi or English) in the backside of </b><b>Commission Copy in
+                              your own running handwriting and put your signature.</b></span>
+  
+                          <br>
+                          <span style="color:#e74c3c;"><b>नीचे </b><b>लिखे </b><b>वाक्य </b><b>को (</b><b>हिंदी </b><b>या
+                            </b><b>अंग्रेजी </b><b>में) </b><b>आयोग </b><b>प्रति </b><b>के </b><b>पीछे </b><b>अपनी
+                            </b><b>हस्तलिपि </b><b>में </b><b>लिखें </b><b>और </b><b>अपने </b><b>हस्ताक्षर
+                            </b><b>करें</b></span>
+  
+                          <hr style="border-bottom:1px solid grey;">
+  
+  
+  
+                          <center>
+  
+                            <span
+                              style="color:#000;font-size:20px;background-color:yellow;text-align:center;"><strong>Tough
+                                times don't last, but tough people do.<br> <br> कठिन समय टिकता नहीं है, लेकिन कठिन लोग
+                                टिकते हैं।</strong></span>
+                          </center>
+  
+                        </div>
+  
+  
+  
+                      </td>
+                    </tr>
+  
+  
+                    <tr>
+                      <td>
+                        <ol style="text-align: left; list-style-type:decimal; padding-left:  4%; padding-top: 3px">
+                          <li>The Test is for 15 minutes duration</li>
+                          <li>The Test is case sensitive.</li>
+                          <li>Do not give extra space between the words.</li>
+                          <li>The passage given should be typed only once.</li>
+                          <li>
+                            If spare time is available candidates may utilise the time
+                            for checking the type script and making corrections.
+                          </li>
+                          <li>
+                            If the time finishes before you complete the passage the
+                            typed text will automatically be saved and considered for
+                            evaluation.
+                          </li>
+                          <li>
+                            The Test passage should be typed using Backspace and Arrow
+                            keys(Up, Down, Left, Right).
+                          </li>
+                        </ol>
+              
+                        Kindly note, Upon timeout, the system will automatically save
+                        all your responses.
+                        </ol>
+                      </td>
+                    </tr>
+                  </tbody>
+  
+  
+                </table>
+  
+  
+  
+  
+  
+              </div>
+  
+  
+  
+  
+  
+            <!-- Second Instruction Panel Ends -->
+  
+            </div>
+          </div>
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+        <!-- Left Side Bar Ends Here -->
+
+
+        <!-- Right Side Bar Starts Here -->
+
+
+        <div class=" col-md-3">
+
+          <div id="rightSideBar">
+            <div class="panel panel-warning darkmode panel-details">
+              <div class="panel-heading alert-warning" style="padding:15px">
+                <h3 class="panel-title">
+                  <span class="glyphicon glyphicon-user text-warning"></span>
+                  <strong class="text-warning text-uppercase">
+                    Candidate Details
+                  </strong>
+                </h3>
+              </div>
+
+
+              <div class="panel-body">
+
+                <div class="row">
+                  <div class="col-sm-12 col-md-12">
+                    <div class="text-center" style="margin-top:17px;">
+                      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                      class="img-thumbnail" width="95" height="95" alt="Candidate Photo" title="Candidate Photo">
+                      <div id="CandidateInfo">
+                        <div class="userName" title="Your Name : John Due" style="text-align: center;">
+                          Candidate Name :
+                          <div class="CandidateName" id="Candidate_Name" title="Your Name : John Due">
+                            John Doe
+                          </div>
+                        </div>
+                        <div class="userRollNumber" title="Your Roll No.: 1234567890" style="text-align: center;">
+                          Roll No.:
+          
+                          <div
+                            id="Candidate_RollNo"
+                            class="RollNo"
+                            title="Your Roll No.: 1234567890"
+                          >
+                            1234567890
+                          </div>
+                       
+                      </div>
+                      <div class="subject" style="text-align: center;">
+                        Subject :
+        
+                        <div
+                          id="displaySubject"
+                          class="subjectName"
+                          title="Subject : General Intelligence and Reasoning"
+                        >
+                          General Intelligence and Reasoning
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+
+
+            </div>
+          </aside>
+
+        </div>
+
+        <!-- Right Side Bar Starts Here -->
+
+
+      </div>
+
+
+        </div>
+
+
+</div>
+
+<!-- Language Selection  -->
+
+<div class="panel panel-default" id="SelectLang">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      
+      <strong class="text-info text-uppercase">
+
+        <span class="glyphicon glyphicon-check"></span>
+
+        Language Selection
+        &amp;
+        Declaration 
+      </strong>
+    </h3>
+  </div>
+  <div class="panel-body">
+  <div  style="padding-left: 15px; overflow: auto; max-height: 120px;font-size:14px;">
+    <div id="defaultDisclaimerDiv" style="direction: ltr;">
+      <div id="defaultLangOptions" style="margin-top: 10px;">
+        <span id="defLang">Choose your default language :</span>
+        <select id="defaultLanguage"><option value="0">-- Select --</option><option value="1">English</option></select>
+        <br><span class="highlightText" id="multiLangInstru">Please note all questions will appear in your default language. This language can be changed for a particular question later on.</span>
+      </div>
+      <div class="refdocDivinstru" id="refdocDivinstru" style="display:none;line-height: 16px; margin-bottom: 3px;margin-top:5px; padding-right: 10px; float: right;">
+          <span class="instruction_icon"> </span><a class="test-instruct" onclick="showReferenceDocContent(event);"><span id="refdocdownl">Reference Documents</span></a>
+        </div>
+      <br>
+      <div class="" id="highlightDisclaimer" style="line-height:16px;margin-bottom: 0;padding-left: 0;">
+      <span class="tb" style="vertical-align: top; float: left;"><input type="checkbox" id="disclaimer"  style="margin-top:1px;float:left">   </span>
+          <span style="width:98%;display:none;margin-left: 1.5em;" id="agreementMessageDef"></span><span style="width: 98%; display: block; margin-left: 1.5em;" id="agreementMessageCustom"><span class="cusInstText1">I have read and understood the instructions. All computer hardware allotted to me are in proper working condition. I declare that I am not in possession of / not wearing / not carrying any prohibited gadget like mobile phone, bluetooth devices etc. /any prohibited material with me into the Examination Hall.I agree that in case of not adhering to the instructions, I shall be liable to be debarred from this Test and/or to disciplinary action, which may include ban from future Tests / Examinations</span></span>
+          <span id="checkBoxEnableMessage" style="display:none;"><br><b>Note : </b>Check box will be enabled in <span id="checkBoxEnableTime"></span></span>
+      </div>
+      
+      <br>
+      </div>
+        
+        </div>
+  </div>
+</div>
+  <!-- Language Selection  Ends-->
+</div>
+
+
+
+  </main>
+  <!-- Main Section Ends -->
+
+
+
+  </div>
+
+
+  <!-- Next Section  -->
+
+  <section class="GoToNext text-right">
+
+    <div style="float:left;">
+      <button class="btn btn-default btn-lg  " id="btnPrevious" type="button" 
+        onclick="goBack();">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <b>
+          Previous
+        </b>
+      </button>
+    </div>
+
+
+    <button class="btn btn-info btn-lg " id="btnNext2" 
+    type="button">
+    <b>
+       Next
+    </b>
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </button>
+
+    <button class="btn btn-info btn-lg " id="btnNext1"  onclick="goNext();"
+      type="button">
+      <b>
+         Next
+      </b>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </button>
+
+  <!-- </form> -->
+
+  </section>
+
+
+
+
+  <footer>
+    <p>
+      MathHub Online Examination System -
+      <span id="systemVersion"></span>
+    </p>
+  </footer>
+
+
+
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

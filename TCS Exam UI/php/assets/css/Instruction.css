@@ -1,0 +1,58 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main{
+    padding:  0 5px 0 5px;
+}
+
+.panel-instruction,.panel-details{
+    height: 46rem;
+    /* border: 2px solid #000; */
+    border-radius:0;
+    font-size: 16px;
+}
+
+#leftSideBar, #rightSideBar{
+   padding-top: 1rem;
+}
+
+.table{
+    overflow-y:scroll;
+    height:38rem;
+    display:block;
+    
+ }
+
+ .sub-table tr td, tr th{
+  padding: 0.5rem;
+ }
+
+ #CandidateInfo{
+    color: #4e4e49;
+    font-weight: 700;
+    margin-top: 17px;
+ }
+
+
+
+ #CandidateInfo .CandidateName, #CandidateInfo .RollNo, #CandidateInfo .subjectName{
+    font-size: 1.5rem;
+    color: #007bff;
+ }
+
+.table td{
+  border: none !important;
+}
+
+.GoToNext{
+    border-top: 1px solid #ccc;
+
+    padding-right:21px;
+
+    padding: 1rem;
+}

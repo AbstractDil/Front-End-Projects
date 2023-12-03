@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> CBT Test -  MathHub Online Examination System</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/Assessment.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <!-- =============================== navbar ======================== -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a
+            type="button"
+            class="navbar-brand text-uppercase"
+            title="Combined Graduate Level Examination, 2023"
+            href="#"
+            data-toggle="tooltip"
+            data-placement="right"
+          >
+            <span id="examName">
+              Combined Graduate Level Examination, 2023
+            </span>
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <!-- =============================  navbar ends ========================== -->
+
+    <div class="panel panel-default" style="margin-bottom: 0px">
+      <div class="panel-heading" style="padding:0px 30px;">
+          <div class="row">
+            <button class=" btn btn-default btn-sm" style="pointer-events: none;background-color:#000;color:yellow">
+             <b style="text-transform: uppercase"> Sections :</b> 
+            </button>
+            <button class=" btn btn-danger btn-sm show-timer">
+                 <span class="glyphicon glyphicon-time"></span>
+                 Time Left :
+                 <span id="timer"> 00:00:00 </span>
+               </button>
+            </div>
+          </div>
+
+          
+    </div>
+
+    <!--======================== Tab Sections Starts ================================-->
+
+    <div style=" border-bottom: 2px solid #ddd;margin-left:6px;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!-- Tabs sections starts -->
+          <ul class="nav nav-pills">
+            <li role="presentation" class="active">
+              <a href="#GI" data-toggle="pill">
+                General Intelligence &amp; Reasoning
+              </a>
+            </li>
+            <li role="presentation">
+              <a data-toggle="pill" href="#GA">General Awarness</a>
+            </li>
+            <li role="presentation">
+              <a data-toggle="pill" href="#Math"> Quantitative Aptitude </a>
+            </li>
+            <li role="presentation">
+              <a data-toggle="pill" href="#Eng">English </a>
+            </li>
+          </ul>
+
+          <!-- Tab Section Ends -->
+        </div>
+      </div>
+    </div>
+    <!--=============================== Tab Sections Ends ================================ -->
+
+    <!-- container starts -->
+    <div class="container">
+      <!-- row starts  -->
+      <div class="row">
+        <!-- main content starts  -->
+        <div class="col-xs-12 col-sm-8">
+          <h1>Main Content</h1>
+          <!-- Tab Content Starts -->
+          <div class="tab-content">
+            <!-- GI Section Starts -->
+            <div id="GI" class="tab-pane fade in active">
+              <h3>General Intelligence and Reasoning</h3>
+              <div class="tab-content">
+                <div id="RQ1" class="tab-pane fade active in">
+                  <h3>Q1 - General Intelligence and Reasoning</h3>
+                </div>
+
+                <div id="RQ2" class="tab-pane fade">
+                  <h3>Q2 - General Intelligence and Reasoning</h3>
+                </div>
+
+                <div id="RQ3" class="tab-pane fade">
+                  <h3>Q3 - General Intelligence and Reasoning</h3>
+                </div>
+              </div>
+            </div>
+            <!-- GI Section Ends -->
+            <!-- GA Section Starts -->
+            <div id="GA" class="tab-pane fade">
+              <h3>General Awarness</h3>
+              <p>Some content in menu 1.</p>
+            </div>
+            <!-- GA Section Ends -->
+            <!-- Math Section Starts -->
+            <div id="Math" class="tab-pane fade">
+              <h3>Quantitative Aptitude</h3>
+              <p>Some content in menu 2.</p>
+            </div>
+            <!-- Math Section Ends -->
+            <!-- Eng Section Starts -->
+            <div id="Eng" class="tab-pane fade">
+              <h3>English</h3>
+              <p>Some content in menu 2.</p>
+            </div>
+            <!-- Eng Section Ends -->
+          </div>
+          <!-- Tab Content Ends -->
+        </div>
+        <!-- main content ends  -->
+        <!--========================== sidebar starts ========================= -->
+        <div class="sidenav" id="mySidenav">
+          <div class="col-xs-12 col-sm-12">
+            <!-- User name and Photo -->
+            <div class="media user-details">
+              <div class="media-left">
+                <div style="margin-top:0px;margin-left:3px;">
+                  <img
+                    class="media-object"
+                    src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    alt="Candidate Photo"
+                    width="48"
+                    height="48"
+                  />
+                </div>
+              </div>
+
+              <div class="media-body">
+                <h4
+                  class="media-heading"
+                  style="margin-top:2px; font-weight: 600"
+                >
+                  <span id="Candidate_Name"> Rohini Singh </span>
+                </h4>
+                <h5>
+                  Roll No : <span id="Candidate_RollNo"> 1234567890 </span>
+                </h5>
+              </div>
+            </div>
+            <!-- User name and Photo ends -->
+
+            <hr />
+
+            <!-- Signs colour Start -->
+            <div class="container-fluid" style="margin-top: 12px">
+              <!-- Green colour for answered question -->
+
+              <div class="sign">
+                <div class="row">
+                  <!-- Answered -->
+                  <div class="col-md-6 col-xs-6">
+                    <div
+                      class="label label-success"
+                      style="background-color: #5cb85c"
+                    >
+                      3
+                    </div>
+
+                    <div class="signName">Answered</div>
+                  </div>
+
+                  <!-- Not Answered -->
+                  <div class="col-md-6">
+                    <div
+                      class="label label-danger"
+                      style="background-color: #d9534f"
+                    >
+                      3
+                    </div>
+
+                    <div class="signName">Not Answered</div>
+                  </div>
+                  <!-- Mark For Review -->
+                  <div class="col-md-6 col-xs-6">
+                    <div
+                      class="label label-warning"
+                      style="background-color: #8c11c5"
+                    >
+                      3
+                    </div>
+
+                    <div class="signName">Mark For Review</div>
+                  </div>
+
+                  <!-- Not Visited -->
+                  <div class="col-md-6">
+                    <div
+                      class="label label-default"
+                      style="background-color: #777"
+                    >
+                      3
+                    </div>
+
+                    <div class="signName">Not Visited</div>
+                  </div>
+                </div>
+
+                <!-- Answered & Marked for Review -->
+
+                <div
+                  class="label label-primary"
+                  style="background-color: #8c11c5"
+                >
+                  3
+                  <div
+                    class="label label-success"
+                    style="
+                      padding: 1.5px;
+                      position: absolute;
+                      margin: 0px;
+                      font-weight: 400;
+                      font-size: 8px;
+                      border-radius: 8px;
+                    "
+                  >
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </div>
+                </div>
+
+                <div class="signName">Answered & Marked for Review</div>
+              </div>
+            </div>
+            <!-- Signs Ends -->
+
+            <hr />
+
+            <!-- Section Name and Show Question Numbers-->
+
+            <div class="panel panel-default" style="margin-top: 12px">
+              <div class="panel-heading">
+                <h3 class="panel-title" style="font-weight: 700">
+                  Section :
+                  <span
+                    id="sectionName"
+                    class="sectionName"
+                    title="Subject : General Intelligence and Reasoning"
+                  >
+                    Reasoning
+                  </span>
+                </h3>
+              </div>
+
+              <div class="panel-body">
+                <!-- Show Question Numbers  -->
+                <ul class="nav" id="secReasoningQuestions">
+                  <!-- Generate Question Number Using JS Automatically -->
+                </ul>
+              </div>
+            </div>
+            <!-- Section Name and Show Question number ends -->
+
+            <div class="footer-one">
+              <div class="row">
+                <div class="col-md-5 col-xs-5">
+                  <button
+                    class="btn btn-info"
+                    style="margin-bottom: 8px"
+                  >
+                    Question Paper
+                  </button>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                  <button
+                    class="btn btn-warning"
+                    style="margin-bottom: 8px"
+                  >
+                    Read Instructions
+                  </button>
+                </div>
+                <div class="col-xs-12">
+                  <button class="btn btn-block btn-success submit-btn">
+                    Submit Test
+                  </button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--======================== sidebar ends ==================  -->
+        <!-- sidebar toggle button  -->
+        <button
+          class="btn btn-info btn-sm sidebar-toggle"
+          onclick="toggleNav();"
+        >
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+        <!-- sidebar toggle button ends  -->
+      </div>
+      <!-- row ends  -->
+    </div>
+    <!-- container ends -->
+
+    <div class="footer">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Previous Button Left Side  -->
+          <div class="float-left">
+            <button class="btn btn-primary mark-for-review-btn">
+              Mark For Review &amp; Next
+            </button>
+            <button class="btn btn-primary mob-mark-for-review-btn">
+              Mark &amp; Next
+            </button>
+          </div>
+          <div class="float-left">
+            <button class="btn btn-default clear-btn mx-5">
+              Clear Response
+            </button>
+            <button class="btn btn-default mob-clear-btn mx-5">Clear</button>
+          </div>
+          <!-- Previous Button Left Side Ends -->
+          <!-- Save & Next Button Right Side -->
+
+          <div class="save-next-btn" id="saveNext">
+            <button class="btn btn-primary">
+              Save & Next
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+          </div>
+          <!-- Save & Next Button Right Side Ends -->
+        </div>
+      </div>
+
+      <!-- Mark For Review -->
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/sidenav.js"></script>
+
+    <script>
+
+     
+       </script>
+
+    <script>
+
+
+      // Generate Question Number Using JS Automatically
+
+      var i;
+      var questionNumber = 1;
+      for (i = 1; i <= 25; i++) {
+        var questionNumberLink = document.createElement("a");
+        questionNumberLink.setAttribute("href", "#RQ" + questionNumber);
+        questionNumberLink.setAttribute("class", "questionNumberLink");
+        questionNumberLink.innerHTML = questionNumber;
+        var questionNumberDiv = document.createElement("div");
+        questionNumberDiv.setAttribute("class", "questionNumber");
+        questionNumberDiv.appendChild(questionNumberLink);
+        var questionNumberLi = document.createElement("li");
+        questionNumberLi.setAttribute("role", "presentation");
+        questionNumberLi.appendChild(questionNumberDiv);
+        document
+          .getElementById("secReasoningQuestions")
+          .appendChild(questionNumberLi);
+        questionNumber++;
+      }
+    </script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      Result  SSC Typing Test
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"> </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/diff@5.1.0/dist/diff.min.js"></script>
+
+  
+
+
+
+    <style>
+        * {
+            user-select: none;
+
+            -webkit-user-select: none;
+
+            -webkit-touch-callout: none;
+
+            -moz-user-select: none;
+
+            -ms-user-select: none;
+
+            -khtml-user-select: none;
+        }
+
+        footer {
+            background-color: #fff;
+            color: #4f5050;
+
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid #000;
+        }
+
+
+        .btn-red {
+            background-color: rgb(250, 5, 5) !important;
+            color: white !important;
+            font-weight: bold !important;
+        }
+
+        /*  Set textarea disabled colour to white */
+
+
+       
+
+        textarea:disabled {
+            background-color: white !important;
+            resize: none !important;
+            border: 1px solid black !important;
+            cursor: default !important;
+        }
+
+
+        /* disable select in disable textarea */
+
+        textarea:disabled::selection {
+            background: transparent;
+        }
+
+      
+
+        textarea {
+            background-color: white !important;
+            resize: none !important;
+            border: 1px solid black !important;
+            cursor: default !important;
+            font-size : 14px !important;
+          
+
+        }
+
+        #TypedText {
+            font-family: 'Courier New', Courier, monospace !important;
+        }
+
+
+        
+        .added {
+            background-color: #ffd9ce !important; /* Highlight deletions */
+        }
+        .removed {
+            background-color: #d6e9ff !important; /* Highlight additions */
+        }
+
+
+        
+        /* .diff {
+            background-color: #ffcccb !important;
+        } */
+            /* You can add more styles here to customize the highlighting */
+        
+
+
+        /* Set textarea  select border colour to black */
+
+        textarea:focus {
+            border-color: black !important;
+            box-shadow: none !important;
+        }
+
+        /* Set button box shadow none */
+
+        button:focus {
+            box-shadow: none !important;
+        }
+
+        /* Scrollbar  */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 50px;
+
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            
+
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Scrollbar ends */
+
+
+        @media (max-width: 768px) {
+            .mob-mt-2 {
+                margin-top: 1.5rem !important;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="bg-light">
+
+
+
+
+    <!-- Header Start -->
+
+<header>
+    <nav class="navbar fixed-top navbar-light bg-white mb-2 border-bottom">
+        <a class="navbar-brand">
+            <strong>
+
+                SSC Typing Test
+            </strong>
+        </a>
+        <div class="d-flex">
+
+
+            <!-- Show timer -->
+
+            <div class="btn btn-warning btn-sm mr-1" id="showTimer">
+                <i class="fa fa-clock-o"></i>
+                Time Left:
+                <span id="timer">00:00</span>
+            </div>
+
+            <!-- Show timer ends -->
+    </nav>
+
+</header>
+    <!-- Header Ends -->
+
+    <!-- Show Alert Msg -->
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12" id="alertMessage">
+                
+            </div>
+        </div>
+        </div>
+
+        <!-- show alert msg ends -->
+
+    <!-- Main Content Starts -->
+
+    <main role="main" class="container mb-4">
+        <div class="row pt-5 pb-3">
+
+            <!-- Typing Div Starts -->
+
+            <div class="col-md-9 order-md-1 order-2">
+
+                <!-- Typing Div -->
+
+
+                <div class="form-group mob-mt-2">
+                    <label for="OriginalText">
+                        <h4>
+                            Original Text
+                        </h4>
+                    </label>
+                    <textarea class="form-control" name="originaltext" id="OriginalText" rows="8" disabled>
+
+                        </textarea>
+                    <small class="my-3 text-muted">
+                        <span id="totalWordsOT"></span>
+                        <span id="totalCharactersOT"></span>
+                        <span id="totalKeyStokesOT"></span>
+
+                    </small>
+                </div>
+              
+
+
+                    <div class="form-group">
+                        <label for="TypedText">
+                            <h4>
+                                Your Typed Text
+                            </h4>
+                        </label>
+                        <textarea class="form-control" id="TypedText" rows="8" spellcheck="false"
+                            data-gramm_editor="false" name="typedtext"></textarea>
+
+                        <small class="my-3 text-muted">
+                            <span id="totalWordsTT"></span>
+                            <span id="totalCharactersTT"></span>
+                            <span id="totalKeyStokesTT"></span>
+
+
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="TypedText">
+                            <h4>
+                              Differences with Original Text
+                            </h4>
+                        </label>
+
+                        <div class="card" style="height: 240px; overflow-y: scroll;font-size:14px;">
+
+                            <div class="card-body" id="DifferencesText" name="differences"></div>
+                        </div>
+
+
+                    </div>
+
+
+
+            </div>
+
+            <!-- Typing Div Ends -->
+
+
+            <!-- User Div Starts -->
+
+            <!-- Show user name  -->
+
+            <aside class="col-md-3  order-md-2 order-1">
+
+
+                <div class="card">
+
+
+
+                    <div class="card-body">
+                        <div class="media">
+                            <img class="media-object" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                alt="Candidate Photo" width="48" height="48">
+
+
+
+                            <div class="media-body">
+                                <h5 class="mt-0 mx-3" style="font-size: 16px;">
+                                    <span id="Candidate_Name">
+                                       Sagar Nandy
+                                    </span>
+                                </h5>
+                                <h6 class="mx-3" style="font-size: 13px;">
+                                    Roll No : <span id="Candidate_RollNo"> 6295980525 </span>
+                                </h6>
+                                <h6 class="mx-3" style="font-size: 13px;">
+                                    Language : <span id="Candidate_RollNo"> English</span>
+                                </h6>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <a type="button" class="btn btn-outline-danger btn-block" title="Logout">
+                                <i class="fa fa-power-off"></i>
+                                System Logout
+                            </a>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+            </aside>
+
+
+
+        </div>
+    </main>
+
+
+    <!-- Main Content Ends -->
+
+
+
+   
+
+
+    <footer class="border-top">
+        <p class="pt-2 pb-0 mb-0">
+            <span id="Year"></span> MathHub Online Examination System -
+            <span id="systemVersion"></span>
+        </p>
+        <p class="mb-1">
+            <small class="text-muted">
+                Design &amp; Developed by <a href="https://www.nandysagar.in" target="_blank"> Sagar Nandy</a>
+            </small>
+        </p>
+    </footer>
+
+</body>
+
+<script src="js/security.js"></script>
+
+
+<script>
+
+    /*************************  Set Version  Starts *************************/
+
+
+    // get version from package.json
+
+    var version = document.getElementById("systemVersion");
+
+    // get package.json file from root directory
+
+    fetch("../package.json")
+        .then(response => response.json())
+        .then(package => {
+            version.innerHTML = "V" + package.version; // set version
+
+        });
+
+
+    /*************************  Set Version  Ends *************************/
+
+    // Set user name
+
+    var userName = document.getElementById("userName");
+    //userName.innerHTML = prompt("Enter Your Name");
+
+    // Set user name ends
+
+    /*************************  Set timer  Ends *************************/
+
+
+    /* Count total words and characters in original text*/
+
+    var originalText = document.getElementById("OriginalText").value;
+
+
+    var texts = `Azadi Ka Amrit Mahotsav is an initiative of the Government of India to celebrate and commemorate 75 years of independence and the glorious history of its people, culture and achievements. This Mahotsav is dedicated to the people of India who have been instrumental in bringing India thus far in its evolutionary journey and hold within them the power and potential to enable the vision of activating India 2.0, fuelled by the spirit of Aatmanirbhar Bharat.It has recently concluded its first year. In view of this, the Ministry of Culture, Government of India, has organised a two-day conference in New Delhi to reflect on the progress of AKAM so far, gather best practices and ideate the strategies to be adopted for the remaining period of the celebration, especially for upcoming crucial initiatives.The success of AKAM depends critically on the 'Whole of Government' approach that ensures the involvement of every Ministry, State and Union Territory in this campaign, along with its counterparts abroad. In view of this substantial scale and involvement of stakeholders, the conference shall be attended by Senior Government Officers from every State and UT. The topics of discussion shall include landmark initiatives that involve mass public participation such as 'Har Ghar Jhanda', 'International Yoga Day', 'Digital District Repository', 'Swatantra Swar' and 'Mera Gaon Meri Dharohar'. It shall also have a session by the Ministry of Tourism focusing on its significant contributions to the AKAM campaign. It shall also have an ideation session by States/UTs on the noteworthy progress made by them under AKAM, along with deliberations on best practices and lessons learned so far and how they can be incorporated going forward. This conference shall be inaugurated by the Hon'ble Minister of Home and Co-operation. The opening address shall be delivered by the Hon'ble Minister of Culture, Tourism, and Development of the North Eastern Region of India. Inaugural addresses of sessions shall be delivered by the Hon'ble Minister of State for Parliamentary Affairs and Culture.`;
+
+    var typedText = `Azadi Ka Amrit mahotsav is an initiative of the Government of India to celebrate and commemorate 75 years of independence and the glorious history of its people, culture and achievements. This Mahotsav is dedicated to the people of India who have been instrumental in bringing India thus far in its evolutionary journey and hold within them the power and potential to enable the vision of activating India 2.0, fuelled by the spirit of Aatmanirbhar Bharat.It has recently concluded its first year. In view of this, the Ministry of Culture, Government of India, has organised a two-day conference in delhi to reflect on the progress of AKAM so far, gather best practices and ideate the strategies to be adopted for the remaining period of the celebration, especially for upcoming crucial initiatives.The success of AKAM depends critically on the 'Whole of Government' approach that ensures that the involvement of every Ministry, State and Union Territory in this campaign along with its counterpart abroaD.`;
+
+    var originalText = texts;
+
+    // show text in original text area
+
+    document.getElementById("OriginalText").innerHTML = originalText;
+
+    document.getElementById("TypedText").value = typedText;
+
+    var originalTextWords = originalText.trim().split(" ");
+    var originalTextWordsCount = originalTextWords.length;
+
+    var totalKeyStokes = originalText.length;
+
+    console.log("Total Key Storkes : " + totalKeyStokes);
+
+
+    // count characters in words in original text
+
+
+
+    var originalTextCharactersCount = 0;
+
+    for (var i = 0; i < originalTextWordsCount; i++) {
+        originalTextCharactersCount += originalTextWords[i].length;
+    }
+
+
+
+
+    // Display total words and characters in original text
+
+    document.getElementById("totalWordsOT").innerHTML = " Words : " + originalTextWordsCount + ",";
+    document.getElementById("totalCharactersOT").innerHTML = " Characters : " + originalTextCharactersCount + ",";
+    document.getElementById("totalKeyStokesOT").innerHTML = "Key Stokes : " + totalKeyStokes;
+
+
+
+    console.log("Total Words in origial text : " + originalTextWordsCount);
+    console.log("Total character in origial text : " + originalTextCharactersCount);
+
+
+    /* Count total words and characters in original text ends*/
+
+    /* Count total words, characters  and key stokes in typed text */
+
+    var typedText = document.getElementById("TypedText").value;
+
+    var typedTextWords = typedText.trim().split(" ");
+
+    var typedTextWordsCount = typedTextWords.length;
+
+    var typedTextCharactersCount = 0;
+
+    for (var i = 0; i < typedTextWordsCount; i++) {
+        typedTextCharactersCount += typedTextWords[i].length;
+    }
+
+    document.getElementById("totalWordsTT").innerHTML = " Words : " + typedTextWordsCount + ",";
+    document.getElementById("totalCharactersTT").innerHTML = " Characters : " + typedTextCharactersCount + ",";
+
+
+    // count key stokes in typed text
+
+    var totalKeyStokesTT = typedText.length;
+
+    document.getElementById("totalKeyStokesTT").innerHTML = "Key Stokes : " + totalKeyStokesTT;
+
+    console.log("Total Words in typed text : " + typedTextWordsCount);
+    console.log("Total character in typed text : " + typedTextCharactersCount);
+
+
+    /* Count total words, characters  and key stokes in typed text ends*/
+
+   
+// show differences with original text and highlight the words with diff class style 
+
+
+var diff = Diff.diffWordsWithSpace(originalText, typedText);
+
+// Build the HTML content for displaying differences
+var differencesHtml = '';
+diff.forEach(function (part) {
+    // Use CSS class to highlight differences
+    var className = part.added ? 'diff added' :
+                    part.removed ? 'diff removed' : '';                    
+    differencesHtml += '<span class="' + className + '">' + part.value + '</span>';
+});
+
+// Display differences in the "DifferencesText" textarea
+var differencesText = document.getElementById('DifferencesText');
+differencesText.innerHTML = differencesHtml;
+    
+
+    
+var wrongCharCount = 0;
+  
+  // Get the user's input from an input field with the class "typedAnswer" and remove leading/trailing white spaces.
+  var wordsInArea = $("#TypedText").val().split(" ");
+
+  var givenWords = $("#OriginalText").val().split(" ");
+   
+
+  // Iterate through each word in the user's input.
+  for (var k = 0; k < wordsInArea.length; k++) {
+      // Check if the trimmed user input word is not equal to the trimmed reference word at the same position.
+      if ($.trim(wordsInArea[k]) != $.trim(givenWords[k])) {
+      // Calculate the maximum length between the user input word and the reference word at the same position
+      // and add it to the wrongCharCount. This accounts for extra characters in either of the words.
+      wrongCharCount += wordsInArea[k].length > givenWords[k].length ?
+          wordsInArea[k].length : givenWords[k].length;
+      }
+  }
+
+console.log(wrongCharCount);
+
+
+</script>
+
+
+
+
+
+
+
+
+</html>

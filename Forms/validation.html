@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#myForm").submit(function(event) {
+        var inputValue = $("#myInput").val();
+        var regex = /^[a-zA-Z0-9@#$%&]*$/; // Regex pattern to allow only alphanumeric characters and specific special characters
+
+        if (!regex.test(inputValue)) {
+          alert("Only text, numbers, and @,#,$,%,& characters are allowed!");
+          event.preventDefault();
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <form id="myForm">
+    <input type="text" id="myInput" />
+    <input type="submit" value="Submit" />
+  </form>
+</body>
+</html>

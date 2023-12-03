@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>404 Page Is Not Found</title>
+    <style>
+        /* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+/* Main content styles */
+main
+ {
+
+ position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    /* background: #f8f6f6; */
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
+    text-align: center;
+
+ 
+}
+
+main h1 {
+  font-size: 3em;
+}
+
+main p {
+  font-size: 1.2em;
+}
+
+/* Footer styles */
+footer {
+  position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Media queries */
+@media only screen and (min-width: 768px) {
+  main {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Header content goes here -->
+        <h1>
+            SERVER ERROR 404
+        </h1>
+    </header>
+    
+    <main>
+      <!-- Main content goes here -->
+
+      <h1> 404  <br>   Oops! That page can't be found.</h1>
+  <p>Sorry, but the page you are looking for has either been moved or does not exist.</p>
+
+   <a href="https://nandysagar.in">Go to Home Page</a>
+
+    </main>
+    
+    <footer>
+      <!-- Footer content goes here -->
+        <p>
+            &copy; <span id="showYear"></span> nandysagar.in - All Rights Reserved.
+        </p>
+    </footer>
+
+    <script>
+        var d = new Date();
+        var n = d.getFullYear();
+        document.getElementById("showYear").innerHTML = n;
+    </script>
+
+  </body>
+</html>
