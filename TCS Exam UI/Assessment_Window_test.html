@@ -15,7 +15,7 @@
 
   <body>
     <!-- =============================== navbar ======================== -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -86,185 +86,196 @@
     <!--=============================== Tab Sections Ends ================================ -->
 
     <!-- container starts -->
-    <div class="container">
+    <div class="container-fluid">
       <!-- row starts  -->
       <div class="row">
         <!-- main content starts  -->
         <div class="col-xs-12 col-sm-9">
 
-          <!-- <h1>Main Content</h1> -->
-  
-          <table class="table">
-            <tbody>
-              <!-- QuestionPool Starts -->
-              <div id="QuestionPool">
-                <div id="Q1">
-                  <h3>Question 1 GI</h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-                </div>
-                <div id="Q2">
-                  <h3>
-                    Question 2 GI
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-                </div>
-                <div id="Q3">
-                  <h3>
-                    Question 3 GI
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-                </div>
-                <div id="Q4">
-                  <h3>
-                    Question 4 GI
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-                </div>
-      
-                <div role="tabpanel" class="tab-pane" id="Q5">
-                  <h3>
-                    Question 1 GK
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-                </div>
-                <div id="Q6">
-                  <h3>
-                    Question 2 GK
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-                </div>
-                <div id="Q7">
-                  <h3>
-                    Question 3 GK
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-                </div>
-                <div id="Q8">
-                  <h3>
-                    Question 4 GK
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-                </div>
-      
-      
-      
-      
-                <div id="Q9">
-                  <h3>
-                    Question 1 Math
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-      
-                </div>
-      
-                <div id="Q10">
-                  <h3>
-                    Question 2 Math
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-      
-                </div>
-      
-                <div id="Q11">
-                  <h3>
-                    Question 3 Math
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-      
-                </div>
-      
-                <div id="Q12">
-                  <h3>
-                    Question 4 Math
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-      
-                </div>
-      
-                <div id="Q13">
-                  <h3>
-                    Question 1 Eng
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-      
-                </div>
-      
-                <div id="Q14">
-                  <h3>
-                    Question 2 Eng
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-      
-                </div>
-      
-                <div id="Q15">
-                  <h3>
-                    Question 3 Eng
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-      
-                </div>
-      
-                <div id="Q16">
-                  <h3>
-                    Question 4 Eng
-                  </h3>
-                  <p>Option 1</p>
-                  <p>Option 2</p>
-                  <p>Option 3</p>
-                  <p>Option 4</p>
-      
-                </div>
-              </div>
-              <!-- QuestionsPool Ends -->
+          <!--  Show  Question -->
 
-            </tbody>
-          </table>
+          <div class="panel panel-default">
+            <div class="panel-body table-responsive">
+             
+                <table class="table">
+                  <tbody>
+                    <!-- QuestionPool Starts -->
+                    <div id="QuestionPool">
+                      <div id="Q1">
+                        <h3>Question 1 GI</h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+                      </div>
+                      <div id="Q2">
+                        <h3>
+                          Question 2 GI
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+                      </div>
+                      <div id="Q3">
+                        <h3>
+                          Question 3 GI
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+                      </div>
+                      <div id="Q4">
+                        <h3>
+                          Question 4 GI
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+                      </div>
+            
+                      <div role="tabpanel" class="tab-pane" id="Q5">
+                        <h3>
+                          Question 1 GK
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+                      </div>
+                      <div id="Q6">
+                        <h3>
+                          Question 2 GK
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+                      </div>
+                      <div id="Q7">
+                        <h3>
+                          Question 3 GK
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+                      </div>
+                      <div id="Q8">
+                        <h3>
+                          Question 4 GK
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+                      </div>
+            
+            
+            
+            
+                      <div id="Q9">
+                        <h3>
+                          Question 1 Math
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+            
+                      </div>
+            
+                      <div id="Q10">
+                        <h3>
+                          Question 2 Math
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+            
+                      </div>
+            
+                      <div id="Q11">
+                        <h3>
+                          Question 3 Math
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+            
+                      </div>
+            
+                      <div id="Q12">
+                        <h3>
+                          Question 4 Math
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+            
+                      </div>
+            
+                      <div id="Q13">
+                        <h3>
+                          Question 1 Eng
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+            
+                      </div>
+            
+                      <div id="Q14">
+                        <h3>
+                          Question 2 Eng
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+            
+                      </div>
+            
+                      <div id="Q15">
+                        <h3>
+                          Question 3 Eng
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+            
+                      </div>
+            
+                      <div id="Q16">
+                        <h3>
+                          Question 4 Eng
+                        </h3>
+                        <p>Option 1</p>
+                        <p>Option 2</p>
+                        <p>Option 3</p>
+                        <p>Option 4</p>
+            
+                      </div>
+                    </div>
+                    <!-- QuestionsPool Ends -->
+            
+                  </tbody>
+                </table>
+            
+            </div>
+
+          </div>
+
+          <!-- <h1>Main Content</h1> -->
+
+    
           
         </div>
         <!-- main content ends  -->

@@ -215,8 +215,9 @@
         width: 100%;
         background-color: #f8f8f8;
         padding: 10px 20px;
+
         border-top: 1px solid #ddd;
-        z-index: -1000;
+        /* z-index: -1000; */
         box-shadow: 0px 0px 5px 0px #bebcbc;
 
       }
@@ -263,7 +264,7 @@
         height: 100%;
         width:320px;
         position: fixed;
-        /* z-index: 1; */
+        z-index: 1;
         top: 0;
         right: 0;
         background-color: #fbfcfe;
@@ -279,7 +280,6 @@
       .sidenav-active{
         width: 0px;
         overflow-y: scroll;
-
       }
 
       .sidenav a {

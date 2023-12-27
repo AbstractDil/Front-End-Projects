@@ -22,22 +22,27 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Animate CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- Owl Carousel -->
+  <link rel="stylesheet" href="assets/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
+
+
 </head>
 
 <body>
   <!-- Navbar Starts Here -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark  sticky-top ">
-    <button class="navbar-toggler border-0 " type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+   
     <a class="navbar-brand logo-text text-uppercase py-2" href="#">
       <img src="assets/img/SagarLogo.png" alt="SagarLogo" width="40" class="logo-img mx-2">
       Sagar
     </a>
-    <button class="btn btn-outline-light btn-sm px-3 text-white rounded-pill" 
-    style="background-image: linear-gradient(-45deg,rgb(2, 226, 70),rgb(2, 109, 2));">Hire Me</button>
-
+    
+    <button class="navbar-toggler border-0 " type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto px-4">
@@ -45,19 +50,19 @@
           <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-card px-2">
-          <a class="nav-link" href="#About">About</a>
+          <a class="nav-link" href="about.html">About</a>
         </li>
 
         <li class="nav-card px-2">
-          <a class="nav-link" href="#Education">Education</a>
+          <a class="nav-link" href="education.html">Education</a>
         </li>
 
         <li class="nav-card px-2">
-          <a class="nav-link" href="#myWorks">My Works</a>
+          <a class="nav-link" href="myworks.html">My Works</a>
         </li>
 
         <li class="nav-card px-2">
-          <a class="nav-link" href="#Contact">Contact Me</a>
+          <a class="nav-link" href="contact.html">Contact Me</a>
         </li>
 
       </ul>
@@ -71,17 +76,18 @@
     <section class="hero-section bg-dark">
       <div class="container col-md-9 px-4 pt-3 pb-4">
         <div class="row flex-lg-row-reverse align-cards-center g-5 py-5">
-          <div class="col-md-6 mb-4 text-center animate__animated animate__fadeInRight">
-
+          <div class="col-md-6 mb-4 text-center animate__animated animate__fadeInDown">
+<!-- animate__animated animate__fadeInRight -->
             <img src="assets/img/avatarSagar.jpg"
-              class=" mx-lg-auto img-thumbnail rounded-circle  hero-image bg-dark alert-success" alt="HeroImage"
+              class=" mx-lg-auto img-thumbnail rounded-circle  hero-image bg-dark alert-success " alt="HeroImage"
               loading="lazy">
 
           </div>
           <div class="col-md-6 for-mob-text-center">
             <p class="mx-1 lead text-light">Hello, I'm</p>
             <h1
-              class="display-4 font-weight-bold mb-3 text-warning client-name animate__animated animate__lightSpeedInLeft">
+              class="display-4 font-weight-bold mb-3 text-warning client-name animate__animated animate__lightSpeedInLeft ">
+              <!-- animate__animated animate__lightSpeedInLeft -->
               Sagar Nandy
             </h1>
 
@@ -95,10 +101,13 @@
                 <i class="bi bi-person"></i> About Me
               </a>
 
-              <a href="#About" type="button" class="btn alert-info btn-lg mx-3  rounded-pill px-4 font-weight-bold"
+              <button class="btn btn-outline-light btn-lg px-4 mx-3 text-white rounded-pill"
+              id="contactMeBtn" style="background-image: linear-gradient(-45deg,rgb(2, 226, 70),rgb(2, 109, 2));">Hire Me</button>
+
+              <!-- <a href="#About" type="button" class="btn alert-info btn-lg mx-3  rounded-pill px-4 font-weight-bold"
                 id="contactMeBtn">
                 <i class="bi bi-person-lines-fill"></i> Hire Me
-              </a>
+              </a> -->
 
             </div>
 
@@ -154,49 +163,11 @@
       </h3>
 
       <div class="container">
-        <div class="row py-2">
-          <div class="col-md-3 my-2">
+        <div class="row py-2 px-4">
 
-            <div class="card bg-dark border-white text-white rounded">
-              <img src="assets/img/tech/CodeIgniter_Img.png" class="card-img-top rounded" alt="...">
-
-            </div>
-
-          </div>
-          <div class="col-md-3 my-2">
-
-            <div class="card">
-              <img src="assets/img/tech/Laravel_Img.png" class="card-img-top" alt="...">
-
-
-
-            </div>
-
-          </div>
-          <div class="col-md-3 my-2">
-
-            <div class="card">
-              <img src="assets/img/tech/NodeJs_Img.png" class="card-img-top" alt="...">
-
-            </div>
-
-          </div>
-          <div class="col-md-3 my-2">
-
-            <div class="card">
-              <img src="assets/img/tech/VueJs_img.png" class="card-img-top" alt="...">
-
-            </div>
-          </div>
-          <div class="col-md-3 my-2">
-
-            <div class="card">
-              <img src="https://externlabs.com/blogs/wp-content/uploads/2021/12/2400%D1%851260-rw-blog-node-js.png"
-                class="card-img-top" alt="...">
-
-            </div>
-          </div>
-
+          <!-- Skills are generated by Javascript Starts -->
+        <div class=" owl-carousel owl-theme" id="skillList"></div>
+          <!-- Skills are generated by Javascript Ends -->
 
 
 
@@ -213,6 +184,58 @@
 
   <!-- Custom Javascript Fle  -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Owl Carousel  -->
+  <script src="assets/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+
+  <script>
+
+// generate techstack using javascript
+
+ var skills = ['CodeIgniter' , 'Laravel' , 'VueJs' , 'NodeJs', 'Bootstrap' , 'TailwindCSS' , 'Git_Github','Combined'];
+
+  var skillList = document.getElementById('skillList');
+
+  //var skillPercentList = document.getElementById('skillPercentList');
+
+ 
+  for(var i=0; i<skills.length; i++){
+      
+      skillList.innerHTML += `
+      <div class="item col-md-12">
+      <div class="card bg-dark border-white text-white rounded">
+       <img src="assets/img/tech/`+skills[i]+`_Img.png" class="card-img-top rounded" alt="`+skills[i]+`">
+      </div>
+      </div>
+      `;
+  
+    }
+
+
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:15,
+    nav:true,
+    autoplay : true,
+    reponsiveClass : true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:1,
+            nav:false
+        },
+        1000:{
+            items:4,
+            nav:true,
+            loop:false
+        }
+    }
+})
+  </script>
+
 </body>
 
 </html>
