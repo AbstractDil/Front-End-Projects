@@ -1,4 +1,5 @@
 <template>
+  <!-- Footer Starts Here -->
   <div class="container">
   <footer class=" py-3 my-2 border-top">
     
@@ -11,6 +12,8 @@
 
   </footer>
 </div>
+  <!-- Footer Ends Here -->
+
 </template>
 
 <script>

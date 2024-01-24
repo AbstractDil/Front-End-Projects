@@ -7,28 +7,40 @@ const router = createRouter({
     {
       path: '/',
       name: 'index',
-      component: HomeView
+      component: HomeView,
+      meta : {title : "Home | Sagar Nandy | Welcome to NANDYSAGAR.IN"}
     },
 
     {
       path : '/home',
       name: 'home',
-      component:() => import('../views/HomeView.vue')
+      component:() => import('../views/HomeView.vue'),
+      meta : {title : "Home | Sagar Nandy | Welcome to NANDYSAGAR.IN"}
+
     },
 
     {
         path : '/about',
         name: 'about',
-        component:() => import('../views/AboutView.vue')
+        component:() => import('../views/AboutView.vue'),
+        meta : {title : " About Me | Sagar Nandy | Welcome to NANDYSAGAR.IN"}
+
     },
 
     {
         path : '/:catchAll(.*)',
         name: 'PageNotFound',
-        component:() => import('../components/PageNotFound.vue')
+        component:() => import('../components/PageNotFound.vue'),
+        meta : {title : " 404 Page Not Found | Sagar Nandy | Welcome to NANDYSAGAR.IN"}
+
+
     },
     
   ]
+})
+
+router.beforeEach((to)=>{
+document.title = to.meta.title;
 })
 
 export default router

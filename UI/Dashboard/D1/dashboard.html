@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template -->
     <link href="assets/css/dashboard.css" rel="stylesheet">
+    
 
   </head>
 
@@ -24,12 +25,14 @@
     <nav class="navbar bg-info navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle  collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button type="button" class="navbar-toggle" id="hambargar"  onclick="openNav()">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar text-primary"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+      <button class="closebtn" id="closeBtn" onclick="closeNav()">&times;</button>
+
           <a class="navbar-brand" href="#">
             <span style="font-size: 18px;font-weight:bold;"> iMOES </span>
             <span style="font-size: 12px;"> Admin  - V1.0.1</span>
@@ -48,6 +51,15 @@
         </div>
       </div>
     </nav>
+
+    <!-- For Mobile Menu Only Starts -->
+    <div id="mobSideNav" class="sidenav">
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+    <!-- For Mobile Menu Only Ends -->
 
     <div class="container-fluid bg-secondary">
       <div class="row">
@@ -235,6 +247,8 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   
     <script src="assets/bootstrap@3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
   
   
 

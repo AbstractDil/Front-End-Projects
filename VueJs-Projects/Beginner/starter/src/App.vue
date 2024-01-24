@@ -37,9 +37,9 @@ export default {
 
     <RouterView />
 
-    <footer>
+   
       <FooTer/>
-    </footer>
+   
     
 
 

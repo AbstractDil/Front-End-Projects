@@ -48,7 +48,7 @@ export default {
       return {
         typeValue: '',
         typeStatus: false,
-        typeArray: ['Sagar Nandy', 'A Full Stack Web Developer'],
+        typeArray: ['Sagar Nandy','CodeIgniter Developer','Vue JS Developer','Laravel Developer', ' Express JS Developer','A Full Stack Web Developer'],
         typingSpeed: 100,
         erasingSpeed: 70,
         newTextDelay: 1000,
@@ -140,8 +140,8 @@ export default {
   }
 
   .hero-bg{
-  height: 100vh;
-  background-image:  url("../assets/images/hero-bg.jpeg");
+  height: 100%;
+  background-image:  url("../assets/images/hero-bg.jpg");
   background-size: cover;
   background-position: center;
   display: flex;

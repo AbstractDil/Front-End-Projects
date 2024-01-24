@@ -1,14 +1,11 @@
 <script setup>
-import HeroSection from '../components/HeroSection.vue';
-import SerVices from '../components/SerVices.vue';
-
+import AboutMe from '../components/AboutMe.vue';
 
 </script>
 
 <template>
     
-   <HeroSection appName = "Sagar Nandy"/> 
-   <SerVices/>
+   <AboutMe appName = "Sagar Nandy"/> 
 
    
 </template>
@@ -17,7 +14,7 @@ import SerVices from '../components/SerVices.vue';
 
     export default {
 
-        components : 'HomeView'
+        components : 'AboutView'
         
     }
 </script>

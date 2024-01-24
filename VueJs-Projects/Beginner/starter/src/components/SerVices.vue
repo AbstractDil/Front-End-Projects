@@ -1,7 +1,10 @@
 <template>
+
+<!-- Services Section Starts Here -->
+
     <div>
 
-        <div class="container px-4 py-5" id="featured-3">
+    <div class="container px-4 py-5" id="featured-3">
     <h2 class="pb-2 border-bottom"><i class="bi bi-person-workspace"></i> My Services</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
       
@@ -21,6 +24,8 @@
   </div>
 
     </div>
+<!-- Services Section Ends Here -->
+
 </template>
 
 <script>
