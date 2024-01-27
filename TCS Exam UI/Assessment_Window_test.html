@@ -418,7 +418,7 @@
 
                 <!-- Question Tabs -->
     
-                <ul id="secGI" style="list-style:none; display: inline-block;">
+                <ul id="secGI" class="nav" style="list-style:none;">
                 </ul>
                   </div>
 
@@ -492,7 +492,7 @@
 
                     <!-- Question Tabs for Eng -->
         
-                    <ul id="secEng"></ul>
+                    <ul id="secEng" class="d-flex"></ul>
                   </div>
                 </div>
 
@@ -602,17 +602,21 @@
   
       $(document).ready(function () {
         var i;
-        for (i = 1; i <= 25; i++) {
+        for (i = 1; i <= 16; i++) {
           var quesNo = i;
           var quesId = "#Q" + quesNo;
           var li = document.createElement("li");
-          var a = document.createElement("a");
+          var div = document.createElement("div");
+          var btn = document.createElement("button");
           var text = document.createTextNode("" + i);
-          a.appendChild(text);
-          a.setAttribute("href", "javascript:void(0);");
-          a.setAttribute("class", "btn btn-sm btn-default mx-2 text-center");
-          a.setAttribute("onclick", "displayQues(" + i + ")");
-          li.appendChild(a);
+          btn.appendChild(text);
+          //btn.setAttribute("href", "javascript:void(0);");
+          btn.setAttribute("class", "btn btn-sm btn-default mx-2 text-center questionNumberLink");
+          btn.setAttribute("onclick", "displayQues(" + i + ")");
+          div.setAttribute("class", "questionNumber");
+          li.setAttribute("role", "presentation");
+          li.appendChild(div);
+          div.appendChild(btn);
           $("#secGI").append(li);
         }
   
@@ -621,12 +625,14 @@
           var quesId = "#Q" + quesNo;
           var quesIndex = i - 4;
           var li = document.createElement("li");
-          var a = document.createElement("a");
+          var btn = document.createElement("btn");
           var text = document.createTextNode("Question " + quesIndex);
-          a.appendChild(text);
-          a.setAttribute("href", "javascript:void(0);");
-          a.setAttribute("onclick", "displayQues(" + i + ")");
-          li.appendChild(a);
+          btn.appendChild(text);
+          //btn.setAttribute("href", "javascript:void(0);");
+          btn.setAttribute("class", "btn btn-sm btn-default mx-2 text-center");
+
+          btn.setAttribute("onclick", "displayQues(" + i + ")");
+          li.appendChild(btn);
           $("#secGK").append(li);
         }
   
@@ -636,12 +642,14 @@
           var quesIndex = i - 8;
   
           var li = document.createElement("li");
-          var a = document.createElement("a");
+          var btn = document.createElement("btn");
           var text = document.createTextNode("Question " + quesIndex);
-          a.appendChild(text);
-          a.setAttribute("href", "javascript:void(0);");
-          a.setAttribute("onclick", "displayQues(" + i + ")");
-          li.appendChild(a);
+          btn.appendChild(text);
+          btn.setAttribute("href", "javascript:void(0);");
+          btn.setAttribute("class", "btn btn-xs btn-default mx-2 text-center");
+
+          btn.setAttribute("onclick", "displayQues(" + i + ")");
+          li.appendChild(btn);
           $("#secMath").append(li);
         }
   
@@ -650,13 +658,14 @@
           var quesId = "#Q" + quesNo;
           var quesIndex = i - 12;
           var li = document.createElement("li");
-          var a = document.createElement("a");
+          var btn = document.createElement("btn");
           var text = document.createTextNode("Question " + quesIndex);
-          a.appendChild(text);
-          a.setAttribute("href", "javascript:void(0);");
+          btn.appendChild(text);
+          btn.setAttribute("href", "javascript:void(0);");
+          btn.setAttribute("class", "btn btn-xs btn-default mx-2 text-center");
           
-          a.setAttribute("onclick", "displayQues(" + i + ")");
-          li.appendChild(a);
+          btn.setAttribute("onclick", "displayQues(" + i + ")");
+          li.appendChild(btn);
           $("#secEng").append(li);
         }
   
