@@ -27,6 +27,15 @@ const router = createRouter({
 
     },
 
+
+    {
+      path : '/contact',
+      name: 'contact',
+      component:() => import('../views/ContactView.vue'),
+      meta : {title : " Contact Me | Sagar Nandy | Welcome to NANDYSAGAR.IN"}
+
+  },
+
     {
         path : '/:catchAll(.*)',
         name: 'PageNotFound',

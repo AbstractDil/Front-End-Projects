@@ -141,7 +141,7 @@ export default {
 
   .hero-bg{
   height: 100%;
-  background-image:  url("../assets/images/hero-bg.jpg");
+  background-image:  url("../assets/images/hero-bg.jpeg");
   background-size: cover;
   background-position: center;
   display: flex;

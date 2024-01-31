@@ -120,6 +120,8 @@ export default {
       urls : [
         { id : 1,  url: 'home'},
         {id :2 ,  url: 'about'},
+        {id :3,  url: 'contact'},
+
       ],
      // isDark : false
     }
