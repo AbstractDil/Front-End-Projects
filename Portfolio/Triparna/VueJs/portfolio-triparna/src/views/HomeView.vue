@@ -1,9 +1,14 @@
 <script setup>
-import HeaderSection from '../components/HeaderSection.vue';
+
+import HeroSection from '../components/HeroSection.vue';
+
+
+//import HeaderSection from '../components/HeaderSection.vue';
 </script>
 
 <template>
   <main>
-    <HeaderSection msg=" Triparna Sarkar" />
+   
+    <HeroSection msg=" Triparna Sarkar" />
   </main>
 </template>

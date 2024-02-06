@@ -48,17 +48,36 @@ html {
   background-color: #000;
 }
 
-.footer {
-    position:relative;
-    bottom: 0;
-    width: 100%;
-    height: auto !important;
-    /* line-height: 60px; */
-    background-color: var(--bg-indigo); 
+
+
+.jumbtron{
+  height: 30vh;
+  background-image:  url("../img/HeroImage.jpg");
+  background-size: cover;
+  background-position: center;
+  }
+  .jumbtron .overlay{
+  width:100%;
+  height: 100%;
+ 
+  /* background-color:#0c5f80; */
+  background :rgba(1, 9, 24, 0.8);
+
 }
 
-.footer a{
-    text-decoration: none;
+@media (max-width: 768px){
+  .jumbtron {
+     height: 22vh;
+  }
+  .jumbtron-body{
+    padding: 2rem !important;
+  }
+  .jumbtron-body h5{
+    margin-top: 0 !important;
+    font-size: 22px !important;
+  }
+
+  
 }
 
 /* width */

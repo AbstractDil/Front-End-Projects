@@ -2,7 +2,7 @@
 import HeaderSection from '../components/HeaderSection.vue';
 </script>
 <template>
- <HeaderSection title="About Me"/>
+ <HeaderSection title="Contact Me"/>
 </template>
 
 <style scoped>
