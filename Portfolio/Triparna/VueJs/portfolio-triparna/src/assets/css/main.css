@@ -51,7 +51,7 @@ html {
 
 
 .jumbtron{
-  height: 30vh;
+  height: 35vh;
   background-image:  url("../img/HeroImage.jpg");
   background-size: cover;
   background-position: center;
@@ -67,7 +67,7 @@ html {
 
 @media (max-width: 768px){
   .jumbtron {
-     height: 22vh;
+     height: 25vh;
   }
   .jumbtron-body{
     padding: 2rem !important;
@@ -87,17 +87,17 @@ html {
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: rgba(var(--bs-light-rgb)) 
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: var(--bg-indigo); 
+    background: rgba(var(--bs-info-rgb)) 
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--bg-indigo); 
+    background: rgba(var(--bs-info-rgb)); 
   }
 
   /* Back to top button */

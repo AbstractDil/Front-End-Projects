@@ -28,7 +28,7 @@ const toggleDark = useToggle(isDark);
     >
   <div class="container-fluid px-4">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <i class="bi bi-list"></i>
     </button>
     <a class="navbar-brand  logo-text mt-2" href="/home">
       <img src="../assets/img/TriparnaAbout.jpg" v-bind:alt="appName " v-bind:title="appName" class="mx-2 mb-2 border rounded-circle border-info logo-img" width="35" height="35">
@@ -120,7 +120,8 @@ export default {
       urls : [
         { id : 1,  url: 'home'},
         {id :2 ,  url: 'about'},
-        {id :3,  url: 'contact'},
+        {id :3 ,  url: 'education'},
+        {id :4,  url: 'contact'},
 
       ],
      // isDark : false

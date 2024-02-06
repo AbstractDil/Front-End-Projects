@@ -13,8 +13,7 @@ defineProps({
         <div class="overlay">
             <div class=" p-5 text-white text-center jumbtron-body ">
                 <h5 class="mt-3 display-6">
-                  <span v-if="title == 'About Me'">  <img src="../assets/img/TriparnaAbout.jpg" v-bind:alt="appName " v-bind:title="appName" class="mx-2 mb-2 border rounded-circle border-info logo-img" width="35" height="35"> </span>
-                  <span v-else-if="title == 'Contact Me'">  <img src="../assets/img/TriparnaAbout.jpg" v-bind:alt="appName " v-bind:title="appName" class="mx-2 mb-2 border rounded-circle border-info logo-img" width="35" height="35"> </span>
+                  <img src="../assets/img/TriparnaAbout.jpg"  class="mx-2 mb-2 border rounded-circle border-info logo-img" width="35" height="35">
 
                   {{ title }}
                 </h5>
@@ -35,6 +34,8 @@ defineProps({
                            
                         </li>
                          <li v-else-if="title == 'Contact Me'" class="breadcrumb-item active text-light" >Contact</li>
+
+                         <li v-else-if="title == 'My Education'" class="breadcrumb-item active text-light" >Education</li>
                       </ol>
                     </nav>
                 </div>
