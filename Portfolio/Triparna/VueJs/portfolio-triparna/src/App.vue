@@ -1,19 +1,17 @@
 <script setup>
-import { RouterLink,RouterView } from 'vue-router';
 import NavbarSection from './components/NavbarSection.vue';
-
+import { RouterView } from 'vue-router';
+import FooterSection from './components/FooterSection.vue';
 </script>
 
 
 <template>
 
-  <NavbarSection/>
+<NavbarSection appName = "Triparna"/>
 
-<nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-</nav>
 <RouterView />
+
+<FooterSection/>
 
 </template>
 

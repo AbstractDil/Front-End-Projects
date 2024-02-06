@@ -3,22 +3,9 @@
 
 
 
-.bg-primary{
-  background-color: var(--bg-primary) !important;
-}
-
-.text-primary{
-  color: var(--bg-primary) !important;
-}
-
-.btn-primary{
-  background-color: var(--bg-primary) !important;
-  
-}
-
-
 html {
     scroll-behavior: smooth;
+    height: 100%;
   }
 
 .hero-section{
@@ -30,7 +17,7 @@ html {
   border-width: 20px;
    border-image: linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66)) 1; 
   border-radius: 50% !important; */
-  border: 25px solid var(--bg-primary);
+  border: 25px solid var(--bg-indigo);
   width: 316px;
   /* box-shadow: 0 0 40px var(--border-light-primary); */
   /* animation: shadow 0.5s ease-in-out infinite alternate; */
@@ -67,7 +54,7 @@ html {
     width: 100%;
     height: auto !important;
     /* line-height: 60px; */
-    background-color: var(--bg-primary); 
+    background-color: var(--bg-indigo); 
 }
 
 .footer a{
@@ -86,12 +73,12 @@ html {
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: var(--bg-primary); 
+    background: var(--bg-indigo); 
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--bg-primary); 
+    background: var(--bg-indigo); 
   }
 
   /* Back to top button */

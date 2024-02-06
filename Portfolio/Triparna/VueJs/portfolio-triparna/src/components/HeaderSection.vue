@@ -1,4 +1,6 @@
+
 <script setup>
+import HeroSection from './HeroSection.vue';
 defineProps({
   msg: {
     type: String,
@@ -9,18 +11,11 @@ defineProps({
 </script>
 
 <template>
-    <header>
-    <img alt="Vue logo" class="logo" src="@/assets/img/TriparnaAbout.jpg" width="125" height="125" />
-
-    <div class="wrapper">
-      
-      <h1>{{ msg }}</h1>
-     
-    </div>
-  </header>
 
   <!-- <RouterView /> -->
+<HeroSection appName = "Triparna Sarkar"/>
 </template>
+
 
 <style scoped>
 h1 {

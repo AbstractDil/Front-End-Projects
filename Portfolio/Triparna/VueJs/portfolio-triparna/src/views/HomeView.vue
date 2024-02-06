@@ -4,6 +4,6 @@ import HeaderSection from '../components/HeaderSection.vue';
 
 <template>
   <main>
-    <HeaderSection msg="Hello Triparna Sarkar" />
+    <HeaderSection msg=" Triparna Sarkar" />
   </main>
 </template>
