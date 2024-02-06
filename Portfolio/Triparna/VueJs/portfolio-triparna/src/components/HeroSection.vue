@@ -17,7 +17,7 @@ defineProps({
           <div class="col-md-6 mb-4 text-center">
             <img src="@/assets/img/TriparnaAbout.jpg" class="hero-img mx-lg-auto img-thumbnail rounded-circle" alt="HeroImage" width="320"  loading="lazy">
           </div>
-          <div class="col-md-6 for-mob-text-center text-light ">
+          <div class="col-md-6 for-mob-text-center text-light pt-4">
               <p class="mx-1 lead mb-3">Hello, I'm</p>
               <h1 class="display-5 fw-bold lh-1 mb-5 text-info">
             <span class="typed-text">{{ typeValue }}</span>
@@ -27,13 +27,13 @@ defineProps({
             <!-- About and Contacr Button Starts -->
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-2">
-            <button type="button" class="btn btn-info btn-lg px-4 me-md-2">
+            <RouterLink to="/about" class="btn btn-info btn-lg px-4 me-md-2">
               <i class="bi bi-person-check"></i>  About Me
-            </button>
-            <button type="button" class="btn  btn-lg px-4 btn-outline-light"
-            >
-            <i class="bi bi-emoji-heart-eyes"></i> Contact Me
-          </button>
+          </RouterLink>
+          <RouterLink to="/contact" class="btn btn-outline-light btn-lg px-4 me-md-2">
+            <i class="bi bi-emoji-heart-eyes"></i> Contact
+        </RouterLink>
+
           </div>
 
             <!-- About and Contacr Button Ends -->
@@ -41,25 +41,25 @@ defineProps({
 
             <!-- Social Media Icons Starts -->
 
-            <div class="d-grid gap-2 d-flex justify-content-md-start mt-5">
-              <button type="button" class="btn btn-outline-primary btn-lg rounded-circle mx-1">
+            <div class="d-grid gap-2 d-flex justify-content-md-start mt-4">
+              <button type="button" class="btn btn-primary btn-lg rounded-circle mx-1">
                 <i class="fa fa-facebook-official"></i>  
               </button>
 
-              <button type="button" class="btn btn-outline-success btn-lg rounded-circle mx-1">
+              <button type="button" class="btn btn-success btn-lg rounded-circle mx-1">
                 <i class="fa fa-whatsapp"></i>  
               </button>
 
 
-              <button type="button" class="btn btn-outline-danger btn-lg rounded-circle mx-1">
+              <button type="button" class="btn btn-danger btn-lg rounded-circle mx-1">
                 <i class="fa fa-google"></i>  
               </button>
 
-              <button type="button" class="btn btn-outline-primary btn-lg rounded-circle mx-1">
+              <button type="button" class="btn btn-primary btn-lg rounded-circle mx-1">
                 <i class="fa fa-linkedin"></i>  
               </button>
 
-              <button type="button" class="btn btn-outline-light btn-lg rounded-circle">
+              <button type="button" class="btn btn-light btn-lg rounded-circle">
                 <i class="fa fa-github"></i>  
               </button>
 
@@ -86,7 +86,7 @@ export default {
       return {
         typeValue: '',
         typeStatus: false,
-        typeArray: ['Triparna Sarkar','A Content Writer','A Trader'],
+        typeArray: ['Triparna Sarkar','A Content Writer','A Guitarist','A Trader'],
         typingSpeed: 100,
         erasingSpeed: 70,
         newTextDelay: 1000,

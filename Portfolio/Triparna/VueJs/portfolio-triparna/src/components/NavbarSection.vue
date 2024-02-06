@@ -31,7 +31,7 @@ const toggleDark = useToggle(isDark);
       <i class="bi bi-list"></i>
     </button>
     <a class="navbar-brand  logo-text mt-2" href="/home">
-      <img src="../assets/img/TriparnaAbout.jpg" v-bind:alt="appName " v-bind:title="appName" class="mx-2 mb-2 border rounded-circle border-info logo-img" width="35" height="35">
+      <img src="../assets/img/TriparnaAbout.jpg" v-bind:alt="appName " v-bind:title="appName" class="mx-2 mb-2 border rounded-circle border-3 border-info logo-img" width="35" height="35">
       {{ appName.toUpperCase() }}
     </a>
     <button type="button" class="btn btn-sm d-lg-none" v-on:click="toggleDark()"
