@@ -13,9 +13,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
-  <body>
+  <body class="actual-exam-ui">
     <!-- =============================== navbar ======================== -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -39,9 +39,15 @@
     </nav>
     <!-- =============================  navbar ends ========================== -->
 
-    <div class="panel panel-default" style="margin-bottom: 0px">
-      <div class="panel-heading" style="padding:0px 30px;">
-          <div class="row">
+  <div id="page" class="u-mob-sidebar">
+    <!-- ========================= Left Box Starts Here ============================ -->
+  
+    <div class="left-box">
+    <!-- show section names -->
+  
+    <div class="panel panel-default" style="margin-bottom: 0px !important;">
+      <div class="panel-heading" style="padding:0px 12px;background-color: #fff;">
+          <div style="display:flex; justify-content: space-between;">
             <button class=" btn btn-default btn-sm" style="pointer-events: none;background-color:#000;color:yellow">
              <b style="text-transform: uppercase"> Sections :</b> 
             </button>
@@ -52,15 +58,15 @@
                </button>
             </div>
           </div>
-
-          
     </div>
+    <!-- ends sections names -->
 
-    <!--======================== Tab Sections Starts ================================-->
 
-    <div style=" border-bottom: 2px solid #ddd;margin-left:6px;">
-      <div class="container-fluid">
-        <div class="navbar-header">
+    <!--Tab Sections Starts -->
+
+   
+     
+        <div class="panel panel-default" style="margin-top: 0px;padding: 0px 12px;">
           <!-- Tabs sections starts -->
           <ul class="nav nav-pills">
             <li role="presentation" class="active">
@@ -81,502 +87,237 @@
 
           <!-- Tab Section Ends -->
         </div>
-      </div>
-    </div>
-    <!--=============================== Tab Sections Ends ================================ -->
-
-    <!-- container starts -->
-    <div class="container-fluid">
-      <!-- row starts  -->
-      <div class="row">
-        <!-- main content starts  -->
-        <div class="col-xs-12 col-sm-9">
-
-          <!--  Show  Question -->
-
-          <div class="panel panel-default" style="border:none !important;">
-            <div class="panel-body" >
-             
-                <!-- QuestionPool Starts -->
-                <div id="QuestionPool">
-
-                  <div class="panel panel-default" id="Q1">
-                    <div class="panel-heading">
-                      Question 1 GI
-                    </div>
-                    <div class="panel-body">
-                      <img src="Questions/Reasoning/1.png" class="img-responsive" alt="">
-
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="Q1OPS1" value="option1">
-                          Option 1 is correct
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="Q1OPS1" value="option2">
-                          Option 2 is correct
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="Q1OPS1" value="option3">
-                          Option 3 is correct
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="Q1OPS1" value="option4">
-                          Option 4 is correct
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- <div id="Q1">
-                    <h5>Question 1 GI</h5>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-                  </div> -->
-                  <div id="Q2">
-                    <h3>
-                      Question 2 GI
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-                  </div>
-                  <div id="Q3">
-                    <h3>
-                      Question 3 GI
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-                  </div>
-                  <div id="Q4">
-                    <h3>
-                      Question 4 GI
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-                  </div>
-                 
-        
-                  <div id="Q5">
-                    <h3>
-                      Question 1 GK
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-                  </div>
-                  <div id="Q6">
-                    <h3>
-                      Question 2 GK
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-                  </div>
-                  <div id="Q7">
-                    <h3>
-                      Question 3 GK
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-                  </div>
-                  <div id="Q8">
-                    <h3>
-                      Question 4 GK
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-                  </div>
-        
-        
-        
-        
-                  <div id="Q9">
-                    <h3>
-                      Question 1 Math
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-        
-                  </div>
-        
-                  <div id="Q10">
-                    <h3>
-                      Question 2 Math
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-        
-                  </div>
-        
-                  <div id="Q11">
-                    <h3>
-                      Question 3 Math
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-        
-                  </div>
-        
-                  <div id="Q12">
-                    <h3>
-                      Question 4 Math
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-        
-                  </div>
-        
-                  <div id="Q13">
-                    <h3>
-                      Question 1 Eng
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-        
-                  </div>
-        
-                  <div id="Q14">
-                    <h3>
-                      Question 2 Eng
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-        
-                  </div>
-        
-                  <div id="Q15">
-                    <h3>
-                      Question 3 Eng
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-        
-                  </div>
-        
-                  <div id="Q16">
-                    <h3>
-                      Question 4 Eng
-                    </h3>
-                    <p>Option 1</p>
-                    <p>Option 2</p>
-                    <p>Option 3</p>
-                    <p>Option 4</p>
-        
-                  </div>
-                </div>
-                <!-- QuestionsPool Ends -->
-            
-            </div>
-
-          </div>
-
-          <!-- <h1>Main Content</h1> -->
-
-    
-          
-        </div>
-        <!-- main content ends  -->
-        <!--========================== sidebar starts ========================= -->
-        <div class="sidenav" id="mySidenav">
-          <div class="col-xs-12 col-sm-12">
-            <!-- User name and Photo -->
-            <div class="media user-details">
-              <div class="media-left">
-                <div style="margin-top:0px;margin-left:3px;">
-                  <img
-                    class="media-object"
-                    src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                    alt="Candidate Photo"
-                    width="48"
-                    height="48"
-                  />
-                </div>
-              </div>
-
-              <div class="media-body">
-                <h4
-                  class="media-heading"
-                  style="margin-top:2px; font-weight: 600"
-                >
-                  <span id="Candidate_Name"> Rohini Singh </span>
-                </h4>
-                <h5>
-                  Roll No : <span id="Candidate_RollNo"> 1234567890 </span>
-                </h5>
-              </div>
-            </div>
-            <!-- User name and Photo ends -->
-
-            <hr />
-
-            <!-- Signs colour Start -->
-            <div class="container-fluid" style="margin-top: 12px">
-              <!-- Green colour for answered question -->
-
-              <div class="sign">
-                <div class="row">
-                  <!-- Answered -->
-                  <div class="col-md-6 col-xs-6">
-                    <div
-                      class="label label-success"
-                      style="background-color: #5cb85c"
-                    >
-                      3
-                    </div>
-
-                    <div class="signName">Answered</div>
-                  </div>
-
-                  <!-- Not Answered -->
-                  <div class="col-md-6">
-                    <div
-                      class="label label-danger"
-                      style="background-color: #d9534f"
-                    >
-                      3
-                    </div>
-
-                    <div class="signName">Not Answered</div>
-                  </div>
-                  <!-- Mark For Review -->
-                  <div class="col-md-6 col-xs-6">
-                    <div
-                      class="label label-warning"
-                      style="background-color: #8c11c5"
-                    >
-                      3
-                    </div>
-
-                    <div class="signName">Mark For Review</div>
-                  </div>
-
-                  <!-- Not Visited -->
-                  <div class="col-md-6">
-                    <div
-                      class="label label-default"
-                      style="background-color: #777"
-                    >
-                      3
-                    </div>
-
-                    <div class="signName">Not Visited</div>
-                  </div>
-                </div>
-
-                <!-- Answered & Marked for Review -->
-
-                <div
-                  class="label label-primary"
-                  style="background-color: #8c11c5"
-                >
-                  3
-                  <div
-                    class="label label-success"
-                    style="
-                      padding: 1.5px;
-                      position: absolute;
-                      margin: 0px;
-                      font-weight: 400;
-                      font-size: 8px;
-                      border-radius: 8px;
-                    "
-                  >
-                    <span class="glyphicon glyphicon-ok"></span>
-                  </div>
-                </div>
-
-                <div class="signName">Answered & Marked for Review</div>
-              </div>
-            </div>
-            <!-- Signs Ends -->
-
-            <hr />
-
-            <!-- Load Tab Content -->
-            <div class="tab-content" style="margin-top:8px;">
-              <div role="tabpanel" class="tab-pane active" id="GI">
-
-                <div class="panel panel-default">
-
-                  <div class="panel-heading">
-                    <h3 class="panel-title" style="font-weight: 700">
-                      Section :
-                      <span
-                        id="sectionName"
-                        class="sectionName"
-                        title="Subject : General Intelligence and Reasoning "
-                      >
-                       Reasoning 
-                      </span>
-                    </h3>
-                  </div>
-
-                  <div class="panel-body">
-
-                <!-- Question Tabs -->
-    
-                <ul id="secGI" class="nav" style="list-style:none; margin-left:20px;">
-                </ul>
-                  </div>
-
-                </div>
-
-    
-              </div>
-              <div role="tabpanel" class="tab-pane" id="GK">
-
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title" style="font-weight: 700">
-                      Section :
-                      <span
-                        id="sectionName"
-                        class="sectionName"
-                        title="Subject : General Awarnesses"
-                      >
-                        General Awarnesses
-                      </span>
-                    </h3>
-                  </div>
-                  <div class="panel-body">
-                    <!-- Question Tabs for GK -->
-        
-                    <ul id="secGK"></ul>
+     
   
-                  </div>
-                </div> 
-              </div>
-              <div role="tabpanel" class="tab-pane" id="Math">
+    <!-- Tab Sections Ends -->
 
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title" style="font-weight: 700">
-                      Section :
-                      <span
-                        id="sectionName"
-                        class="sectionName"
-                        title="Subject : Quantitative Aptitude "
-                      >
-                        Quantitative Aptitude
-                      </span>
-                    </h3>
-                  </div>
-                  <div class="panel-body">
+     <!--  Show  Question starts -->
 
-                    <!-- Question Tabs for Math -->
-        
-                    <ul id="secMath">
-                    </ul>
+     <div class="question-holder">
+
+       <div class="panel panel-default" style="border:none !important; min-height:200vh !important">
+        <div class="panel-body table-responsive" >
+         
+          
+            <!-- QuestionPool Starts -->
+            <div id="QuestionPool"  class="test-qpip-holder">
+  
+              <div class="panel panel-default" id="Q1">
+                <div class="panel-heading">
+                  Question 1 GI
+                </div>
+                <div class="panel-body"
+                style="position: absolute;
+                top:32px;
+                left: 0;
+                right: 0;
+                bottom:25px;
+                overflow-y: auto;
+                ">
+                  <img src="Questions/Reasoning/1.png" class="img-responsive" alt="">
+               
+  
+  
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="Q1OPS1" value="option1">
+                      Option 1 is correct
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="Q1OPS1" value="option2">
+                      Option 2 is correct
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="Q1OPS1" value="option3">
+                      Option 3 is correct
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="Q1OPS1" value="option4">
+                      Option 4 is correct
+                    </label>
                   </div>
                 </div>
               </div>
-              <div role="tabpanel" class="tab-pane" id="Eng">
-
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title" style="font-weight: 700">
-                      Section :
-                      <span
-                        id="sectionName"
-                        class="sectionName"
-                        title="Subject : English"
-                      >
-                        English
-                      </span>
-                    </h3>
-                  </div>
-                  <div class="panel-body">
-
-                    <!-- Question Tabs for Eng -->
-        
-                    <ul id="secEng"></ul>
-                  </div>
-                </div>
-
-              
+  
+              <!-- <div id="Q1">
+                <h5>Question 1 GI</h5>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+              </div> -->
+              <div id="Q2">
+                <h3>
+                  Question 2 GI
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+              </div>
+              <div id="Q3">
+                <h3>
+                  Question 3 GI
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+              </div>
+              <div id="Q4">
+                <h3>
+                  Question 4 GI
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+              </div>
+             
     
-                <!-- Question no is generated by JS -->
+              <div id="Q5">
+                <h3>
+                  Question 1 GK
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+              </div>
+              <div id="Q6">
+                <h3>
+                  Question 2 GK
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+              </div>
+              <div id="Q7">
+                <h3>
+                  Question 3 GK
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+              </div>
+              <div id="Q8">
+                <h3>
+                  Question 4 GK
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+              </div>
+    
+    
+    
+    
+              <div id="Q9">
+                <h3>
+                  Question 1 Math
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+    
+              </div>
+    
+              <div id="Q10">
+                <h3>
+                  Question 2 Math
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+    
+              </div>
+    
+              <div id="Q11">
+                <h3>
+                  Question 3 Math
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+    
+              </div>
+    
+              <div id="Q12">
+                <h3>
+                  Question 4 Math
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+    
+              </div>
+    
+              <div id="Q13">
+                <h3>
+                  Question 1 Eng
+                </h3>
+                <p>Option 1</p>
+                <absolute;lute;lute;tion 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+    
+              </div>
+    
+              <div id="Q14">
+                <h3>
+                  Question 2 Eng
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+    
+              </div>
+    
+              <div id="Q15">
+                <h3>
+                  Question 3 Eng
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
+    
+              </div>
+    
+              <div id="Q16">
+                <h3>
+                  Question 4 Eng
+                </h3>
+                <p>Option 1</p>
+                <p>Option 2</p>
+                <p>Option 3</p>
+                <p>Option 4</p>
     
               </div>
             </div>
-            <!-- End Tab content -->
-
-
-            <div class="footer-one">
-              <div class="row">
-                <div class="col-md-5 col-xs-5">
-                  <button
-                    class="btn btn-info"
-                    style="margin-bottom: 8px"
-                  >
-                    Question Paper
-                  </button>
-                </div>
-                <div class="col-md-5 col-xs-5">
-                  <button
-                    class="btn btn-warning"
-                    style="margin-bottom: 8px"
-                  >
-                    Read Instructions
-                  </button>
-                </div>
-                <div class="col-xs-12">
-                  <button class="btn btn-block btn-success submit-btn">
-                    Submit Test
-                  </button>
-                </div>
-                
-              </div>
-            </div>
-          </div>
+            <!-- QuestionsPool Ends -->
+        
         </div>
-        <!--======================== sidebar ends ==================  -->
-        <!-- sidebar toggle button  -->
-        <button
-          class="btn btn-info btn-sm sidebar-toggle"
-          onclick="toggleNav();"
-        >
-          <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </button>
-        <!-- sidebar toggle button ends  -->
+  
       </div>
-      <!-- row ends  -->
-    </div>
-    <!-- container ends -->
+     </div>
+
+     <!-- show question ends -->
+
 
     <div class="footer">
       <div class="row">
@@ -611,6 +352,280 @@
 
       <!-- Mark For Review -->
     </div>
+  
+    </div>
+  
+    <!-- ========================= Left Box Ends Here ============================ -->
+
+    <!-- =====================  Right Box Starts Here ====================== -->
+     
+        <!--==== sidebar starts ==== -->
+        <div class="right-box" id="mySidenav">
+          <div class="col-xs-12 col-sm-12">
+            <!-- User name and Photo -->
+            <div class="media user-details">
+              <div class="media-left">
+                <div style="margin-top:0px;margin-left:3px;">
+                  <img
+                    class="media-object"
+                    src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    alt="Candidate Photo"
+                    width="48"
+                    height="48"
+                  />
+                </div>
+              </div>
+
+              <div class="media-body">
+                <h4
+                  class="media-heading"
+                  style="margin-top:2px; font-weight: 600"
+                >
+                  <span id="Candidate_Name"> Rohini Singh </span>
+                </h4>
+                <h5>
+                  Roll No : <span id="Candidate_RollNo"> 1234567890 </span>
+                </h5>
+              </div>
+            </div>
+            <!-- User name and Photo ends -->
+
+            <hr />
+
+            <!-- Signs colour Start -->
+            <div class="q-possible-states">
+              <!-- Green colour for answered question -->
+                  <!-- Answered -->
+                  <div class="col-xs-4">
+                    <div class="d-flex">
+                      <div class="label label-success"
+                        style="background-color: #5cb85c; font-size:10px !important"
+                      > 3 
+                    </div>
+  
+                      <div class="signName">Answered</div>
+
+                    </div>
+                  </div>
+                  
+
+                  <!-- Not Answered -->
+                  <div class="col-xs-4">
+                    <div
+                      class="label label-danger"
+                      style="background-color: #d9534f; font-size:10px !important"
+                    >
+                      3
+                    </div>
+
+                    <div class="signName">Not Answered</div>
+                  </div>
+                  <!-- Mark For Review -->
+                  <div class=" col-xs-4">
+                    <div
+                      class="label label-warning"
+                      style="background-color: #8c11c5; font-size:10px !important"
+                    >
+                      3
+                    </div>
+
+                    <div class="signName">Mark For Review</div>
+                  </div>
+
+                  <!-- Not Visited -->
+                  <div class="col-xs-4">
+                    <div
+                      class="label label-default"
+                      style="background-color: #777; font-size:10px !important"
+                    >
+                      3
+                    </div>
+
+                    <div class="signName">Not Visited</div>
+                  </div>
+              
+
+                <!-- Answered & Marked for Review -->
+                <div class="col-xs-4">
+
+                <div
+                  class="label label-primary"
+                  style="background-color: #8c11c5; font-size:10px !important"
+                >
+                  3
+                  <div
+                    class="label label-success"
+                    style="
+                      padding: 1px;
+                      position:absolute;
+                      margin: 0px;
+                      border-radius:50%;
+                    "
+                  >
+                  <span class="glyphicon glyphicon-ok" style="font-size:8px !important;"></span>
+                  </div>
+                </div>
+
+                <div class="signName">Answered & Marked for Review</div>
+              </div>
+            </div>
+            <!-- Signs Colour Ends -->
+
+            <hr />
+
+            <!-- Load Tab Content -->
+            <div class="question-no-panel">
+              <div class="tab-content" style="margin-top:8px;">
+                <div role="tabpanel" class="tab-pane active" id="GI">
+                  <div class="panel panel-default">
+  
+                    <div class="panel-heading">
+                      <h3 class="panel-title" style="font-weight: 700">
+                        Section :
+                        <span
+                          id="sectionName"
+                          class="sectionName"
+                          title="Subject : General Intelligence and Reasoning "
+                        >
+                         Reasoning 
+                        </span>
+                      </h3>
+                    </div>
+  
+                    <div class="panel-body">
+  
+                  <!-- Question Tabs -->
+      
+                  <ul id="secGI" class="nav" style="list-style:none; margin-left:20px;">
+                  </ul>
+                    </div>
+  
+                  </div>
+  
+      
+                </div>
+                <div role="tabpanel" class="tab-pane" id="GK">
+  
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title" style="font-weight: 700">
+                        Section :
+                        <span
+                          id="sectionName"
+                          class="sectionName"
+                          title="Subject : General Awarnesses"
+                        >
+                          General Awarnesses
+                        </span>
+                      </h3>
+                    </div>
+                    <div class="panel-body">
+                      <!-- Question Tabs for GK -->
+          
+                      <ul id="secGK"></ul>
+    
+                    </div>
+                  </div> 
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Math">
+  
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title" style="font-weight: 700">
+                        Section :
+                        <span
+                          id="sectionName"
+                          class="sectionName"
+                          title="Subject : Quantitative Aptitude "
+                        >
+                          Quantitative Aptitude
+                        </span>
+                      </h3>
+                    </div>
+                    <div class="panel-body">
+  
+                      <!-- Question Tabs for Math -->
+          
+                      <ul id="secMath">
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Eng">
+  
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title" style="font-weight: 700">
+                        Section :
+                        <span
+                          id="sectionName"
+                          class="sectionName"
+                          title="Subject : English"
+                        >
+                          English
+                        </span>
+                      </h3>
+                    </div>
+                    <div class="panel-body">
+  
+                      <!-- Question Tabs for Eng -->
+          
+                      <ul id="secEng"></ul>
+                    </div>
+                  </div>
+  
+                
+      
+                  <!-- Question no is generated by JS -->
+      
+                </div>
+              </div>
+
+            </div>
+            <!-- End Tab content -->
+            
+  <!-- mark action starts -->
+<div class="mark-action">
+
+         <div class="footer-one">
+              <div class="row">
+                <div class="col-md-5 col-xs-5">
+                  <button
+                    class="btn btn-info"
+                    style="margin-bottom: 8px"
+                  >
+                    Question Paper
+                  </button>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                  <button
+                    class="btn btn-warning"
+                    style="margin-bottom: 8px"
+                  >
+                    Read Instructions
+                  </button>
+                </div>
+                <div class="col-xs-12">
+                  <button class="btn btn-block btn-success submit-btn">
+                    Submit Test
+                  </button>
+                </div>
+                
+              </div>
+            </div>
+  </div>
+
+  <!-- mark action ends -->
+          </div>
+        </div>
+        <!--========= sidebar ends ========-->
+    <!-- =====================  Right Box Ends Here ====================== -->
+
+  </div>
+
+
+
+
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/sidenav.js"></script>

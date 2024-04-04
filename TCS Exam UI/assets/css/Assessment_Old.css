@@ -2,7 +2,7 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-size: 12px !important;
+
     user-select: none;
 
     -webkit-user-select: none;
@@ -18,76 +18,25 @@
     
 }
 
-.actual-exam-ui .left-box {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin-right: 300px;
-  z-index: 1;
+
+/* Hide Button Click Effect */
+
+.btn{
+  outline-style: none !important;
 }
 
-.actual-exam-ui .u-mob-sidebar {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 52px;
-  bottom: 0;
-  background-color: #fff;
-  overflow-x: hidden;
+.panel-title{
+  font-size: 14px !important;
 }
-
-.actual-exam-ui .right-box {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 300px;
-  border-left: 1px solid #ddd;
-  background: #fff;
-  z-index: 41;
-}
-
-.actual-exam-ui .marks-action {
-  /* position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 8px 16px;
-  background: #d9edf7;
-  -webkit-box-shadow: 0 -1px 2px #9ecee5;
-  box-shadow: 0 -1px 2px #9ecee5; */
-}
-
-.actual-exam-ui .question-no-panel{
-    /* position: absolute; */
-    /* left: 0;
-    right: 0;
-    top: 145px;
-    bottom: 92px; */
-}
-
-.actual-exam-ui .test-qpip-holder {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-.actual-exam-ui .question-holder{
-  position: absolute;
-    left: 0;
-    right: 0;
-    top:74px;
-    bottom: 0;
-}
-
 
 .navbar{
+    z-index: 1000;
+    border-radius: 0px !important;
+    box-shadow: 0px 0px 5px 0px #bebcbc;
     background-color: #fff;
-}
+    padding:2px 8px !important;
+    margin-bottom: 0px !important;
+  }
 
  
   .show-timer{
@@ -97,9 +46,6 @@
     pointer-events: none;
     font-weight: 700;
   }
-.panel{
-  border-radius: 0 !important;
-}
 
 .panel-body ul{
   text-decoration: none;
@@ -158,6 +104,17 @@
 
 
 
+.sign .label{
+    margin-left:5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 400;
+
+}
+
+.sign .signName{
+  margin: 3px 0px;
+}
 
   .navbar .navbar-header a, .navbar .navbar-header a :hover{
     color: black;
@@ -165,6 +122,7 @@
 
   }
 
+ 
 
   .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
 
@@ -266,9 +224,10 @@
         width: 100%;
         background-color: #f8f8f8;
         padding: 10px 20px;
+
         border-top: 1px solid #ddd;
         /* z-index: -1000; */
-        /* box-shadow: 0px 0px 5px 0px #bebcbc; */
+        box-shadow: 0px 0px 5px 0px #bebcbc;
 
       }
 
@@ -282,12 +241,6 @@
         color: #333;
         height: 100%;
         bottom: 0;
-        /* position: relative;
-        float: left;
-        width: 100%;
-        padding-left: 0;
-        list-style: none;
-        margin: 0 0 8px; */
       }
 
      
@@ -314,7 +267,50 @@
       }
 
 
-      
+      /****** Sidenav added on 17/09/2023 *****/
+       .sidenav {
+        /* height: calc(100vh - 0px); */
+        height: 100%;
+        width:320px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color: #fbfcfe;
+        overflow-x: hidden;
+        padding-top: 60px;
+        box-shadow: -1px 0 3px 0 rgb(25 63 85 / 20%);
+        transition: all linear 0.1s; 
+        -webkit-transition: all linear 0.1s;
+        overflow-y: scroll;
+
+      }
+
+      .sidenav-active{
+        width: 0px;
+        overflow-y: scroll;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+      }
+
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
       /*
       .sidenav::-webkit-scrollbar {
         width: 8px;
