@@ -19,53 +19,56 @@
 }
 
 .actual-exam-ui .left-box {
-  position: absolute;
+  position:fixed;
   left: 0;
-  top: 0;
+  top:49px;
   bottom: 0;
   right: 0;
-  margin-right: 300px;
+  margin-right: 320px;
   z-index: 1;
 }
 
 .actual-exam-ui .u-mob-sidebar {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
-  top: 52px;
+  top: 48px;
   bottom: 0;
   background-color: #fff;
   overflow-x: hidden;
 }
 
-.actual-exam-ui .right-box {
-  position: absolute;
-  right: 0;
+.actual-exam-ui .sidenav {
+  position:fixed;
+  right: 0px !important;
   top: 0;
   bottom: 0;
-  width: 300px;
+  width: 320px;
   border-left: 1px solid #ddd;
   background: #fff;
   z-index: 41;
+  /* height: calc(100vh - 60px); */
 }
 
-.actual-exam-ui .marks-action {
-  /* position: absolute;
+
+
+/* .actual-exam-ui .marks-action {
+  position: relative;
   bottom: 0;
   left: 0;
   right: 0;
   padding: 8px 16px;
   background: #d9edf7;
   -webkit-box-shadow: 0 -1px 2px #9ecee5;
-  box-shadow: 0 -1px 2px #9ecee5; */
-}
+  box-shadow: 0 -1px 2px #9ecee5; 
+} */
 
 .actual-exam-ui .question-no-panel{
-    /* position: absolute; */
-    /* left: 0;
+    position: absolute; 
+   left: 0;
     right: 0;
-    top: 145px;
-    bottom: 92px; */
+    top:22rem;
+    bottom: 92px;
 }
 
 .actual-exam-ui .test-qpip-holder {
@@ -80,8 +83,8 @@
   position: absolute;
     left: 0;
     right: 0;
-    top:74px;
-    bottom: 0;
+    top:80px;
+    bottom:24px;
 }
 
 
@@ -154,10 +157,6 @@
     width:40px; 
     height:40px;
 }
-
-
-
-
 
   .navbar .navbar-header a, .navbar .navbar-header a :hover{
     color: black;
@@ -273,15 +272,17 @@
       }
 
       .footer-one{
-        position:relative;
-        float: left;
+        position:fixed;
+        text-align:center;
+        /* float: left;
         width:100%;
-        text-align: left;
         font-size: 12px;
         font-weight: 400;
         color: #333;
-        height: 100%;
+        height: 100%; */
         bottom: 0;
+
+        
         /* position: relative;
         float: left;
         width: 100%;
@@ -414,6 +415,10 @@ button:focus {
 
       @media(max-width: 768px){
 
+        .actual-exam-ui .left-box {
+          margin-right: 0px;
+        }
+
         .sidenav{
           /* height: calc(100vh - 116px); */
           height: 100%;
@@ -422,8 +427,7 @@ button:focus {
 
         .sidenav-active{
           width: 320px !important;
-          overflow-y :scroll !important;
-
+          overflow-y: scroll !important;
         }
 
         .submit-btn{

@@ -15,7 +15,7 @@
 
   <body class="actual-exam-ui">
     <!-- =============================== navbar ======================== -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" >
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -33,6 +33,12 @@
           </a>
         </div>
 
+          <!-- sidebar toggle button  -->
+      <button class="btn btn-info btn-sm sidebar-toggle" onclick="toggleNav();">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </button>
+      <!-- sidebar toggle button ends  -->
+
         <!-- Collect the nav links, forms, and other content for toggling -->
       </div>
       <!-- /.container-fluid -->
@@ -45,9 +51,9 @@
     <div class="left-box">
     <!-- show section names -->
   
-    <div class="panel panel-default" style="margin-bottom: 0px !important;">
-      <div class="panel-heading" style="padding:0px 12px;background-color: #fff;">
-          <div style="display:flex; justify-content: space-between;">
+    <div class="panel panel-default" style="margin-bottom: 0px !important">
+      <div class="panel-heading" style="padding:3px 12px;background-color: #fff;">
+          <div style="display:flex; justify-content: space-between; align-items: end;">
             <button class=" btn btn-default btn-sm" style="pointer-events: none;background-color:#000;color:yellow">
              <b style="text-transform: uppercase"> Sections :</b> 
             </button>
@@ -62,11 +68,8 @@
     <!-- ends sections names -->
 
 
-    <!--Tab Sections Starts -->
-
-   
-     
-        <div class="panel panel-default" style="margin-top: 0px;padding: 0px 12px;">
+    <!--Tab Sections Starts -->  
+        <div class="panel panel-default" style="margin-bottom: 0px !important;padding: 0px 12px;">
           <!-- Tabs sections starts -->
           <ul class="nav nav-pills">
             <li role="presentation" class="active">
@@ -95,10 +98,9 @@
 
      <div class="question-holder">
 
-       <div class="panel panel-default" style="border:none !important; min-height:200vh !important">
+       <div class="panel panel-default" style="border:none !important;">
         <div class="panel-body table-responsive" >
          
-          
             <!-- QuestionPool Starts -->
             <div id="QuestionPool"  class="test-qpip-holder">
   
@@ -108,14 +110,18 @@
                 </div>
                 <div class="panel-body"
                 style="position: absolute;
-                top:32px;
+                top:48px;
                 left: 0;
                 right: 0;
                 bottom:25px;
-                overflow-y: auto;
+                overflow-y:scroll;
                 ">
                   <img src="Questions/Reasoning/1.png" class="img-responsive" alt="">
                
+                  <img src="Questions/Reasoning/1.png" class="img-responsive" alt="">
+                  <img src="Questions/Reasoning/1.png" class="img-responsive" alt="">
+                  <img src="Questions/Reasoning/1.png" class="img-responsive" alt="">
+                  <img src="Questions/Reasoning/1.png" class="img-responsive" alt="">
   
   
                   <div class="radio">
@@ -351,6 +357,8 @@
       </div>
 
       <!-- Mark For Review -->
+
+      
     </div>
   
     </div>
@@ -360,10 +368,10 @@
     <!-- =====================  Right Box Starts Here ====================== -->
      
         <!--==== sidebar starts ==== -->
-        <div class="right-box" id="mySidenav">
+        <div class="sidenav" id="mySidenav">
           <div class="col-xs-12 col-sm-12">
             <!-- User name and Photo -->
-            <div class="media user-details">
+            <div class="media user-details" style="margin-top:68px !important">
               <div class="media-left">
                 <div style="margin-top:0px;margin-left:3px;">
                   <img
@@ -393,11 +401,11 @@
             <hr />
 
             <!-- Signs colour Start -->
-            <div class="q-possible-states">
+            <div style="margin-top: 12px;">
               <!-- Green colour for answered question -->
                   <!-- Answered -->
                   <div class="col-xs-4">
-                    <div class="d-flex">
+                    
                       <div class="label label-success"
                         style="background-color: #5cb85c; font-size:10px !important"
                       > 3 
@@ -406,7 +414,7 @@
                       <div class="signName">Answered</div>
 
                     </div>
-                  </div>
+                
                   
 
                   <!-- Not Answered -->
@@ -477,7 +485,7 @@
             <div class="question-no-panel">
               <div class="tab-content" style="margin-top:8px;">
                 <div role="tabpanel" class="tab-pane active" id="GI">
-                  <div class="panel panel-default">
+                  <div class="panel panel-default" style="height:25em;">
   
                     <div class="panel-heading">
                       <h3 class="panel-title" style="font-weight: 700">
@@ -492,7 +500,7 @@
                       </h3>
                     </div>
   
-                    <div class="panel-body">
+                    <div class="panel-body table-responsive">
   
                   <!-- Question Tabs -->
       
@@ -585,7 +593,7 @@
             <!-- End Tab content -->
             
   <!-- mark action starts -->
-<div class="mark-action">
+<div class=" marks-action ">
 
          <div class="footer-one">
               <div class="row">
@@ -605,7 +613,7 @@
                     Read Instructions
                   </button>
                 </div>
-                <div class="col-xs-12">
+                <div class="col-xs-11">
                   <button class="btn btn-block btn-success submit-btn">
                     Submit Test
                   </button>
@@ -628,7 +636,17 @@
 
 
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/sidenav.js"></script>
+    <script>
+        
+        var sidenav = document.getElementById("mySidenav");
+
+function toggleNav() {
+    sidenav.classList.toggle("sidenav-active");
+}
+
+
+
+    </script>
 
     <!-- QuestionPool Js starts  -->
     <script>
@@ -669,8 +687,8 @@
 
         var i;
     var row;
-    for (i = 1; i <= 4; i++) {
-        if ((i - 1) % 4 === 0) {
+    for (i = 1; i <= 25; i++) {
+        if ((i - 1) % 5 === 0) {
             // Create a new row for every 5th button
             row = document.createElement("div");
             row.setAttribute("class", "row");
