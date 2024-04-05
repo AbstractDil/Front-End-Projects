@@ -442,9 +442,9 @@ button:focus {
 
        }
 
-       .navbar-header .nav-pills li a{
+        .nav-pills li a{
         white-space: nowrap;
-        width:78px;
+        width:68px;
         overflow: hidden;
         text-overflow: ellipsis;
 
