@@ -12,14 +12,14 @@ defineProps({
 <template>
     <nav class="navbar navbar-expand-lg border-bottom bg-white">
   <div class="container-fluid px-4">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="bi bi-list"></i>
-    </button>
+    
     <RouterLink class="navbar-brand  logo-text mt-2" to="/home">
       {{ appName }}
     </RouterLink>
    
-   
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
@@ -56,14 +56,7 @@ defineProps({
   font-size:20px;
 }
 
-@media only screen and (max-width: 600px){
-  .container-fluid{
-    padding-left:12px !important;
-  }
-  .logo-img{
-    margin-left:2px !important;
-  }
-}
+
 </style>
  
 <script>

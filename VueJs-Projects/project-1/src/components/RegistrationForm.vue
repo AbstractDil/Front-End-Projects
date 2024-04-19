@@ -13,10 +13,14 @@ defineProps({
             <div class="col-md-6 offset-md-3 ">
                 <div class="d-flex justify-content-center align-items-center">
                     <!--  Card Starts  -->
-                    <div class="card p-3 my-5" style="width:24em;">
+                    <div class="card p-3" style="width:24em;">
                     <div class="card-body">
                         <h5 class="card-title text-center mb-4">{{subtitle}}</h5>
                         <form>
+                            <div class="mb-3">
+                                <label for="fullname" class="form-label">Fullname</label>
+                                <input type="text" class="form-control" id="fullname">
+                            </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address</label>
                                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
