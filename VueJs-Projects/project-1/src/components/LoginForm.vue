@@ -1,10 +1,16 @@
 <script setup> 
+ import BaseInput from './BaseInput.vue';
+ import {ref} from 'vue';
 defineProps({
   subtitle: {
     type: String,
     required: true
   }
 })
+
+const userEmail = ref("");
+const userPassword = ref("");
+
 </script>
 
 <template>
@@ -17,15 +23,9 @@ defineProps({
                     <div class="card-body">
                         <h5 class="card-title text-center mb-4">{{subtitle}}</h5>
                         <form>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="pwd" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="pwd">
-                            </div>
+                           <BaseInput label="Email" v-model="userEmail"/>
+                           <BaseInput label="Password" v-model="userPassword" type="password"/>
+
                            
                             <div class="d-grid gap-2 col-12 mx-auto">
                             <button class="btn btn-primary" type="button">Login</button>
