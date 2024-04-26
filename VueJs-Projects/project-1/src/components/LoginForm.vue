@@ -1,4 +1,5 @@
 <script setup> 
+import {RouterLink } from 'vue-router';
  import BaseInput from './BaseInput.vue';
  import {ref} from 'vue';
 defineProps({
@@ -28,10 +29,13 @@ const userPassword = ref("");
 
                            
                             <div class="d-grid gap-2 col-12 mx-auto">
-                            <button class="btn btn-primary" type="button">Login</button>
+                            <button class="btn btn-primary my-3" type="button">Login</button>
                             <!-- <button class="btn btn-primary" type="button">Button</button> -->
-                            </div>
-                            </form>
+                        </div>
+                    </form>
+                    <p class="text-muted mt-4 fs-6">
+                        Don't have an account, <RouterLink  to="/registration">Register Now</RouterLink>
+                    </p>
                     </div>
                     </div>
                     <!-- Card Ends ------->
