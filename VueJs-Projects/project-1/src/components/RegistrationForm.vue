@@ -1,9 +1,9 @@
 <script setup> 
  import BaseInput from './BaseInput.vue';
- import { reactive } from 'vue';
+ import { reactive,computed } from 'vue';
  //import {ref} from 'vue';
  import { useVuelidate } from '@vuelidate/core';
- import { required } from '@vuelidate/validators'
+ import { required,minLength,email,sameAs } from '@vuelidate/validators'
 
 defineProps({
   subtitle: {
@@ -27,12 +27,17 @@ const formData = reactive({
 
 });
 
-const rules = {
-    userName:{required},
-    userEmail : {required},
-    userPassword : {required},
-    usercPassword : {required},
-}
+const rules = computed(()=>{
+
+    return{
+        userName:{required, minLength:minLength(10)},
+        userEmail : {required,email},
+        userPassword : {required},
+        usercPassword : {required,sameAs : sameAs(formData.userPassword)},
+    }
+
+});
+
 
 const v$ = useVuelidate(rules, formData);
 
@@ -60,16 +65,41 @@ const submitForm = async () => {
                          @submit.prevent="submitForm"
                         >
                           <BaseInput label="Fullname" v-model="formData.userName"/>
-                          <div class="invalid-feedback" 
-                          v-for = "error in v$.userName.error"
-                          :key="error.$uid"
-                          >{{ error.$message }}</div>
+                           <p>
+
+                               <small class="text-danger" 
+                               v-for = "error in v$.userName.$errors"
+                               :key="error.$uid"
+                               >{{ error.$message }}</small>
+                           </p>
 
                            <BaseInput label="Email" v-model="formData.userEmail" type="email"/>
+                           <p>
+
+                               <small class="text-danger" 
+                              v-for = "error in v$.userEmail.$errors"
+                              :key="error.$uid"
+                              >{{ error.$message }}</small>
+                           </p>
                             
                            <BaseInput label="Password" v-model="formData.userPassword" type="password"/>
+                           <p>
+                               <small class="text-danger" 
+                              v-for = "error in v$.userPassword.$errors"
+                              :key="error.$uid"
+                              >{{ error.$message }}</small>
 
-                           <BaseInput label="Confirm Password" v-model="formData.usercPassword" type="cpassword"/>
+                           </p>
+
+                           <BaseInput label="Confirm Password" v-model="formData.usercPassword" type="password"/>
+
+                           <p>
+                               <small class="text-danger" 
+                              v-for = "error in v$.usercPassword.$errors"
+                              :key="error.$uid"
+                              >{{ error.$message }}</small>
+
+                           </p>
 
 
                            
