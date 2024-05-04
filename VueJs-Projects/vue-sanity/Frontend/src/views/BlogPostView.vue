@@ -79,7 +79,8 @@ export default {
         if (block._type === "block" && block.children) {
           block.children.forEach((child) => {
             if (child._type === "span" && child.text) {
-              content += child.text;
+               // Append HTML content with span tags
+          content += `<span>${child.text}</span>`;
             }
           });
         }
