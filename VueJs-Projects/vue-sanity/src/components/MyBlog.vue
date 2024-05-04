@@ -25,7 +25,7 @@ import Header from "./HeaDer.vue";
               <div class="card-body">
                 <h3 class="card-title text-center">{{ post.title }}</h3>
                 <div class="d-grid gap-2 mt-4 col-8 mx-auto">
-                    <RouterLink :to="'/blog/' + post.slug" tag="button" class="btn btn-info">
+                    <RouterLink :to="'/blog/' + post.slug" type="button" class="btn btn-info">
                         View Blog
                     </RouterLink>
                 </div>

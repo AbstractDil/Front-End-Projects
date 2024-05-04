@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import BlogPost from '../views/BlogPostView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,6 +26,13 @@ const router = createRouter({
       component:() => import('../views/BlogView.vue'),
       meta : {title : "My Blogs | Sagar Nandy | Welcome to NANDYSAGAR.IN"}
 
+    },
+
+    {
+      path: '/blog/:slug', // Define a dynamic route with a slug parameter
+      name: 'BlogPost',
+      component: BlogPost,
+      props: true // Pass route params as props to the component
     },
 
     {
