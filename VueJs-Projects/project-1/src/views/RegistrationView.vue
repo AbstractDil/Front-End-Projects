@@ -1,9 +1,9 @@
 <script setup>
-import RegistrationForm from '../components/RegistrationForm.vue';
+import RegForm from '../components/RegForm.vue';
 </script>
 
 <template>
-    <RegistrationForm subtitle = "Registration Form"/>
+    <RegForm subtitle = "Registration"/>
   <RouterView />
 </template>
 

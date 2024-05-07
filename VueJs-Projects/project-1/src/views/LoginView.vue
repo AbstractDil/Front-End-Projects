@@ -3,7 +3,7 @@ import LoginForm from '../components/LoginForm.vue';
 </script>
 
 <template>
-    <LoginForm subtitle = "Login Form"/>
+    <LoginForm subtitle = "Login"/>
   <RouterView />
 </template>
 
