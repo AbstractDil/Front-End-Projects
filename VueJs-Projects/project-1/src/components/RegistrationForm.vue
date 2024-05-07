@@ -4,6 +4,9 @@
  //import {ref} from 'vue';
  import { useVuelidate } from '@vuelidate/core';
  import { required,minLength,email,sameAs } from '@vuelidate/validators'
+//import axios from 'axios'
+
+
 
 defineProps({
   subtitle: {
@@ -30,7 +33,7 @@ const formData = reactive({
 const rules = computed(()=>{
 
     return{
-        userName:{required, minLength:minLength(10)},
+        userName:{required, minLength:minLength(3)},
         userEmail : {required,email},
         userPassword : {required},
         usercPassword : {required,sameAs : sameAs(formData.userPassword)},
@@ -42,11 +45,25 @@ const rules = computed(()=>{
 const v$ = useVuelidate(rules, formData);
 
 const submitForm = async () => {
+    console.log("Form data:", formData); 
     const result = await v$.value.$validate();
-    if(result){
+    console.log(result);
+    if (result) {
         alert("Success!! It is working");
-    }else{
-        alert("Error!! There is a problem.");
+        // Make an HTTP POST request to your backend API
+        /*
+        axios.post('http://localhost:3000/api/user/register', formData.value)
+          .then(response => {
+            // Handle response if needed
+            console.log(response.data);
+          })
+          .catch(error => {
+            // Handle error
+            console.error('Error submitting form:', error);
+          });
+          */
+      } else{
+        alert("All fields are required to submit the form!");
     }
 }
 
