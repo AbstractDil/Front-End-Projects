@@ -36,7 +36,7 @@ const rules = computed(()=>{
         userName:{required, minLength:minLength(3)},
         userEmail : {required,email},
         userPassword : {required},
-        usercPassword : {required,sameAs : sameAs(formData.userPassword)},
+        //usercPassword : {required,sameAs : sameAs(formData.userPassword)},
     }
 
 });
