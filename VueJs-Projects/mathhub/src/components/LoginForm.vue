@@ -6,11 +6,9 @@ defineProps({
     type: String,
     required: true
   }
-})
-
+});
 const userEmail = ref("");
 const userPassword = ref("");
-
 </script>
 
 <template>

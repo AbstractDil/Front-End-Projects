@@ -38,55 +38,56 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue';
-  import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
+import axios from 'axios';
+import { RouterLink } from 'vue-router';
 
-  defineProps({
-    subtitle: {
-      type: String,
-      required: true
-    }
-  });
+defineProps({
+  subtitle: {
+    type: String,
+    required: true
+  }
+});
 
-  const userName = ref('');
-  const userEmail = ref('');
-  const userPassword = ref('');
+const userName = ref('');
+const userEmail = ref('');
+const userPassword = ref('');
 
-  const handleForm = async () => {
-    const formData = {
-      name: userName.value,
-      email: userEmail.value,
-      password: userPassword.value
-    };
-
-    console.log('Form Data:', formData); // Log to verify data before sending
-
-    try {
-      const response = await fetch('http://localhost/Sagar/Backend/ApiServer1/index.php/Api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      const responseData = await response.json();
-      console.log(responseData); // Log the response for debugging
-
-      if (responseData.status === 'success') {
-        alert('User registered successfully.');
-        // Optionally, redirect to login page
-        // router.push('/login');
-      } else if (responseData.status === 'error') {
-        // Split and display each error message
-        const errors = responseData.message.split('\n').filter(msg => msg.trim() !== '');
-        alert('Failed to register user:\n' + errors.join('\n'));
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to register user. Please try again.');
-    }
+const handleForm = async () => {
+  const formData = {
+    name: userName.value,
+    email: userEmail.value,
+    password: userPassword.value
   };
+
+  console.log('Form Data:', formData); // Log to verify data before sending
+
+  const Url = 'http://localhost/Sagar/Backend/ApiServer2/api/create-user';
+
+  try {
+    const response = await axios.post(Url, formData, {
+     headers: {
+    'Content-Type': 'application/json'
+  }
+    })
+
+    const responseData = response.data;
+    console.log(responseData); // Log the response for debugging
+
+    if (responseData.status) {
+      alert('User registered successfully.');
+      // Optionally, redirect to login page
+      // router.push('/login');
+    } else {
+      // Split and display each error message
+      const errors = Object.values(responseData.msg).join('\n');
+      alert('Failed to register user:\n' + errors);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Failed to register user. Please try again.');
+  }
+};
 </script>
 
 <script>
@@ -97,5 +98,3 @@
     }
   };
 </script>
-
-

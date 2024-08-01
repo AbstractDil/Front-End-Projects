@@ -1,15 +1,15 @@
 <template>
-   <div id="carouselExample" class="carousel slide">
+<!--  Carousel Starts   -->
+<div class="">
+  <div id="carouselExample" class="carousel slide border border-2">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://mathhub.nandysagar.in/assets/images/MathHubCombined.webp" class="d-block w-100" alt="...">
+      <img src="../assets/Images/banner/hero-img-mhbc.webp" class="d-block w-100" alt="...">
     </div>
+     
     <div class="carousel-item">
-      <img src="https://abstractdil.github.io/mathhub/images/SagarCover.png" class="d-block w-100" alt="...">
-    </div>
-    <!-- <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div> -->
+      <img src="../assets/Images/banner/hero-img-mhbc.webp" class="d-block w-100" alt="...">
+    </div> 
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -20,11 +20,12 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+</div>
 </template>
 
 <script>
     export default {
-        
+      name : "CarouselBanner",
     }
 </script>
 
