@@ -3,3 +3,54 @@
 *{
     font-family: "Poppins", sans-serif;
 }
+.logo-title {
+  white-space: nowrap; /* Prevents wrapping but allows for line breaks */
+  color: #047a83;
+  font-size: 1.3rem;
+  margin: 0;
+  text-align: center; /* Centers the text */
+  display: inline-block;
+  }
+
+
+  .nav-link{
+    font-size: 14px;
+  }
+  
+  @media (max-width: 767px){
+  .logo-title {
+      font-size: 1.2em;
+      padding-top:4px;
+  
+  }
+  .navbar-toggler {
+    display: inline-block; /* Show the toggle button */
+  }
+  
+  .btn-login {
+    display: none; /* Hide the login button on mobile */
+  }
+
+  .navbar{
+    padding-top:0px !important;
+    padding-bottom: 0px !important;
+  }
+}
+
+@media (min-width: 768px) {
+    .navbar-toggler {
+        display: none; /* Hide the toggle button */
+      }
+    
+      .btn-login {
+        display: inline-block; /* Show the login button on larger screens */
+      }
+  }
+
+@media(max-width:600px){
+    .logo img{
+        width: 70px;
+        margin-top: 5px;
+    }
+}
+

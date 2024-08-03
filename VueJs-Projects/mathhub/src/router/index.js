@@ -8,20 +8,20 @@ const router = createRouter({
       path: '/',
       name: 'indexPage',
       component: HomeView,
-      meta : {title : "Index Page "}
+      meta : {title : "Home | MathHub Combined"}
     },
     {
       path: '/home',
       name: 'home',
       component: HomeView,
-      meta : {title : "Home Page "}
+      meta : {title : "Home | MathHub Combined"}
 
     },
     {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue'),
-      meta : {title : "About Page "}
+      meta : {title : "About |  MathHub Combined"}
 
     },
 
@@ -29,7 +29,7 @@ const router = createRouter({
       path: '/registration',
       name: 'Registration',
       component: () => import('../views/RegistrationView.vue'),
-      meta : {title : "Registration Page "}
+      meta : {title : "Registration |  MathHub Combined"}
 
     },
 
@@ -37,7 +37,7 @@ const router = createRouter({
       path: '/login',
       name: 'Login',
       component: () => import('../views/LoginView.vue'),
-      meta : {title : "Login Page "}
+      meta : {title : "Login |  MathHub Combined"}
 
     }
   ]

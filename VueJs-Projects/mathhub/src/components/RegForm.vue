@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="d-grid gap-2 col-12 mx-auto">
-                  <button class="btn btn-primary my-3" type="submit">Register</button>
+                  <button class="btn btn-primary text-light my-3" type="submit">Register</button>
                 </div>
               </form>
               <p class="text-muted mt-4 fs-6">

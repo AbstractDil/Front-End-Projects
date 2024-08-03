@@ -1,10 +1,10 @@
 <script setup>
 //import { RouterLink, RouterView } from 'vue-router'
-import NavbarSection from './components/NavbarSection.vue';
+import Header from './components/Header.vue';
 </script>
 
 <template>
-    <NavbarSection appName = "VueForms"/>
+    <Header appName = "MathHub Combined"/>
   <RouterView />
 </template>
 
