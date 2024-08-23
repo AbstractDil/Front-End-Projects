@@ -13,27 +13,25 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['update:modelValue']);
-
-function onInput(event) {
-  // Emit the update event only if the value has changed
-  if (event.target.value !== props.modelValue) {
-    emit('update:modelValue', event.target.value);
-  }
-}
-
 </script>
 
 <template>
     <div class="mb-3">
-        <label v-if="label" class="form-label">{{ label }}</label>
-        <input 
+        <label v-if="props.label" class="form-label">{{ props.label }}</label>
+        <input
             class="form-control custom-input"
-            :value="modelValue"
-            @input="onInput"
+            :value="props.modelValue"
+            @input="event => emit('update:modelValue', event.target.value)"
             v-bind="$attrs"
         >
     </div>
 </template>
+
+<script>
+export default {
+    name: "BaseInput",
+}
+</script>
 
 <style scoped>
 .custom-input:focus {

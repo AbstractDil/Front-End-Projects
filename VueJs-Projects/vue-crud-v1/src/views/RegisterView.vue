@@ -7,36 +7,38 @@
           <i class="bi bi-person-add"></i> Registration
         </h5>
         <form @submit.prevent="handleRegistration">
-          <div class="mb-3">
-            <BaseInput label="Fullname" v-model="fullname" />
-            <small class="text-danger" v-if="v$.fullname.$invalid && v$.fullname.$dirty">
-              {{ v$.fullname.required ? 'Fullname is required' : '' }}
+          <BaseInput label="Fullname" v-model="formData.userName" />
+          <p>
+            <small class="text-danger" v-for="error in v$.userName.$errors" :key="error.$uid">
+              {{ error.$message || 'Fullname is required' }}
             </small>
-          </div>
+          </p>
 
-          <div class="mb-3">
-            <BaseInput label="Email" v-model="email" type="email" />
-            <small class="text-danger" v-if="v$.email.$invalid && v$.email.$dirty">
-              {{ v$.email.required ? 'Email is required' : '' }}
+          <BaseInput label="Email" v-model="formData.userEmail" type="email" />
+          <p>
+            <small class="text-danger" v-for="error in v$.userEmail.$errors" :key="error.$uid">
+              {{ error.$message || 'Email is required' }}
             </small>
-          </div>
+          </p>
 
-          <div class="mb-3">
-            <BaseInput label="Password" v-model="password" type="password" />
-            <small class="text-danger" v-if="v$.password.$invalid && v$.password.$dirty">
-              {{ v$.password.required ? 'Password is required' : '' }}
+          <BaseInput label="Password" v-model="formData.userPassword" type="password" />
+          <p>
+            <small class="text-danger" v-for="error in v$.userPassword.$errors" :key="error.$uid">
+              {{ error.$message || 'Password is required' }}
             </small>
-          </div>
+          </p>
 
-          <div class="mb-3">
-            <BaseInput label="Confirm Password" v-model="confirmPassword" type="password" />
-            <small class="text-danger" v-if="v$.confirmPassword.$invalid && v$.confirmPassword.$dirty">
-              {{ v$.confirmPassword.required ? 'Confirm Password is required' : '' }}
+          <BaseInput label="Confirm Password" v-model="formData.usercPassword" type="password" />
+          <p>
+            <small class="text-danger" v-for="error in v$.usercPassword.$errors" :key="error.$uid">
+              {{ error.$message || 'Confirm Password is required' }}
             </small>
-          </div>
+          </p>
 
           <div class="d-grid gap-2 col-12 mx-auto">
-            <button class="btn btn-success" type="submit"> <i class="bi bi-check-lg"></i> Register</button>
+            <button class="btn btn-success" type="submit">
+              <i class="bi bi-check-lg"></i> Register
+            </button>
           </div>
         </form>
 
@@ -53,53 +55,39 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
-import useVuelidate from '@vuelidate/core';
-import { required, minLength, sameAs } from '@vuelidate/validators';
+
+<script setup>
 import BaseInput from '@/components/BaseInput.vue';
+import { reactive, computed } from 'vue';
+import { useVuelidate } from '@vuelidate/core';
+import { required, minLength, email, sameAs } from '@vuelidate/validators';
 
-export default {
-  name: 'RegisterView',
-  components: { BaseInput },
-  setup() {
-    const fullname = ref('');
-    const email = ref('');
-    const password = ref('');
-    const confirmPassword = ref('');
+const formData = reactive({
+  userName: '',
+  userEmail: '',
+  userPassword: '',
+  usercPassword: '',
+});
 
-    const rules = {
-      fullname: { required },
-      email: { required, email },
-      password: { required, minLength: minLength(8) },
-      confirmPassword: { required, sameAsPassword: sameAs(password) },
-    };
+const rules = computed(() => ({
+  userName: { required, minLength: minLength(3) },
+  userEmail: { required, email },
+  userPassword: { required },
+  usercPassword: { required, sameAs: sameAs(formData.userPassword) },
+}));
 
-    const v$ = useVuelidate(rules, { fullname, email, password, confirmPassword });
+const v$ = useVuelidate(rules, formData);
 
-    const handleRegistration = () => {
-      v$.value.$touch();
-      if (!v$.value.$invalid) {
-        const data = {
-          fullname: fullname.value,
-          email: email.value,
-          password: password.value,
-          confirmPassword: confirmPassword.value,
-        };
-        console.log('Form Submitted:', data);
-      } else {
-        console.log('Validation Errors:', v$.value.$errors);
-      }
-    };
-
-    return {
-      fullname,
-      email,
-      password,
-      confirmPassword,
-      v$,
-      handleRegistration,
-    };
-  },
+const handleRegistration = async () => {
+  console.log('Form data:', formData);
+  const result = await v$.value.$validate();
+  console.log(result);
+  if (result) {
+    alert('Success!! It is working');
+    // Make an HTTP POST request to your backend API
+  } else {
+    alert('All fields are required to submit the form!');
+  }
 };
 </script>
+
