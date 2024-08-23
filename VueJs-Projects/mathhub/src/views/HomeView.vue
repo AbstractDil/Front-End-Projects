@@ -37,7 +37,7 @@ import Carousel from '../components/Carousel.vue';
 // Users state
 const users = ref([]);
 
-const fetchUrl = 'http://localhost/Sagar/Backend/ApiServer2/api';
+const fetchUrl = 'http://localhost/Sagar/Backend/ApiServer2/api/v1.0';
 // Function to fetch users
 const fetchUsers = async () => {
   try {
