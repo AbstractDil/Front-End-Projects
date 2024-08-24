@@ -8,30 +8,75 @@
         </h5>
         <form @submit.prevent="handleRegistration">
           <BaseInput label="Fullname" v-model="formData.userName" />
-          <p>
-            <small class="text-danger" v-for="error in v$.userName.$errors" :key="error.$uid">
-              {{ error.$message || 'Fullname is required' }}
+
+          <p v-if="formSubmitted && v$.userName.required.$invalid">
+            <small class="text-danger">
+              Fullname is required
+            </small>
+          </p>
+          <p v-if="formSubmitted && !v$.userName.required.$invalid && v$.userName.minLength.$invalid">
+            <small class="text-danger">
+              Minimum length is 3 characters
+            </small>
+          </p>
+
+          <p v-if="formSubmitted && !v$.userName.required.$invalid && v$.userName.maxLength.$invalid">
+            <small class="text-danger">
+              Maximum length is 20 characters
             </small>
           </p>
 
           <BaseInput label="Email" v-model="formData.userEmail" type="email" />
-          <p>
-            <small class="text-danger" v-for="error in v$.userEmail.$errors" :key="error.$uid">
-              {{ error.$message || 'Email is required' }}
+
+          <p v-if="formSubmitted && v$.userEmail.required.$invalid">
+            <small class="text-danger">
+              Email is required
+            </small>
+          </p>
+          <p v-if="formSubmitted && !v$.userEmail.required.$invalid && v$.userEmail.email.$invalid">
+            <small class="text-danger">
+              Please enter a valid email address
             </small>
           </p>
 
+          <p v-if="formSubmitted && !v$.userEmail.required.$invalid && !v$.userEmail.email.$invalid && v$.userEmail.minLength.$invalid">
+          <small class="text-danger">
+            Email must be at least 6 characters long.
+          </small>
+        </p>
+
+        <p v-if="formSubmitted && !v$.userEmail.required.$invalid && !v$.userEmail.email.$invalid && v$.userEmail.maxLength.$invalid">
+          <small class="text-danger">
+            Email cannot exceed 50 characters.
+          </small>
+        </p>
+
           <BaseInput label="Password" v-model="formData.userPassword" type="password" />
-          <p>
-            <small class="text-danger" v-for="error in v$.userPassword.$errors" :key="error.$uid">
-              {{ error.$message || 'Password is required' }}
+          <p v-if="formSubmitted && v$.userPassword.required.$invalid">
+            <small class="text-danger">
+              Password is required
+            </small>
+          </p>
+          <p v-if="formSubmitted && !v$.userPassword.required.$invalid && v$.userPassword.minLength.$invalid">
+            <small class="text-danger">
+              Password must be at least 6 characters long
+            </small>
+          </p>
+          <p v-if="formSubmitted && !v$.userPassword.required.$invalid && v$.userPassword.maxLength.$invalid">
+            <small class="text-danger">
+              Password cannot exceed 20 characters
             </small>
           </p>
 
           <BaseInput label="Confirm Password" v-model="formData.usercPassword" type="password" />
-          <p>
-            <small class="text-danger" v-for="error in v$.usercPassword.$errors" :key="error.$uid">
-              {{ error.$message || 'Confirm Password is required' }}
+          <p v-if="formSubmitted && v$.usercPassword.required.$invalid">
+            <small class="text-danger">
+              Confirm password is required
+            </small>
+          </p>
+          <p v-if="formSubmitted && !v$.usercPassword.required.$invalid && v$.usercPassword.sameAs.$invalid">
+            <small class="text-danger">
+              Passwords do not match
             </small>
           </p>
 
@@ -55,12 +100,14 @@
   </div>
 </template>
 
-
 <script setup>
 import BaseInput from '@/components/BaseInput.vue';
-import { reactive, computed } from 'vue';
+import { reactive, computed, ref } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
-import { required, minLength, email, sameAs } from '@vuelidate/validators';
+import { required, minLength, maxLength, email, sameAs } from '@vuelidate/validators';
+import { getCurrentInstance } from 'vue';
+
+const { proxy } = getCurrentInstance(); // Get the current instance's proxy
 
 const formData = reactive({
   userName: '',
@@ -69,25 +116,27 @@ const formData = reactive({
   usercPassword: '',
 });
 
+const formSubmitted = ref(false);
+
 const rules = computed(() => ({
-  userName: { required, minLength: minLength(3) },
-  userEmail: { required, email },
-  userPassword: { required },
+  userName: { required, minLength: minLength(3), maxLength: maxLength(30) },
+  userEmail: { required, email, minLength: minLength(6),maxLength: maxLength(50) },
+  userPassword: { required, minLength: minLength(6), maxLength: maxLength(20)},
   usercPassword: { required, sameAs: sameAs(formData.userPassword) },
 }));
 
 const v$ = useVuelidate(rules, formData);
 
 const handleRegistration = async () => {
-  console.log('Form data:', formData);
+  formSubmitted.value = true;
   const result = await v$.value.$validate();
-  console.log(result);
+  console.log('Validation result:', result);
+  console.log('Form data:', formData);
+
   if (result) {
-    alert('Success!! It is working');
-    // Make an HTTP POST request to your backend API
+    proxy.$swal.fire('Success!', 'Registration was successful!', 'success'); // Use proxy.$swal
   } else {
-    alert('All fields are required to submit the form!');
+    proxy.$swal.fire('Warning!', 'Form validation errors! Please review the fields carefully.', 'warning');
   }
 };
 </script>
-
