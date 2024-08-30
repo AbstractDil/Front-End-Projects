@@ -1,5 +1,18 @@
 <template>
   <div class="bg-body-tertiary min-vh-100 d-flex align-items-center justify-content-center">
+
+    <!-- Success Alert -->
+    <div v-if="alertType === 'success'" class="alert alert-success" role="alert">
+      <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+      <div>{{ alertMessage }}</div>
+    </div>
+
+    <!-- Error Alert -->
+    <div v-if="alertType === 'error'" class="alert alert-danger" role="alert">
+      <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>{{ alertMessage }}</div>
+    </div>
+
     <!-- Card Starts -->
     <div class="card p-3" style="width:24em;">
       <div class="card-body text-start">
@@ -81,8 +94,16 @@
           </p>
 
           <div class="d-grid gap-2 col-12 mx-auto">
-            <button class="btn btn-success" type="submit">
-              <i class="bi bi-check-lg"></i> Register
+            <button class="btn btn-success" type="submit" :disabled="loading">
+              <template v-if="loading">
+                <!-- Loader -->
+                <div class="spinner-border text-light spinner-border-sm" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </template>
+              <template v-else>
+                <i class="bi bi-check-lg"></i>  Register
+              </template>
             </button>
           </div>
         </form>
@@ -108,6 +129,7 @@ import { required, minLength, maxLength, email, sameAs } from '@vuelidate/valida
 import { getCurrentInstance } from 'vue';
 import axios from 'axios'; // Import Axios
 
+
 const { proxy } = getCurrentInstance(); // Get the current instance's proxy
 
 const formData = reactive({
@@ -118,6 +140,9 @@ const formData = reactive({
 });
 
 const formSubmitted = ref(false);
+const loading = ref(false); // Loader state
+const alertType = ref(''); // To control the type of alert ('success' or 'error')
+const alertMessage = ref(''); // To control the message displayed in the alert
 
 const rules = computed(() => ({
   name: { required, minLength: minLength(3), maxLength: maxLength(30) },
@@ -136,6 +161,7 @@ const handleRegistration = async () => {
 
 
   if (result) {
+    loading.value = true; // Show the loader
     try {
       // Send a POST request to the backend
       const response = await axios.post('create-user', formData, {
@@ -147,10 +173,43 @@ const handleRegistration = async () => {
       // Handle success response
       proxy.$swal.fire('Success!', 'Registration was successful!', 'success');
       console.log('Response from backend:', response.data);
+
+      // Handle success response
+      alertType.value = 'success';
+      alertMessage.value = 'Registration was successful!';
+      
+      // Clear form data
+      formData.name = '';
+      formData.email = '';
+      formData.password = '';
+      formData.confirm_password = '';
+
+      // Reset form data after successful registration
+      /*
+      Object.keys(formData).forEach(key => {
+        formData[key] = '';
+      });
+      
+      // Optionally, reset validation state
+      v$.value.$reset();
+      */
+
     } catch (error) {
       // Handle error response
       console.error('Error during registration:', error.response.data);
-      proxy.$swal.fire('Error!', 'There was an error during registration. Please try again later.', 'error');
+        // Extract error status code and messages
+        const statusCode = error.response.status;
+      // Extract and concatenate error messages
+      const errorMessages = Object.values(error.response.data.messages).join(' ');
+      
+      // Display error using SweetAlert2
+      proxy.$swal.fire(`Error ${statusCode}!`, errorMessages || 'There was an error during registration. Please try again later.', 'error');
+
+      alertType.value = 'error';
+      alertMessage.value = error.response?.data?.messages ?? 'There was an error during registration. Please try again later.';
+    }
+    finally {
+      loading.value = false; // Hide the loader after the request is fulfilled
     }
   } else {
     proxy.$swal.fire('Warning!', 'Form validation errors! Please review the fields carefully.', 'warning');
