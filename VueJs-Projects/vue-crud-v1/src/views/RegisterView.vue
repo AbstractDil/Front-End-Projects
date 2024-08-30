@@ -7,74 +7,74 @@
           <i class="bi bi-person-add"></i> Registration
         </h5>
         <form @submit.prevent="handleRegistration">
-          <BaseInput label="Fullname" v-model="formData.userName" />
+          <BaseInput label="Fullname" v-model="formData.name" />
 
-          <p v-if="formSubmitted && v$.userName.required.$invalid">
+          <p v-if="formSubmitted && v$.name.required.$invalid">
             <small class="text-danger">
               Fullname is required
             </small>
           </p>
-          <p v-if="formSubmitted && !v$.userName.required.$invalid && v$.userName.minLength.$invalid">
+          <p v-if="formSubmitted && !v$.name.required.$invalid && v$.name.minLength.$invalid">
             <small class="text-danger">
               Minimum length is 3 characters
             </small>
           </p>
 
-          <p v-if="formSubmitted && !v$.userName.required.$invalid && v$.userName.maxLength.$invalid">
+          <p v-if="formSubmitted && !v$.name.required.$invalid && v$.name.maxLength.$invalid">
             <small class="text-danger">
               Maximum length is 20 characters
             </small>
           </p>
 
-          <BaseInput label="Email" v-model="formData.userEmail" type="email" />
+          <BaseInput label="Email" v-model="formData.email" type="email" />
 
-          <p v-if="formSubmitted && v$.userEmail.required.$invalid">
+          <p v-if="formSubmitted && v$.email.required.$invalid">
             <small class="text-danger">
               Email is required
             </small>
           </p>
-          <p v-if="formSubmitted && !v$.userEmail.required.$invalid && v$.userEmail.email.$invalid">
+          <p v-if="formSubmitted && !v$.email.required.$invalid && v$.email.email.$invalid">
             <small class="text-danger">
               Please enter a valid email address
             </small>
           </p>
 
-          <p v-if="formSubmitted && !v$.userEmail.required.$invalid && !v$.userEmail.email.$invalid && v$.userEmail.minLength.$invalid">
+          <p v-if="formSubmitted && !v$.email.required.$invalid && !v$.email.email.$invalid && v$.email.minLength.$invalid">
           <small class="text-danger">
             Email must be at least 6 characters long.
           </small>
         </p>
 
-        <p v-if="formSubmitted && !v$.userEmail.required.$invalid && !v$.userEmail.email.$invalid && v$.userEmail.maxLength.$invalid">
+        <p v-if="formSubmitted && !v$.email.required.$invalid && !v$.email.email.$invalid && v$.email.maxLength.$invalid">
           <small class="text-danger">
             Email cannot exceed 50 characters.
           </small>
         </p>
 
-          <BaseInput label="Password" v-model="formData.userPassword" type="password" />
-          <p v-if="formSubmitted && v$.userPassword.required.$invalid">
+          <BaseInput label="Password" v-model="formData.password" type="password" />
+          <p v-if="formSubmitted && v$.password.required.$invalid">
             <small class="text-danger">
               Password is required
             </small>
           </p>
-          <p v-if="formSubmitted && !v$.userPassword.required.$invalid && v$.userPassword.minLength.$invalid">
+          <p v-if="formSubmitted && !v$.password.required.$invalid && v$.password.minLength.$invalid">
             <small class="text-danger">
               Password must be at least 6 characters long
             </small>
           </p>
-          <p v-if="formSubmitted && !v$.userPassword.required.$invalid && v$.userPassword.maxLength.$invalid">
+          <p v-if="formSubmitted && !v$.password.required.$invalid && v$.password.maxLength.$invalid">
             <small class="text-danger">
               Password cannot exceed 20 characters
             </small>
           </p>
 
-          <BaseInput label="Confirm Password" v-model="formData.usercPassword" type="password" />
-          <p v-if="formSubmitted && v$.usercPassword.required.$invalid">
+          <BaseInput label="Confirm Password" v-model="formData.confirm_password" type="password" />
+          <p v-if="formSubmitted && v$.confirm_password.required.$invalid">
             <small class="text-danger">
               Confirm password is required
             </small>
           </p>
-          <p v-if="formSubmitted && !v$.usercPassword.required.$invalid && v$.usercPassword.sameAs.$invalid">
+          <p v-if="formSubmitted && !v$.confirm_password.required.$invalid && v$.confirm_password.sameAs.$invalid">
             <small class="text-danger">
               Passwords do not match
             </small>
@@ -106,23 +106,24 @@ import { reactive, computed, ref } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength, maxLength, email, sameAs } from '@vuelidate/validators';
 import { getCurrentInstance } from 'vue';
+import axios from 'axios'; // Import Axios
 
 const { proxy } = getCurrentInstance(); // Get the current instance's proxy
 
 const formData = reactive({
-  userName: '',
-  userEmail: '',
-  userPassword: '',
-  usercPassword: '',
+  name: '',
+  email: '',
+  password: '',
+  confirm_password: '',
 });
 
 const formSubmitted = ref(false);
 
 const rules = computed(() => ({
-  userName: { required, minLength: minLength(3), maxLength: maxLength(30) },
-  userEmail: { required, email, minLength: minLength(6),maxLength: maxLength(50) },
-  userPassword: { required, minLength: minLength(6), maxLength: maxLength(20)},
-  usercPassword: { required, sameAs: sameAs(formData.userPassword) },
+  name: { required, minLength: minLength(3), maxLength: maxLength(30) },
+  email: { required, email, minLength: minLength(6),maxLength: maxLength(50) },
+  password: { required, minLength: minLength(6), maxLength: maxLength(20)},
+  confirm_password: { required, sameAs: sameAs(formData.password) },
 }));
 
 const v$ = useVuelidate(rules, formData);
@@ -131,10 +132,26 @@ const handleRegistration = async () => {
   formSubmitted.value = true;
   const result = await v$.value.$validate();
   console.log('Validation result:', result);
-  console.log('Form data:', formData);
+  console.log('Form data being sent:', JSON.stringify(formData));
+
 
   if (result) {
-    proxy.$swal.fire('Success!', 'Registration was successful!', 'success'); // Use proxy.$swal
+    try {
+      // Send a POST request to the backend
+      const response = await axios.post('create-user', formData, {
+            headers: {
+        'Content-Type': 'application/json',
+      },
+      });
+
+      // Handle success response
+      proxy.$swal.fire('Success!', 'Registration was successful!', 'success');
+      console.log('Response from backend:', response.data);
+    } catch (error) {
+      // Handle error response
+      console.error('Error during registration:', error.response.data);
+      proxy.$swal.fire('Error!', 'There was an error during registration. Please try again later.', 'error');
+    }
   } else {
     proxy.$swal.fire('Warning!', 'Form validation errors! Please review the fields carefully.', 'warning');
   }

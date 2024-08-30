@@ -4,6 +4,7 @@ import router from './router';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import Swal from 'sweetalert2';  // <-- Import Swal here
+import "./axios";
 
 const app = createApp(App);
 
