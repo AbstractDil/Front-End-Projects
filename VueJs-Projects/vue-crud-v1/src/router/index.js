@@ -20,6 +20,15 @@ const routes = [
   },
 
   {
+    path: '/verify-email/:token',
+    name: 'VerifyEmail',
+    component: () => import('../views/VerifyEmail.vue'),
+    meta: {
+      title: 'Verify Email - Vue Js Crud' // Set the title for the register page
+    }
+  },
+
+  {
     path: '/forget-password',
     name: 'Forget Password',
     component: () => import(/* webpackChunkName: "about" */ '../views/ForgetPassword.vue'),
