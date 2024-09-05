@@ -111,9 +111,9 @@
      <!-- Success Message Card Starts -->
      <StatusMessage
       :visible="registrationSuccess"
-      title="Registration Successful"
-      message="Your registration was successful! Please check your email to verify your account."
-      icon="bi bi-patch-check-fill"
+      title="Verification Email Sent"
+      message="Please verify your account by clicking on the link in the email we sent you."
+      icon="bi bi-envelope-check-fill"
       buttonText="Verify Email"
       @button-click="goToVerificationPage"
     />
@@ -174,7 +174,7 @@ const handleRegistration = async () => {
       });
 
       // Handle success response
-      proxy.$swal.fire('Success!', 'Registration was successful!', 'success');
+      proxy.$swal.fire('Success!', 'Verification email sent. Please check your inbox or spam folder.', 'success');
       console.log('Response from backend:', response.data);
      
         // Store verification token and set success state

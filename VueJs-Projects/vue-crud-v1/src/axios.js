@@ -10,6 +10,8 @@ axios.defaults.baseURL = isLocalhost
 
 // Optionally configure other defaults like headers or timeouts
 axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.getItem('token');
+
 // axios.defaults.timeout = 10000; // Example: Set a timeout of 10 seconds
 
 export default axios;
