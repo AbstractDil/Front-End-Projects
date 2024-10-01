@@ -1,23 +1,26 @@
 <script setup>
 import BaseInput from '@/components/BaseInput.vue';
-import { reactive, computed, ref } from 'vue';
+import { reactive, computed, ref, onMounted } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength, maxLength, email } from '@vuelidate/validators';
 import { getCurrentInstance } from 'vue';
-
+//import { useStore } from 'vuex';
+import axios from 'axios';
 
 const { proxy } = getCurrentInstance(); // Get the current instance's proxy
+//const store = useStore(); // Use useStore here
 
 const formData = reactive({
-  userName: '',
-  userEmail: '',
+  name: '',
+  email: '',
 });
 
 const formSubmitted = ref(false);
 
+// Vuelidate rules
 const rules = computed(() => ({
-  userName: { required, minLength: minLength(3), maxLength: maxLength(30) },
-  userEmail: { required, email, minLength: minLength(6),maxLength: maxLength(50) },
+  name: { required, minLength: minLength(3), maxLength: maxLength(30) },
+  email: { required, email, minLength: minLength(6), maxLength: maxLength(50) },
 }));
 
 const v$ = useVuelidate(rules, formData);
@@ -27,14 +30,39 @@ const handleProfileInfoUpdate = async () => {
   const result = await v$.value.$validate();
   console.log('Validation result:', result);
   console.log('Form data:', formData);
-
   if (result) {
-    proxy.$swal.fire('Success!', 'Registration was successful!', 'success'); // Use proxy.$swal
+    try {
+      // Get the user ID from Vuex store and bearer token
+      const userId = localStorage.getItem('userId'); // Assuming you have this getter in your Vuex store
+      const token = localStorage.getItem('token');   // Assuming you store the token in Vuex as well
+
+      // Prepare the API endpoint
+      const apiEndpoint = `update-user/${userId}`;
+
+      // Send the updated data to the API
+      const response = await axios.post(
+        apiEndpoint, 
+        formData, // The updated form data
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the Bearer token in the Authorization header
+          },
+        }
+      );
+
+      // Handle success response
+      proxy.$swal.fire('Success!', 'Profile updated successfully!', 'success');
+      console.log('API response:', response.data);
+
+    } catch (error) {
+      // Handle error response
+      proxy.$swal.fire('Error!', 'Failed to update profile. Please try again later.', 'error');
+      console.error('API error:', error);
+    }
   } else {
     proxy.$swal.fire('Warning!', 'Form validation errors! Please review the fields carefully.', 'warning');
   }
 };
-
 
 // Profile Image
 const profileImage = ref('/Images/User-avatar.png'); // Updated path
@@ -46,8 +74,37 @@ function onImageChange(event) {
   }
 }
 
+// Fetch user data on component mount
+onMounted(async () => {
+  try {
+    // Get the logged-in user's ID from the Vuex store
+    //const userId = proxy.$store.getters.userId;
+
+    const userId = localStorage.getItem('userId');
+
+
+    const token = localStorage.getItem('token'); // Assuming the JWT token is stored in local storage
+
+    if (userId && token) {
+      const response = await axios.get(`/show-user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}` // Attach the token in the Authorization header
+        }
+      });
+
+  formData.name = response.data.user.name;
+  formData.email = response.data.user.email;
+}
+ else {
+      console.error('User ID is not available');
+    }
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+});
 
 </script>
+
 
 <template>
     <!-- Profile Information section  Starts -->
@@ -75,42 +132,42 @@ function onImageChange(event) {
               <!-- Form Section -->
               <div class="col-md-6">
               <form @submit.prevent="handleProfileInfoUpdate">
-                <BaseInput label="Fullname" v-model="formData.userName" />
-                <p v-if="formSubmitted && v$.userName.required.$invalid">
+                <BaseInput label="Fullname" v-model="formData.name" />
+                <p v-if="formSubmitted && v$.name.required.$invalid">
                     <small class="text-danger">
                     Fullname is required
                     </small>
                 </p>
-                <p v-if="formSubmitted && !v$.userName.required.$invalid && v$.userName.minLength.$invalid">
+                <p v-if="formSubmitted && !v$.name.required.$invalid && v$.name.minLength.$invalid">
                     <small class="text-danger">
                     Minimum length is 3 characters
                     </small>
                 </p>
 
-                <p v-if="formSubmitted && !v$.userName.required.$invalid && v$.userName.maxLength.$invalid">
+                <p v-if="formSubmitted && !v$.name.required.$invalid && v$.name.maxLength.$invalid">
                     <small class="text-danger">
                     Maximum length is 20 characters
                     </small>
                 </p>
-                <BaseInput label="Email" v-model="formData.userEmail" type="email" />
-                <p v-if="formSubmitted && v$.userEmail.required.$invalid">
+                <BaseInput label="Email" v-model="formData.email" type="email" />
+                <p v-if="formSubmitted && v$.email.required.$invalid">
             <small class="text-danger">
               Email is required
             </small>
           </p>
-          <p v-if="formSubmitted && !v$.userEmail.required.$invalid && v$.userEmail.email.$invalid">
+          <p v-if="formSubmitted && !v$.email.required.$invalid && v$.email.email.$invalid">
             <small class="text-danger">
               Please enter a valid email address
             </small>
           </p>
 
-          <p v-if="formSubmitted && !v$.userEmail.required.$invalid && !v$.userEmail.email.$invalid && v$.userEmail.minLength.$invalid">
+          <p v-if="formSubmitted && !v$.email.required.$invalid && !v$.email.email.$invalid && v$.email.minLength.$invalid">
           <small class="text-danger">
             Email must be at least 6 characters long.
           </small>
         </p>
 
-        <p v-if="formSubmitted && !v$.userEmail.required.$invalid && !v$.userEmail.email.$invalid && v$.userEmail.maxLength.$invalid">
+        <p v-if="formSubmitted && !v$.email.required.$invalid && !v$.email.email.$invalid && v$.email.maxLength.$invalid">
           <small class="text-danger">
             Email cannot exceed 50 characters.
           </small>
