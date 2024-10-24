@@ -40,7 +40,7 @@
 
           <!-- Dark Mode Toggle Button -->
           <li class="nav-item">
-            <button type="button" class="btn btn-sm rounded my-1" @click="toggleDark"
+            <button type="button" class="btn btn-sm rounded my-1" @click="toggleDark()"
               :class="isDark ? 'btn-dark' : 'btn-light'"
             >
               <i class="bi" :class="isDark ? 'bi-moon-stars-fill' : 'bi-brightness-high-fill'"></i>
@@ -63,7 +63,8 @@ const router = useRouter();
 
 // Vuex Store
 const store = useStore();
-const user = computed(() => store.getters.user);  // Retrieve user from Vuex store
+const user = computed(() => store.getters['auth/userDetails']);  // Retrieve user from Vuex store
+console.log("User details: " + user.value);  // Debug to see the user object
 
 // Dark mode setup
 const isDark = useDark({
@@ -76,7 +77,7 @@ const toggleDark = useToggle(isDark);
 
 // Handle logout
 const handleLogout = () => {
-  store.dispatch('logout');  // Dispatch a Vuex action to logout
+  store.dispatch('auth/logout');  // Dispatch a Vuex action to logout
   router.push('/');     // Redirect to the login page after logout
 };
 </script>

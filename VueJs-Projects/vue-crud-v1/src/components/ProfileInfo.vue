@@ -77,13 +77,12 @@ function onImageChange(event) {
 // Fetch user data on component mount
 onMounted(async () => {
   try {
+    
     // Get the logged-in user's ID from the Vuex store
     //const userId = proxy.$store.getters.userId;
 
-    const userId = localStorage.getItem('userId');
-
-
-    const token = localStorage.getItem('token'); // Assuming the JWT token is stored in local storage
+   const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token'); // Assuming the JWT token is stored in local storage
 
     if (userId && token) {
       const response = await axios.get(`/show-user/${userId}`, {

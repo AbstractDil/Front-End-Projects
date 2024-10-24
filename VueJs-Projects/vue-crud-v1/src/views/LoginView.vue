@@ -28,58 +28,62 @@ const v$ = useVuelidate(rules, formData);
 
 const handleLogin = async () => {
   formSubmitted.value = true;
-  const result = await v$.value.$validate();  // Assuming v$ is your Vuelidate instance
-  console.log('Validation result:', result);
+
+  // Validate the form using Vuelidate
+  const isValid = await v$.value.$validate();
+  console.log('Validation result:', isValid);
   console.log('Form data:', formData);
 
-  if (result) {
-    loading.value = true; // Show the loader
-    try {
-      // Send a POST request to the backend's login route
-      const response = await axios.post('/login', formData);
+  if (!isValid) {
+    // Show validation error if the form is invalid
+    Swal.fire('Warning!', 'Please correct the form errors and try again.', 'warning');
+    return;
+  }
 
-      // Safeguard to check if response and response.data exist
-      if (response && response.data) {
-        console.log('Response from backend:', response.data);
-        const token = response.data.token;  // Get the token from the response
-        if (token) {
-          localStorage.setItem('token', token); // Store the token in local storage
-          localStorage.setItem('userId', response.data.user.uid);
-          console.log('Token stored in local storage:', token);
+  // Proceed with login if validation is successful
+  loading.value = true;  // Show the loading spinner
+  try {
+    // Send the login request
+    const response = await axios.post('/login', formData);
 
-          // Get the user ID from response data and dispatch it to Vuex
-          const userId = response.data.user.uid;
-          if (userId) {
-            store.dispatch('setUserId', userId);  // Ensure 'setUserId' is the correct action in Vuex
-            //store.dispatch('setUserData', response.data.user)
-            console.log('User ID:', userId);
-          } else {
-            console.error('User ID not found in response');
-          }
+    // Safeguard to ensure the response, token, and user data exist
+    if (response?.data?.token && response?.data?.user?.uid) {
+      const { token, user } = response.data;
 
-          // Show success message and optionally redirect the user
-          Swal.fire('Success!', 'Login was successful!', 'success');
-          router.push('/profile');
-        } else {
-          console.error('Token not found in response');
-        }
-      } else {
-        console.error('Invalid response from backend:', response);
-      }
-    } catch (error) {
-      // Handle error response
-      console.error('Error during login:', error);
-      const statusCode = error.response?.status || 'Unknown';  // Safeguard against undefined response
-      const errorMessages = Object.values(error.response?.data?.messages || {}).join(' ') || 'Login failed. Please try again.';
-      
-      Swal.fire(`Error ${statusCode}!`, errorMessages, 'error');
-    } finally {
-      loading.value = false; // Hide the loader after the request is fulfilled
+      // Store token and userId in localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', user.uid);
+
+      console.log('Token and User ID stored in local storage:', { token, userId: user.uid });
+
+      // Set the userId and token in Vuex store
+      store.dispatch('auth/setUserData', { userId: user.uid, token });
+
+      // Fetch full user details using the userId after login
+      //await store.dispatch('auth/fetchUserDetails');
+
+      // Show success message and redirect to profile page
+      Swal.fire('Success!', 'Login successful!', 'success');
+      router.push('/profile');
+    } else {
+      console.error('Invalid response: Token or user ID not found');
+      Swal.fire('Error!', 'Login failed. Please try again.', 'error');
     }
-  } else {
-    Swal.fire('Warning!', 'Form validation errors! Please review the fields carefully.', 'warning');
+  } catch (error) {
+    // Handle error during login attempt
+    console.error('Login error:', error);
+
+    // Extract error message from the server response
+    const statusCode = error.response?.status || 'Unknown';
+    const errorMessages = Object.values(error.response?.data?.messages || {}).join(' ') || 'Login failed. Please try again.';
+
+    // Show error alert
+    Swal.fire(`Error ${statusCode}!`, errorMessages, 'error');
+  } finally {
+    loading.value = false;  // Hide the loader
   }
 };
+
 
 </script>
 
