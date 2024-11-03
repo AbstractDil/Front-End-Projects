@@ -25,8 +25,8 @@
                   <button class="btn btn-primary text-light my-3" type="submit">Register</button>
                 </div>
               </form>
-              <p class="text-muted mt-4 fs-6">
-                Already have an account, <RouterLink to="/login">Login Now</RouterLink>
+              <p class="text-muted mt-4 fs-14px text-center">
+                Already have an account? <RouterLink to="/login">Login Now</RouterLink>
               </p>
             </div>
           </div>
@@ -37,64 +37,64 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script>
+
 import axios from 'axios';
-import { RouterLink } from 'vue-router';
-
-defineProps({
-  subtitle: {
-    type: String,
-    required: true
-  }
-});
-
-const userName = ref('');
-const userEmail = ref('');
-const userPassword = ref('');
-
-const handleForm = async () => {
-  const formData = {
-    name: userName.value,
-    email: userEmail.value,
-    password: userPassword.value
-  };
-
-  console.log('Form Data:', formData); // Log to verify data before sending
-
-  const Url = 'http://localhost/Sagar/Backend/ApiServer2/api/v1.0/create-user';
-
-  try {
-    const response = await axios.post(Url, formData, {
-     headers: {
-    'Content-Type': 'application/json'
-  }
-    })
-
-    const responseData = response.data;
-    console.log(responseData); // Log the response for debugging
-
-    if (responseData.status) {
-      alert('User registered successfully.');
-      // Optionally, redirect to login page
-      // router.push('/login');
-    } else {
-      // Split and display each error message
-      const errors = Object.values(responseData.msg).join('\n');
-      alert('Failed to register user:\n' + errors);
+export default {
+  name: "RegisterForm",
+  props: {
+    subtitle: {
+      type: String,
+      required: true
     }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Failed to register user. Please try again.');
+  },
+  data() {
+    return {
+      userName: '',
+      userEmail: '',
+      userPassword: ''
+    };
+  },
+  methods: {
+    async handleForm() {
+      const formData = {
+        name: this.userName,
+        email: this.userEmail,
+        password: this.userPassword
+      };
+
+      console.log('Form Data:', formData);
+
+      const Url = 'http://localhost/Sagar/Backend/ApiServer2/api/v1.0/create-user';
+
+      try {
+        const response = await axios.post(Url, formData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const responseData = response.data;
+        console.log(responseData);
+
+        if (responseData.status) {
+          alert('User registered successfully.');
+          // Optionally, redirect to login page
+          this.$router.push('/login');
+        } else {
+          // Split and display each error message
+          const errors = Object.values(responseData.msg).join('\n');
+          alert('Failed to register user:\n' + errors);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to register user. Please try again.');
+      }
+    }
   }
 };
 </script>
 
-<script>
-  export default {
-    name: 'RegForm',
-    components: {
-      RouterLink
-    }
-  };
-</script>
+<style scoped>
+/* Add any custom styles here */
+</style>

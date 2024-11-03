@@ -16,10 +16,8 @@ const authModule = {
     isLoggedIn: (state) => !!state.token, // Changed to check token instead of user
   },
   actions: {
-    setUserData({ commit }, { userId, token }) {
-      commit('SET_USER_DATA', { userId, token });
-      localStorage.setItem('userId', userId);
-      localStorage.setItem('token', token);
+    setUserData({ commit }, userId) {
+      commit('SET_USER_DATA', { userId });
     },
     async fetchUserDetails({ commit, state }) {
       try {

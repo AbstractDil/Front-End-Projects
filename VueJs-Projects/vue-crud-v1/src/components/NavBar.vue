@@ -63,7 +63,7 @@ const router = useRouter();
 
 // Vuex Store
 const store = useStore();
-const user = computed(() => store.getters['auth/userDetails']);  // Retrieve user from Vuex store
+const user = computed(() => store.getters.userId);  // Retrieve user from Vuex store
 console.log("User details: " + user.value);  // Debug to see the user object
 
 // Dark mode setup

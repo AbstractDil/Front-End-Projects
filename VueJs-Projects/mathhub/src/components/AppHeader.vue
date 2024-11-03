@@ -66,69 +66,73 @@
   <!-- Navbar Ends -->
 </template>
 
-<script setup>
-import {  ref, computed, onMounted, onUnmounted  } from 'vue';
-import { RouterLink, useRoute } from 'vue-router';
+<script>
 
-const props = defineProps({
-  appName: {
-    type: String,
-    required: true
+import { useRoute } from 'vue-router';
+
+export default {
+  name: 'AppHeader',
+  props: {
+    appName: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      urls: [
+        { id: 1, url: 'home' },
+        { id: 2, url: 'about' },
+        { id: 3, url: 'registration' },
+        { id: 4, url: 'login' }
+      ],
+      formattedDateTime: '',
+      isMobile: window.innerWidth <= 767
+    };
+  },
+  computed: {
+    loginText() {
+      return this.route.path === '/login' ? 'Register' : 'Login';
+    },
+    loginLink() {
+      return this.route.path === '/login' ? '/registration' : '/login';
+    },
+    firstLine() {
+      return this.appName.split(' ')[0];
+    },
+    secondLine() {
+      return this.appName.split(' ')[1] || '';
+    }
+  },
+  created() {
+    this.route = useRoute();
+    this.updateDateTime();
+    this.timer = setInterval(this.updateDateTime, 1000);
+    window.addEventListener('resize', this.handleResize);
+  },
+  methods: {
+    updateDateTime() {
+      const options = {
+        timeZone: 'Asia/Kolkata',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+      };
+      const currentDate = new Date();
+      this.formattedDateTime = currentDate.toLocaleTimeString('en-US', options);
+    },
+    handleResize() {
+      this.isMobile = window.innerWidth <= 767;
+    }
+  },
+  beforeUnmount() {
+    clearInterval(this.timer);
+    window.removeEventListener('resize', this.handleResize);
   }
-});
-
-// Split the appName into two parts based on a space or manually if needed
-const [firstLine, secondLine] = props.appName.split(' '); 
-
-const urls = ref([
-  { id: 1, url: 'home' },
-  { id: 2, url: 'about' },
-  { id: 3, url: 'registration' },
-  { id: 4, url: 'login' }
-]);
-
-const formattedDateTime = ref('');
-
-const updateDateTime = () => {
-  const options = {
-    timeZone: 'Asia/Kolkata',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric'
-  };
-  
-  const currentDate = new Date();
-  formattedDateTime.value = currentDate.toLocaleTimeString('en-US', options);
 };
-
-onMounted(() => {
-  updateDateTime();
-  setInterval(updateDateTime, 1000);
-});
-
-const route = useRoute();
-
-const loginText = computed(() => (route.path === '/login' ? 'Register' : 'Login'));
-const loginLink = computed(() => (route.path === '/login' ? '/registration' : '/login'));
-
-// Detect if the screen size is mobile
-const isMobile = ref(window.innerWidth <= 767);
-
-const handleResize = () => {
-  isMobile.value = window.innerWidth <= 767;
-};
-
-onMounted(() => {
-  window.addEventListener('resize', handleResize);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', handleResize);
-});
-
 </script>
 
 <style scoped>

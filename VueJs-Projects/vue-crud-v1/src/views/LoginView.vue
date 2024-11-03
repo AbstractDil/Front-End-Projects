@@ -57,7 +57,7 @@ const handleLogin = async () => {
       console.log('Token and User ID stored in local storage:', { token, userId: user.uid });
 
       // Set the userId and token in Vuex store
-      store.dispatch('auth/setUserData', { userId: user.uid, token });
+      store.dispatch('auth/setUserData', user.uid );
 
       // Fetch full user details using the userId after login
       //await store.dispatch('auth/fetchUserDetails');

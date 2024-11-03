@@ -1,11 +1,15 @@
 <script setup>
-//import { RouterLink, RouterView } from 'vue-router'
-import Header from './components/Header.vue';
+import { RouterView } from 'vue-router'
+import AppHeader from './components/AppHeader.vue';
+import AppFooter from './components/AppFooter.vue';
+
 </script>
 
 <template>
-    <Header appName = "MathHub Combined"/>
+    <AppHeader appName = "MathHub Combined"/>
   <RouterView />
+  <AppFooter appName = "MathHub Combined"/>
+
 </template>
 
 

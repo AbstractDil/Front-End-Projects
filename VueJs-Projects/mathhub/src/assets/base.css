@@ -5,3 +5,28 @@
 .fs-14px{
     font-size: 14px !important;
 }
+
+/* Apply to the whole document or a specific container */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    height: 8px; /* Height of the horizontal scrollbar */
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the track */
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:#086eb3; /* Color of the thumb */
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #086eb3; /* Darker color when hovered */
+  }
+  
+  .bg-secondary-dark{
+    background-color: rgb(67, 67, 68);;
+  }
