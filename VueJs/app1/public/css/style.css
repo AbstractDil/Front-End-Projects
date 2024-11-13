@@ -40,7 +40,9 @@ button {
   font-style: normal !important;
 }
 
-
+.offcanvas.offcanvas-start {
+  width:18rem !important;
+}
 
 .font-sm{
     font-size: 14px;
@@ -49,10 +51,6 @@ button {
   color: #42b983 !important;
 }
 
-
-.card{
-  width:22em !important;
-}
 
 /* Scrollbar Styles */
 ::-webkit-scrollbar {

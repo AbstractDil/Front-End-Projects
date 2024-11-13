@@ -43,7 +43,7 @@ const handleChngPwdForm = async () => {
     <div class="bg-body-tertiary min-vh-100 d-flex align-items-center justify-content-center">
 
           <!--  Card Starts  -->
-          <div class="card p-3" style="width:24em;">
+          <div class="card p-3" style="width:22em;">
             <div class="card-body text-start">
               <h5 class="card-title text-center mb-4 fw-bold text-success"><i class="bi bi-shield-lock"></i> Change Password</h5>
               <form @submit.prevent="handleChngPwdForm">

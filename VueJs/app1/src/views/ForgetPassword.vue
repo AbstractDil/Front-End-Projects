@@ -37,7 +37,7 @@ const handleFrgtPwdForm = async () => {
 
 <template>
   <div class="bg-body-tertiary min-vh-100 d-flex align-items-center justify-content-center">
-    <div class="card p-3" style="width:24em;">
+    <div class="card p-3" style="width:22em;">
       <div class="card-body text-start">
         <h5 class="card-title text-center mb-4 fw-bold text-success">Forget Password <i class="bi bi-patch-question-fill"></i></h5>
         <form @submit.prevent="handleFrgtPwdForm">

@@ -2,7 +2,7 @@
 <template>
     <!-- v-if -->
     <div v-if="props.visible" class="min-vh-100 d-flex align-items-center justify-content-center py-4"> 
-      <div class="card p-3" style="width:24em;">
+      <div class="card p-3" style="width:22em;">
         <div class="card-body text-center">
           <div class="fs-1 text-center mb-4 fw-bold" :class="props.iconClass">
             <i :class="icon"></i>

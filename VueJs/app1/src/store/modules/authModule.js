@@ -1,62 +1,49 @@
-// store/modules/authModule.js
-import axios from 'axios';
-
 const authModule = {
   namespaced: true,
   state: {
-    user: JSON.parse(localStorage.getItem('user')) || null,
-    token: localStorage.getItem('token'),
-    userId: localStorage.getItem('userId'),
-    userDetails: null,
+    token: localStorage.getItem('token') || null,
+    userId: localStorage.getItem('userId') || null,
+    userDetails: JSON.parse(localStorage.getItem('userDetails')) || null,
   },
   getters: {
-    user: (state) => state.user,
+    isLoggedIn: (state) => !!state.token,
     userId: (state) => state.userId,
     userDetails: (state) => state.userDetails,
-    isLoggedIn: (state) => !!state.token, // Changed to check token instead of user
   },
   actions: {
-    setUserData({ commit }, userId) {
-      commit('SET_USER_DATA', { userId });
+    setToken({ commit }, token) {
+      commit('SET_TOKEN', token);
+      localStorage.setItem('token', token);
     },
-    async fetchUserDetails({ commit, state }) {
-      try {
-        const response = await axios.get(`show-user/${state.userId}`, {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
-        });
-        console.log(response.data);
-        commit('SET_USER_DETAILS', response.data);
-      } catch (error) {
-        console.error('Error fetching user details:', error);
-        // Add error handling action
-      }
+    setUserData({ commit }, userId) {
+      commit('SET_USER_DATA', userId);
+      localStorage.setItem('userId', userId);
+    },
+    setUserDetails({ commit }, userDetails) {
+      commit('SET_USER_DETAILS', userDetails);
+      localStorage.setItem('userDetails', JSON.stringify(userDetails));
     },
     logout({ commit }) {
-      commit('CLEAR_USER_DATA');
+      commit('CLEAR_AUTH_DATA');
       localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      localStorage.removeItem('userId'); // Remove userId from localStorage
-    },
-    clearUserData({ commit }) {
-      commit('CLEAR_USER_DATA');
-      localStorage.removeItem('user');
-      localStorage.removeItem('userId'); // Remove userId from localStorage
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userDetails');
     },
   },
   mutations: {
-    SET_USER_DATA(state, userData) {
-      state.user = userData;
-      localStorage.setItem('user', JSON.stringify(userData)); // Store user in localStorage
+    SET_TOKEN(state, token) {
+      state.token = token;
+    },
+    SET_USER_DATA(state, userId) {
+      state.userId = userId;
     },
     SET_USER_DETAILS(state, userDetails) {
       state.userDetails = userDetails;
     },
-    CLEAR_USER_DATA(state) {
-      state.user = null;
+    CLEAR_AUTH_DATA(state) {
+      state.token = null;
+      state.userId = null;
       state.userDetails = null;
-      state.userId = null; // Reset userId
     },
   },
 };

@@ -116,44 +116,47 @@ export default {
 
  
   methods: {
-    ...mapActions('auth', ['setUserData']),
+  ...mapActions('auth', ['setUserData', 'setToken', 'setUserDetails']),
 
-    async handleLogin() {
-      this.formSubmitted = true;
-      const isFormCorrect = await this.v$.$validate()
+  async handleLogin() {
+    this.formSubmitted = true;
+    const isFormCorrect = await this.v$.$validate();
 
-      if (!isFormCorrect) {
-        Swal.fire('Warning!', 'Please correct the form errors and try again.', 'warning');
-        return;
+    if (!isFormCorrect) {
+      Swal.fire('Warning!', 'Please correct the form errors and try again.', 'warning');
+      return;
+    }
+
+    this.loading = true;
+    try {
+      const response = await axios.post('/login', this.formData);
+
+      if (response?.data?.data?.token && response?.data?.data?.uid) {
+        const { token, uid, name, email, created_at, updated_at, is_email_verified, email_verified_at } = response.data.data;
+        
+        // Store token and user details in Vuex store
+        this.setToken(token);
+        this.setUserData(uid);  // Store UID separately
+        this.setUserDetails({ uid, name, email, created_at, updated_at, is_email_verified, email_verified_at });
+
+        Swal.fire('Success!', 'Login successful!', 'success');
+        this.$router.push('/profile');
+      } else {
+        Swal.fire('Error!', 'Login failed. Please try again.', 'error');
       }
-
-      this.loading = true;
-      try {
-        const response = await axios.post('/login', this.formData);
-
-        if (response?.data?.data?.token && response?.data?.data?.uid) {
-          //  const { token, user } = response.data;
-         // localStorage.setItem('token', token);
-         // localStorage.setItem('userId', user.uid);
-          //this.setUserData(user.uid);
-          Swal.fire('Success!', 'Login successful!', 'success');
-         // this.$router.push('/profile');
-        } else {
-          Swal.fire('Error!', 'Login failed. Please try again.', 'error');
-        }
-      } catch (error) {
-        if (!error.response) {
-        Swal.fire('Connection Error!', 'Backend server is not responding. Please try again later..', 'error');
+    } catch (error) {
+      if (!error.response) {
+        Swal.fire('Connection Error!', 'Backend server is not responding. Please try again later.', 'error');
       } else {
         const statusCode = error.response?.status || 'Unknown';
         const errorMessages = Object.values(error.response?.data?.messages || {}).join(' ') || 'Login failed. Please try again.';
         Swal.fire(`Error ${statusCode}!`, errorMessages, 'error');
       }
-      } finally {
-        this.loading = false;
-      }
-    },
+    } finally {
+      this.loading = false;
+    }
   },
+}
 
   
 };
