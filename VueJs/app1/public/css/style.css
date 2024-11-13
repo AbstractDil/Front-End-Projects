@@ -49,6 +49,11 @@ button {
   color: #42b983 !important;
 }
 
+
+.card{
+  width:22em !important;
+}
+
 /* Scrollbar Styles */
 ::-webkit-scrollbar {
   width:5px; /* Width of the entire scrollbar */

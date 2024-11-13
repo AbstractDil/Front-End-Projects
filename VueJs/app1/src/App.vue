@@ -14,7 +14,7 @@ export default {
 
   data() {
     return {
-      appTitle: "Vue Js Crud",  // Define the appTitle
+      appTitle: "iFriendShip",  // Define the appTitle
     };
   },
 

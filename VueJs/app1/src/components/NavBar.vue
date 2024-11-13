@@ -7,7 +7,7 @@
       <!-- Logo and App Title -->
       <router-link class="navbar-brand" to="/">
         <img width="30" height="30" alt="Vue logo" src="../assets/logo.png">
-        {{ appTitle }}
+        <span class="mx-1 text-success">{{ appTitle }}</span>
       </router-link>
 
       <!-- Navbar Toggle Button (Mobile) -->

@@ -1,5 +1,6 @@
 <!-- SuccessMessage.vue -->
 <template>
+    <!-- v-if -->
     <div v-if="props.visible" class="min-vh-100 d-flex align-items-center justify-content-center py-4"> 
       <div class="card p-3" style="width:24em;">
         <div class="card-body text-center">
@@ -15,12 +16,13 @@
             {{ props.message }}
           </div>
   
-          <button v-if="props.buttonText" class="btn btn-success mt-3" @click="handleClick">
+          <button v-if="props.buttonText" :class="['btn', buttonColour, 'mt-3']"  @click="handleClick">
             {{ props.buttonText }}
           </button>
         </div>
       </div>
     </div>
+   
   </template>
   
   <script setup>
@@ -50,14 +52,22 @@
     buttonText: {
       type: String,
       default: null
+    },
+    buttonColour: {
+      type: String,
+      default: 'btn-success'
     }
   });
   
   const emit = defineEmits(['button-click']);
   
+  // Dynamically set the button class
+
+
   const handleClick = () => {
     emit('button-click');
   };
+
   </script>
   
   <style scoped>

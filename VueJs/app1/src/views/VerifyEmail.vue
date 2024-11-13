@@ -7,6 +7,7 @@
         :icon="statusIcon"
         :iconClass="iconClass"
         :buttonText="buttonText"
+        :buttonColour="buttonColour"
         @button-click="goToLoginPage"
       />
     </div>
@@ -17,12 +18,14 @@
   import axios from 'axios';
   import { ref, onMounted, computed } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
+  import { getCurrentInstance } from 'vue';
   
   // Reactive state
   const verificationStatus = ref('verifying'); // Initialize status as 'verifying'
   const statusMessage = ref(''); // For dynamic error/success messages
   const route = useRoute();
   const router = useRouter();
+  const { proxy } = getCurrentInstance();
   
   // Compute title, icon, and button text based on verification status
   const statusTitle = computed(() => {
@@ -42,9 +45,16 @@
            verificationStatus.value === 'failure' ? 'text-danger' :
            'text-success';
   });
+
+
+  const buttonColour = computed(() => {
+    return verificationStatus.value === 'success' ? 'btn-success' : 
+           verificationStatus.value === 'failure' ? 'btn-danger' : '';
+  });
   
   const buttonText = computed(() => {
-    return verificationStatus.value === 'success' ? 'Go to Login' : '';
+    return verificationStatus.value === 'success' ? 'Go to Login' : 
+           verificationStatus.value === 'failure' ? 'Back to home' : '';
   });
   
   // Fetch token and verify email
@@ -56,10 +66,14 @@
       verificationStatus.value = 'success'; // Update status on success
       statusMessage.value = 'Your email has been successfully verified. You can now log in.';
     } catch (error) {
+      if (!error.response) {
+        proxy.$swal.fire('Connection Error!', 'Backend server is not responding. Please try again later...', 'error');
+      } else {
       console.error('Verification failed:', error.response.data);
       verificationStatus.value = 'failure'; // Update status on failure
       statusMessage.value = error.response.data.messages.error + " Please try again." || 'There was a problem verifying your email. Please try again or contact support.';
     }
+  }
   });
   
   // Handle button click

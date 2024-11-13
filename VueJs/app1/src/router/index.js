@@ -8,7 +8,7 @@ const routes = [
     name: 'LoginForm',
     component: LoginView,
     meta: {
-      title: 'Login - Vue Js Crud',
+      title: 'Login - iFriendShip - v0.1.0',
       requiresGuest: true // Indicate that this route is for guests only
     }
   },
@@ -17,7 +17,7 @@ const routes = [
     name: 'RegistrationForm',
     component: () => import(/* webpackChunkName: "register" */ '../views/RegisterView.vue'),
     meta: {
-      title: 'Register - Vue Js Crud',
+      title: 'Register - iFriendShip - v0.1.0',
       requiresGuest: true // Indicate that this route is for guests only
     }
   },
@@ -26,7 +26,7 @@ const routes = [
     name: 'VerifyEmail',
     component: () => import(/* webpackChunkName: "verify" */ '../views/VerifyEmail.vue'),
     meta: {
-      title: 'Verify Email - Vue Js Crud'
+      title: 'Verify Email - iFriendShip - v0.1.0'
     }
   },
   {
@@ -34,7 +34,7 @@ const routes = [
     name: 'ForgetPassword',
     component: () => import(/* webpackChunkName: "forget" */ '../views/ForgetPassword.vue'),
     meta: {
-      title: 'Forget Password - Vue Js Crud',
+      title: 'Forget Password - iFriendShip - v0.1.0',
       requiresGuest: true // Indicate that this route is for guests only
     }
   },
@@ -43,7 +43,7 @@ const routes = [
     name: 'ChangePassword',
     component: () => import(/* webpackChunkName: "change" */ '../views/ChangePassword.vue'),
     meta: {
-      title: 'Change Password - Vue Js Crud'
+      title: 'Change Password - iFriendShip - v0.1.0'
     }
   },
   {
@@ -51,7 +51,7 @@ const routes = [
     name: 'Profile',
     component: () => import(/* webpackChunkName: "profile" */ '../views/ProfileView.vue'),
     meta: {
-      title: 'Profile - Vue Js Crud',
+      title: 'Profile - iFriendShip - v0.1.0',
       requiresAuth: true // Indicate that this route requires authentication
     }
   }
