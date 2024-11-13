@@ -131,13 +131,13 @@ export default {
       try {
         const response = await axios.post('/login', this.formData);
 
-        if (response?.data?.token && response?.data?.user?.uid) {
-            const { token, user } = response.data;
-          localStorage.setItem('token', token);
-          localStorage.setItem('userId', user.uid);
-          this.setUserData(user.uid);
+        if (response?.data?.data?.token && response?.data?.data?.uid) {
+          //  const { token, user } = response.data;
+         // localStorage.setItem('token', token);
+         // localStorage.setItem('userId', user.uid);
+          //this.setUserData(user.uid);
           Swal.fire('Success!', 'Login successful!', 'success');
-          this.$router.push('/profile');
+         // this.$router.push('/profile');
         } else {
           Swal.fire('Error!', 'Login failed. Please try again.', 'error');
         }

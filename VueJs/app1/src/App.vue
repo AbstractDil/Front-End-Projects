@@ -1,6 +1,7 @@
 <script>
 // Import the components
 import NavBar from '@/components/NavBar.vue';
+import ServerStatus from '@/components/ServerStatus.vue';
 import FooTer from '@/components/FooTer.vue';
 import axios from '@/axios.js'; // Assuming axios is configured
 
@@ -8,6 +9,7 @@ export default {
   name: 'App',
 
   components: {
+    ServerStatus,
     NavBar,
     FooTer,
   },
@@ -48,6 +50,7 @@ export default {
 <template>
   <div>
     <NavBar :appTitle="appTitle" />
+    <ServerStatus/>
     <router-view />
     <FooTer />
   </div>
