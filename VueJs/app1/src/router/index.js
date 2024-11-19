@@ -39,7 +39,7 @@ const routes = [
     }
   },
   {
-    path: '/change-password',
+    path: '/change-password/:token',
     name: 'ChangePassword',
     component: () => import(/* webpackChunkName: "change" */ '../views/ChangePassword.vue'),
     meta: {

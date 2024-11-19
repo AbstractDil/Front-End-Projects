@@ -37,15 +37,37 @@
             </li>
 
             <!-- Logout Button and User Initials (If Logged In) -->
-            <li class="nav-item" v-else>
+            <!-- <li class="nav-item" v-else>
               <button class="btn btn-link nav-link" @click="handleLogout">
                 <i class="bi bi-box-arrow-right"></i> Logout
               </button>
-            </li>
-            <li class="nav-item" v-if="userDetails && userDetails.name">
+            </li> -->
+            <!-- <li class="nav-item" v-if="userDetails && userDetails.name">
               <span class="nav-link">
                 <i class="bi bi-person-circle"></i> {{ userDetails.name.charAt(0).toUpperCase() }}
               </span>
+            </li> -->
+           
+            <li class="nav-item dropdown" v-if="isLoggedIn">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hello, 
+                <span class="text-success">
+                {{ userDetails.name }}
+              </span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                <router-link class="dropdown-item text-muted" to="/profile">
+                <i class="bi bi-person-fill-gear"></i> Profile Settings
+                </router-link>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li class="text-center">
+                  <button class="btn btn-danger" @click="handleLogout">
+                <i class="bi bi-box-arrow-right"></i> Logout
+              </button>
+                </li>
+              </ul>
             </li>
 
 

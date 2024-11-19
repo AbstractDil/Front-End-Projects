@@ -133,3 +133,4 @@
 
     /* ******************  Right click & Scroll disable Starts ******************** */
 
+   console.log('fuc');

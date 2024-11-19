@@ -1,8 +1,16 @@
 <template>
-  <div class="bg-body-tertiary min-vh-100 ">
+  <div class="bg-body-tertiary ">
+  <div class="vh-100 d-flex align-items-center" v-if="!registrationSuccess" >
+    <div class="container">
+    <div class="row align-items-center">
+      <!-- Carousel Section -->
+      <div class="col-lg-8 mb-4 mb-lg-0">
+        <CarouselBanner/>
+
+      </div>
     <!-- Registration Form Card Starts -->
-    <div v-if="!registrationSuccess" class="min-vh-100 d-flex align-items-center justify-content-center py-4"> 
-      <div class="card p-3" style="width:22em;">
+    <div class="col-lg-4"> 
+      <div class="card p-3" style="max-width: 22em; margin: auto;">
         <div class="card-body text-start">
           <h5 class="card-title text-center mb-4 fw-bold text-success">
             <i class="bi bi-person-add"></i> Registration
@@ -86,6 +94,9 @@
       </div>
     </div>
     <!-- Registration Form Card Ends -->
+     </div>
+     </div>
+    </div>
 
     <!-- Success Message Card Starts -->
     <StatusMessage
@@ -102,6 +113,7 @@
 
 <script setup>
 import BaseInput from '@/components/BaseInput.vue';
+import CarouselBanner from '@/components/CarouselBanner.vue';
 import StatusMessage from '@/components/StatusMessage.vue';
 import { reactive, computed, ref } from 'vue';
 import { useVuelidate } from '@vuelidate/core';

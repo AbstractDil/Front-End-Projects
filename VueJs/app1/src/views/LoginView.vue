@@ -1,83 +1,64 @@
  <template>
-    <div class="bg-body-tertiary min-vh-100  d-flex justify-content-center align-items-center ">
-      <div class="card p-3" style="width:22em;">
-        <div class="card-body text-start">
-          <h5 class="card-title text-center mb-4 fw-bold text-success"> <i class="bi bi-lock-fill"></i> Member Login</h5>
-          <form @submit.prevent="handleLogin">
-            
-            <BaseInput label="Email" v-model="formData.email" type="email" />
-  
-             <p v-if="formSubmitted && v$.formData.email.required.$invalid">
-              <small class="text-danger">
-                Email is required
-              </small>
+  <div class="bg-body-tertiary vh-100 d-flex align-items-center">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Carousel Section -->
+      <div class="col-lg-8 mb-4 mb-lg-0">
+        <CarouselBanner/>
+      </div>
+      <!-- Login Card Section -->
+      <div class="col-lg-4">
+        <div class="card p-3" style="max-width: 22em; margin: auto;">
+          <div class="card-body text-start">
+            <h5 class="card-title text-center mb-4 fw-bold text-success">
+              <i class="bi bi-lock-fill"></i> Member Login
+            </h5>
+            <form @submit.prevent="handleLogin">
+              <BaseInput label="Email" v-model="formData.email" type="email" />
+              <p v-if="formSubmitted && v$.formData.email.required.$invalid">
+                <small class="text-danger">Email is required</small>
+              </p>
+              <!-- Other validation messages... -->
+              <BaseInput label="Password" v-model="formData.password" type="password" />
+              <p v-if="formSubmitted && v$.formData.password.required.$invalid">
+                <small class="text-danger">Password is required</small>
+              </p>
+              <!-- Other validation messages... -->
+              <div class="d-grid gap-2 col-12 mx-auto">
+                <button class="btn btn-success" type="submit" :disabled="loading">
+                  <template v-if="loading">
+                    <div class="spinner-border text-light spinner-border-sm" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </template>
+                  <template v-else>
+                    <i class="bi bi-check-lg"></i> Login
+                  </template>
+                </button>
+              </div>
+            </form>
+            <p class="mt-3 mx-3">
+              <ul class="list-group list-group-flush">
+                <li class="text-muted font-sm">
+                  Don't have an account? <router-link class="text-success" to="/register"> Register Now </router-link>
+                </li>
+                <li class="text-muted font-sm">
+                  Forgot your password? <router-link class="text-success" to="/forget-password"> Change password</router-link>
+                </li>
+              </ul>
             </p>
-            <p v-if="formSubmitted && !v$.formData.email.required.$invalid && v$.formData.email.email.$invalid">
-              <small class="text-danger">
-                Please enter a valid email address
-              </small>
-            </p>
-  
-            <p v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.formData.email.minLength.$invalid">
-              <small class="text-danger">
-                Email must be at least 6 characters long.
-              </small>
-            </p>
-  
-            <p v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.formData.email.maxLength.$invalid">
-              <small class="text-danger">
-                Email cannot exceed 50 characters.
-              </small>
-            </p>
-   
-            <BaseInput label="Password" v-model="formData.password" type="password" />
-            <p v-if="formSubmitted && v$.formData.password.required.$invalid">
-              <small class="text-danger">
-                Password is required
-              </small>
-            </p>
-            <p v-if="formSubmitted && !v$.formData.password.required.$invalid && v$.formData.password.minLength.$invalid">
-              <small class="text-danger">
-                Password must be at least 6 characters long
-              </small>
-            </p>
-            <p v-if="formSubmitted && !v$.formData.password.required.$invalid && v$.formData.password.maxLength.$invalid">
-              <small class="text-danger">
-                Password cannot exceed 20 characters
-              </small>
-            </p> 
-            
-            <div class="d-grid gap-2 col-12 mx-auto">
-              <button class="btn btn-success" type="submit" :disabled="loading">
-                <template v-if="loading">
-                  <div class="spinner-border text-light spinner-border-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                </template>
-                <template v-else>
-                  <i class="bi bi-check-lg"></i> Login
-                </template>
-              </button>
-            </div>
-            
-          </form>
-          <p class="mt-3 mx-3">
-            <ul class="list-group list-group-flush">
-              <li class="text-muted font-sm">
-                Don't have an account? <router-link class="text-success" to="/register"> Register Now </router-link>
-              </li>
-              <li class="text-muted font-sm">
-                Forgot your password? <router-link class="text-success" to="/forget-password"> Change password</router-link>
-              </li>
-            </ul>
-          </p>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
 </template>
 
 <script>
 import BaseInput from '@/components/BaseInput.vue';
+import CarouselBanner from '@/components/CarouselBanner.vue';
 import { required, minLength, maxLength, email } from '@vuelidate/validators';
 import axios from '@/axios'; // Import your axios instance with baseURL
 import Swal from 'sweetalert2';
@@ -88,6 +69,7 @@ import useVuelidate from '@vuelidate/core';
 export default {
   components: {
     BaseInput,
+    CarouselBanner
   },
 
   setup() {

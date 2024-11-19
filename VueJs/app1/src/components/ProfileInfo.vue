@@ -27,28 +27,30 @@
             <div class="col-md-6">
               <form @submit.prevent="handleProfileInfoUpdate">
                 <BaseInput label="Fullname" v-model="formData.name" />
-                <p v-if="formSubmitted && v$.formData.name.required.$invalid">
-                  <small class="text-danger">Fullname is required</small>
-                </p>
-                <p v-if="formSubmitted && !v$.formData.name.required.$invalid && v$.formData.name.minLength.$invalid">
-                  <small class="text-danger">Minimum length is 3 characters</small>
-                </p>
-                <p v-if="formSubmitted && !v$.formData.name.required.$invalid && v$.formData.name.maxLength.$invalid">
-                  <small class="text-danger">Maximum length is 20 characters</small>
-                </p>
+               <!-- Name Validation Messages -->
+                  <p v-if="formSubmitted && v$.formData.name.required.$invalid">
+                    <small class="text-danger">Fullname is required</small>
+                  </p>
+                  <p v-if="formSubmitted && !v$.formData.name.required.$invalid && v$.formData.name.minLength.$invalid">
+                    <small class="text-danger">Minimum length is 3 characters</small>
+                  </p>
+                  <p v-if="formSubmitted && !v$.formData.name.required.$invalid && v$.formData.name.maxLength.$invalid">
+                    <small class="text-danger">Maximum length is 20 characters</small>
+                  </p>
                 <BaseInput label="Email" v-model="formData.email" type="email" />
-                <p v-if="formSubmitted && v$.formData.email.required.$invalid">
-                  <small class="text-danger">Email is required</small>
-                </p>
-                <p v-if="formSubmitted && !v$.formData.email.required.$invalid && v$.formData.email.email.$invalid">
-                  <small class="text-danger">Please enter a valid email address</small>
-                </p>
-                <p v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.email.minLength.$invalid">
-                  <small class="text-danger">Email must be at least 6 characters long.</small>
-                </p>
-                <p v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.email.maxLength.$invalid">
-                  <small class="text-danger">Email cannot exceed 50 characters.</small>
-                </p>
+               <!-- Email Validation Messages -->
+              <p v-if="formSubmitted && v$.formData.email.required.$invalid">
+                <small class="text-danger">Email is required</small>
+              </p>
+              <p v-if="formSubmitted && !v$.formData.email.required.$invalid && v$.formData.email.email.$invalid">
+                <small class="text-danger">Please enter a valid email address</small>
+              </p>
+              <p v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.formData.email.minLength.$invalid">
+                <small class="text-danger">Email must be at least 6 characters long.</small>
+              </p>
+              <p v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.formData.email.maxLength.$invalid">
+                <small class="text-danger">Email cannot exceed 50 characters.</small>
+              </p>
                 <div class="text-start">
                   <button class="btn btn-success" type="submit">
                     <i class="bi bi-check-lg"></i> Save Changes
