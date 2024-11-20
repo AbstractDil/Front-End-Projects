@@ -111,6 +111,9 @@ export default {
 
           this.formData.name = response.data.data.name;
           this.formData.email = response.data.data.email;
+          const baseURL = "http://localhost/Sagar/Backend/vue-crud-api/"; // Get the defined baseURL
+          this.profileImage = `${baseURL}/${response.data.data.profile_photo_path}`;
+          //this.profileImage = response.data.data.profile_photo_path;
         } else {
           console.error('User ID or token is not available');
         }
