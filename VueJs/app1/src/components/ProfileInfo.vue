@@ -16,9 +16,13 @@
               <div class="text-center mt-2 mb-3">
                 <img :src="profileImage" alt="Profile Picture" class="rounded-circle profile-image mb-3" />
                 <div>
-                  <input type="file" @change="onImageChange" id="file-upload" class="d-none" />
-                  <label for="file-upload" class="btn btn-outline-success">
-                    <i class="bi bi-cloud-arrow-up-fill"></i> Upload Photo
+                  <input type="file" @change="onImageChange" id="file-upload" name="profile_photo_file" class="d-none" />
+                  <label for="file-upload" class="btn btn-outline-success" :class="{ disabled: isUploading }">
+                    <span v-if="isUploading"> 
+                      <span class="spinner-border text-light spinner-border-sm" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </span> Uploading...</span>
+                    <span v-else><i class="bi bi-cloud-arrow-up-fill"></i> Upload Photo</span>
                   </label>
                 </div>
               </div>
@@ -82,8 +86,11 @@ export default {
         email: '',
       },
       formSubmitted: false,
+      isUploading: false,
       profileImage: '/Images/User-avatar.png', // Updated path
       v$: null, // Placeholder for Vuelidate instance
+      token : localStorage.getItem('token'),
+      userId : localStorage.getItem('userId')
     };
   },
   validations() {
@@ -129,12 +136,12 @@ export default {
 
       if (result) {
         try {
-          const userId = localStorage.getItem('userId');
-          const token = localStorage.getItem('token');
-          const apiEndpoint = `update-user/${userId}`;
+          //const userId = localStorage.getItem('userId');
+          //const token = localStorage.getItem('token');
+          const apiEndpoint = `update-user/${this.userId}`;
 
           const response = await axios.post(apiEndpoint, this.formData, {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${this.token}` },
           });
 
           this.$swal.fire('Success!', 'Profile updated successfully!', 'success');
@@ -147,10 +154,41 @@ export default {
         this.$swal.fire('Warning!', 'Form validation errors! Please review the fields carefully.', 'warning');
       }
     },
-    onImageChange(event) {
+   async onImageChange(event) {
       const file = event.target.files[0];
       if (file) {
         this.profileImage = URL.createObjectURL(file);
+
+        // Prepare the form data
+        const formData = new FormData();
+        formData.append('profile_photo_file', file);
+
+         // Set the uploading state to true (show loader)
+         this.isUploading = true;
+
+        try {
+          //const userId = localStorage.getItem('userId');
+          //const token = localStorage.getItem('token');
+          const apiEndpoint = `upload-profile-photo/${this.userId}`;
+          // Upload the file to the server
+          const response = await axios.post(apiEndpoint, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+               Authorization: `Bearer ${this.token}`
+            },
+          });
+          this.$swal.fire('Success!', 'Profile photo has been uploaded successfully!', 'success');
+          // Handle successful upload
+          console.log('Image uploaded successfully:', response.data);
+        } catch (error) {
+          this.$swal.fire('Error!', 'Failed to upload profile photo. Please try again later.', 'error');
+          // Handle upload errors
+          console.error('Error uploading image:', error);
+        }
+        finally {
+          // Set the uploading state to false (hide loader)
+          this.isUploading = false;
+        }
       }
     },
   },
