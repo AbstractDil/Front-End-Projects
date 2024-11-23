@@ -4,14 +4,18 @@ import { reactive, computed, ref } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength, maxLength, sameAs } from '@vuelidate/validators';
 import { getCurrentInstance } from 'vue';
+import axios from 'axios';
+
 
 
 const { proxy } = getCurrentInstance(); // Get the current instance's proxy
+const loading = ref(false);
+
 
 const formData = reactive({
   CurrentPassword:'',
   userPassword: '',
-  usercPassword: '',
+  userCPassword: '',
 });
 
 const formSubmitted = ref(false);
@@ -19,7 +23,7 @@ const formSubmitted = ref(false);
 const rules = computed(() => ({
   CurrentPassword: {required, minLength: minLength(6), maxLength: maxLength(20)},
   userPassword: { required, minLength: minLength(6), maxLength: maxLength(20)},
-  usercPassword: { required, sameAs: sameAs(formData.userPassword) },
+  userCPassword: { required, sameAs: sameAs(formData.userPassword) },
 }));
 
 const v$ = useVuelidate(rules, formData);
@@ -31,7 +35,37 @@ const handleProfileUpdatePassword = async () => {
   console.log('Form data:', formData);
 
   if (result) {
-    proxy.$swal.fire('Success!', 'Your password has been changed successfully!', 'success'); // Use proxy.$swal
+    loading.value = true;
+
+     const userId = localStorage.getItem('userId');
+     const token = localStorage.getItem('token');
+
+    try {
+      const response = await axios.post(`update-password/${userId}`, formData, {
+        headers: { 
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+      });
+
+      proxy.$swal.fire('Success!', 'Your password has been changed successfully!', 'success');
+      console.log('API response:', response.data);
+
+
+    } catch (error) {
+       // Check if the error response is available
+       if (error.response) {
+        // If error.response exists, show the error based on status code
+        const statusCode = error.response.status;
+        const errorMessages = Object.values(error.response.data.messages).join(' ') || 'An unexpected error occurred.';
+        proxy.$swal.fire(`Error ${statusCode}!`, errorMessages, 'error');
+      } else {
+        // If error.response does not exist, it means the backend is not responding
+        proxy.$swal.fire('Connection Error!', 'Backend server is not responding. Please try again later.', 'error');
+      }
+    } finally {
+      loading.value = false;
+    }
   } else {
     proxy.$swal.fire('Warning!', 'Form validation errors! Please review the fields carefully.', 'warning');
   }
@@ -89,19 +123,28 @@ const handleProfileUpdatePassword = async () => {
                                     </small>
                                 </p>
             
-                                <BaseInput label="Confirm Password" v-model="formData.usercPassword" type="password" />
-                                <p v-if="formSubmitted && v$.usercPassword.required.$invalid">
+                                <BaseInput label="Confirm Password" v-model="formData.userCPassword" type="password" />
+                                <p v-if="formSubmitted && v$.userCPassword.required.$invalid">
                                     <small class="text-danger">
                                     Confirm password is required
                                     </small>
                                 </p>
-                                <p v-if="formSubmitted && !v$.usercPassword.required.$invalid && v$.usercPassword.sameAs.$invalid">
+                                <p v-if="formSubmitted && !v$.userCPassword.required.$invalid && v$.userCPassword.sameAs.$invalid">
                                     <small class="text-danger">
                                     Passwords do not match
                                     </small>
                                 </p>
                              <div class="text-start">
-                              <button class="btn btn-success" type="submit"> <i class="bi bi-check-lg"></i> Save Changes
+                              <button class="btn btn-success" type="submit" :disabled="loading"> 
+                                <template v-if="loading">
+                                <div class="spinner-border text-light spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                Processing...
+                                </template>
+                                <template v-else>
+                                    <i class="bi bi-check-lg"></i> Save Changes
+                                </template>
                             </button>
                             </div>
                             </form>
