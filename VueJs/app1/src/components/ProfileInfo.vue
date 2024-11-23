@@ -56,8 +56,16 @@
                 <small class="text-danger">Email cannot exceed 50 characters.</small>
               </p>
                 <div class="text-start">
-                  <button class="btn btn-success" type="submit">
+                  <button class="btn btn-success" type="submit" :disabled="loading">
+                    <template v-if="loading">
+                                <div class="spinner-border text-light spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                Processing...
+                                </template>
+                                <template v-else>
                     <i class="bi bi-check-lg"></i> Save Changes
+                    </template>
                   </button>
                 </div>
               </form>
@@ -87,6 +95,7 @@ export default {
       },
       formSubmitted: false,
       isUploading: false,
+      loading: false,
       profileImage: '/Images/User-avatar.png', // Updated path
       v$: null, // Placeholder for Vuelidate instance
       token : localStorage.getItem('token'),
@@ -118,8 +127,7 @@ export default {
 
           this.formData.name = response.data.data.name;
           this.formData.email = response.data.data.email;
-          const baseURL = "http://localhost/Sagar/Backend/vue-crud-api/"; // Get the defined baseURL
-          this.profileImage = `${baseURL}/${response.data.data.profile_photo_path}`;
+          this.profileImage = response.data.data.profile_photo_path;
           //this.profileImage = response.data.data.profile_photo_path;
         } else {
           console.error('User ID or token is not available');
@@ -136,12 +144,13 @@ export default {
 
       if (result) {
         try {
+          this.loading = true;
           //const userId = localStorage.getItem('userId');
           //const token = localStorage.getItem('token');
           const apiEndpoint = `update-user/${this.userId}`;
 
           const response = await axios.post(apiEndpoint, this.formData, {
-            headers: { Authorization: `Bearer ${this.token}` },
+           // headers: { Authorization: `Bearer ${this.token}` },
           });
 
           this.$swal.fire('Success!', 'Profile updated successfully!', 'success');
@@ -149,6 +158,9 @@ export default {
         } catch (error) {
           this.$swal.fire('Error!', 'Failed to update profile. Please try again later.', 'error');
           console.error('API error:', error);
+        }
+        finally{
+          this.loading = false;
         }
       } else {
         this.$swal.fire('Warning!', 'Form validation errors! Please review the fields carefully.', 'warning');
@@ -172,10 +184,11 @@ export default {
           const apiEndpoint = `upload-profile-photo/${this.userId}`;
           // Upload the file to the server
           const response = await axios.post(apiEndpoint, formData, {
-            headers: {
+           /* headers: {
               'Content-Type': 'multipart/form-data',
                Authorization: `Bearer ${this.token}`
             },
+            */
           });
           this.$swal.fire('Success!', 'Profile photo has been uploaded successfully!', 'success');
           // Handle successful upload

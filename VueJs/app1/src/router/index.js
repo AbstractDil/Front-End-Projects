@@ -12,6 +12,7 @@ const routes = [
       requiresGuest: true // Indicate that this route is for guests only
     }
   },
+  
   {
     path: '/register',
     name: 'RegistrationForm',
@@ -47,6 +48,15 @@ const routes = [
     }
   },
   {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import(/* webpackChunkName: "profile" */ '../views/DashboardView.vue'),
+    meta: {
+      title: 'Profile - iFriendShip - v0.1.0',
+      requiresAuth: true // Indicate that this route requires authentication
+    }
+  },
+  {
     path: '/profile',
     name: 'Profile',
     component: () => import(/* webpackChunkName: "profile" */ '../views/ProfileView.vue'),
@@ -54,7 +64,13 @@ const routes = [
       title: 'Profile - iFriendShip - v0.1.0',
       requiresAuth: true // Indicate that this route requires authentication
     }
-  }
+  },
+  {
+    path : '/:catchAll(.*)',
+    name: 'PageNotFound',
+    component:() => import('../views/error/404Error.vue'),
+    meta : {title : " 404 Page Not Found - iFriendShip - v0.1.0"}
+  },
 ]
 
 const router = createRouter({

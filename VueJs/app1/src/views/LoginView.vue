@@ -122,7 +122,7 @@ export default {
         this.setUserDetails({ uid, name, email, created_at, updated_at, is_email_verified, email_verified_at });
 
         Swal.fire('Success!', 'Login successful!', 'success');
-        this.$router.push('/profile');
+        this.$router.push('/dashboard');
       } else {
         Swal.fire('Error!', 'Login failed. Please try again.', 'error');
       }

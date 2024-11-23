@@ -56,6 +56,13 @@
               </span>
               </a>
               <ul class="dropdown-menu">
+
+                <li>
+                <router-link class="dropdown-item text-muted" to="/dashboard">
+                <i class="bi bi-speedometer2"></i> Dashboard
+                </router-link>
+                </li>
+
                 <li>
                 <router-link class="dropdown-item text-muted" to="/profile">
                 <i class="bi bi-person-fill-gear"></i> Profile Settings
@@ -121,6 +128,12 @@
             </li>
 
             <!-- Logout Button and User Initials (If Logged In) -->
+
+            <li class="list-group-item" v-if="isLoggedIn">
+              <router-link class="nav-link" to="/dashboard">
+                <i class="bi bi-speedometer2"></i> Dashboard
+              </router-link>
+            </li>
             
             <li class="list-group-item" v-if="isLoggedIn">
               <router-link class="nav-link" to="/profile">

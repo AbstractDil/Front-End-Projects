@@ -3,17 +3,20 @@ import BaseInput from '@/components/BaseInput.vue';
 import { reactive, computed, ref } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength, maxLength, sameAs } from '@vuelidate/validators';
+import { useStore } from 'vuex'; // Import useStore for Vuex
 import { getCurrentInstance } from 'vue';
+import { useRouter } from 'vue-router'; // Import useRouter
 import axios from 'axios';
 
+const { proxy } = getCurrentInstance();
+const router = useRouter(); 
 
+const store = useStore(); // Access Vuex store
 
-const { proxy } = getCurrentInstance(); // Get the current instance's proxy
 const loading = ref(false);
 
-
 const formData = reactive({
-  CurrentPassword:'',
+  CurrentPassword: '',
   userPassword: '',
   userCPassword: '',
 });
@@ -21,8 +24,8 @@ const formData = reactive({
 const formSubmitted = ref(false);
 
 const rules = computed(() => ({
-  CurrentPassword: {required, minLength: minLength(6), maxLength: maxLength(20)},
-  userPassword: { required, minLength: minLength(6), maxLength: maxLength(20)},
+  CurrentPassword: { required, minLength: minLength(6), maxLength: maxLength(20) },
+  userPassword: { required, minLength: minLength(6), maxLength: maxLength(20) },
   userCPassword: { required, sameAs: sameAs(formData.userPassword) },
 }));
 
@@ -37,30 +40,33 @@ const handleProfileUpdatePassword = async () => {
   if (result) {
     loading.value = true;
 
-     const userId = localStorage.getItem('userId');
-     const token = localStorage.getItem('token');
+    // Get token and userId from Vuex store
+    const token = store.state.auth?.token; // Access auth module's token
+    const userId = store.state.auth?.userId; // Access auth module's userId
+
 
     try {
       const response = await axios.post(`update-password/${userId}`, formData, {
-        headers: { 
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+       /* headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
+        */
       });
 
-      proxy.$swal.fire('Success!', 'Your password has been changed successfully!', 'success');
+     // Logout and redirect to login
+      store.dispatch('auth/logout').then(() => {
+        router.push('/'); // Redirect to login page
+      });
       console.log('API response:', response.data);
 
-
+      proxy.$swal.fire('Success!', 'Your password has been changed successfully! Please login again.', 'success');
     } catch (error) {
-       // Check if the error response is available
-       if (error.response) {
-        // If error.response exists, show the error based on status code
+      if (error.response) {
         const statusCode = error.response.status;
         const errorMessages = Object.values(error.response.data.messages).join(' ') || 'An unexpected error occurred.';
         proxy.$swal.fire(`Error ${statusCode}!`, errorMessages, 'error');
       } else {
-        // If error.response does not exist, it means the backend is not responding
         proxy.$swal.fire('Connection Error!', 'Backend server is not responding. Please try again later.', 'error');
       }
     } finally {
@@ -70,10 +76,6 @@ const handleProfileUpdatePassword = async () => {
     proxy.$swal.fire('Warning!', 'Form validation errors! Please review the fields carefully.', 'warning');
   }
 };
-
-
-
-
 </script>
 
 <template>
