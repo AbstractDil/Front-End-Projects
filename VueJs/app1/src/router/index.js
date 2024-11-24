@@ -56,6 +56,17 @@ const routes = [
       requiresAuth: true // Indicate that this route requires authentication
     }
   },
+
+  {
+    path: '/friendship-form',
+    name: 'Friendship Form ',
+    component: () => import(/* webpackChunkName: "profile" */ '../views/FriendshipForm.vue'),
+    meta: {
+      title: 'Friendship Form - iFriendShip - v0.1.0',
+      requiresGuest: true // Indicate that this route requires authentication
+    }
+  },
+
   {
     path: '/profile',
     name: 'Profile',
