@@ -117,12 +117,12 @@ export default {
   methods: {
     async fetchUserData() {
       try {
-        const userId = localStorage.getItem('userId');
-        const token = localStorage.getItem('token');
+        //const userId = localStorage.getItem('userId');
+        //const token = localStorage.getItem('token');
 
-        if (userId && token) {
-          const response = await axios.get(`/show-user/${userId}`, {
-            headers: { Authorization: `Bearer ${token}` },
+        if (this.userId && this.token) {
+          const response = await axios.get(`/show-user/${this.userId}`, {
+            headers: { Authorization: `Bearer ${this.token}` },
           });
 
           this.formData.name = response.data.data.name;
@@ -184,11 +184,11 @@ export default {
           const apiEndpoint = `upload-profile-photo/${this.userId}`;
           // Upload the file to the server
           const response = await axios.post(apiEndpoint, formData, {
-           /* headers: {
+           headers: {
               'Content-Type': 'multipart/form-data',
                Authorization: `Bearer ${this.token}`
             },
-            */
+            
           });
           this.$swal.fire('Success!', 'Profile photo has been uploaded successfully!', 'success');
           // Handle successful upload

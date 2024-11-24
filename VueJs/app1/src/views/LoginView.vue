@@ -1,5 +1,5 @@
  <template>
-  <div class="bg-body-tertiary vh-100 d-flex align-items-center">
+  <div class="bg-body-tertiary  d-flex align-items-center">
   <div class="container">
     <div class="row align-items-center">
       <!-- Carousel Section -->
@@ -8,7 +8,7 @@
       </div>
       <!-- Login Card Section -->
       <div class="col-lg-4">
-        <div class="card p-3" style="max-width: 22em; margin: auto;">
+        <div class="card p-3 my-4" style="max-width: 22em; margin: auto;">
           <div class="card-body text-start">
             <h5 class="card-title text-center mb-4 fw-bold text-success">
               <i class="bi bi-lock-fill"></i> Member Login

@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-body-tertiary ">
-  <div class="vh-100 d-flex align-items-center" v-if="!registrationSuccess" >
+<div class="bg-body-tertiary ">
+  <div class="d-flex align-items-center" v-if="!registrationSuccess" >
     <div class="container">
     <div class="row align-items-center">
       <!-- Carousel Section -->
@@ -9,8 +9,8 @@
 
       </div>
     <!-- Registration Form Card Starts -->
-    <div class="col-lg-4"> 
-      <div class="card p-3" style="max-width: 22em; margin: auto;">
+    <div class="col-lg-4 "> 
+      <div class="card p-3 my-4" style="max-width: 22em; margin: auto;">
         <div class="card-body text-start">
           <h5 class="card-title text-center mb-4 fw-bold text-success">
             <i class="bi bi-person-add"></i> Registration
