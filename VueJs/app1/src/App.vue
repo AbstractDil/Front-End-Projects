@@ -3,7 +3,9 @@
 import NavBar from '@/components/NavBar.vue';
 import ServerStatus from '@/components/ServerStatus.vue';
 import FooTer from '@/components/FooTer.vue';
-import axios from '@/axios.js'; // Assuming axios is configured
+import LoadIng from '@/components/LoadIng.vue';
+
+//import axios from '@/axios.js'; // Assuming axios is configured
 
 export default {
   name: 'App',
@@ -12,6 +14,7 @@ export default {
     ServerStatus,
     NavBar,
     FooTer,
+    LoadIng
   },
 
   data() {
@@ -20,6 +23,8 @@ export default {
     };
   },
 
+  
+  /*
   async created() {
     try {
       // Get the token and userId from localStorage
@@ -44,6 +49,7 @@ export default {
       console.error('Error fetching user data:', error);
     }
   },
+  */
 };
 </script>
 
@@ -51,6 +57,7 @@ export default {
   <div>
     <NavBar :appTitle="appTitle" />
     <ServerStatus/>
+    <LoadIng /> <!-- Dedicated loading component -->
     <router-view />
     <FooTer />
   </div>
