@@ -52,18 +52,18 @@ const routes = [
     name: 'Dashboard',
     component: () => import(/* webpackChunkName: "profile" */ '../views/DashboardView.vue'),
     meta: {
-      title: 'Profile - iFriendShip - v0.1.0',
+      title: 'Dashboard - iFriendShip - v0.1.0',
       requiresAuth: true // Indicate that this route requires authentication
     }
   },
 
   {
-    path: '/friendship-form',
+    path: '/friendship-form/:token',
     name: 'Friendship Form ',
     component: () => import(/* webpackChunkName: "profile" */ '../views/FriendshipForm.vue'),
     meta: {
       title: 'Friendship Form - iFriendShip - v0.1.0',
-      requiresGuest: true // Indicate that this route requires authentication
+      requiresGuest: false // Indicate that this route requires authentication
     }
   },
 

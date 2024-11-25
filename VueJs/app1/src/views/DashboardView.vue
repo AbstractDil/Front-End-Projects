@@ -41,7 +41,7 @@
                     <span class="text-muted">{{ joinedDate }}</span>
                   </p>
                   <p class="fw-bold">
-                    <i class="bi bi bi-envelope-fill"></i> Email verification
+                    <i class="bi bi-envelope-fill"></i> Email verification
                     status:
                     <template v-if="userData.is_email_verified == 1">
                       <span class="badge text-bg-success">
@@ -72,19 +72,17 @@
     </div>
     <!-- Profile Information Section Ends -->
 
-    <!-- Other Cards Shows Here - Starts  -->
-
+    <!-- Other Cards Shows Here - Starts -->
     <div class="container py-4">
       <div class="row">
         <div class="col-sm-4 mb-3 mb-sm-0" v-for="card in cards" v-bind:key="card.card_id">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title fs-2" v-html="card.card_icon">
-              </h5>
-              <p class="card-text fs-4">
-               {{ card.card_name }}
-              </p>
-              <RouterLink :to="card.redirect_url" class="btn btn-success"><i class="bi bi-box-arrow-up-right"></i> Click Here</RouterLink>
+              <h5 class="card-title fs-2" v-html="card.card_icon"></h5>
+              <p class="card-text fs-4">{{ card.card_name }}</p>
+              <RouterLink :to="card.redirect_url" class="btn btn-success">
+                <i class="bi bi-box-arrow-up-right"></i> Click Here
+              </RouterLink>
             </div>
           </div>
         </div>
@@ -107,17 +105,31 @@ export default {
         is_email_verified: "",
         updated_at: "",
         email_verified_at: "",
+        form_id: "",
       },
       profileImage: "/Images/User-avatar.png", // Default profile image path
       token: localStorage.getItem("token"),
       userId: localStorage.getItem("userId"),
-
-      cards:[
-        {card_id: '1', card_name:'Profile Settings', card_icon:'<i class="bi bi-person-fill-gear text-success"></i>', redirect_url:'/profile'},
-        {card_id: '2', card_name:'Friendship Form', card_icon:'<i class="bi bi-ui-checks-grid text-success "></i>', redirect_url:'/view-form'},
-        {card_id: '3', card_name:'Form Responses', card_icon:'<i class="bi bi-chat-heart-fill text-success"></i>', redirect_url:'/form-responses'},
-      ]
-          ,
+      cards: [
+        {
+          card_id: "1",
+          card_name: "Profile Settings",
+          card_icon: '<i class="bi bi-person-fill-gear text-success"></i>',
+          redirect_url: "/profile",
+        },
+        {
+          card_id: "2",
+          card_name: "Friendship Form",
+          card_icon: '<i class="bi bi-ui-checks-grid text-success"></i>',
+          redirect_url: "", // Initially empty, will be updated dynamically
+        },
+        {
+          card_id: "3",
+          card_name: "Form Responses",
+          card_icon: '<i class="bi bi-chat-heart-fill text-success"></i>',
+          redirect_url: "/form-responses",
+        },
+      ],
     };
   },
   created() {
@@ -134,6 +146,15 @@ export default {
       return this.formatDate(this.userData.email_verified_at);
     },
   },
+  watch: {
+    "userData.form_id"(newFormId) {
+      // Update the redirect URL for card 2 when form_id is updated
+      const cardIndex = this.cards.findIndex((card) => card.card_id === "2");
+      if (cardIndex !== -1) {
+        this.cards[cardIndex].redirect_url = `/friendship-form/${newFormId}`;
+      }
+    },
+  },
   methods: {
     async fetchUserData() {
       try {
@@ -142,16 +163,17 @@ export default {
             headers: { Authorization: `Bearer ${this.token}` },
           });
 
-          this.userData.name = response.data.data.name;
-          this.userData.email = response.data.data.email;
-          this.userData.created_at = response.data.data.created_at;
-          this.userData.is_email_verified =
-            response.data.data.is_email_verified;
-          this.userData.updated_at = response.data.data.updated_at;
-          this.userData.email_verified_at =
-            response.data.data.email_verified_at;
+          this.userData = { ...this.userData, ...response.data.data };
           this.profileImage =
             response.data.data.profile_photo_path || this.profileImage;
+
+          // Update card's redirect_url immediately if form_id is available
+          if (this.userData.form_id) {
+            const cardIndex = this.cards.findIndex((card) => card.card_id === "2");
+            if (cardIndex !== -1) {
+              this.cards[cardIndex].redirect_url = `/friendship-form/${this.userData.form_id}`;
+            }
+          }
         } else {
           console.error("User ID or token is not available");
         }
@@ -159,7 +181,6 @@ export default {
         console.error("Error fetching user data:", error);
       }
     },
-
     formatDate(dateString) {
       if (!dateString) return "";
       const date = new Date(dateString);
