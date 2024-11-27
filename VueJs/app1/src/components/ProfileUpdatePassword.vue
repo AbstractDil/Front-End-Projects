@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const { proxy } = getCurrentInstance();
 const router = useRouter(); 
+const passwordVisible = ref(false);
 
 const store = useStore(); // Access Vuex store
 
@@ -30,6 +31,10 @@ const rules = computed(() => ({
 }));
 
 const v$ = useVuelidate(rules, formData);
+
+const togglePassword = () =>{
+  passwordVisible.value = !passwordVisible.value;
+}
 
 const handleProfileUpdatePassword = async () => {
   formSubmitted.value = true;
@@ -89,8 +94,8 @@ const handleProfileUpdatePassword = async () => {
                     <div class="row">
                         <div class="col-md-6">
                             <form @submit.prevent="handleProfileUpdatePassword">
-                                <BaseInput label="Current Password" v-model="formData.CurrentPassword" type="password" />
-
+                                <BaseInput label="Current Password" v-model="formData.CurrentPassword" v-bind:type="passwordVisible? 'text' : 'password'" />
+                                <i class="toggle-password bi" :class="passwordVisible ? 'bi-eye-fill' : 'bi-eye-slash-fill'" @click="togglePassword()"></i>
                                 <p v-if="formSubmitted && v$.CurrentPassword.required.$invalid">
                                     <small class="text-danger">
                                    Please enter your current Password
@@ -107,8 +112,8 @@ const handleProfileUpdatePassword = async () => {
                                     </small>
                                 </p>
 
-                                <BaseInput label="New Password" v-model="formData.userPassword" type="password" />
-
+                                <BaseInput label="New Password" v-model="formData.userPassword" v-bind:type="passwordVisible? 'text' : 'password'" />
+                                <i class="toggle-password bi" :class="passwordVisible ? 'bi-eye-fill' : 'bi-eye-slash-fill'" @click="togglePassword()"></i>
                                 <p v-if="formSubmitted && v$.userPassword.required.$invalid">
                                     <small class="text-danger">
                                    Please enter a new password
@@ -125,7 +130,8 @@ const handleProfileUpdatePassword = async () => {
                                     </small>
                                 </p>
             
-                                <BaseInput label="Confirm Password" v-model="formData.userCPassword" type="password" />
+                                <BaseInput label="Confirm Password" v-model="formData.userCPassword" v-bind:type="passwordVisible? 'text' : 'password'" />
+                                <i class="toggle-password bi" :class="passwordVisible ? 'bi-eye-fill' : 'bi-eye-slash-fill'" @click="togglePassword()"></i>
                                 <p v-if="formSubmitted && v$.userCPassword.required.$invalid">
                                     <small class="text-danger">
                                     Confirm password is required

@@ -21,6 +21,8 @@ const formSubmitted = ref(false);
 const loading = ref(false);
 const actionSuccess = ref(false);
 const route = useRoute();
+const passwordVisible = ref(false);
+
 //const router = useRouter();
 
 const rules = computed(() => ({
@@ -31,6 +33,10 @@ const rules = computed(() => ({
 }));
 
 const v$ = useVuelidate(rules, formData);
+
+const togglePassword = () =>{
+  passwordVisible.value = !passwordVisible.value;
+}
 
 const handleChngPwdForm = async () => {
   formSubmitted.value = true;
@@ -89,7 +95,8 @@ const goToNextPage = () => {
               <h5 class="card-title text-center mb-4 fw-bold text-success"><i class="bi bi-shield-lock"></i> Change Password</h5>
               <form @submit.prevent="handleChngPwdForm">
             
-                <BaseInput label="Password" v-model="formData.password" type="password" />
+                <BaseInput label="Password" v-model="formData.password" v-bind:type="passwordVisible? 'text' : 'password'" />
+                <i class="toggle-password bi" :class="passwordVisible ? 'bi-eye-fill' : 'bi-eye-slash-fill'" @click="togglePassword()"></i>
           <p v-if="formSubmitted && v$.password.required.$invalid">
             <small class="text-danger">
               Password is required
@@ -106,7 +113,9 @@ const goToNextPage = () => {
             </small>
           </p>
 
-          <BaseInput label="Confirm Password" v-model="formData.confirm_password" type="password" />
+          <BaseInput label="Confirm Password" v-model="formData.confirm_password" v-bind:type="passwordVisible? 'text' : 'password'"  />
+          <i class="toggle-password bi" :class="passwordVisible ? 'bi-eye-fill' : 'bi-eye-slash-fill'" @click="togglePassword()"></i>
+
           <p v-if="formSubmitted && v$.confirm_password.required.$invalid">
             <small class="text-danger">
               Confirm password is required

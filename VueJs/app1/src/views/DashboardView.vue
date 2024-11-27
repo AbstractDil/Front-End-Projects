@@ -21,7 +21,7 @@
                     class="rounded-circle profile-image mb-3"
                   />
                   <p class="mx-3 font-sm text-muted mb-4">
-                    Joined on {{ joinedDate }}
+                <RouterLink to="/profile">Change Photo</RouterLink>
                   </p>
                 </div>
               </div>

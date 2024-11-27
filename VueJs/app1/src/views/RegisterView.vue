@@ -46,7 +46,9 @@
 
             <!-- Step 2: Password and Confirm Password -->
             <div v-if="currentStep === 2">
-              <BaseInput label="Password" v-model="formData.password" type="password" />
+              <BaseInput label="Password" v-model="formData.password" v-bind:type="passwordVisible? 'text' : 'password'"/>
+              <i class="toggle-password bi" :class="passwordVisible ? 'bi-eye-fill' : 'bi-eye-slash-fill'" @click="togglePassword()"></i>
+
               <p v-if="formSubmitted && v$.password.required.$invalid">
                 <small class="text-danger">Password is required</small>
               </p>
@@ -57,7 +59,8 @@
                 <small class="text-danger">Password cannot exceed 20 characters</small>
               </p>
 
-              <BaseInput label="Confirm Password" v-model="formData.confirm_password" type="password" />
+              <BaseInput label="Confirm Password" v-model="formData.confirm_password" v-bind:type="passwordVisible? 'text' : 'password'" />
+              <i class="toggle-password bi" :class="passwordVisible ? 'bi-eye-fill' : 'bi-eye-slash-fill'" @click="togglePassword()"></i>
               <p v-if="formSubmitted && v$.confirm_password.required.$invalid">
                 <small class="text-danger">Confirm password is required</small>
               </p>
@@ -132,6 +135,7 @@ const formData = reactive({
 
 const formSubmitted = ref(false);
 const loading = ref(false);
+const passwordVisible = ref(false);
 const registrationSuccess = ref(false);
 const verificationToken = ref('');
 const currentStep = ref(1); // Track the current step
@@ -144,6 +148,10 @@ const rules = computed(() => ({
 }));
 
 const v$ = useVuelidate(rules, formData);
+
+const togglePassword = () =>{
+  passwordVisible.value = !passwordVisible.value;
+}
 
 const handleNextStep = async () => {
   formSubmitted.value = true;

@@ -106,7 +106,7 @@ router.beforeEach(async (to, from, next) => {
   // If the route requires guest access and the user is logged in, redirect to the profile page
   if (to.meta.requiresGuest && isLoggedIn) {
     store.dispatch('ui/setLoading', false); // Stop loading before redirect
-    return next({ name: 'Profile' }); // Redirect logged-in users trying to access guest routes
+    return next({ name: 'Dashboard' }); // Redirect logged-in users trying to access guest routes
   }
 
   // If the route requires authentication and the user is not logged in, redirect to the login page

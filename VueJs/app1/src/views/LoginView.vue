@@ -19,7 +19,8 @@
                 <small class="text-danger">Email is required</small>
               </p>
               <!-- Other validation messages... -->
-              <BaseInput label="Password" v-model="formData.password" type="password" />
+              <BaseInput label="Password" v-model="formData.password" v-bind:type="passwordVisible? 'text' : 'password'"/>
+              <i class="toggle-password bi" :class="passwordVisible ? 'bi-eye-fill' : 'bi-eye-slash-fill'" @click="togglePassword()"></i>
               <p v-if="formSubmitted && v$.formData.password.required.$invalid">
                 <small class="text-danger">Password is required</small>
               </p>
@@ -84,6 +85,7 @@ export default {
       },
       formSubmitted: false,
       loading: false, // Loader state
+      passwordVisible: false,
     };
   },
 
@@ -98,6 +100,11 @@ export default {
 
  
   methods: {
+
+    togglePassword() {
+      this.passwordVisible = !this.passwordVisible;
+    },
+
   ...mapActions('auth', ['setUserData', 'setToken', 'setUserDetails']),
 
   async handleLogin() {
