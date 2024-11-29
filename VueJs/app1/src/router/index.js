@@ -70,6 +70,18 @@ const routes = [
       requiresGuest: false,
     },
   },
+
+  {
+    path: '/form-responses/:token',
+    name: 'FormResponses',
+    component: () =>
+      import(/* webpackChunkName: "profile" */ '../views/FormResponses.vue'),
+    meta: {
+      title: 'Form Responses - iFriendShip - v0.1.0',
+      requiresAuth: true,
+    },
+  },
+
   {
     path: '/profile',
     name: 'Profile',

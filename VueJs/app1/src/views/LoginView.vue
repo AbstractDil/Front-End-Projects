@@ -121,12 +121,12 @@ export default {
       const response = await axios.post('/login', this.formData);
 
       if (response?.data?.data?.token && response?.data?.data?.uid) {
-        const { token, uid, name, email, created_at, updated_at, is_email_verified, email_verified_at,profile_photo_path, form_id } = response.data.data;
+        const { token, uid, name, email, created_at, updated_at, is_email_verified, email_verified_at,profile_photo_path, form_id , user_type} = response.data.data;
         
         // Store token and user details in Vuex store
         this.setToken(token);
         this.setUserData(uid);  // Store UID separately
-        this.setUserDetails({ uid, name, email, created_at, updated_at, is_email_verified, email_verified_at,profile_photo_path,form_id });
+        this.setUserDetails({ uid, name, email, created_at, updated_at, is_email_verified, email_verified_at,profile_photo_path,form_id, user_type });
 
         Swal.fire('Success!', 'Login successful!', 'success');
         this.$router.push('/dashboard');

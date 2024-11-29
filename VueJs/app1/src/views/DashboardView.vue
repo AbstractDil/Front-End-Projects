@@ -127,7 +127,7 @@ export default {
           card_id: "3",
           card_name: "Form Responses",
           card_icon: '<i class="bi bi-chat-heart-fill text-success"></i>',
-          redirect_url: "/form-responses",
+          redirect_url: "",  // Initially empty, will be updated dynamically
         },
       ],
     };
@@ -149,10 +149,15 @@ export default {
   watch: {
     "userData.form_id"(newFormId) {
       // Update the redirect URL for card 2 when form_id is updated
-      const cardIndex = this.cards.findIndex((card) => card.card_id === "2");
+      let cardIndex = this.cards.findIndex((card) => card.card_id === "2");
       if (cardIndex !== -1) {
         this.cards[cardIndex].redirect_url = `/friendship-form/${newFormId}`;
       }
+      // Update the redirect URL for card 3
+    cardIndex = this.cards.findIndex((card) => card.card_id === "3");
+    if (cardIndex !== -1) {
+      this.cards[cardIndex].redirect_url = `/form-responses/${newFormId}`;
+    }
     },
   },
   methods: {
@@ -169,11 +174,16 @@ export default {
 
           // Update card's redirect_url immediately if form_id is available
           if (this.userData.form_id) {
-            const cardIndex = this.cards.findIndex((card) => card.card_id === "2");
+            let cardIndex = this.cards.findIndex((card) => card.card_id === "2");
             if (cardIndex !== -1) {
               this.cards[cardIndex].redirect_url = `/friendship-form/${this.userData.form_id}`;
             }
-          }
+                    // Update the redirect URL for card 3
+            cardIndex = this.cards.findIndex((card) => card.card_id === "3");
+            if (cardIndex !== -1) {
+              this.cards[cardIndex].redirect_url = `/form-responses/${this.userData.form_id}`;
+            }
+                  }
         } else {
           console.error("User ID or token is not available");
         }
