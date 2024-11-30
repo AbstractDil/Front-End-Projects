@@ -1,15 +1,15 @@
 <template>
 <div class="bg-body-tertiary ">
   <div class="d-flex align-items-center" v-if="!registrationSuccess" >
-    <div class="container">
+    <div class="container my-5">
     <div class="row align-items-center">
       <!-- Carousel Section -->
-      <div class="col-lg-8 mb-4 mb-lg-0">
+      <div class="col-lg-7 mb-4 mb-lg-0">
         <CarouselBanner/>
 
       </div>
     <!-- Registration Form Card Starts -->
-    <div class="col-lg-4 "> 
+    <div class="col-lg-5"> 
       <div class="card p-3 my-4" style="max-width: 22em; margin: auto;">
         <div class="card-body text-start">
           <h5 class="card-title text-center mb-4 fw-bold text-success">
@@ -67,7 +67,27 @@
               <p v-if="formSubmitted && !v$.confirm_password.required.$invalid && v$.confirm_password.sameAs.$invalid">
                 <small class="text-danger">Passwords do not match</small>
               </p>
+              <!-- CAPTCHA Section -->
+              <div class="form-group mt-3">
+                <!-- <label for="captcha">Captcha</label> -->
+                <div class="d-flex align-items-center">
+                  <div class="bg-light py-2 px-3 rounded text-success fw-bold me-2">{{ captcha }}</div>
+                  <button type="button" class="btn btn-sm btn-link text-muted" @click="generateCaptcha"> <i class="bi bi-arrow-clockwise"></i> Regenerate</button>
+                </div>
+                <input
+                  type="text"
+                  id="captcha"
+                  v-model="captchaInput"
+                  class="form-control mt-2"
+                  placeholder="Enter CAPTCHA"
+                />
+                <p v-if="captchaError">
+                  <small class="text-danger">CAPTCHA is incorrect. Please try again.</small>
+                </p>
+              </div>
             </div>
+
+
 
             <!-- Navigation Buttons -->
             <div class="d-grid gap-2 col-12 mx-auto mt-3">
@@ -118,7 +138,7 @@
 import BaseInput from '@/components/BaseInput.vue';
 import CarouselBanner from '@/components/CarouselBanner.vue';
 import StatusMessage from '@/components/StatusMessage.vue';
-import { reactive, computed, ref } from 'vue';
+import { reactive, computed, ref, onMounted } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength, maxLength, email, sameAs } from '@vuelidate/validators';
 import { getCurrentInstance } from 'vue';
@@ -139,6 +159,24 @@ const passwordVisible = ref(false);
 const registrationSuccess = ref(false);
 const verificationToken = ref('');
 const currentStep = ref(1); // Track the current step
+const captcha = ref(''); // Stores the generated CAPTCHA
+const captchaInput = ref(''); // Stores the user's input for the CAPTCHA
+const captchaError = ref(false); // Tracks if the CAPTCHA validation fails
+
+// Method to generate a new CAPTCHA
+const generateCaptcha = () => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  captcha.value = Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+};
+
+
+
+
+// Generate CAPTCHA when the component is mounted
+onMounted(() => {
+  generateCaptcha();
+});
+
 
 const rules = computed(() => ({
   name: { required, minLength: minLength(3), maxLength: maxLength(30) },
@@ -175,6 +213,17 @@ const handleBack = () => {
 
 const handleRegistration = async () => {
   formSubmitted.value = true;
+
+  // Validate CAPTCHA
+  if (captchaInput.value !== captcha.value) {
+    captchaError.value = true;
+    proxy.$swal.fire('Error!', 'CAPTCHA is incorrect. Please try again.', 'error');
+    generateCaptcha(); // Regenerate CAPTCHA if validation fails
+    return;
+  } else {
+    captchaError.value = false; // Reset CAPTCHA error if it matches
+  }
+
   const result = await v$.value.$validate();
 
   if (result) {
@@ -213,6 +262,9 @@ const goToVerificationPage = () => {
     console.error('No verification token available.');
   }
 };
+
+
+
 </script>
 
 <style>

@@ -27,68 +27,87 @@
         </div>
         <div class="card-body">
 
+         <template v-if="loading">
+          <p class="card-text placeholder-glow">
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-8"></span>
+        </p>
+         </template>
+
+         <template v-else>
           <ol v-if="questions.length && formResponses.length">
             <li v-for="(question, index) in questions" :key="index">
               <strong>{{ question.description }}</strong>:
               <span class="text-success">{{ formResponses[0][`ques_${index + 1}`] || "No Response" }}</span>
             </li>
+            <!-- Response Time -->
+            <li>
+              <strong>Response Time: </strong>
+              <span class="text-success"> {{ formatDateTime(formResponses[0]?.created_at) || "No Time Provided" }}
+
+              </span>
+            </li>
           </ol>
           <div v-else>
             <p class="text-muted">No form responses or questions found.</p>
           </div>
+          </template>
         </div>
       </div>
     </div>
 
-   <div class="container">
-       <!-- Pagination Starts -->
+    <div class="container">
+      <!-- Pagination Starts -->
 
-        
-       <nav v-if="pagination.pageCount > 1" class="py-3" >
-            <ul class="pagination justify-content-center">
-              <!-- First Button -->
-              <li class="page-item" :class="{ disabled: pagination.currentPage === 1 }">
-                <button class="page-link" @click="changePage(1)" :disabled="pagination.currentPage === 1">
-                  First
-                </button>
-              </li>
 
-              <!-- Previous Button -->
-              <li class="page-item" :class="{ disabled: pagination.currentPage === 1 }">
-                <button class="page-link" @click="changePage(pagination.currentPage - 1)"
-                  :disabled="pagination.currentPage === 1">
-                  <i class="bi bi-chevron-double-left"></i>
-                </button>
-              </li>
+      <nav v-if="pagination.pageCount > 1" class="py-3">
+        <ul class="pagination justify-content-center">
+          <!-- First Button -->
+          <li class="page-item" :class="{ disabled: pagination.currentPage === 1 }">
+            <button class="page-link" @click="changePage(1)" :disabled="pagination.currentPage === 1">
+              First
+            </button>
+          </li>
 
-              <!-- Page Numbers -->
-              <li v-for="page in pageNumbers" :key="page" class="page-item"
-                :class="{ active: page === pagination.currentPage }">
-                <button class="page-link" @click="changePage(page)">
-                  {{ page }}
-                </button>
-              </li>
+          <!-- Previous Button -->
+          <li class="page-item" :class="{ disabled: pagination.currentPage === 1 }">
+            <button class="page-link" @click="changePage(pagination.currentPage - 1)"
+              :disabled="pagination.currentPage === 1">
+              <i class="bi bi-chevron-double-left"></i>
+            </button>
+          </li>
 
-              <!-- Next Button -->
-              <li class="page-item" :class="{ disabled: pagination.currentPage === pagination.pageCount }">
-                <button class="page-link" @click="changePage(pagination.currentPage + 1)"
-                  :disabled="pagination.currentPage === pagination.pageCount">
-                  <i class="bi bi-chevron-double-right"></i>
-                </button>
-              </li>
+          <!-- Page Numbers -->
+          <li v-for="page in pageNumbers" :key="page" class="page-item"
+            :class="{ active: page === pagination.currentPage }">
+            <button class="page-link" @click="changePage(page)">
+              {{ page }}
+            </button>
+          </li>
 
-              <!-- Last Button -->
-              <li class="page-item" :class="{ disabled: pagination.currentPage === pagination.pageCount }">
-                <button class="page-link" @click="changePage(pagination.pageCount)"
-                  :disabled="pagination.currentPage === pagination.pageCount">
-                  Last
-                </button>
-              </li>
-            </ul>
-        </nav>
+          <!-- Next Button -->
+          <li class="page-item" :class="{ disabled: pagination.currentPage === pagination.pageCount }">
+            <button class="page-link" @click="changePage(pagination.currentPage + 1)"
+              :disabled="pagination.currentPage === pagination.pageCount">
+              <i class="bi bi-chevron-double-right"></i>
+            </button>
+          </li>
 
-          <!-- Pagination Ends -->
-   </div>
+          <!-- Last Button -->
+          <li class="page-item" :class="{ disabled: pagination.currentPage === pagination.pageCount }">
+            <button class="page-link" @click="changePage(pagination.pageCount)"
+              :disabled="pagination.currentPage === pagination.pageCount">
+              Last
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Pagination Ends -->
+    </div>
 
 
     <!-- Quotes Starts Here -->
@@ -220,6 +239,20 @@ export default {
       } catch (error) {
         console.error("Error fetching questions:", error);
       }
+    },
+    // Format date-time to "Month day, year and hh:mm a.m./p.m."
+    formatDateTime(dateString) {
+      if (!dateString) return null;
+
+      const date = new Date(dateString);
+      return new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      }).format(date);
     },
   },
   async mounted() {

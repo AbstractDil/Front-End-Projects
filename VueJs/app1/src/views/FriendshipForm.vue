@@ -7,10 +7,20 @@
         <div class="card-header bg-success text-white text-start">
           <i class="bi bi-info-circle-fill"></i> Sender Information
         </div>
-        <div class="card-body d-flex justify-content-start align-items-center">
-          <img :src="userdata.profile_photo" alt="UserProfilePic"
-            class="img-thumbnail profile-image rounded-circle mx-3">
-          <h5>{{ userdata.name }} is waiting for your response.</h5>
+        <div class="card-body">
+          <template v-if="isUserLoading">
+            <p class="card-text placeholder-glow text-start">
+              <span class="placeholder placeholder-lg col-8"></span>
+              <span class="placeholder placeholder-lg col-8"></span>
+            </p>
+          </template>
+          <template v-else>
+            <div class="d-flex justify-content-start align-items-center">
+              <img :src="userdata.profile_photo" alt="UserProfilePic"
+                class="img-thumbnail profile-image rounded-circle mx-3">
+              <h5>{{ userdata.name }} is waiting for your response.</h5>
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -24,84 +34,109 @@
           <i class="bi bi-patch-question-fill"></i> Questions
         </div>
         <div class="card-body">
-          <form class="p-4 rounded" @submit.prevent="submitForm">
-            <!-- Display only the current question -->
-            <div v-if="currentQuestion">
-              <h5>{{ currentQuestion.description }}</h5>
+          <template v-if="isQuestionLoading">
+            <p class="card-text placeholder-glow">
+              <span class="placeholder placeholder-lg col-8"></span>
+              <span class="placeholder placeholder-lg col-8"></span>
+              <span class="placeholder placeholder-lg col-8"></span>
+              <span class="placeholder placeholder-lg col-8"></span>
+            </p>
+          </template>
+          <template v-else>
+            <form class="p-4 rounded" @submit.prevent="submitForm">
+              <!-- Display only the current question -->
+              <div v-if="currentQuestion">
+                <h5>{{ currentQuestion.description }}</h5>
 
-              <!-- Text Input -->
-              <div v-if="currentQuestion.type === 'text'">
-                <!-- Input Field -->
-                <input v-model="answers['ques_' + currentQuestion.id]" type="text" class="form-control custom-input"
-                  @input="validateCharacterLimit(currentQuestion.id, 100)"
-                  :placeholder="`Enter your answer (max 100 characters)`" />
+                <!-- Text Input -->
+                <div v-if="currentQuestion.type === 'text'">
+                  <!-- Input Field -->
+                  <input v-model="answers['ques_' + currentQuestion.id]" type="text" class="form-control custom-input"
+                    @input="validateCharacterLimit(currentQuestion.id, 3, 100)"
+                    :placeholder="`Enter your answer (max 100 characters)`" />
 
-                <!-- Character Limit Feedback -->
-                <small class="text-primary">
-                  {{ remainingCharacters(currentQuestion.id, 100) }} characters left
-                </small>
+                  <!-- Character Limit Feedback -->
+                  <small class="text-primary">
+                    {{ remainingCharacters(currentQuestion.id, 100) }} characters left
+                  </small>
 
-                <!-- Validation Error -->
-                <div v-if="errors['ques_' + currentQuestion.id]" class="text-danger">
-                  {{ errors['ques_' + currentQuestion.id] }}
-                </div>
-              </div>
-
-
-              <!-- Radio Buttons -->
-              <div v-if="currentQuestion.type === 'radio'">
-                <div class="form-check" v-for="(option, index) in currentQuestion.options"
-                  :key="`radio-${currentQuestion.id}-${index}`">
-                  <!-- Input -->
-                  <input class="form-check-input custom-input" :id="`radio-${currentQuestion.id}-${index}`"
-                    v-model="answers['ques_' + currentQuestion.id]" :value="option.value" type="radio" />
-                  <!-- Label -->
-                  <label class="form-check-label" :for="`radio-${currentQuestion.id}-${index}`">
-                    {{ option.label }}
-                  </label>
-                </div>
-                <!-- Validation Error -->
-                <div v-if="errors['ques_' + currentQuestion.id]" class="text-danger">
-                  {{ errors['ques_' + currentQuestion.id] }}
-                </div>
-              </div>
-
-
-              <!-- Textarea -->
-              <div v-if="currentQuestion.type === 'textarea'">
-                <textarea v-model="answers['ques_' + currentQuestion.id]" class="form-control custom-input"
-                  @input="validateCharacterLimit(currentQuestion.id, 255)"></textarea>
-                <small class="text-primary">
-                  {{ remainingCharacters(currentQuestion.id, 255) }} characters left
-                </small>
-                <div v-if="errors['ques_' + currentQuestion.id]" class="text-danger">
-                  {{ errors['ques_' + currentQuestion.id] }}
-                </div>
-              </div>
-            </div>
-
-            <!-- Navigation Buttons -->
-            <div class="mt-4">
-              <button type="button" class="btn btn-secondary me-2" @click="previousQuestion"
-                :disabled="currentQuestionIndex === 0">
-                <i class="bi bi-chevron-left"></i> Previous
-              </button>
-              <button type="button" class="btn btn-outline-success me-2" @click="validateAndNext"
-                v-if="!isLastQuestion">
-                Next ({{ formattedProgress }})
-              </button>
-              <button type="submit" class="btn btn-success" v-if="isLastQuestion" :disabled="loading">
-                <template v-if="loading">
-                  <div class="spinner-border text-light spinner-border-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                  <!-- Validation Error -->
+                  <div v-if="errors['ques_' + currentQuestion.id]" class="text-danger">
+                    {{ errors['ques_' + currentQuestion.id] }}
                   </div>
-                </template>
-                <template v-else>
-                  <i class="bi bi-check2"></i> Submit
-                </template>
-              </button>
-            </div>
-          </form>
+                </div>
+
+
+                <!-- Radio Buttons -->
+                <div v-if="currentQuestion.type === 'radio'">
+                  <div class="form-check" v-for="(option, index) in currentQuestion.options"
+                    :key="`radio-${currentQuestion.id}-${index}`">
+                    <!-- Input -->
+                    <input class="form-check-input custom-input" :id="`radio-${currentQuestion.id}-${index}`"
+                      v-model="answers['ques_' + currentQuestion.id]" :value="option.value" type="radio" />
+                    <!-- Label -->
+                    <label class="form-check-label" :for="`radio-${currentQuestion.id}-${index}`">
+                      {{ option.label }}
+                    </label>
+                  </div>
+                  <!-- Validation Error -->
+                  <div v-if="errors['ques_' + currentQuestion.id]" class="text-danger">
+                    {{ errors['ques_' + currentQuestion.id] }}
+                  </div>
+                </div>
+
+
+                <!-- Textarea -->
+                <div v-if="currentQuestion.type === 'textarea'">
+                  <textarea v-model="answers['ques_' + currentQuestion.id]" class="form-control custom-input"
+                    @input="validateCharacterLimit(currentQuestion.id, 3, 255)"></textarea>
+                  <small class="text-primary">
+                    {{ remainingCharacters(currentQuestion.id, 255) }} characters left
+                  </small>
+                  <div v-if="errors['ques_' + currentQuestion.id]" class="text-danger">
+                    {{ errors['ques_' + currentQuestion.id] }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- CAPTCHA Section -->
+              <div class="form-group my-3" v-if="isLastQuestion">
+                <!-- <label for="captcha">Captcha</label> -->
+                <div class="d-flex align-items-center">
+                  <div class="bg-light px-3 py-2 rounded text-success fw-bold me-2">{{ captcha }}</div>
+                  <button type="button" class="btn btn-sm btn-link text-muted" @click="generateCaptcha()"> <i
+                      class="bi bi-arrow-clockwise"></i> Regenerate</button>
+                </div>
+                <input type="text" id="captcha" v-model="captchaInput" class="form-control mt-2"
+                  placeholder="Enter CAPTCHA" />
+                <p v-if="captchaError">
+                  <small class="text-danger">CAPTCHA does not match. Please try again.</small>
+                </p>
+              </div>
+
+              <!-- Navigation Buttons -->
+              <div class="mt-4">
+                <button type="button" class="btn btn-secondary me-2" @click="previousQuestion"
+                  :disabled="currentQuestionIndex === 0">
+                  <i class="bi bi-chevron-left"></i> Previous
+                </button>
+                <button type="button" class="btn btn-outline-success me-2" @click="validateAndNext"
+                  v-if="!isLastQuestion">
+                  Next ({{ formattedProgress }})
+                </button>
+                <button type="submit" class="btn btn-success" v-if="isLastQuestion" :disabled="loading">
+                  <template v-if="loading">
+                    <div class="spinner-border text-light spinner-border-sm" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </template>
+                  <template v-else>
+                    <i class="bi bi-check2"></i> Submit
+                  </template>
+                </button>
+              </div>
+            </form>
+          </template>
         </div>
       </div>
     </div>
@@ -145,6 +180,11 @@ export default {
         form_id: '',
       },
       loading: false,
+      isUserLoading: false,
+      isQuestionLoading: false,
+      captcha: '', // Generated CAPTCHA
+      captchaInput: '', // User input for CAPTCHA
+      captchaError: false, // Flag for CAPTCHA error
     };
   },
   computed: {
@@ -164,15 +204,18 @@ export default {
   },
   methods: {
 
-    fetchUserData() {
-      // Extract the user ID from the URL
-      const userId = this.$route.params.token; // Ensure your route is configured with :id
-      console.log(userId);
-      const url = `get-user-data/${userId}`;
+    generateCaptcha() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      this.captcha = Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    },
 
+
+    fetchUserData(getUserDataUrl) {
+      // Set loading to true before the request
+      this.isUserLoading = true;
       // Fetch user data
       axios
-        .get(url)
+        .get(getUserDataUrl)
         .then((response) => {
           if (response.data && response.data.data) {
             this.userdata.name = response.data.data.name;
@@ -189,9 +232,16 @@ export default {
           Swal.fire('Error!', 'The form ID you provided is invalid. Please check the ID and try again.', 'error');
           this.$router.push('/');
           console.error("Error fetching user data:", error); // Log the error details
+        }).finally(() => {
+          // Ensure loading is false regardless of success or failure
+          this.isUserLoading = false;
         });
     },
     fetchQuestions() {
+
+      // Set loading to true before the request
+      this.isQuestionLoading = true;
+
       axios
         .get("/friendship-questions-2024")
         .then((response) => {
@@ -206,19 +256,34 @@ export default {
             console.error("Invalid API response:", response.data);
           }
         })
-        .catch((error) => console.error("Error fetching questions:", error));
+        .catch((error) => console.error("Error fetching questions:", error))
+        .finally(() => {
+          // Ensure loading is false regardless of success or failure
+          this.isQuestionLoading = false;
+        });
     },
 
-    validateCharacterLimit(questionId, limit) {
-      if (this.answers['ques_' + questionId].length > limit) {
-        this.answers['ques_' + questionId] = this.answers['ques_' + questionId].slice(0, limit);
-        this.errors['ques_' + questionId] = `Maximum ${limit} characters allowed.`;
-      } else {
-        this.errors['ques_' + questionId] = null;
+    validateCharacterLimit(questionId, minLength, maxLength) {
+      const answerKey = 'ques_' + questionId;
+      const answer = this.answers[answerKey];
+
+      // Validate max length
+      if (answer.length > maxLength) {
+        this.answers[answerKey] = answer.slice(0, maxLength);
+        this.errors[answerKey] = `Maximum ${maxLength} characters allowed.`;
+      }
+      // Validate min length
+      else if (answer.length < minLength && answer.length > 0) {
+        this.errors[answerKey] = `Minimum ${minLength} characters required.`;
+      }
+      // Clear error if valid
+      else {
+        this.errors[answerKey] = null;
       }
     },
-    remainingCharacters(questionId, limit) {
-      return Math.max(0, limit - (this.answers['ques_' + questionId]?.length || 0));
+
+    remainingCharacters(questionId, maxLength) {
+      return Math.max(0, maxLength - (this.answers['ques_' + questionId]?.length || 0));
     },
     validateCurrentQuestion() {
       const currentQuestion = this.currentQuestion;
@@ -227,6 +292,13 @@ export default {
         this.errors['ques_' + currentQuestion.id] = "This field is required.";
         return false;
       }
+
+      // Validate minimum length for text and textarea types
+      if ((currentQuestion.type === "text" || currentQuestion.type === "textarea") && answer.length < 3) {
+        this.errors['ques_' + currentQuestion.id] = "Minimum 3 characters required.";
+        return false;
+      }
+
       this.errors['ques_' + currentQuestion.id] = null;
       return true;
     },
@@ -252,16 +324,38 @@ export default {
         if (!answer || answer.trim() === "") {
           this.errors['ques_' + question.id] = "This field is required.";
           isValid = false;
-        } else if (question.type === "text" && answer.length > 100) {
+        } else if (question.type === "text" && answer.length < 3) {
+          this.errors['ques_' + question.id] = "Minimum 3 characters required.";
+          isValid = false;
+        }
+        else if (question.type === "text" && answer.length > 100) {
           this.errors['ques_' + question.id] = "Maximum 100 characters allowed.";
           isValid = false;
-        } else if (question.type === "textarea" && answer.length > 255) {
+        }
+
+        else if (question.type === "textarea" && answer.length < 3) {
+          this.errors['ques_' + question.id] = "Minimum 3 characters required.";
+          isValid = false;
+        }
+
+        else if (question.type === "textarea" && answer.length > 255) {
           this.errors['ques_' + question.id] = "Maximum 255 characters allowed.";
           isValid = false;
         } else {
           this.errors['ques_' + question.id] = null;
         }
       });
+
+      // Validate the CAPTCHA
+      if (this.captchaInput !== this.captcha) {
+        this.captchaError = true;
+        Swal.fire('Error!', 'CAPTCHA is incorrect. Please try again.', 'error');
+        this.generateCaptcha(); // Regenerate CAPTCHA on error
+        return;
+      } else {
+        this.captchaError = false;
+      }
+
 
       if (isValid) {
         console.log("Answers", this.answers);
@@ -297,8 +391,14 @@ export default {
   },
 
   mounted() {
-    this.fetchUserData(); // Fetch user data on component mount
+    // Extract the user ID from the URL
+    const userId = this.$route.params.token; // Ensure your route is configured with :id
+    console.log(userId);
+    const getUserDataUrl = `get-user-data/${userId}`;
+    this.fetchUserData(getUserDataUrl); // Fetch user data on component mount
     this.fetchQuestions(); // Fetch questions on component mount
+    this.generateCaptcha();
+
   },
 };
 </script>
