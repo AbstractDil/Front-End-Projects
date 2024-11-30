@@ -9,6 +9,7 @@ const authModule = {
     isLoggedIn: (state) => !!state.token,
     userId: (state) => state.userId,
     userDetails: (state) => state.userDetails,
+    token : (state) =>state.token,
   },
   actions: {
     setToken({ commit }, token) {
