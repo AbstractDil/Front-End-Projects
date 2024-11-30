@@ -10,13 +10,13 @@
           <p class="mx-3 font-sm text-muted mb-4">
             View your account's profile information and email address.
           </p>
-          <div class="container">
+          <div class="container" v-if="userDetails">
             <div class="row">
               <!-- Profile Image Section -->
               <div class="col-md-4">
                 <div class="text-center mt-2 mb-3">
                   <img
-                    :src="profileImage"
+                    :src="userDetails.profile_photo_path"
                     alt="Profile Picture"
                     class="rounded-circle profile-image mb-3"
                   />
@@ -30,11 +30,11 @@
                 <div class="user-details">
                   <p class="fw-bold">
                     <i class="bi bi-person-circle"></i> Full Name:
-                    <span class="text-muted">{{ userData.name }}</span>
+                    <span class="text-muted">{{ userDetails.name }}</span>
                   </p>
                   <p class="fw-bold">
                     <i class="bi bi-envelope-fill"></i> Email:
-                    <span class="text-muted">{{ userData.email }}</span>
+                    <span class="text-muted">{{ userDetails.email }}</span>
                   </p>
                   <p class="fw-bold">
                     <i class="bi bi-calendar-day-fill"></i> Joined on:
@@ -43,7 +43,7 @@
                   <p class="fw-bold">
                     <i class="bi bi-envelope-fill"></i> Email verification
                     status:
-                    <template v-if="userData.is_email_verified == 1">
+                    <template v-if="userDetails.is_email_verified == 1">
                       <span class="badge text-bg-success">
                         <i class="bi bi-shield-fill-check"></i> Verified</span
                       >
@@ -92,24 +92,12 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "ProfileInfo",
   data() {
     return {
-      userData: {
-        name: "",
-        email: "",
-        created_at: "",
-        is_email_verified: "",
-        updated_at: "",
-        email_verified_at: "",
-        form_id: "",
-      },
-      profileImage: "/Images/User-avatar.png", // Default profile image path
-      token: localStorage.getItem("token"),
-      userId: localStorage.getItem("userId"),
       cards: [
         {
           card_id: "1",
@@ -121,75 +109,59 @@ export default {
           card_id: "2",
           card_name: "Friendship Form",
           card_icon: '<i class="bi bi-ui-checks-grid text-success"></i>',
-          redirect_url: "", // Initially empty, will be updated dynamically
+          redirect_url: "", // Initially empty
         },
         {
           card_id: "3",
           card_name: "Form Responses",
           card_icon: '<i class="bi bi-chat-heart-fill text-success"></i>',
-          redirect_url: "",  // Initially empty, will be updated dynamically
+          redirect_url: "/form-responses",
         },
       ],
     };
   },
-  created() {
-    this.fetchUserData();
-  },
   computed: {
     joinedDate() {
-      return this.formatDate(this.userData.created_at);
+      return this.userDetails?.created_at
+        ? this.formatDate(this.userDetails.created_at)
+        : 'Not Available';
     },
     updatedDate() {
-      return this.formatDate(this.userData.updated_at);
+      return this.userDetails?.updated_at
+        ? this.formatDate(this.userDetails.updated_at)
+        : 'Not Available';
     },
     verificationDate() {
-      return this.formatDate(this.userData.email_verified_at);
+      return this.userDetails?.email_verified_at
+        ? this.formatDate(this.userDetails.email_verified_at)
+        : 'Not Verified';
     },
+    ...mapGetters('auth', {
+      userDetails: 'userDetails',
+    }),
   },
   watch: {
-    "userData.form_id"(newFormId) {
-      // Update the redirect URL for card 2 when form_id is updated
-      let cardIndex = this.cards.findIndex((card) => card.card_id === "2");
-      if (cardIndex !== -1) {
-        this.cards[cardIndex].redirect_url = `/friendship-form/${newFormId}`;
-      }
-      // Update the redirect URL for card 3
-    cardIndex = this.cards.findIndex((card) => card.card_id === "3");
-    if (cardIndex !== -1) {
-      this.cards[cardIndex].redirect_url = `/form-responses/${newFormId}`;
-    }
+    userDetails: {
+      immediate: true,
+      handler(newValue) {
+        if (newValue) {
+          this.fetchUserData();
+        }
+      },
     },
   },
   methods: {
     async fetchUserData() {
-      try {
-        if (this.userId && this.token) {
-          const response = await axios.get(`/show-user/${this.userId}`, {
-            headers: { Authorization: `Bearer ${this.token}` },
-          });
+      if (this.userDetails?.form_id) {
+  const cardIndex = this.cards.findIndex(card => card.card_id === "2");
+  if (cardIndex !== -1) {
+    this.cards[cardIndex] = {
+      ...this.cards[cardIndex],
+      redirect_url: `/friendship-form/${this.userDetails.form_id}`,
+    };
+  }
+}
 
-          this.userData = { ...this.userData, ...response.data.data };
-          this.profileImage =
-            response.data.data.profile_photo_path || this.profileImage;
-
-          // Update card's redirect_url immediately if form_id is available
-          if (this.userData.form_id) {
-            let cardIndex = this.cards.findIndex((card) => card.card_id === "2");
-            if (cardIndex !== -1) {
-              this.cards[cardIndex].redirect_url = `/friendship-form/${this.userData.form_id}`;
-            }
-                    // Update the redirect URL for card 3
-            cardIndex = this.cards.findIndex((card) => card.card_id === "3");
-            if (cardIndex !== -1) {
-              this.cards[cardIndex].redirect_url = `/form-responses/${this.userData.form_id}`;
-            }
-                  }
-        } else {
-          console.error("User ID or token is not available");
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
     },
     formatDate(dateString) {
       if (!dateString) return "";
@@ -206,6 +178,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <style scoped>

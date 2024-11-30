@@ -72,7 +72,7 @@ const routes = [
   },
 
   {
-    path: '/form-responses/:token',
+    path: '/form-responses',
     name: 'FormResponses',
     component: () =>
       import(/* webpackChunkName: "profile" */ '../views/FormResponses.vue'),
