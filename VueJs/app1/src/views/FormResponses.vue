@@ -9,7 +9,20 @@
         <div class="card-body d-flex justify-content-start align-items-center">
           <img v-if="userDetails.profile_photo_path" :src="userDetails.profile_photo_path" alt="UserProfilePic"
             class="img-thumbnail profile-image rounded-circle mx-3">
-          <h5>{{ userDetails.name }}, Your form responses are given below:</h5>
+          <h5 class="text-start">{{ userDetails.name }}, Your form responses are given below:</h5>
+        </div>
+        <div class="card-footer">
+          <p class="text-end text-muted pb-0 mb-0"> <i class="bi bi-graph-up-arrow"></i> 
+            Form Hits Count: 
+            
+            <template v-if="loading">
+              <p class="card-text placeholder-glow">
+              <span class="placeholder col-1"></span>
+             </p>
+            </template>
+
+            <template v-else> {{ totalHits }}</template>
+          </p>
         </div>
       </div>
     </div>
@@ -141,6 +154,7 @@ export default {
   data() {
     return {
       loading: false,
+      totalHits: 0,
       formResponses: [],
       pagination: {
         currentPage: 1, // Initialize to page 1
@@ -254,10 +268,37 @@ export default {
         hour12: true,
       }).format(date);
     },
+
+    // total hits count 
+
+    async getTotalHits() {
+
+this.loading = true;
+
+
+try {
+
+  const response = await axios.get(`/form-hit-count/${this.userDetails.form_id}`);
+  if (response.data.status === 200) {
+    console.log("Success", response.data);
+    this.totalHits = response.data.total_hits;
+  } else {
+    console.log("Error in fetching data", response.data);
+  }
+} catch (error) {
+  console.error('Error:', error);
+} finally {
+  this.loading = false;
+}
+
+}
+
   },
   async mounted() {
     await this.fetchQuestions();
     this.fetchFormResponses();
+    this.getTotalHits();
+
   },
 };
 </script>

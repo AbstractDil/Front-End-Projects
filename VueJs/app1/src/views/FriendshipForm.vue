@@ -18,9 +18,13 @@
             <div class="d-flex justify-content-start align-items-center">
               <img :src="userdata.profile_photo" alt="UserProfilePic"
                 class="img-thumbnail profile-image rounded-circle mx-3">
-              <h5>{{ userdata.name }} is waiting for your response.</h5>
+              <h5 class="text-start">{{ userdata.name }} is waiting for your response.</h5>
             </div>
+            <p class="text-end text-muted pb-0 mb-0"> <i class="bi bi-graph-up-arrow"></i> Form Hits Count:{{ totalHits }}
+            </p>
           </template>
+
+
         </div>
       </div>
     </div>
@@ -185,6 +189,7 @@ export default {
       captcha: '', // Generated CAPTCHA
       captchaInput: '', // User input for CAPTCHA
       captchaError: false, // Flag for CAPTCHA error
+      totalHits: 0,
     };
   },
   computed: {
@@ -208,8 +213,6 @@ export default {
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       this.captcha = Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
     },
-
-
     fetchUserData(getUserDataUrl) {
       // Set loading to true before the request
       this.isUserLoading = true;
@@ -388,6 +391,29 @@ export default {
 
       }
     },
+
+    async getTotalHits() {
+
+      this.loading = true;
+      const formId = this.$route.params.token;
+
+      try {
+
+        const response = await axios.get(`/form-hit-count/${formId}`);
+        if (response.data.status === 200) {
+          console.log("Success", response.data);
+          this.totalHits = response.data.total_hits;
+        } else {
+          console.log("Error in fetching data", response.data);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      } finally {
+        this.loading = false;
+      }
+
+    }
+
   },
 
   mounted() {
@@ -398,6 +424,7 @@ export default {
     this.fetchUserData(getUserDataUrl); // Fetch user data on component mount
     this.fetchQuestions(); // Fetch questions on component mount
     this.generateCaptcha();
+    this.getTotalHits();
 
   },
 };
