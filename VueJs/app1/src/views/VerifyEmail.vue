@@ -81,6 +81,7 @@
     if (verificationStatus.value === 'success') {
       router.push('/'); // Redirect to login or home page
     }
+    router.push('/');
   };
   </script>
   

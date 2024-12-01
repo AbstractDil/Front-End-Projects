@@ -111,6 +111,9 @@
               <li class="text-muted font-sm">
                 Already have an account? <router-link class="text-success" to="/">Login Now</router-link>
               </li>
+              <li class="text-muted font-sm">
+                Already have an account? Forgot to verify your email?  <router-link class="text-success" to="/email-verification">Click here</router-link>
+              </li>
             </ul>
           </p>
         </div>

@@ -41,6 +41,18 @@ const routes = [
       requiresGuest: true,
     },
   },
+
+  {
+    path: '/email-verification',
+    name: 'EmailVerification',
+    component: () =>
+      import(/* webpackChunkName: "forget" */ '../views/EmailVerification.vue'),
+    meta: {
+      title: 'Email Verification - iFriendShip - v0.1.0',
+      requiresGuest: true,
+    },
+  },
+
   {
     path: '/change-password/:token',
     name: 'ChangePassword',
