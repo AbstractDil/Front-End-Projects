@@ -1,6 +1,6 @@
 <script setup>
 import BaseInput from '@/components/BaseInput.vue';
-import { reactive, computed, ref } from 'vue';
+import { reactive, computed, ref, onMounted } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength, maxLength, sameAs } from '@vuelidate/validators';
 import { getCurrentInstance } from 'vue';
@@ -22,6 +22,21 @@ const loading = ref(false);
 const actionSuccess = ref(false);
 const route = useRoute();
 const passwordVisible = ref(false);
+const captcha = ref(''); // Stores the generated CAPTCHA
+const captchaInput = ref(''); // Stores the user's input for the CAPTCHA
+const captchaError = ref(false); // Tracks if the CAPTCHA validation fails
+
+
+// Method to generate a new CAPTCHA
+const generateCaptcha = () => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  captcha.value = Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+};
+
+// Generate CAPTCHA when the component is mounted
+onMounted(() => {
+  generateCaptcha();
+});
 
 //const router = useRouter();
 
@@ -40,6 +55,17 @@ const togglePassword = () =>{
 
 const handleChngPwdForm = async () => {
   formSubmitted.value = true;
+
+   // Validate CAPTCHA
+   if (captchaInput.value !== captcha.value) {
+    captchaError.value = true;
+    proxy.$swal.fire('Error!', 'CAPTCHA is incorrect. Please try again.', 'error');
+    generateCaptcha(); // Regenerate CAPTCHA if validation fails
+    return;
+  } else {
+    captchaError.value = false; // Reset CAPTCHA error if it matches
+  }
+
   const result = await v$.value.$validate();
   console.log('Validation result:', result);
   console.log('Form data:', formData);
@@ -126,6 +152,25 @@ const goToNextPage = () => {
               Passwords do not match
             </small>
           </p>
+
+          <!-- CAPTCHA Section -->
+          <div class="form-group mt-3 mb-2">
+                <!-- <label for="captcha">Captcha</label> -->
+                <div class="d-flex align-items-center">
+                  <div class="bg-light py-2 px-3 rounded text-success fw-bold me-2">{{ captcha }}</div>
+                  <button type="button" class="btn btn-sm btn-link text-muted" @click="generateCaptcha"> <i class="bi bi-arrow-clockwise"></i> Regenerate</button>
+                </div>
+                <input
+                  type="text"
+                  id="captcha"
+                  v-model="captchaInput"
+                  class="form-control mt-2"
+                  placeholder="Enter CAPTCHA"
+                />
+                <p v-if="captchaError">
+                  <small class="text-danger">CAPTCHA is incorrect. Please try again.</small>
+                </p>
+              </div>
 
                 
                 
