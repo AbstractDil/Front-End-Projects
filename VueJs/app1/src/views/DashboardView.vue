@@ -15,13 +15,10 @@
               <!-- Profile Image Section -->
               <div class="col-md-4">
                 <div class="text-center mt-2 mb-3">
-                  <img
-                    :src="userDetails.profile_photo_path"
-                    alt="Profile Picture"
-                    class="rounded-circle profile-image mb-3"
-                  />
+                  <img :src="userDetails.profile_photo_path" alt="Profile Picture"
+                    class="rounded-circle profile-image mb-3" />
                   <p class="mx-3 font-sm text-muted mb-4">
-                <RouterLink to="/profile">Change Photo</RouterLink>
+                    <RouterLink to="/profile">Change Photo</RouterLink>
                   </p>
                 </div>
               </div>
@@ -45,8 +42,7 @@
                     status:
                     <template v-if="userDetails.is_email_verified == 1">
                       <span class="badge text-bg-success">
-                        <i class="bi bi-shield-fill-check"></i> Verified</span
-                      >
+                        <i class="bi bi-shield-fill-check"></i> Verified</span>
                     </template>
                     <template v-else>
                       <span class="badge text-bg-warning">
@@ -91,64 +87,68 @@
     <!-- Other Cards Shows Here - Ends -->
 
     <!-- Social Media Links to Share Friendship Form Starts -->
-<div class="social-media container py-4">
-  <div class="card p-3">
-    <div class="card-body text-start">
-      <h5 class="card-title text-start fw-bold text-success mx-2">
-        <i class="bi bi-person-fill"></i> Share with your friends
-      </h5>
-      <p class="mx-3 font-sm text-muted mb-4">
-        Share this friendship form with your friends to see what they think of you.
-      </p>
-      <div class="container" v-if="userDetails">
-        <div class="row text-center">
-          <div class="col">
-            <!-- WhatsApp -->
-            <a
-              :href="`https://wa.me/?text=${shareUrl}`"
-              target="_blank"
-              class="text-success text-decoration-none"
-            >
-              <i class="bi bi-whatsapp fs-4"></i>
-              <p class="text-muted">WhatsApp</p>
-            </a>
-          </div>
-          <div class="col">
-            <!-- Facebook -->
-            <a
-              :href="`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`"
-              target="_blank"
-              class="text-primary text-decoration-none"
-            >
-              <i class="bi bi-facebook fs-4"></i>
-              <p class="text-muted">Facebook</p>
-            </a>
-          </div>
-          <div class="col">
-            <!-- Instagram -->
-            <a
-              :href="`https://www.instagram.com/?url=${shareUrl}`"
-              target="_blank"
-              class="text-danger text-decoration-none"
-            >
-              <i class="bi bi-instagram fs-4"></i>
-              <p class="text-muted">Instagram</p>
-            </a>
+    <div class="social-media container py-4">
+      <div class="card p-3">
+        <div class="card-body text-start">
+          <h5 class="card-title text-start fw-bold text-success mx-2">
+            <i class="bi bi-person-fill"></i> Share with your friends
+          </h5>
+          <p class="mx-3 font-sm text-muted mb-4">
+            Share this friendship form with your friends to see what they think of you.
+          </p>
+          <div class="container" v-if="userDetails">
+            <div class="row text-center">
+              <div class="col">
+                <!-- WhatsApp -->
+                <a :href="`https://wa.me/?text=${shareUrl}`" target="_blank" class="text-success text-decoration-none">
+                  <i class="bi bi-whatsapp fs-4"></i>
+                  <p class="text-muted">WhatsApp</p>
+                </a>
+              </div>
+              <div class="col">
+                <!-- Facebook -->
+                <a :href="`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`" target="_blank"
+                  class="text-primary text-decoration-none">
+                  <i class="bi bi-facebook fs-4"></i>
+                  <p class="text-muted">Facebook</p>
+                </a>
+              </div>
+              <div class="col">
+                <!-- Instagram -->
+                <a :href="`https://www.instagram.com/url=${shareUrl}`" target="_blank"
+                  class="text-danger text-decoration-none">
+                  <i class="bi bi-instagram fs-4"></i>
+                  <p class="text-muted">Instagram</p>
+                </a>
+              </div>
+            </div>
+
+            <!-- Copy Text Section -->
+            <div class="mt-4">
+              <label for="shareText" class="form-label fw-bold text-success"> <i class="bi bi-share-fill"></i> Copy and Share </label>
+              <div class="input-group">
+                <input type="text" id="shareText" class="form-control" rows="2" v-model="shareText" readonly>
+                <button class="btn btn-outline-success" @click="copyToClipboard">
+                  <i class="bi bi-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<!-- Social Media Links to Share Friendship Form Ends -->
+    <!-- Social Media Links to Share Friendship Form Ends -->
 
-     
+
 
   </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import Swal from 'sweetalert2';
+
 
 export default {
   name: "ProfileInfo",
@@ -196,13 +196,22 @@ export default {
       userDetails: 'userDetails',
     }),
     shareUrl() {
-  if (this.userDetails && this.userDetails.form_id) {
-    const baseUrl = `${window.location.origin}/friendship-form/${this.userDetails.form_id}`;
-    const name = this.userDetails.name || 'Your friend'; // Fallback to a generic name if none exists
-    return encodeURIComponent(`${name} has sent you a friendship challenge! Participate now: ${baseUrl}`);
-  }
-  return '';
-},
+      if (this.userDetails && this.userDetails.form_id) {
+        const baseUrl = `${window.location.origin}/friendship-form/${this.userDetails.form_id}`;
+        const name = this.userDetails.name || 'Your friend'; // Fallback to a generic name if none exists
+        return encodeURIComponent(`😁😁 ${name} has sent you a friendship challenge! Participate now: 😁😁 ${baseUrl}`);
+      }
+      return '';
+    },
+
+    shareText() {
+      if (this.userDetails && this.userDetails.form_id) {
+        const baseUrl = `${window.location.origin}/friendship-form/${this.userDetails.form_id}`;
+        const name = this.userDetails.name || 'Your friend'; // Fallback to a generic name if none exists
+        return `😁😁 ${name} has sent you a friendship challenge! Participate now: 😁😁 ${baseUrl}`;
+      }
+      return '';
+    }
 
   },
   watch: {
@@ -218,16 +227,25 @@ export default {
   methods: {
     async fetchUserData() {
       if (this.userDetails?.form_id) {
-  const cardIndex = this.cards.findIndex(card => card.card_id === "2");
-  if (cardIndex !== -1) {
-    this.cards[cardIndex] = {
-      ...this.cards[cardIndex],
-      redirect_url: `/friendship-form/${this.userDetails.form_id}`,
-    };
-  }
-}
+        const cardIndex = this.cards.findIndex(card => card.card_id === "2");
+        if (cardIndex !== -1) {
+          this.cards[cardIndex] = {
+            ...this.cards[cardIndex],
+            redirect_url: `/friendship-form/${this.userDetails.form_id}`,
+          }
+        }
+      }
 
     },
+
+    copyToClipboard() {
+      const shareTextArea = document.getElementById('shareText');
+      shareTextArea.select();
+      shareTextArea.setSelectionRange(0, 99999); // For mobile devices
+      document.execCommand('copy');
+      Swal.fire('Success!', 'Text copied to clipboard!', 'success');
+    },
+
     formatDate(dateString) {
       if (!dateString) return "";
       const date = new Date(dateString);

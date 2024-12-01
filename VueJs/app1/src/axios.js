@@ -6,7 +6,7 @@ const isLocalhost = window.location.hostname === 'localhost';
 // Set the base URL based on whether the app is running on localhost or another network
 axios.defaults.baseURL = isLocalhost
   ? 'http://localhost/Sagar/Backend/vue-crud-api/api/v1/'
-  : 'http://192.168.0.104/Sagar/Backend/vue-crud-api/api/v1/';
+  : 'http://192.168.0.101/Sagar/Backend/vue-crud-api/api/v1/';
 
 // Optionally configure other defaults like headers or timeouts
 axios.defaults.headers.common['Content-Type'] = 'application/json';
