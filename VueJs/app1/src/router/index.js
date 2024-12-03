@@ -133,7 +133,7 @@ const router = createRouter({
 // Navigation guard to update document title and manage route access
 router.beforeEach(async (to, from, next) => {
   const isLoggedIn = store.getters['auth/isLoggedIn'];
-  const userType = store.getters['auth/userType']; 
+  const userType = store.getters['auth/userDetails']?.user_type; 
 
   // Dispatch Vuex action to show loading
   await store.dispatch('ui/setLoading', true);
@@ -154,7 +154,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // Redirect users without admin privileges from admin-only routes
-  if (to.meta.requiresAdmin && userType !== 2) {
+  if (to.meta.requiresAdmin && userType !== "2") {
     store.dispatch('ui/setLoading', false); // Stop loading before redirect
     return next({ name: 'Dashboard' }); // Redirect to Dashboard or an appropriate fallback
   }

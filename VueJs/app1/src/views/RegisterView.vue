@@ -232,25 +232,28 @@ const handleRegistration = async () => {
   if (result) {
     loading.value = true;
     try {
-      const response = await axios.post('create-user', formData, {
-        headers: { 'Content-Type': 'application/json' },
-      });
+  const response = await axios.post('create-user', formData, {
+    headers: { 'Content-Type': 'application/json' },
+  });
 
-      proxy.$swal.fire('Success!', 'Verification email sent. Please check your inbox or spam folder.', 'success');
-      verificationToken.value = response.data.verification_token;
-      registrationSuccess.value = true;
-    } catch (error) {
-       // Check if the error response is available
-       if (error.response) {
-        // If error.response exists, show the error based on status code
-        const statusCode = error.response.status;
-        const errorMessages = Object.values(error.response.data.messages).join(' ') || 'An unexpected error occurred.';
-        proxy.$swal.fire(`Error ${statusCode}!`, errorMessages, 'error');
-      } else {
-        // If error.response does not exist, it means the backend is not responding
-        proxy.$swal.fire('Connection Error!', 'Backend server is not responding. Please try again later.', 'error');
-      }
-    } finally {
+  proxy.$swal.fire('Success!', 'Verification email sent. Please check your inbox or spam folder.', 'success');
+  verificationToken.value = response.data.verification_token;
+  registrationSuccess.value = true;
+} catch (error) {
+  if (error.response) {
+    // Safely handle the case when `error.response.data.messages` is undefined
+    const statusCode = error.response.status;
+    const errorMessages = 
+      error.response.data && error.response.data.messages 
+        ? Object.values(error.response.data.messages).join(' ') 
+        : 'An unexpected error occurred.';
+    proxy.$swal.fire(`Error ${statusCode}!`, errorMessages, 'error');
+  } else {
+    // Handle the case when the error has no response (network error, server not reachable, etc.)
+    proxy.$swal.fire('Connection Error!', 'Backend server is not responding. Please try again later.', 'error');
+  }
+}
+ finally {
       loading.value = false;
     }
   } else {

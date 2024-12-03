@@ -59,6 +59,12 @@
                     <i class="bi bi-calendar-day-fill"></i> Profile updated on:
                     <span class="text-muted">{{ updatedDate }}</span>
                   </p>
+
+                  <p class="fw-bold">
+                    <i class="bi bi-person-circle"></i> Usertype:
+                    <span class="text-muted">{{ userDetails.user_type }}</span>
+                  </p>
+                  
                 </div>
               </div>
 
