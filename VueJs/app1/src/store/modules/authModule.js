@@ -9,6 +9,7 @@ const authModule = {
     isLoggedIn: (state) => !!state.token,
     userId: (state) => state.userId,
     userDetails: (state) => state.userDetails,
+    userType: (state) => (state.userDetails ? state.userDetails.user_type : null),
     token : (state) =>state.token,
   },
   actions: {
