@@ -8,34 +8,80 @@
       </div>
 
       <!-- Users Table -->
+
+      <template v-if="loading">
+          <p class="card-text placeholder-glow">
+          <span class="placeholder col-8 placeholder-lg"></span>
+          <span class="placeholder col-8 placeholder-lg"></span>
+          <span class="placeholder col-8 placeholder-lg"></span>
+          <span class="placeholder col-8 placeholder-lg"></span>
+          <span class="placeholder col-8 placeholder-lg"></span>
+        </p>
+        </template>
+
+        <template v-else>
+          <div class="table-responsive">
       <table class="table table-striped">
         <thead>
           <tr>
             <th>Sl. No.</th>
+            <th>Created At</th>
+            <th>Ip Address</th>
             <th>Photo</th>
             <th>Name</th>
             <th>Email</th>
             <th>User Type</th>
-            <th>Created At</th>
+            <th>Form Hits</th>
+            <th>Actions</th>
           </tr>
         </thead>
-        <tbody class="text-muted">
-          <tr v-for="(user, index) in paginatedUsers" :key="user.id">
-            <td>{{ index + 1 + (currentPage - 1) * itemsPerPage }}</td>
-            <td>
-              <img :src="user.photo || defaultPhoto" alt="User Photo" class="rounded-circle" width="50" height="50" />
-            </td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>
-              <span :class="getUserTypeClass(user.user_type)">
-                {{ getUserTypeLabel(user.user_type) }}
-              </span>
-            </td>
-            <td>{{ new Date(user.created_at).toLocaleDateString() }}</td>
-          </tr>
+        <tbody>
+          <template v-if="paginatedUsers.length > 0">
+            <tr v-for="(user, index) in paginatedUsers" :key="user.id">
+              <td class="text-muted">{{ index + 1 + (currentPage - 1) * itemsPerPage }}</td>
+              <td class="text-muted">{{ new Date(user.created_at).toLocaleString() }}</td>
+              <td class="text-muted">{{ user.ip_address }}</td>
+
+              <td>
+                <img :src="user.photo || defaultPhoto" alt="User Photo" class="rounded-circle" width="30" height="30" />
+              </td>
+
+              <td class="text-muted">{{ user.name }}</td>
+              <td class="text-muted">{{ user.email }}</td>
+              <td>
+                <span :class="getUserTypeClass(user.user_type)">
+                  {{ getUserTypeLabel(user.user_type) }}
+                </span>
+              </td>
+              <td>
+                {{ user.form_hit_count }}
+              </td>
+              <td>
+                <router-link class="btn btn-warning btn-sm mx-1 my-1 " :to="`/admin/view-user-details?userId=${user.id}`">
+                  <i class="bi bi-eye-fill"></i>
+                </router-link>
+
+                <router-link class="btn btn-success btn-sm mx-1 my-1 " :to="`/admin/view-form-responses/${user.form_id}`">
+                  <i class="bi bi-chat-dots"></i>
+                </router-link>
+
+                <router-link class="btn btn-danger btn-sm mx-1 my-1 " :to="`/friendship-form/${user.form_id}`">
+                  <i class="bi bi-box-arrow-up-right"></i>
+                </router-link>
+
+              </td>
+            </tr>
+          </template>
+          <template v-else>
+            <tr>
+              <td colspan="8" class="text-center text-muted">No data found</td>
+            </tr>
+          </template>
         </tbody>
+
       </table>
+    </div>
+    </template>
 
       <!-- Pagination -->
       <nav v-if="totalPages > 1">
@@ -67,6 +113,7 @@ export default {
       currentPage: 1,
       itemsPerPage: 5,
       defaultPhoto: "/Images/User-avatar.png", // Fallback image for users without a photo
+      loading:false
     };
   },
   computed: {
@@ -90,6 +137,7 @@ export default {
   },
   methods: {
     fetchUsers() {
+      this.loading = true;
       const userId = this.$store.getters["auth/userId"];
       const token = this.$store.getters["auth/token"];
       axios
@@ -105,7 +153,9 @@ export default {
         })
         .catch((error) => {
           console.error("Error fetching users:", error);
-        });
+        }).finally(() => {
+      this.loading = false;
+    });
     },
     changePage(page) {
       if (page >= 1 && page <= this.totalPages) {
@@ -115,13 +165,13 @@ export default {
     getUserTypeLabel(userType) {
       switch (parseInt(userType, 10)) {
         case 0:
-          return "Deleted Temporarily";
+          return "Deleted";
         case 1:
           return "Active";
         case 2:
           return "Admin";
         case 3:
-          return "Blocked Temporarily";
+          return "Blocked";
         default:
           return "Unknown";
       }
@@ -140,6 +190,9 @@ export default {
           return "badge bg-secondary";
       }
     },
+
+   
+
   },
   mounted() {
     this.fetchUsers();
@@ -155,4 +208,6 @@ export default {
 .pagination {
   justify-content: center;
 }
+
+
 </style>

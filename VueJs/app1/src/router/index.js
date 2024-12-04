@@ -118,6 +118,18 @@ const routes = [
   },
 
   {
+    path: '/admin/view-user-details',
+    name: 'ViewUserDetails',
+    component: () =>
+      import(/* webpackChunkName: "admin-dashboard" */ '../views/admin/UserDetails.vue'),
+    meta: {
+      title: ' UserDetails - Admin Panel -  iFriendShip - v0.1.0',
+      requiresAuth: true,
+      requiresAdmin: true,
+    },
+  },
+
+  {
     path: '/:catchAll(.*)',
     name: 'PageNotFound',
     component: () => import('../views/error/404Error.vue'),

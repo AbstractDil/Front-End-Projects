@@ -79,6 +79,7 @@
     <!-- Other Cards Shows Here - Starts -->
     <div class="container py-4">
       <div class="row">
+        <!-- Card For normal users starts -->
         <div class="col-sm-4 mb-3 mb-sm-0" v-for="card in cards" v-bind:key="card.card_id">
           <div class="card">
             <div class="card-body">
@@ -90,9 +91,31 @@
             </div>
           </div>
         </div>
+        <!-- Card For normal users ends -->
+
+        <!-- cards for admin starts -->
+        <template  v-if="userDetails && userDetails.user_type === '2'">
+          <div class="col-sm-4 my-3 mb-sm-0" v-for="admincard in admincards" v-bind:key="admincard.card_id">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title fs-2" v-html="admincard.card_icon"></h5>
+                <p class="card-text fs-4">{{ admincard.card_name }}</p>
+                <RouterLink :to="admincard.redirect_url" class="btn btn-success">
+                  <i class="bi bi-box-arrow-up-right"></i> Click Here
+                </RouterLink>
+              </div>
+            </div>
+          </div>
+        </template>
+
+
+        <!-- Cards for admin ends -->
+
       </div>
     </div>
     <!-- Other Cards Shows Here - Ends -->
+
+
 
     <!-- Social Media Links to Share Friendship Form Starts -->
     <div class="social-media container py-4">
@@ -182,6 +205,16 @@ export default {
           redirect_url: "/form-responses",
         },
       ],
+
+      admincards: [
+        {
+          card_id: "1",
+          card_name: "Users List",
+          card_icon: '<i class="bi bi-people-fill text-success"></i>',
+          redirect_url: "/admin/all-users",
+        },
+      ],
+      
     };
   },
   computed: {
