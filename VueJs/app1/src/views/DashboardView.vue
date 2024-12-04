@@ -62,7 +62,7 @@
 
                   <p class="fw-bold">
                     <i class="bi bi-person-circle"></i> Usertype:
-                    <span class="text-muted">{{ userDetails.user_type }}</span>
+                    <span :class="getUserTypeClass(userDetails.user_type)">{{getUserTypeLabel(userDetails.user_type)}}</span>
                   </p>
                   
                 </div>
@@ -300,6 +300,36 @@ export default {
       };
       return new Intl.DateTimeFormat("en-US", options).format(date);
     },
+
+    getUserTypeLabel(userType) {
+      switch (parseInt(userType, 10)) {
+        case 0:
+          return "Deleted";
+        case 1:
+          return "Active";
+        case 2:
+          return "Admin";
+        case 3:
+          return "Blocked";
+        default:
+          return "Unknown";
+      }
+    },
+    getUserTypeClass(userType) {
+      switch (parseInt(userType, 10)) {
+        case 0:
+          return "badge bg-danger";
+        case 1:
+          return "badge bg-success";
+        case 2:
+          return "badge bg-primary";
+        case 3:
+          return "badge bg-warning text-dark";
+        default:
+          return "badge bg-secondary";
+      }
+    },
+
   },
 };
 

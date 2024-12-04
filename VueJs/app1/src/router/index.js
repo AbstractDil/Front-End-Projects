@@ -123,7 +123,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "admin-dashboard" */ '../views/admin/UserDetails.vue'),
     meta: {
-      title: ' UserDetails - Admin Panel -  iFriendShip - v0.1.0',
+      title: ' User Details - Admin Panel -  iFriendShip - v0.1.0',
       requiresAuth: true,
       requiresAdmin: true,
     },

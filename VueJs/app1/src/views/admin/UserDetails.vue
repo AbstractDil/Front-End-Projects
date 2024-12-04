@@ -1,6 +1,8 @@
 <script setup>
 import UserProfile from "@/components/admin/UserProfile.vue";
 import ProfileUpdate from "@/components/admin/ProfileUpdate.vue";
+import AccountStatusUpdate from "@/components/admin/AccountStatusUpdate.vue";
+
 import { getCurrentInstance } from "vue";
 import { useStore } from "vuex"; // Import useStore for Vuex
 import axios from "axios";
@@ -83,6 +85,8 @@ const userId = url.searchParams.get('userId');
 
     <ProfileUpdate />
 
+    <AccountStatusUpdate />
+
     <!-- Delete Account Section Starts -->
     <div class="delete-account container py-4">
       <div class="card p-3">
@@ -139,6 +143,7 @@ export default {
   components: {
     UserProfile,
     ProfileUpdate,
+    AccountStatusUpdate,
   },
 };
 </script>

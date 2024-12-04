@@ -1,7 +1,7 @@
 <template>
   <section class="bg-body-tertiary py-4">
     <div class="container">
-      <h1 class="mb-4">List All Users</h1>
+      <h1 class="mb-4 text-muted">List All Users</h1>
       <!-- Search Box -->
       <div class="mb-3">
         <input type="text" v-model="searchQuery" class="form-control" placeholder="Search by name or email" />
@@ -43,7 +43,7 @@
               <td class="text-muted">{{ user.ip_address }}</td>
 
               <td>
-                <img :src="user.photo || defaultPhoto" alt="User Photo" class="rounded-circle" width="30" height="30" />
+                <img :src="user.profile_photo_path || defaultPhoto" alt="User Photo" class="rounded-circle" width="30" height="30" />
               </td>
 
               <td class="text-muted">{{ user.name }}</td>
@@ -111,7 +111,7 @@ export default {
       users: [],
       searchQuery: "",
       currentPage: 1,
-      itemsPerPage: 5,
+      itemsPerPage: 10,
       defaultPhoto: "/Images/User-avatar.png", // Fallback image for users without a photo
       loading:false
     };
