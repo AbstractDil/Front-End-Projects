@@ -12,81 +12,81 @@
 
         <template v-if="loading">
           <p class="card-text placeholder-glow">
-          <span class="placeholder col-8 placeholder-lg"></span>
-          <span class="placeholder col-8 placeholder-lg"></span>
-          <span class="placeholder col-8 placeholder-lg"></span>
-          <span class="placeholder col-8 placeholder-lg"></span>
+            <span class="placeholder col-8 placeholder-lg"></span>
+            <span class="placeholder col-8 placeholder-lg"></span>
+            <span class="placeholder col-8 placeholder-lg"></span>
+            <span class="placeholder col-8 placeholder-lg"></span>
 
-        </p>
+          </p>
         </template>
         <template v-else>
-        <div class="container">
-          <div class="row">
-            <!-- Profile Image Section -->
-            <div class="col-md-4">
-              <div class="text-center mt-2 mb-3">
-                <img :src="profileImage" alt="Profile Picture" class="rounded-circle profile-image mb-3" />
-                <div>
-                  <input type="file" @change="onImageChange" id="file-upload" name="profile_photo_file"
-                    class="d-none" />
-                  <label for="file-upload" class="btn btn-outline-success" :class="{ disabled: isUploading }">
-                    <span v-if="isUploading">
-                      <span class="spinner-border text-light spinner-border-sm" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                      </span> Uploading...</span>
-                    <span v-else><i class="bi bi-cloud-arrow-up-fill"></i> Upload Photo</span>
-                  </label>
+          <div class="container">
+            <div class="row">
+              <!-- Profile Image Section -->
+              <div class="col-md-4">
+                <div class="text-center mt-2 mb-3">
+                  <img :src="profileImage" alt="Profile Picture" class="rounded-circle profile-image mb-3" />
+                  <div>
+                    <input type="file" @change="onImageChange" id="file-upload" name="profile_photo_file"
+                      class="d-none" />
+                    <label for="file-upload" class="btn btn-outline-success" :class="{ disabled: isUploading }">
+                      <span v-if="isUploading">
+                        <span class="spinner-border text-light spinner-border-sm" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </span> Uploading...</span>
+                      <span v-else><i class="bi bi-cloud-arrow-up-fill"></i> Upload Photo</span>
+                    </label>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- Form Section -->
-            <div class="col-md-6">
-              <form @submit.prevent="handleProfileInfoUpdate">
-                <BaseInput label="Fullname" v-model="formData.name" />
-                <!-- Name Validation Messages -->
-                <p v-if="formSubmitted && v$.formData.name.required.$invalid">
-                  <small class="text-danger">Fullname is required</small>
-                </p>
-                <p v-if="formSubmitted && !v$.formData.name.required.$invalid && v$.formData.name.minLength.$invalid">
-                  <small class="text-danger">Minimum length is 3 characters</small>
-                </p>
-                <p v-if="formSubmitted && !v$.formData.name.required.$invalid && v$.formData.name.maxLength.$invalid">
-                  <small class="text-danger">Maximum length is 20 characters</small>
-                </p>
-                <BaseInput label="Email" v-model="formData.email" type="email" />
-                <!-- Email Validation Messages -->
-                <p v-if="formSubmitted && v$.formData.email.required.$invalid">
-                  <small class="text-danger">Email is required</small>
-                </p>
-                <p v-if="formSubmitted && !v$.formData.email.required.$invalid && v$.formData.email.email.$invalid">
-                  <small class="text-danger">Please enter a valid email address</small>
-                </p>
-                <p
-                  v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.formData.email.minLength.$invalid">
-                  <small class="text-danger">Email must be at least 6 characters long.</small>
-                </p>
-                <p
-                  v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.formData.email.maxLength.$invalid">
-                  <small class="text-danger">Email cannot exceed 50 characters.</small>
-                </p>
-                <div class="text-start">
-                  <button class="btn btn-success" type="submit" :disabled="loading">
-                    <template v-if="loading">
-                      <div class="spinner-border text-light spinner-border-sm" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                      </div>
-                      Processing...
-                    </template>
-                    <template v-else>
-                      <i class="bi bi-check-lg"></i> Save Changes
-                    </template>
-                  </button>
-                </div>
-              </form>
+              <!-- Form Section -->
+              <div class="col-md-6">
+                <form @submit.prevent="handleProfileInfoUpdate">
+                  <BaseInput label="Fullname" v-model="formData.name" />
+                  <!-- Name Validation Messages -->
+                  <p v-if="formSubmitted && v$.formData.name.required.$invalid">
+                    <small class="text-danger">Fullname is required</small>
+                  </p>
+                  <p v-if="formSubmitted && !v$.formData.name.required.$invalid && v$.formData.name.minLength.$invalid">
+                    <small class="text-danger">Minimum length is 3 characters</small>
+                  </p>
+                  <p v-if="formSubmitted && !v$.formData.name.required.$invalid && v$.formData.name.maxLength.$invalid">
+                    <small class="text-danger">Maximum length is 20 characters</small>
+                  </p>
+                  <BaseInput label="Email" v-model="formData.email" type="email" />
+                  <!-- Email Validation Messages -->
+                  <p v-if="formSubmitted && v$.formData.email.required.$invalid">
+                    <small class="text-danger">Email is required</small>
+                  </p>
+                  <p v-if="formSubmitted && !v$.formData.email.required.$invalid && v$.formData.email.email.$invalid">
+                    <small class="text-danger">Please enter a valid email address</small>
+                  </p>
+                  <p
+                    v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.formData.email.minLength.$invalid">
+                    <small class="text-danger">Email must be at least 6 characters long.</small>
+                  </p>
+                  <p
+                    v-if="formSubmitted && !v$.formData.email.required.$invalid && !v$.formData.email.email.$invalid && v$.formData.email.maxLength.$invalid">
+                    <small class="text-danger">Email cannot exceed 50 characters.</small>
+                  </p>
+                  <div class="text-start">
+                    <button class="btn btn-success" type="submit" :disabled="loading">
+                      <template v-if="loading">
+                        <div class="spinner-border text-light spinner-border-sm" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        Processing...
+                      </template>
+                      <template v-else>
+                        <i class="bi bi-check-lg"></i> Save Changes
+                      </template>
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </template>
+        </template>
       </div>
     </div>
   </div>
@@ -214,10 +214,27 @@ export default {
           // Handle successful upload
           console.log('Image uploaded successfully:', response.data);
         } catch (error) {
-          this.$swal.fire('Error!', 'Failed to upload profile photo. Please try again later.', 'error');
-          // Handle upload errors
+          let errorMessage = 'Failed to upload profile photo. Please try again later.';
+
+          // Check if there's a response from the server
+          if (error.response) {
+            // Server responded with a status other than 2xx
+            errorMessage += `\nStatus: ${error.response.status}\nMessage: ${error.response.data?.message || 'Unknown error from server.'}`;
+          } else if (error.request) {
+            // Request was made, but no response received
+            errorMessage += '\nNo response received from the server. Please check your network connection.';
+          } else {
+            // Other errors (e.g., setting up the request)
+            errorMessage += `\nError: ${error.message}`;
+          }
+
+          // Show detailed error in Swal alert
+          this.$swal.fire('Error!', errorMessage, 'error');
+
+          // Log the full error for debugging
           console.error('Error uploading image:', error);
         }
+
         finally {
           // Set the uploading state to false (hide loader)
           this.isUploading = false;

@@ -130,6 +130,30 @@ const routes = [
   },
 
   {
+    path: '/admin/view-form-responses',
+    name: 'ViewFormResponses',
+    component: () =>
+      import(/* webpackChunkName: "admin-dashboard" */ '../views/admin/OthersFormResponse.vue'),
+    meta: {
+      title: ' View Form Response - Admin Panel -  iFriendShip - v0.1.0',
+      requiresAuth: true,
+      requiresAdmin: true,
+    },
+  },
+
+  {
+    path: '/admin/edit-form-response',
+    name: 'EditFormResponse',
+    component: () =>
+      import(/* webpackChunkName: "admin-dashboard" */ '../views/admin/EditFormResponse.vue'),
+    meta: {
+      title: ' Edit Form Response - Admin Panel -  iFriendShip - v0.1.0',
+      requiresAuth: true,
+      requiresAdmin: true,
+    },
+  },
+
+  {
     path: '/:catchAll(.*)',
     name: 'PageNotFound',
     component: () => import('../views/error/404Error.vue'),

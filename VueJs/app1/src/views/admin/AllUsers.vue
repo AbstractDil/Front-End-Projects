@@ -61,7 +61,7 @@
                   <i class="bi bi-eye-fill"></i>
                 </router-link>
 
-                <router-link class="btn btn-success btn-sm mx-1 my-1 " :to="`/admin/view-form-responses/${user.form_id}`">
+                <router-link class="btn btn-success btn-sm mx-1 my-1 " :to="`/admin/view-form-responses?formId=${user.form_id}&userId=${user.id}`">
                   <i class="bi bi-chat-dots"></i>
                 </router-link>
 
