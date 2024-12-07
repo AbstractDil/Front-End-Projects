@@ -39,7 +39,8 @@
                                         <span :class="getUserTypeClass(userData.user_type)">
                                             {{ getUserTypeLabel(userData.user_type) }}
                                         </span>
-
+                                    </p>
+                                    <p class="fw-bold">
                                         <template v-if="userData.user_type === '3'">
                                             <i class="bi bi-calendar-day-fill"></i> Blocked At:
                                             <span class="text-muted">
@@ -53,8 +54,8 @@
                                                 {{ DeletedDate }}
                                             </span>
                                         </template>
-
                                     </p>
+                                    
                                 </div>
                                 <div class="col-md-12 text-start">
                                     <!-- Actions for blocked users -->
@@ -206,6 +207,19 @@ export default {
                     return "badge bg-secondary";
             }
         },
+        formatDate(dateString) {
+      if (!dateString) return "";
+      const date = new Date(dateString);
+      const options = {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      };
+      return new Intl.DateTimeFormat("en-US", options).format(date);
+    },
     },
     mounted() {
         this.fetchUserData();

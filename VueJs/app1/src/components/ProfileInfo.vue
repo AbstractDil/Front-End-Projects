@@ -22,6 +22,21 @@
         <template v-else>
           <div class="container">
             <div class="row">
+              <!-- Alerrt Section -->
+
+              <div class="col-md-12">
+                <div class="alert border text-muted font-sm pb-0" role="alert">
+                        <ol>
+                          <li>
+                        Updating email and name is not allowed. You can only change your photo.
+                          </li>
+                          <li>Please ensure your photo's dimensions match WhatsApp profile size.</li>
+                          <li>Photo size should not exceed 400 KB.</li>
+                          <li>If you continue to experience issues uploading your photo from your mobile device, please try using a desktop or laptop computer. You may also contact our technical support team for further assistance.</li>
+                        </ol>
+                  </div>
+              </div>
+
               <!-- Profile Image Section -->
               <div class="col-md-4">
                 <div class="text-center mt-2 mb-3">
@@ -70,17 +85,26 @@
                     <small class="text-danger">Email cannot exceed 50 characters.</small>
                   </p>
                   <div class="text-start">
-                    <button class="btn btn-success" type="submit" :disabled="loading">
-                      <template v-if="loading">
-                        <div class="spinner-border text-light spinner-border-sm" role="status">
-                          <span class="visually-hidden">Loading...</span>
-                        </div>
-                        Processing...
-                      </template>
-                      <template v-else>
-                        <i class="bi bi-check-lg"></i> Save Changes
-                      </template>
-                    </button>
+                    <template v-if="isEditable">
+                      <button class="btn btn-success" type="submit" :disabled="loading">
+                        <template v-if="loading">
+                          <div class="spinner-border text-light spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                          Processing...
+                        </template>
+                        <template v-else>
+                          <i class="bi bi-check-lg"></i> Save Changes
+                        </template>
+                      </button>
+                    </template>
+                    <template v-else>
+                      <div class="alert border border-danger text-danger font-sm" role="alert">
+                        <strong><i class="bi bi-exclamation-triangle-fill"></i> Please Note: </strong>
+                        Updating email and name is not allowed. You can only change your photo.
+                      </div>
+                    </template>
+
                   </div>
                 </form>
               </div>
@@ -111,6 +135,7 @@ export default {
       formSubmitted: false,
       isUploading: false,
       loading: false,
+      isEditable: true,
       profileImage: '/Images/User-avatar.png', // Updated path
       v$: null, // Placeholder for Vuelidate instance
       token: localStorage.getItem('token'),
@@ -146,7 +171,7 @@ export default {
           this.formData.name = response.data.data.name;
           this.formData.email = response.data.data.email;
           this.profileImage = response.data.data.profile_photo_path;
-          //this.profileImage = response.data.data.profile_photo_path;
+          this.isEditable = response.data.data.isEditable;
         } else {
           console.error('User ID or token is not available');
         }
@@ -176,7 +201,24 @@ export default {
           this.$swal.fire('Success!', 'Profile updated successfully!', 'success');
           console.log('API response:', response.data);
         } catch (error) {
-          this.$swal.fire('Error!', 'Failed to update profile. Please try again later.', 'error');
+          let errorMessage = 'Failed to update profile. Please try again later.';
+
+          // Che if there's a response from the server
+          if (error.response) {
+            // Server responded with a status other than 2xx
+            errorMessage += `\nStatus: ${error.response.status}\nMessage: ${error.response.data?.message || 'Unknown error from server.'}`;
+          } else if (error.request) {
+            // Request was made, but no response received
+            errorMessage += '\nNo response received from the server. Please check your network connection.';
+          } else {
+            // Other errors (e.g., setting up the request)
+            errorMessage += `\nError: ${error.message}`;
+          }
+
+          // Show detailed error in Swal alert
+          this.$swal.fire('Error!', errorMessage, 'error');
+
+
           console.error('API error:', error);
         }
         finally {
