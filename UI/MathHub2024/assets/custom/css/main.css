@@ -1,11 +1,12 @@
 @import './base.css';
 
+
 *{
     font-family: "Poppins", sans-serif;
 }
 .logo-title {
   white-space: nowrap; /* Prevents wrapping but allows for line breaks */
-  color: #047a83;
+  color: #05479c;
   font-size: 1.3rem;
   margin: 0;
   text-align: center; /* Centers the text */
