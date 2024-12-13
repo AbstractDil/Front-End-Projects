@@ -68,13 +68,25 @@ const appHeader = Vue.createApp({
 
     async validateEmail() {
       this.errorMessage = "";
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
       if (!this.formData.email) {
         this.errorMessage = "Email is required.";
         return;
       }
+      
+      if (!emailPattern.test(this.formData.email)) {
+        this.errorMessage = "Invalid email format.";
+        return;
+      }
+
+      if (this.formData.email.length < 12 || this.formData.email.length > 50) {
+        this.errorMessage = "Email must be between 12 and 50 characters.";
+        return;
+      }
 
       // Simulate an API call
-      const simulatedResponse = { exists: false }; // Replace with actual API call
+      const simulatedResponse = { exists: true }; // Replace with actual API call
       await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate delay
 
       if (simulatedResponse.exists) {
@@ -87,23 +99,49 @@ const appHeader = Vue.createApp({
     },
 
     validateNames() {
+      const namePattern = /^[A-Za-z]{3,30}$/; // Only alphabets, min length 3, max length 30
+    
       if (!this.formData.firstName || !this.formData.lastName) {
         this.errorMessage = "Both First Name and Last Name are required.";
         return;
       }
+    
+      if (!namePattern.test(this.formData.firstName)) {
+        this.errorMessage =
+          "Firstname must contain only alphabets, be at least 3 characters long, and no more than 30 characters.";
+        return;
+      }
+    
+      if (!namePattern.test(this.formData.lastName)) {
+        this.errorMessage =
+          "Lastname must contain only alphabets, be at least 3 characters long, and no more than 30 characters.";
+        return;
+      }
+    
       this.errorMessage = "";
       this.currentStep = 3; // Proceed to the last step
     },
+    
 
     validatePassword() {
+      const passwordPattern = /^[A-Za-z0-9@%#&!]{6,20}$/; // Allowed characters and length constraints
+    
       if (!this.formData.password || !this.formData.confirmPassword) {
         this.errorMessage = "Both password fields are required.";
         return;
       }
+    
+      if (!passwordPattern.test(this.formData.password)) {
+        this.errorMessage =
+          "Password must be 6-20 characters long and can only contain letters, numbers, and the symbols @, %, #, &, and !.";
+        return;
+      }
+    
       if (this.formData.password !== this.formData.confirmPassword) {
         this.errorMessage = "Passwords do not match.";
         return;
       }
+    
       this.errorMessage = "";
       alert("Registration successful!");
       // Reset form
@@ -116,6 +154,7 @@ const appHeader = Vue.createApp({
         confirmPassword: "",
       };
     },
+    
   },
   async mounted() {
     try {
