@@ -1,4 +1,3 @@
-
 /*******************************************
 * Write styles which are common across all
 * Author : Sagar Nandy
@@ -8,7 +7,7 @@
 
 /* Google Fonts Library */
 
-@import 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
+@import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap";
 
 /* Bootstrap Icon Library */
 
@@ -17,58 +16,72 @@
 /* For Navbar */
 
 .navbar-brand {
-    font-weight: bold;
-  }
-  .logo-text {
-    font-size: 20px;
-  }
-  
-  .navbar-toggler:hover {
-    color: #fff !important;
-    text-decoration: none;
-    border: none !important;
-  }
+  font-weight: bold;
+}
+.logo-text {
+  font-size: 20px;
+}
 
-  /* Allover styles */
+.navbar-toggler:hover {
+  color: #fff !important;
+  text-decoration: none;
+  border: none !important;
+}
 
-.fs-14px{
-    font-size: 14px !important;
+.bg-dark-info {
+  background-color: rgb(33, 2, 172);
+}
+
+.blink {
+   
+  animation: blinker 1s linear infinite;
+ 
+}
+@keyframes blinker {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+/* Allover styles */
+
+.fs-14px {
+  font-size: 14px !important;
 }
 
 p {
-    font-size: 14px !important;
-  }
+  font-size: 14px !important;
+}
 
-  a{
-    cursor: pointer;
-  }
+a {
+  cursor: pointer;
+}
 
-.text-dark-info{
+.text-dark-info {
   color: #047a83;
 }
 
-
 /* Apply to the whole document or a specific container */
 ::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
-    height: 8px; /* Height of the horizontal scrollbar */
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color of the track */
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background:#5ebfff; /* Color of the thumb */
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #5ebfff; /* Darker color when hovered */
-  }
-  
-  .bg-secondary-dark{
-    background-color: rgb(67, 67, 68);;
-  }
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #5ebfff; /* Color of the thumb */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5ebfff; /* Darker color when hovered */
+}
+
+.bg-secondary-dark {
+  background-color: rgb(67, 67, 68);
+}
