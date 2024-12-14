@@ -256,10 +256,22 @@
       <!-- Topbar Ends -->
 
       <!-- header starts -->
-      <header class="p-2 header bg-white border-bottom">
+      <header class="py-2 header bg-white border-bottom">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-4 col-8 text-start d-flex align-items-center">
+              <button
+                v-if="app_header.isMobile"
+                class="btn border-0 fs-3 ps-1"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i class="bi bi-list"></i>
+              </button>
               <a
                 href="/"
                 class="d-flex align-items-center text-decoration-none"
@@ -276,19 +288,8 @@
                 </h1>
               </a>
             </div>
-            <div class="col-md-8 col-4 text-end">
-              <button
-                v-if="app_header.isMobile"
-                class="btn btn-info"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <i class="bi bi-list"></i>
-              </button>
+            <div class="col-md-8 col-4 text-end ">
+              
               <!-- <a
                 v-bind:href="app_header.loginLink"
                 class="btn btn-primary text-light font-sm rounded-pill px-3 btn-login"
@@ -297,7 +298,7 @@
               </a> -->
 
               <button
-                class="btn btn-primary text-light font-sm rounded-pill px-3 btn-login"
+                class="btn btn-primary text-light rounded-pill px-3 btn-login"
                 data-bs-toggle="modal"
                 data-bs-target="#LoginModal"
               >
@@ -319,7 +320,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item" v-for="url in urls" :key="url.id">
                 <a class="nav-link active" :href="'/' + url.url">
-                  {{ url.url.charAt(0).toUpperCase() + url.url.slice(1) }}
+                  {{ url.title.charAt(0).toUpperCase() + url.title.slice(1) }}
                 </a>
               </li>
             </ul>

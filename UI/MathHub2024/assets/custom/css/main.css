@@ -21,7 +21,7 @@
   
   @media (max-width: 767px){
   .logo-title {
-      font-size: 1.2em;
+      font-size: 1.1em;
       padding-top:4px;
   
   }
@@ -30,7 +30,8 @@
   }
   
   .btn-login {
-    display: none; /* Hide the login button on mobile */
+    display: block; /* Hide the login button on mobile */
+    font-size: 14px;
   }
 
   .navbar{
@@ -51,7 +52,7 @@
 
 @media(max-width:600px){
     .logo img{
-        width: 70px;
+        width:40px;
         margin-top: 5px;
     }
 }

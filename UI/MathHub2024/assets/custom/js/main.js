@@ -3,10 +3,10 @@ const appHeader = Vue.createApp({
   data() {
     return {
       urls: [
-        { id: 1, url: "home" },
-        { id: 2, url: "about" },
-        { id: 3, url: "registration" },
-        { id: 4, url: "login" },
+        { id: 1,title:"Home", url: "index.html" },
+        { id: 2,title:"About", url: "about.html" },
+        { id: 3,title:"Registration", url: "registration.html" },
+        { id: 4,title:"Login", url: "login.html" },
       ],
 
       app_header: {
@@ -86,7 +86,7 @@ const appHeader = Vue.createApp({
       }
 
       // Simulate an API call
-      const simulatedResponse = { exists: true }; // Replace with actual API call
+      const simulatedResponse = { exists: false }; // Replace with actual API call
       await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate delay
 
       if (simulatedResponse.exists) {
