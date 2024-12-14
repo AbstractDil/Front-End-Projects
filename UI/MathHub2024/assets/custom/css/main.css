@@ -1,9 +1,23 @@
 @import './base.css';
 
 
-*{
-    font-family: "Poppins", sans-serif;
-}
+
+ .card{
+  border-radius: 14px !important;
+ }
+
+ .card-header{
+  border-top-left-radius: 14px !important;
+  border-top-right-radius: 14px !important;
+  overflow: hidden !important; /* Ensures corners are rounded */
+ }
+
+ .card-footer{
+  border-bottom-left-radius: 14px !important;
+  border-bottom-right-radius: 14px !important;
+  overflow: hidden !important; /* Ensures corners are rounded */
+ }
+
 .logo-title {
   white-space: nowrap; /* Prevents wrapping but allows for line breaks */
   color: #05479c;
@@ -13,6 +27,20 @@
   display: inline-block;
   }
 
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 50%;
+    /* border: 2px solid #28a745 */
+}
+
+.user-details p{
+    font-size: 1rem;
+    margin-bottom: .5rem
+}
+  
 
 .latestNews {
   position: absolute;

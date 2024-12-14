@@ -78,14 +78,14 @@
                   </form>
                   <p class="text-muted mt-2 fs-14px text-center">
                     Don't have an account yet?
-                    <a class="text-primary" @click.prevent="showRegForm"
+                    <a class="text-primary-emphasis" @click.prevent="showRegForm"
                       >Register Now</a
                     >
                   </p>
 
                   <p class="text-muted mt-3 fs-14px text-center">
                     Forget your password?
-                    <a class="text-primary" @click.prevent="showLoginForm"
+                    <a class="text-primary-emphasis" @click.prevent="showLoginForm"
                       >Change now</a
                     >
                   </p>
@@ -192,7 +192,7 @@
                         <i class="bi bi-chevron-double-left"></i> Back
                       </button>
                       <button
-                        class="btn btn-success"
+                        class="btn btn-primary"
                         type="button"
                         @click="validatePassword"
                       >
@@ -202,13 +202,13 @@
                   </div>
                   <p class="text-muted mt-3 fs-14px text-center">
                     Already have an account?
-                    <a class="text-primary" @click.prevent="showLoginForm"
+                    <a class="text-primary-emphasis" @click.prevent="showLoginForm"
                       >Login</a
                     >
                   </p>
                   <p class="text-muted mt-3 fs-14px text-center">
                     Forget to verify your email?
-                    <a class="text-primary" @click.prevent="showLoginForm"
+                    <a class="text-primary-emphasis" @click.prevent="showLoginForm"
                       >Verify now</a
                     >
                   </p>
@@ -327,251 +327,125 @@
     </header>
     <!----------------- App Header Ends Here -------------------->
 
-    <!--------------- Carousel Starts Here --------------->
-    <div id="carouselExample" class="carousel slide border border-2">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img
-            src="assets/images/banner-2.webp"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-
-        <div class="carousel-item">
-          <img
-            src="assets/images/hero-img-mhbc.webp"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-      </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExample"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExample"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-    <!------------------- Carousel Ends Here --------------------->
-
-    <!------------- Latest News Section Starts Here -------------->
-    <div class="bg-info-subtle ps-1 pt-2 mb-0">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12 p-0">
-            <p class="latestNews bg-info-subtle text-info-emphasis fs-6">
-              <!-- <span class=" latestNews text-warning"> -->
-              <i class="bi bi-megaphone-fill blink"></i>
-              Latest News:
+    <!-- Dashboard content starts here -->
+    <section class="bg-body-tertiary py-4">
+      <!-- Profile Information Card  Starts-->
+      <div class="profile-information container py-4">
+        <div class="card p-3">
+          <div class="card-body text-start">
+            <h5 class="card-title text-start fw-bold text-primary-emphasis mx-2">
+              <i class="bi bi-person-fill"></i> Profile Information
+            </h5>
+            <p class="mx-3 font-sm text-muted mb-4">
+              View your account's profile information and email address.
             </p>
-
-            <marquee direction="left" class="text-primary">
-              <a
-                href="https://mathhub.nandysagar.in/combined"
-                target="_blank"
-                class="text-info-emphasis text-decoration-none fw-bold"
-              >
-                Welcome to MathHub Combined
-              </a>
-            </marquee>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="text-center mt-2 mb-3">
+                    <img
+                      src="https://projects.nandysagar.in/2024/iFriendShipAppBackend/uploads/profileImage/Sagar-Winter-30-11-2024_1733513968_3e9709b4279d37ae261f.jpg"
+                      alt="Profile Picture"
+                      class="rounded-circle profile-image mb-3 border border-primary p-1 border-opacity-25 border-5"
+                    />
+                    <p class="mx-3 font-sm text-muted mb-4">
+                      <a href="/profile" class="">Change Photo</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="user-details">
+                    <p class="fw-bold">
+                      <i class="bi bi-person-circle"></i> Full Name:
+                      <span class="text-muted">Sagar Nandy</span>
+                    </p>
+                    <p class="fw-bold">
+                      <i class="bi bi-envelope-fill"></i> Email:
+                      <span class="text-muted">nandysagar@yahoo.com</span>
+                    </p>
+                    <p class="fw-bold">
+                      <i class="bi bi-calendar-day-fill"></i> Joined on:
+                      <span class="text-muted">Dec 7, 2024, 01:02 AM</span>
+                    </p>
+                    <p class="fw-bold">
+                      <i class="bi bi-envelope-fill"></i> Email verification
+                      status:
+                      <span class="badge text-bg-success"
+                        ><i class="bi bi-shield-fill-check"></i> Verified</span
+                      >
+                    </p>
+                    <p class="fw-bold">
+                      <i class="bi bi-calendar-day-fill"></i> Verified on:
+                      <span class="text-muted">Dec 7, 2024, 01:03 AM</span>
+                    </p>
+                    <p class="fw-bold">
+                      <i class="bi bi-calendar-day-fill"></i> Profile updated
+                      on: <span class="text-muted">Dec 7, 2024, 01:09 AM</span>
+                    </p>
+                    <p class="fw-bold">
+                      <i class="bi bi-info-circle-fill"></i> Account Status:
+                      <span class="badge bg-success">Active</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!------------- Latest News Section Ends Here -------------->
+      <!-- Profile Information Card Ends-->
 
-    <!---------------- Content Section Starts Here ------------------>
-    <section class="main bg-body-tertiary py-4">
-      <!-- notices area and exam area -->
-
-      <div class="container pb-3">
+      <!--  Dashboard Button Card Starts  -->
+      <div class="container py-4">
         <div class="row">
-          <!-- announcment section starts here -->
-          <div class="col-lg-8 col-sm-6 my-3">
-            <div class="card" style="height: 23em">
-              <h5
-                class="card-header bg-primary-subtle text-primary-primary fw-bold text-uppercase py-3"
-              >
-                <i class="fa fa-bullhorn"></i>
-                <i class="bi bi-megaphone-fill"></i> Announcements
-              </h5>
-              <div class="card-body table-responsive" style="font-size: 14px;">
-                <table class="table table-sm">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <a
-                          class="text-decoration-none"
-                          href="https://mathhub.nandysagar.in/combined/details/miscellaneous-services-recruitment-examination-2023"
-                        >
-                        <i class="bi bi-box-arrow-up-right"></i>
-                          Oct 03,2023
-                          <span class="text-secondary"
-                            >MISCELLANEOUS SERVICES RECRUITMENT EXAMINATION
-                            2023</span
-                          >
-                          <span class="badge text-bg-danger">
-                            <i class="fa fa-remove"></i>
-                            Expired
-                          </span>
-                        </a>
-                      </td>
-                    </tr>
-                   
-                  </tbody>
-                </table>
-                <!-- </marquee> -->
-              </div>
-              <div class="card-footer bg-transparent">
-                <div class="float-end">
-                  <a href="" class="text-decoration-none">View All</a>
-                </div>
+          <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title fs-2">
+                  <i class="bi bi-person-fill-gear text-primary-emphasis"></i>
+                </h5>
+                <p class="card-text fs-5 fw-bold text-muted">Profile Settings</p>
+                <a href="/profile" class="btn btn-primary"
+                  ><i class="bi bi-box-arrow-up-right"></i> Click Here
+                </a>
               </div>
             </div>
           </div>
-          <!-- announcment section ends here -->
-          <!-- Public notice section starts here -->
-          <div class="col-lg-4 col-sm-6 my-3">
-            <div class="card" style="height: 23em">
-              <h5
-                class="card-header bg-success-subtle text-success-emphasis fw-bold text-uppercase py-3"
-                style="background-color: rgb(138, 4, 86)"
-              >
-              <i class="bi bi-bell-fill"></i>
-                Public Notice
-              </h5>
-              <div class="card-body table-responsive" style="font-size: 14px;">
-                <table class="table table-sm">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <a
-                          class="text-decoration-none"
-                          href="https://mathhub.nandysagar.in/combined/NoticeShare/download-admit-card-ssc-mts-2023-examination-magic-link"
-                        >
-                          <i class="fa fa-caret-right"></i>
-                          <span class="text-primary"> Sep 18,2023 </span>
-                          <span class="text-secondary">
-                            Download Admit Card SSC MTS 2023 Examination - Magic
-                            Link
-                          </span>
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="card-footer bg-transparent">
-                <div class="float-end">
-                  <a href="" class="text-decoration-none">View All</a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <!-- Public notice section ends here -->
-          <!-- admit card section start -->
-          <div class="col-lg-4 col-sm-6 my-3">
-            <div class="card" style="height: 23em">
-              <h5
-                class="card-header bg-warning-subtle text-warning-emphasis fw-bold text-uppercase py-3"
-                style="background-color: rgb(151, 54, 15)"
-              >
-              <i class="bi bi-person-vcard"></i>
-                Admit Card
-              </h5>
-              <div class="card-body table-responsive" style="font-size: 14px;">
-                
-              </div>
-              <div class="card-footer bg-transparent">
-                <div class="float-end">
-                  <a href="" class="text-decoration-none">View All</a>
-                </div>
+          <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title fs-2">
+                  <i class="bi bi-ui-checks-grid text-primary-emphasis"></i>
+                </h5>
+                <p class="card-text fs-5 fw-bold text-muted">Friendship Form</p>
+                <a
+                  href="/friendship-form/2412070102561843"
+                  class="btn btn-primary"
+                  ><i class="bi bi-box-arrow-up-right"></i> Click Here
+                </a>
               </div>
             </div>
           </div>
-          <!-- admit card section ends -->
-
-          <!-- resutls section starts here -->
-          <div class="col-lg-4 col-sm-6 my-3">
-            <div class="card" style="height: 23em">
-              <h5
-                class="card-header bg-danger-subtle text-danger-primary fw-bold text-uppercase py-3"
-              >
-              <i class="bi bi-card-list"></i>
-                Results
-              </h5>
-              <div class="card-body table-responsive" style="font-size: 14px;">
-                
-              </div>
-              <div class="card-footer bg-transparent">
-                <div class="float-end">
-                  <a href="" class="text-decoration-none">View All</a>
-                </div>
+          <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title fs-2">
+                  <i class="bi bi-chat-heart-fill text-primary-emphasis"></i>
+                </h5>
+                <p class="card-text fs-5 fw-bold text-muted">Form Responses</p>
+                <a href="/form-responses" class="btn btn-primary"
+                  ><i class="bi bi-box-arrow-up-right"></i> Click Here
+                </a>
               </div>
             </div>
           </div>
-          <!-- resutls section ends here -->
-          <!-- technical support start -->
-          <div class="col-lg-4 col-sm-6 my-3">
-            <div class="card" style="height: 23em">
-              <h5
-                class="card-header bg-info-subtle text-info-primary fw-bold text-uppercase py-3"
-              >
-              <i class="bi bi-chat-left-quote-fill"></i>
-                Technical Support
-              </h5>
-              <div class="card-body table-responsive"style="font-size: 14px;">
-                <table class="table table-sm">
-                  <tbody>
-                    <tr>
-                      <td class="text-center">
-                        <a
-                          href="mailto:nandysagar@yahoo.com?subject=For Technical Support (MathHub Combined)&amp;body= **Write your problem description here but Donot change the subject.**"
-                          class="text-decoration-none"
-                        >
-                        <i class="bi bi-envelope-at-fill fs-4"></i>
-                          <p class="text-primary fs-5 py-0">Support Email : 
-                            <span class="text-secondary">nandysagar@yahoo.com</span>
-                          </p>
-                        </a>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="text-danger">
-                        For any technical issue please contact us on above email
-                        address with your problem description in the body of the
-                        email or, You may attach a screenshot or, a video link
-                        of the problem.
-                        <b> Please do not change the subject of the email. </b>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <!-- technical support ends -->
+          <!---->
         </div>
       </div>
-    </section>
 
-    <!------------------ content Section Ends Here ------------------->
+      <!--  Dashboard Button Card Ends  -->
+    </section>
+    <!---- Dashboard content ends here -->
 
     <!------------------- App Footer Starts Here ------------------>
     <footer id="appFooter">
