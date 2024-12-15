@@ -54,7 +54,7 @@
                 </div>
 
                 <!-- Login Form -->
-                <div v-if="!isRegistrationForm">
+                <div>
                   <h5 class="card-title text-center text-muted mb-4">
                     <i class="bi bi-shield-lock"></i> {{ app_header.loginText }}
                   </h5>
@@ -78,141 +78,20 @@
                   </form>
                   <p class="text-muted mt-2 fs-14px text-center">
                     Don't have an account yet?
-                    <a class="text-primary" @click.prevent="showRegForm"
+                    <a class="text-primary"
                       >Register Now</a
                     >
                   </p>
 
                   <p class="text-muted mt-3 fs-14px text-center">
                     Forget your password?
-                    <a class="text-primary" @click.prevent="showLoginForm"
+                    <a class="text-primary"
                       >Change now</a
                     >
                   </p>
                 </div>
 
-                <!-- Registration Form -->
-                <div v-else>
-                  <h5 class="card-title text-center text-muted mb-4">
-                    <i class="bi bi-person-plus"></i> Registration
-                  </h5>
-                  <h6 class="card-title text-center text-sm text-muted mb-4">
-                    Step {{ currentStep }} of 3
-                  </h6>
-
-                  <!-- Step 1: Enter Email -->
-                  <div v-if="currentStep === 1">
-                    <div class="mb-3">
-                      <label class="form-label">Email</label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        v-model="formData.email"
-                        required
-                      />
-                    </div>
-                    <p class="text-danger">{{ errorMessage }}</p>
-                    <div class="d-grid gap-2 col-12 mx-auto">
-                      <button
-                        class="btn btn-primary my-3"
-                        type="button"
-                        @click="validateEmail"
-                      >
-                        Next <i class="bi bi-chevron-double-right"></i>
-                      </button>
-                    </div>
-                  </div>
-
-                  <!-- Step 2: Enter First and Last Name -->
-                  <div v-if="currentStep === 2">
-                    <div class="mb-3">
-                      <label class="form-label">Firstname</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        v-model="formData.firstName"
-                        required
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Lastname</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        v-model="formData.lastName"
-                        required
-                      />
-                    </div>
-                    <p class="text-danger">{{ errorMessage }}</p>
-                    <div class="d-flex justify-content-between">
-                      <button
-                        class="btn btn-secondary"
-                        type="button"
-                        @click="goToStep(1)"
-                      >
-                        <i class="bi bi-chevron-double-left"></i> Back
-                      </button>
-                      <button
-                        class="btn btn-primary"
-                        type="button"
-                        @click="validateNames"
-                      >
-                        Next <i class="bi bi-chevron-double-right"></i>
-                      </button>
-                    </div>
-                  </div>
-
-                  <!-- Step 3: Enter Password -->
-                  <div v-if="currentStep === 3">
-                    <div class="mb-3">
-                      <label class="form-label">Password</label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        v-model="formData.password"
-                        required
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Confirm Password</label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        v-model="formData.confirmPassword"
-                        required
-                      />
-                    </div>
-                    <p class="text-danger">{{ errorMessage }}</p>
-                    <div class="d-flex justify-content-between">
-                      <button
-                        class="btn btn-secondary"
-                        type="button"
-                        @click="goToStep(2)"
-                      >
-                        <i class="bi bi-chevron-double-left"></i> Back
-                      </button>
-                      <button
-                        class="btn btn-success"
-                        type="button"
-                        @click="validatePassword"
-                      >
-                        Submit <i class="bi bi-check-lg"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 fs-14px text-center">
-                    Already have an account?
-                    <a class="text-primary" @click.prevent="showLoginForm"
-                      >Login</a
-                    >
-                  </p>
-                  <p class="text-muted mt-3 fs-14px text-center">
-                    Forget to verify your email?
-                    <a class="text-primary" @click.prevent="showLoginForm"
-                      >Verify now</a
-                    >
-                  </p>
-                </div>
+               
               </div>
             </div>
             <div class="modal-footer border-0"></div>
@@ -327,6 +206,28 @@
       <!-- Navbar Ends -->
     </header>
     <!----------------- App Header Ends Here -------------------->
+      <!------------- Latest News Section Starts Here -------------->
+  <div class="bg-info-subtle ps-1 pt-2 mb-0 border-bottom">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 p-0">
+          <p class="latestNews bg-info-subtle text-info-emphasis fs-6">
+            <!-- <span class=" latestNews text-warning"> -->
+            <i class="bi bi-megaphone-fill blink"></i>
+            Latest News:
+          </p>
+
+          <marquee direction="left" class="text-primary">
+            <a href="https://mathhub.nandysagar.in/combined" target="_blank"
+              class="text-info-emphasis text-decoration-none fw-bold">
+              Welcome to MathHub Combined
+            </a>
+          </marquee>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------- Latest News Section Ends Here -------------->
 
     <!--------------- App Body Starts Here --------------->
 

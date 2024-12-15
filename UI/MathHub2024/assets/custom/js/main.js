@@ -19,17 +19,7 @@ const appHeader = Vue.createApp({
         loginLink: "/login.html", // Default login link
       },
       timer: null, // Timer reference for cleanup
-      isRegistrationForm: false, // Tracks whether to show the registration form
-      currentStep: 1, // Tracks the current registration step
-      formData: {
-        email: "",
-        firstName: "",
-        lastName: "",
-        password: "",
-        confirmPassword: "",
-      },
-      emailExists: null, // Tracks email existence (null = not checked, true = exists, false = doesn't exist)
-      errorMessage: "", // Holds error messages for display
+      
     };
   },
   methods: {
@@ -51,10 +41,130 @@ const appHeader = Vue.createApp({
     },
     handleResize() {
       this.app_header.isMobile = window.innerWidth <= 767;
+    },  
+  },
+  async mounted() {
+    try {
+      // Fetch configuration from config.json
+      const response = await fetch("assets/custom/js/config.json");
+      const config = await response.json();
+      this.app_header.firstLine = config.app_firstname;
+      this.app_header.secondLine = config.app_lastname;
+      this.app_header.appLogoUrl = config.app_logo_url;
+
+      // Start the timer for date-time updates
+      this.updateDateTime(); // Initial call
+      this.timer = setInterval(this.updateDateTime, 1000);
+
+      // Add resize listener
+      window.addEventListener("resize", this.handleResize);
+      this.handleResize(); // Initial resize check
+    } catch (error) {
+      console.error("Error fetching config.json:", error);
+    }
+  },
+  beforeUnmount() {
+    // Clear the timer and remove listeners
+    clearInterval(this.timer);
+    window.removeEventListener("resize", this.handleResize);
+  },
+});
+
+// App Footer
+
+const appFooter = Vue.createApp({
+  data() {
+    return {
+      app_footer: {
+        developer_name: "Sagar Nandy",
+        developer_profile: "https://nandysagar.in/",
+        app_name: "",
+      },
+
+      currentYear: "",
+      sections: [
+        {
+          name: "Official Links",
+          links: [
+            { label: "SSC New Portal", url: "https://ssc.gov.in/" },
+            { label: "WBPSC Portal 1", url: "https://psc.wb.gov.in/" },
+            { label: "WBPSC Portal 2", url: "https://wbpsc.ucanapply.com/" },
+            { label: "Railway - RRB", url: "https://rrbapply.gov.in/" },
+          ],
+        },
+        {
+          name: "Free Mocks",
+          links: [
+            { label: "iMOES Mock", url: "https://imoes.nandysagar.in/" },
+            { label: "RBE Mock", url: "https://rbelearning.com/" },
+            { label: "Parmar SSC Mock", url: "https://www.parmaracademy.in/" },
+            { label: "Test Ranker Mock", url: "https://www.testranker.com/" },
+            { label: "Testbook Mock", url: "https://www.testbook.com/" },
+            { label: "Olive Board Mock", url: "https://www.oliveboard.in/" },
+          ],
+        },
+
+        {
+          name: "Site Links",
+          links: [
+            { label: "Home", url: "/" },
+            { label: "Registration", url: "/registration" },
+            { label: "Login", url: "/login" },
+            { label: "Contact", url: "/contact" },
+            { label: "About", url: "/about" },
+            { label: "Careers", url: "/careers" },
+          ],
+        },
+      ],
+    };
+  },
+
+  methods: {
+    getCurrentYear() {
+      const year = new Date().getFullYear();
+      console.log(year);
+      this.currentYear = year;
     },
+  },
+  created() {
+    this.getCurrentYear(); // Call the method when the component is created
+  },
+
+  async mounted() {
+    try {
+      // Fetch configuration from config.json
+      const response = await fetch("assets/custom/js/config.json");
+      const config = await response.json();
+      this.app_footer.developer_name = config.app_developer_name;
+      this.app_footer.developer_profile = config.app_developer_profile;
+      this.app_footer.app_name = config.app_name;
+    } catch (error) {
+      console.error("Error fetching config.json:", error);
+    }
+  },
+});
+
+// Registration Handler
+
+const regForm = Vue.createApp({
+  data() {
+    return {
+      currentStep: 1, // Tracks the current registration step
+      formData: {
+        email: "",
+        firstName: "",
+        lastName: "",
+        password: "",
+        confirmPassword: "",
+      },
+      emailExists: null, // Tracks email existence (null = not checked, true = exists, false = doesn't exist)
+      errorMessage: "", // Holds error messages for display
+    };
+  },
+  methods: {
 
     showRegForm() {
-      this.isRegistrationForm = true; // Show registration form
+      //this.isRegistrationForm = true; 
       this.currentStep = 1; // Reset to first step
     },
     showLoginForm() {
@@ -183,81 +293,9 @@ const appHeader = Vue.createApp({
   },
 });
 
-// App Footer
-
-const appFooter = Vue.createApp({
-  data() {
-    return {
-      app_footer: {
-        developer_name: "Sagar Nandy",
-        developer_profile: "https://nandysagar.in/",
-        app_name: "",
-      },
-
-      currentYear: "",
-      sections: [
-        {
-          name: "Official Links",
-          links: [
-            { label: "SSC New Portal", url: "https://ssc.gov.in/" },
-            { label: "WBPSC Portal 1", url: "https://psc.wb.gov.in/" },
-            { label: "WBPSC Portal 2", url: "https://wbpsc.ucanapply.com/" },
-            { label: "Railway - RRB", url: "https://rrbapply.gov.in/" },
-          ],
-        },
-        {
-          name: "Free Mocks",
-          links: [
-            { label: "iMOES Mock", url: "https://imoes.nandysagar.in/" },
-            { label: "RBE Mock", url: "https://rbelearning.com/" },
-            { label: "Parmar SSC Mock", url: "https://www.parmaracademy.in/" },
-            { label: "Test Ranker Mock", url: "https://www.testranker.com/" },
-            { label: "Testbook Mock", url: "https://www.testbook.com/" },
-            { label: "Olive Board Mock", url: "https://www.oliveboard.in/" },
-          ],
-        },
-
-        {
-          name: "Site Links",
-          links: [
-            { label: "Home", url: "/" },
-            { label: "Registration", url: "/registration" },
-            { label: "Login", url: "/login" },
-            { label: "Contact", url: "/contact" },
-            { label: "About", url: "/about" },
-            { label: "Careers", url: "/careers" },
-          ],
-        },
-      ],
-    };
-  },
-
-  methods: {
-    getCurrentYear() {
-      const year = new Date().getFullYear();
-      console.log(year);
-      this.currentYear = year;
-    },
-  },
-  created() {
-    this.getCurrentYear(); // Call the method when the component is created
-  },
-
-  async mounted() {
-    try {
-      // Fetch configuration from config.json
-      const response = await fetch("assets/custom/js/config.json");
-      const config = await response.json();
-      this.app_footer.developer_name = config.app_developer_name;
-      this.app_footer.developer_profile = config.app_developer_profile;
-      this.app_footer.app_name = config.app_name;
-    } catch (error) {
-      console.error("Error fetching config.json:", error);
-    }
-  },
-});
-
 // Mount App Header the Vue app
 appHeader.mount("#appHeader");
 // Mount App Footer the Vue app
 appFooter.mount("#appFooter");
+// Mount Registration Form
+regForm.mount("#regForm");

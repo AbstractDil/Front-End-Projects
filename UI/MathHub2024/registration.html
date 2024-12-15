@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathHub Combined</title>
+    <!-- Bootstrap 5.3.3. CSS -->
+    <link rel="stylesheet" href="assets/framework/bootstrap-5.3.3/css/bootstrap.min.css" />
+    <!-- Bootstrap 5.3.3. JS -->
+    <script src="assets/framework/bootstrap-5.3.3/js/bootstrap.min.js"></script>
+    <!-- VueJS CDN version 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/custom/css/main.css" />
+</head>
+
+<body>
+    <!----------------- App Header Starts Here ------------------>
+    <header id="appHeader">
+        <!-- Login Modal Starts Here -->
+        <div class="modal fade" id="LoginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="LoginModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0 pb-0">
+                        <button type="button" class="btn btn-sm rounded-circle btn-close"
+                            data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="px-5">
+                            <div class="d-flex align-items-center justify-content-center mb-4">
+                                <img v-bind:src="app_header.appLogoUrl" alt="App Logo" height="120" width="120"
+                                    class="rounded-circle" />
+                            </div>
+
+                            <!-- Login Form -->
+                            <div>
+                                <h5 class="card-title text-center text-muted mb-4">
+                                    <i class="bi bi-shield-lock"></i> {{ app_header.loginText }}
+                                </h5>
+                                <form>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Password</label>
+                                        <input type="password" class="form-control" required />
+                                    </div>
+                                    <div class="d-grid gap-2 col-12 mx-auto">
+                                        <button class="btn btn-primary text-light my-3" type="submit">
+                                            Login
+                                        </button>
+                                    </div>
+                                </form>
+                                <p class="text-muted mt-2 fs-14px text-center">
+                                    Don't have an account yet?
+                                    <a class="text-primary-emphasis" href="registration.html">Register Now</a>
+                                </p>
+
+                                <p class="text-muted mt-3 fs-14px text-center">
+                                    Forget your password?
+                                    <a class="text-primary-emphasis">Change now</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Login Modal Ends Here -->
+
+        <!-- Topbar Starts  -->
+        <section class="bg-info-subtle position-relative">
+            <div class="container py-1">
+                <small class="m-0 fs-14px list-inline">
+                    <i class="bi bi-alarm"></i>
+                    <span>
+                        <span id="ctopdate" class="mx-1">{{ app_header.formattedDateTime }}</span>
+                        <span id="ctoptimer">{{ app_header.formattedTime }}</span>
+                    </span>
+                    <span class="float-end">
+                        <!-- Dark Mode Btn -->
+                        <a href="/old_combined" target="_blank" title="Old Site" class="text-dark">
+                            <ins>
+                                <i class="bi bi-box-arrow-up-right"></i>
+                                Old Site
+                            </ins>
+                        </a>
+                        <!-- <i class="fa fa-adjust"></i> -->
+                    </span>
+                </small>
+            </div>
+        </section>
+        <!-- Topbar Ends -->
+
+        <!-- header starts -->
+        <section class="py-2 header bg-white border-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-4 col-8 text-start d-flex align-items-center">
+                        <button v-if="app_header.isMobile" class="btn border-0 fs-3 ps-1" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="bi bi-list"></i>
+                        </button>
+                        <a href="/" class="d-flex align-items-center text-decoration-none">
+                            <img v-bind:src="app_header.appLogoUrl" alt="MathHub Combined" height="60" width="60"
+                                class="rounded-circle" />
+                            <h1 class="text-uppercase logo-title fw-bold ms-2 mb-0">
+                                {{ app_header.firstLine }} <br />{{ app_header.secondLine }}
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="col-md-8 col-4 text-end">
+                        <!-- <a
+                v-bind:href="app_header.loginLink"
+                class="btn btn-primary text-light font-sm rounded-pill px-3 btn-login"
+              >
+                <i class="bi bi-person-circle"></i> {{ app_header.loginText }}
+              </a> -->
+
+                        <button class="btn btn-primary text-light rounded-pill px-3 btn-login" data-bs-toggle="modal"
+                            data-bs-target="#LoginModal">
+                            <i class="bi bi-shield-lock"></i> {{ app_header.loginText }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Header Ends -->
+
+        <!-- Navbar Starts -->
+        <nav class="navbar navbar-expand-lg border-bottom bg-white py-1">
+            <div class="container-fluid px-4">
+                <!-- <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item" v-for="url in urls" :key="url.id">
+                            <a class="nav-link active" :href="'/' + url.url">
+                                {{ url.title.charAt(0).toUpperCase() + url.title.slice(1) }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar Ends -->
+    </header>
+    <!----------------- App Header Ends Here -------------------->
+
+      <!------------- Latest News Section Starts Here -------------->
+  <div class="bg-info-subtle ps-1 pt-2 mb-0 border-bottom">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 p-0">
+          <p class="latestNews bg-info-subtle text-info-emphasis fs-6">
+            <!-- <span class=" latestNews text-warning"> -->
+            <i class="bi bi-megaphone-fill blink"></i>
+            Latest News:
+          </p>
+
+          <marquee direction="left" class="text-primary">
+            <a href="https://mathhub.nandysagar.in/combined" target="_blank"
+              class="text-info-emphasis text-decoration-none fw-bold">
+              Welcome to MathHub Combined
+            </a>
+          </marquee>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------- Latest News Section Ends Here -------------->
+
+    <!------------- Registration Page Starts Here  ------------->
+
+    <section class="bg-body-tertiary" id="regForm">
+        <div class="d-flex align-items-center">
+            <div class="container my-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mb-4 mb-lg-0">
+                        <div class="d-flex justify-content-center align-items-center mt-3"><img
+                                src="assets/images/user-with-computer-transformed.webp"
+                                class="d-block img-thumbnail border-0 bg-body-tertiary w-75" alt="Friendship Banner">
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="card p-3 my-4" style="max-width: 22em; margin: auto;">
+                            <div class="card-body text-start">
+                                <h5 class="card-title text-center mb-4 fw-bold text-primary"><i
+                                        class="bi bi-person-add"></i> Registration </h5>
+                                <form>
+                                    <h6 class="card-title text-center text-sm text-muted mb-4">
+                                        Step {{ currentStep }} of 3
+                                    </h6>
+    
+                                    <!-- Step 1: Enter Email -->
+                                    <div v-if="currentStep === 1">
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" v-model="formData.email" required />
+                                        </div>
+                                        <p class="text-danger">{{ errorMessage }}</p>
+                                        <div class="d-grid gap-2 col-12 mx-auto">
+                                            <button class="btn btn-primary my-3" type="button" @click="validateEmail">
+                                                Next <i class="bi bi-chevron-double-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+    
+                                    <!-- Step 2: Enter First and Last Name -->
+                                    <div v-if="currentStep === 2">
+                                        <div class="mb-3">
+                                            <label class="form-label">Firstname</label>
+                                            <input type="text" class="form-control" v-model="formData.firstName" required />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Lastname</label>
+                                            <input type="text" class="form-control" v-model="formData.lastName" required />
+                                        </div>
+                                        <p class="text-danger">{{ errorMessage }}</p>
+                                        <div class="d-flex justify-content-between">
+                                            <button class="btn btn-secondary" type="button" @click="goToStep(1)">
+                                                <i class="bi bi-chevron-double-left"></i> Back
+                                            </button>
+                                            <button class="btn btn-primary" type="button" @click="validateNames">
+                                                Next <i class="bi bi-chevron-double-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+    
+                                    <!-- Step 3: Enter Password -->
+                                    <div v-if="currentStep === 3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" class="form-control" v-model="formData.password"
+                                                required />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" v-model="formData.confirmPassword"
+                                                required />
+                                        </div>
+                                        <p class="text-danger">{{ errorMessage }}</p>
+                                        <div class="d-flex justify-content-between">
+                                            <button class="btn btn-secondary" type="button" @click="goToStep(2)">
+                                                <i class="bi bi-chevron-double-left"></i> Back
+                                            </button>
+                                            <button class="btn btn-primary" type="button" @click="validatePassword">
+                                                Submit <i class="bi bi-check-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <p class="mt-3 mx-3">
+                                <ul class="list-group list-group-flush">
+                                    <li class="text-muted fs-14px"> Already have an account? 
+                                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#LoginModal"
+                                            class="text-primary">Login Now</a></li>
+                                    <li class="text-muted fs-14px"> Already have an account? Forgot to verify your
+                                        email? <a href="/email-verification" class="text-primary">Click here</a></li>
+                                </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!---->
+    </section>
+
+    <!------------- Registration Page Ends Here  ---------------->
+
+    <!------------------- App Footer Starts Here ------------------>
+    <footer id="appFooter">
+        <div class="bg-secondary-dark text-white">
+            <div class="container px-sm-2 px-lg-4 pt-5">
+                <div class="row">
+                    <div v-for="(section, index) in sections" :key="index" class="col-sm-4 col-lg-2 mb-4">
+                        <h6 class="text-uppercase">
+                            <i class="bi bi-link-45deg"></i> {{ section.name }}
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li v-for="(link, linkIndex) in section.links" :key="linkIndex" class="nav-item mb-2">
+                                <a v-bind:href="link.url" class="nav-link p-0 text-light" target="_blank">
+                                    <i class="bi bi-caret-right-fill"></i> {{ link.label }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5 offset-md-1 mb-4">
+                        <h5><i class="bi bi-envelope-at-fill"></i> Contact Us</h5>
+
+                        <p>
+                            <i class="bi bi-geo-alt-fill"></i> Santipur, West Bengal, Nadia
+                        </p>
+
+                        <p>
+                            <i class="bi bi-envelope-check-fill"></i> For any query feel
+                            free to contact with us!
+                            <a href="mailto:nandysagar@yahoo.com?subject=For Technical Support (MathHub Combined)&amp;body= **Write your problem description here but Donot change the subject.**"
+                                class="text-warning text-decoration-none">nandysagar@yahoo.com
+                            </a>
+                        </p>
+
+                        <p class="text-info">
+                            <i class="bi bi-cloud-check-fill"></i> Launched On Nov 03, 2024
+                        </p>
+
+                        <p class="text-light">
+                            <i class="bi bi-eye"></i> Total Visitors :
+                        </p>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column justify-content-center align-items-center py-3 border-top">
+                    <p class="mb-0">
+                        © {{ currentYear }} {{app_footer.app_name}} - All rights reserved.
+                    </p>
+                    <p class="py-0 my-0">
+                        Design &amp; Developed by
+                        <a class="text-warning text-decoration-none" v-bind:href="app_footer.developer_profile"
+                            target="_blank">
+                            {{app_footer.developer_name}}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!------------------- App Footer Ends Here ------------------>
+
+    <script src="assets/custom/js/main.js"></script>
+</body>
+
+</html>
