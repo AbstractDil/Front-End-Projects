@@ -196,7 +196,7 @@ const regForm = Vue.createApp({
       }
 
       // Simulate an API call
-      const simulatedResponse = { exists: false }; // Replace with actual API call
+      const simulatedResponse = { exists: true }; // Replace with actual API call
       await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate delay
 
       if (simulatedResponse.exists) {

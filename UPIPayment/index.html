@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI QR Code Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5 ">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">UPI QR Code Generator</h2>
+                        <form>
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Enter Amount</label>
+                                <input type="number" class="form-control" id="amount" required>
+                            </div>
+                            <button type="button" class="btn btn-primary w-100" id="generate-qr-code">Generate QR Code</button>
+                        </form>
+                        <div class="mt-4" id="qr-code-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.js"></script>
+    <script>
+        // Use a QR code library like jsQR or qrcode.js
+        // For this example, we'll use qrcode.js
+        const qrcode = new QRCode(document.getElementById("qr-code-container"), {
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        document.getElementById('generate-qr-code').addEventListener('click', function() {
+            var amount = document.getElementById('amount').value;
+            var upiLinkId = 'upi://pay?pa=nandy.sagar@airtel&pn=Sagar&tn=Payment&am=' + amount + '&cu=INR';
+
+            qrcode.makeCode(upiLinkId);
+        });
+    </script>
+</body>
+</html>
