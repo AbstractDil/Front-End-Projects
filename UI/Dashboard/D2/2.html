@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            background-color: #ffffff;
+            height: 100vh;
+            position: fixed;
+            top: 56px; /* Adjust for navbar height */
+            left: 0;
+            width: 250px;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar.collapsed {
+            transform: translateX(-250px);
+        }
+
+        .sidebar .nav-link {
+            padding: 10px 20px;
+            color: #343a40;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #e9ecef;
+        }
+
+        .sidebar .nav-link.active {
+            background-color: #cfe2ff;
+            color: #0d6efd;
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .content.collapsed {
+            margin-left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-250px); /* Initially hidden */
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .sidebar.collapsed {
+                transform: translateX(0); /* Show on toggle */
+            }
+
+            .content.collapsed {
+                margin-left: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" id="sidebarToggle">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">Admin Panel</a>
+            <div class="d-flex">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar collapsed">
+        <h5 class="text-center mb-4">Admin Panel</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="bi bi-house"></i>Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#usersSubmenu" role="button" aria-expanded="false" aria-controls="usersSubmenu">
+                    <i class="bi bi-people"></i>Users
+                </a>
+                <div class="collapse" id="usersSubmenu">
+                    <ul class="nav flex-column ms-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-person-plus"></i>Add User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-person-lines-fill"></i>User List</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#productsSubmenu" role="button" aria-expanded="false" aria-controls="productsSubmenu">
+                    <i class="bi bi-box-seam"></i>Products
+                </a>
+                <div class="collapse" id="productsSubmenu">
+                    <ul class="nav flex-column ms-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-plus-square"></i>Add Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-list-ul"></i>Product List</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-gear"></i>Settings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-question-circle"></i>Help</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content collapsed">
+        <h1>Dashboard</h1>
+        <p>Welcome to your admin dashboard.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Users</h5>
+                        <p class="card-text" id="userCount">150</p>
+                        <button class="btn btn-primary" id="increaseUsers">Increase Users</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Products</h5>
+                        <p class="card-text" id="productCount">200</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Orders</h5>
+                        <p class="card-text" id="orderCount">50</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userCountElement = document.getElementById('userCount');
+            const increaseUsersButton = document.getElementById('increaseUsers');
+            let userCount = parseInt(userCountElement.textContent);
+            const sidebar = document.querySelector('.sidebar');
+            const content = document.querySelector('.content');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+
+            increaseUsersButton.addEventListener('click', function() {
+                userCount++;
+                userCountElement.textContent = userCount;
+            });
+
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+        });
+    </script>
+</body>
+</html>
