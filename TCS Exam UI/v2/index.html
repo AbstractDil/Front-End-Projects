@@ -55,6 +55,75 @@
                 </div>
             </div>
         </div>
+        <section
+    class="bg-gray-800 py-4"
+    style="margin-bottom: 0"
+    @load="showAlertModal"
+  >
+    <div class="container mx-auto px-4 text-gray-50">
+      <div class="flex justify-between items-center" id="examInfo">
+        <div class="space-y-1">
+          <div>System Name :</div>
+          <div class="text-yellow-200 text-2xl">C11</div>
+          <div class="text-sm">
+            <a
+              href="#"
+              class="text-white"
+              title="Not your mapped system? If yes, click here and let the invigilator know."
+            >
+              Contact invigilator if the Name and <br />
+              Photograph displayed on the screen is not yours.
+            </a>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-sm" title="Your Name : John Due">
+            Candidate Name :
+            <div
+              class="text-yellow-200"
+              id="Candidate_Name"
+              title="Candidate Name : Sagar"
+            >
+              Sagar
+            </div>
+          </div>
+          <div class="text-sm" title="Candidate Roll No.: 1234567890">
+            Roll No.:
+            <div
+              class="text-yellow-200"
+              id="Candidate_RollNo"
+              title="Candidate Roll No.: MCU202338623"
+            >
+              MCU202338623
+            </div>
+          </div>
+          <div class="text-sm">
+            Subject :
+            <div
+              class="text-yellow-200"
+              id="displaySubject"
+              title="Subject : Computer"
+            >
+              Computer
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-sm">Candidate Photo :</div>
+          <div class="bg-white w-24 h-24">
+            <img
+              src="https://mathhub.nandysagar.in/uploads/profileImage/67000d5c9c6e6-2024-10-04-21-14-28.jpg"
+              alt="Sagar"
+              class="object-cover w-full h-full p-1"
+              title="Candidate Photo : Sagar"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
