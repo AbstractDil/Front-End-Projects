@@ -1,0 +1,16 @@
+@import "tailwindcss" ;
+@source "./*.{html,js}";
+@plugin "daisyui" {
+    themes: light --default;
+}
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --color-primary: #dd4814;
+  }
+
+@layer base {
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  }
