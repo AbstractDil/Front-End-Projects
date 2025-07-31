@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+    themes: light --default, corporate;
+}
+
+@layer base {
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+}

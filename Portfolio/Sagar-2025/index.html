@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
+<body>
+    <!-- Navbar (unchanged) -->
+    <div class="navbar bg-base-100 border-b border-b-slate-300">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </label>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-ghost normal-case text-xl">YourName</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <a class="btn btn-primary">Hire Me</a>
+        </div>
+    </div>
+
+    <!-- Updated Hero Section for Full Stack Developer -->
+    <!-- <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content flex-col lg:flex-row-reverse lg:items-center">
+          <div class="avatar lg:mb-0 mb-8">
+            <div class="w-64 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img
+                src="https://www.nandysagar.in/assets/images/avatarSagar.jpg"
+                alt="Profile Picture"
+              />
+            </div>
+          </div>
+          <div class="max-w-md lg:text-left text-center">
+            <h1 class="text-5xl font-bold">Hello, I'm YourName</h1>
+            <p class="py-6">
+              I'm a passionate Full Stack Developer dedicated to building robust and
+              scalable web applications. With expertise in front-end (React, Vue.js)
+              and back-end (Node.js, Python) technologies, I create seamless digital
+              solutions from concept to deployment.
+            </p>
+            <div class="flex gap-4 lg:justify-start justify-center">
+              <button class="btn btn-primary">View Projects</button>
+              <button class="btn btn-outline">Download CV</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Hero Section -->
+      <div class="hero min-h-screen bg-gradient-to-br from-base-50 to-base-100">
+        <div class="hero-content w-full max-w-7xl mx-auto px-4 flex flex-col lg:flex-row lg:items-center lg:gap-12">
+          <!-- Text Content (Left Side on Desktop) -->
+          <div class="w-full lg:max-w-xl text-center lg:text-left order-2 lg:order-1 mt-8 lg:mt-0 fade-in-up px-4">
+            <h1 class="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mb-4">
+              Hello, I'm YourName
+            </h1>
+            <p class="py-6 text-lg text-base-content/80">
+              I'm a passionate Full Stack Developer dedicated to building robust and scalable web applications. With expertise in front-end (React, Vue.js) and back-end (Node.js, Python) technologies, I create seamless digital solutions from concept to deployment.
+            </p>
+            <div class="flex gap-4 justify-center lg:justify-start">
+              <button class="btn btn-primary btn-lg hover:scale-105 transition-transform duration-200">
+                View Projects
+              </button>
+              <button class="btn btn-outline btn-lg hover:scale-105 transition-transform duration-200">
+                Download CV
+              </button>
+            </div>
+          </div>
+          
+          <!-- Image (Right Side on Desktop) -->
+          <div class="lg:flex-1 order-1 lg:order-2 flex justify-center fade-in">
+            <div class="avatar relative">
+              <div class="w-60 md:w-72 rounded-full ring-2 ring-primary ring-offset-base-100 ring-offset-4 shadow-2xl hover:scale-105 transition-transform duration-300">
+                <img
+                  src="https://www.nandysagar.in/assets/images/avatarSagar.jpg"
+                  alt="Profile Picture"
+                  class="object-cover"
+                />
+              </div>
+              <!-- Decorative element -->
+              <div class="absolute -z-10 w-72 md:w-96 h-72 md:h-96 bg-primary/20 rounded-full blur-3xl -top-10"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+     
+</body>
+</html>
