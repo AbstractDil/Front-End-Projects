@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar Nandy - Education</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font 'Inter' -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+        }
+
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+        }
+        
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animate-delay-1 {
+            animation-delay: 0.3s;
+        }
+        .animate-delay-2 {
+            animation-delay: 0.5s;
+        }
+
+        /* Hover effects */
+        .card-hover:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-hover:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Timeline specific styles */
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+            list-style: none;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #e5e7eb;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 3px solid #6366f1;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd)::before {
+            left: 50%;
+            transform: translateX(-150%);
+        }
+        .timeline-item:nth-child(even)::before {
+            left: 50%;
+            transform: translateX(50%);
+        }
+        .timeline-content {
+            padding: 1rem 2rem;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: relative;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            text-align: right;
+            margin-right: calc(50% + 20px);
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            text-align: left;
+            margin-left: calc(50% + 20px);
+        }
+        
+        /* Mobile styles for timeline */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+                transform: translateX(0);
+            }
+            .timeline-item::before {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                text-align: left;
+                margin-left: 50px;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-xxl">
+            <a class="navbar-brand fw-bold text-dark" href="index.html">Sagar Nandy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="education.html">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Education Section -->
+        <section id="education" class="section bg-light">
+            <div class="container">
+                <h2 class="display-5 fw-bold text-center mb-5 animate-fade-in-up">My Education</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="timeline">
+                            <div class="timeline-item animate-fade-in-up animate-delay-1">
+                                <div class="timeline-content card border-0 rounded-4 shadow-sm p-4 card-hover">
+                                    <h5 class="fw-bold text-dark">University of Technology</h5>
+                                    <p class="text-muted mb-1">Master of Science in Computer Science</p>
+                                    <p class="fw-medium text-secondary mb-2" style="font-size: 0.9rem;">2020 - 2022</p>
+                                    <p class="card-text text-muted">Specialized in web development and database management.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item animate-fade-in-up animate-delay-2">
+                                <div class="timeline-content card border-0 rounded-4 shadow-sm p-4 card-hover">
+                                    <h5 class="fw-bold text-dark">College of Arts and Science</h5>
+                                    <p class="text-muted mb-1">Bachelor of Computer Applications</p>
+                                    <p class="fw-medium text-secondary mb-2" style="font-size: 0.9rem;">2017 - 2020</p>
+                                    <p class="card-text text-muted">Covered a broad range of topics including software engineering and data structures.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bootstrap JS CDN (with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

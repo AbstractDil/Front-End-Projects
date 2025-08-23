@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar Nandy - Contact</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="src/css/styles.css">
+   
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-xxl">
+            <a class="navbar-brand fw-bold text-dark" href="index.html">Sagar Nandy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="education.html">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted fw-medium" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-white">
+            <div class="container">
+                <h2 class="display-5 fw-bold text-center mb-5 animate-fade-in-up">Get in Touch</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 animate-fade-in-up animate-delay-1">
+                        <div class="card shadow-sm border-0 rounded-4 h-100 p-4">
+                            <h4 class="fw-bold mb-3">Contact Form</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label text-muted">Your Name</label>
+                                    <input type="text" class="form-control rounded-pill" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label text-muted">Email Address</label>
+                                    <input type="email" class="form-control rounded-pill" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label text-muted">Subject</label>
+                                    <input type="text" class="form-control rounded-pill" id="subject" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label text-muted">Message</label>
+                                    <textarea class="form-control rounded-4" id="message" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-dark rounded-pill fw-medium px-4 py-2 mt-3">Send Message <i class="fas fa-paper-plane ms-1"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 animate-fade-in-up animate-delay-2">
+                        <div class="card shadow-sm border-0 rounded-4 h-100 p-4">
+                            <h4 class="fw-bold mb-3">Contact Information</h4>
+                            <ul class="list-unstyled">
+                                <li class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-map-marker-alt me-3 text-secondary" style="font-size: 1.5rem;"></i>
+                                    <span class="text-muted">New York, NY 10001, USA</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-envelope me-3 text-secondary" style="font-size: 1.5rem;"></i>
+                                    <span class="text-muted">contact@your-domain.com</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-phone-alt me-3 text-secondary" style="font-size: 1.5rem;"></i>
+                                    <span class="text-muted">+1 234 567 8900</span>
+                                </li>
+                            </ul>
+                            <h5 class="fw-bold mt-4 mb-3">Find Me On</h5>
+                            <div class="d-flex">
+                                <a href="#" class="text-dark me-3 icon-hover" style="font-size: 2rem;"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-primary me-3 icon-hover" style="font-size: 2rem;"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-info me-3 icon-hover" style="font-size: 2rem;"><i class="fab fa-twitter"></i></a>
+                            </div>
+                            <!-- Map Placeholder -->
+                            <div class="mt-4 text-center">
+                                <img src="https://placehold.co/600x400/E5E7EB/4B5563?text=Map+Goes+Here" alt="Map Location" class="img-fluid rounded-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Bootstrap JS CDN (with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="src/js/scripts.js"></script>
+</body>
+</html>
