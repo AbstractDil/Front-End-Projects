@@ -1,0 +1,126 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Form Styling */
+#shipmentForm {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+#shipmentForm input, #shipmentForm button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#shipmentForm input {
+    flex-grow: 1;
+}
+
+#shipmentForm button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#shipmentForm button:hover {
+    background-color: #0056b3;
+}
+
+/* Shipment List Styling */
+#shipmentList {
+    list-style: none;
+    padding: 0;
+}
+
+#shipmentList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.shipment-info {
+    flex-grow: 1;
+}
+
+/* Status Badges */
+.status {
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: white;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.status-pending {
+    background-color: #ffc107; /* Yellow */
+}
+
+.status-shipped {
+    background-color: #17a2b8; /* Cyan */
+}
+
+.status-delivered {
+    background-color: #28a745; /* Green */
+}
+
+.status-delayed {
+    background-color: #dc3545; /* Red */
+}
+
+/* Controls Styling */
+.update-btn, .delete-btn {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.update-btn {
+    border: 1px solid #ced4da;
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}

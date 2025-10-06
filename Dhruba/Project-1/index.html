@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Shipment Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Shipment Tracker</h1>
+        
+        <form id="shipmentForm">
+            <input type="text" id="trackingNumber" placeholder="Tracking Number" required>
+            <input type="text" id="carrier" placeholder="Carrier (e.g., FedEx, USPS)" required>
+            <input type="date" id="expectedDate" required>
+            <button type="submit">Add Shipment</button>
+        </form>
+
+        <h2>Current Shipments</h2>
+        <ul id="shipmentList">
+            </ul>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
