@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Location Tracker</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+        /* Custom CSS for the Leaflet Map */
+        #map {
+            height: 60vh; /* Map takes 60% of the viewport height */
+            width: 100%;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <!-- Load Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+</head>
+<body class="min-h-screen p-4 sm:p-8 flex flex-col items-center">
+
+    <div class="max-w-4xl w-full bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border border-gray-100">
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-2">GPS Location Tracker</h1>
+        <p class="text-gray-500 mb-6">See your current position updated in real-time on the map.</p>
+        
+        <!-- Map Container -->
+        <div id="map" class="mb-6"></div>
+
+        <!-- Controls and Status Panel -->
+        <div class="space-y-4">
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button id="startBtn"
+                        class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 ease-in-out shadow-lg shadow-green-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg class="inline w-5 h-5 mr-2 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Start Tracking
+                </button>
+                <button id="stopBtn" disabled
+                        class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 ease-in-out shadow-lg shadow-red-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg class="inline w-5 h-5 mr-2 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Stop Tracking
+                </button>
+            </div>
+
+            <!-- Status Display -->
+            <div id="status" class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-sm leading-relaxed text-gray-700">
+                <p>Click "Start Tracking" to begin monitoring your live location.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Load Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20n6cT8xVefGzK0p5gofGop884v9zWft6xByU+azn0k="
+        crossorigin=""></script>
+
+    <script>
+        // --- MAP INITIALIZATION ---
+        // Initialize map (centered on a default location, e.g., London)
+        const map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19,
+        }).addTo(map);
+
+        // --- GLOBAL STATE ---
+        let currentMarker = null;
+        let watchId = null;
+        
+        const statusDiv = document.getElementById('status');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+
+        // --- GEOLOCATION HANDLERS ---
+        
+        // Function to update location (success callback)
+        function updateLocation(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
+            
+            // 1. Update status display
+            statusDiv.innerHTML = `
+                <p class="font-bold text-green-600">Status: Tracking</p>
+                <ul class="list-disc list-inside mt-1">
+                    <li>Latitude: <span class="font-mono">${lat.toFixed(6)}</span></li>
+                    <li>Longitude: <span class="font-mono">${lng.toFixed(6)}</span></li>
+                    <li>Accuracy: <span class="font-mono">${accuracy.toFixed(0)}m</span></li>
+                    <li>Last updated: <span class="font-mono">${new Date().toLocaleTimeString()}</span></li>
+                </ul>
+            `;
+            
+            // 2. Update map marker
+            const popupContent = `Your current location. <br>Accuracy: ${accuracy.toFixed(0)}m`;
+
+            if (currentMarker) {
+                // Update existing marker's position and popup content
+                currentMarker.setLatLng([lat, lng]);
+                currentMarker.getPopup().setContent(popupContent);
+            } else {
+                // Create new marker
+                currentMarker = L.marker([lat, lng], {
+                    // Use a custom icon/color for better visibility
+                    icon: L.divIcon({
+                        className: 'custom-div-icon',
+                        html: '<div class="bg-blue-600 p-2 rounded-full ring-4 ring-blue-300 shadow-xl"></div>',
+                        iconSize: [20, 20]
+                    })
+                }).addTo(map)
+                    .bindPopup(popupContent, {
+                        closeButton: false
+                    })
+                    .openPopup();
+            }
+            
+            // 3. Center map on location and adjust zoom
+            map.setView([lat, lng], 16);
+        }
+
+        // Function to handle geolocation errors
+        function errorLocation(error) {
+            let message = 'An unknown error occurred.';
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    message = "Permission denied: Please allow location access to use the tracker.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    message = "Position unavailable: Could not determine your location.";
+                    break;
+                case error.TIMEOUT:
+                    message = "Timeout: Took too long to get location. Try again.";
+                    break;
+            }
+            statusDiv.innerHTML = `<p class="text-red-600 font-bold">Error: ${message}</p>`;
+            console.error("Geolocation Error:", error.message);
+            stopTracking();
+        }
+
+
+        // Function to start location tracking
+        function startTracking() {
+            if (navigator.geolocation) {
+                statusDiv.innerHTML = '<p class="text-blue-500 font-semibold">Attempting to get initial location... (Please ensure permissions are granted)</p>';
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+
+                const options = {
+                    enableHighAccuracy: true, // Request the best possible accuracy
+                    maximumAge: 0,            // Don't use cached position
+                    timeout: 5000             // Wait up to 5 seconds for a reading
+                };
+
+                // Use watchPosition for continuous updates
+                watchId = navigator.geolocation.watchPosition(updateLocation, errorLocation, options);
+            } else {
+                statusDiv.innerHTML = '<p class="text-red-500 font-bold">Geolocation is not supported by this browser.</p>';
+            }
+        }
+
+        // Function to stop location tracking
+        function stopTracking() {
+            if (watchId !== null) {
+                navigator.geolocation.clearWatch(watchId);
+                watchId = null;
+                statusDiv.innerHTML = `<p class="text-gray-700">Status: <span class="text-yellow-600 font-bold">Tracking Stopped</span>. Click Start to resume.</p>`;
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            }
+        }
+        
+        // --- EVENT LISTENERS ---
+        startBtn.addEventListener('click', startTracking);
+        stopBtn.addEventListener('click', stopTracking);
+    </script>
+</body>
+</html>
