@@ -157,10 +157,16 @@
     
     console.log("==========================================");
     console.log("👤 **Candidate & Exam Details** 📝");
+    console.log("===========================================");
+    console.log("%c Powered by Sagar Nandy (https://nandysagar.in/).",
+  "color: yellow; font-weight: bold; background-color: black;");
+    console.log("==========================================");
     console.table(details);
     console.log("==========================================");
 
     console.log("📊 **Exam Score Calculation Summary** 📊");
+     console.log("%c Powered by Sagar Nandy (https://nandysagar.in/).",
+  "color: yellow; font-weight: bold; background-color: black;");
     
     if (partsList.length > 0) {
         console.log("📚 **Parts Included:**");
