@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Examination Login</title>
+
+  <link rel="stylesheet" href="assets/css/base.css">
+
+  <link rel="stylesheet" href="assets/css/loginUI.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+<body class="bg-light">
+
+  <div id="overlay">
+    <div class="cv-spinner">
+      <div class="spinner-container">
+        <div class="spinner"></div>
+        <div class="spinner-text">Loading...</div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row bg-light" style="padding-top:8px;">
+      <div class="col-md-6">
+        <div style="font-size: 17px; padding-bottom:4px;">
+          <div class="exam-name hidden-print">
+            SSC CGL Full Length Practice Test 01
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <section class="jumbotron" style="margin-bottom:0px;" onload="showAlertModal();">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-center " id="examInfo">
+        <div class="systemInfo">
+          <div id="sysName">System Name :</div>
+          <div id="sysNumber">C176</div>
+          <div class="msg">
+            <a href="#" class="fc-white"
+              title="Not your mapped system? If yes, click here and let the invigilator know.">
+              Contact invigilator if the Name and <br>
+              Photograph displayed on the screen is not yours.
+            </a>
+          </div>
+        </div>
+
+        <div class="userInfo">
+          <div class="userName" title="Your Name : John Due">
+            Candidate Name :
+            <div class="CandidateName" id="Candidate_Name" title="Candidate Name : Sagar">
+              Sagar </div>
+          </div>
+          <div class="userRollNumber" title="Candidate Roll No.: 1234567890">
+            Roll No.:
+            <div id="Candidate_RollNo" class="RollNo" title="Candidate Roll No.: MCU202338623">
+
+              MCU202338623 
+            </div>
+          </div>
+          <div class="subject">
+            Subject :
+
+            <div id="displaySubject" class="subjectName" title="Subject : Reasoning, GA, Math, English ">
+              Reasoning, GA, Math, English </div>
+          </div>
+        </div>
+
+        <div class="CandidatePhoto">
+          Candidate Photo :
+
+          <div class="Candidate_Photo bg-white w-100">
+            <img src="https://mathhub.nandysagar.in/uploads/profileImage/67000d5c9c6e6-2024-10-04-21-14-28.jpg"
+              alt="Sagar" class="img-thumbnail mt-5px" width="95" height="95" title="Candidate Photo : Sagar">
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
+
+  <script>
+    // stop loading spinner
+    window.addEventListener("load", function () {
+      const overlay = document.getElementById("overlay");
+      overlay.style.display = "none";
+    });
+  </script>
+
+  <footer>
+    <div class="container">
+      <p style="padding-top:8px;">&copy; 2025 Mock Examination. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+/*
+**********************************
+* Base CSS
+* updated on : 14/12/2025
+* updated by : Sagar Nandy
+**********************************
+*/
+
+/* CSS Resets and Global Settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+}
+html,
+body,
+p {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: auto;
+    font-size: 12px;
+    cursor: default;
+    
+    /* Redundant user-select is kept for compatibility */
+    -webkit-user-select: none; 
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    padding-bottom: 40px;
+}
+
+/* Color Variables Definition - Accessible by all linked CSS */
+:root {
+    --bg-black: #4f5050;
+    --bg-light: #fafbfc;
+    --bg-primary: #007bff;
+    --bg-light-blue: #e6f2ff;
+    --bg-white: #fff;
+    --bg-yellow: #fff200;
+    --bg-light-yellow:#fff8d0;
+    --font-white: #fff;
+    --font-black: #000;
+    --font-yellow: #fff200;
+    --font-grey: #aaadad;
+    --bg-grey: #aaadad;
+    --bg-dark-mode: #000;
+    /* Added to align with jumbotron color usage */
+    --text-light: var(--font-white); 
+}
+
+/* Remove Number Input Arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Anchor Styles */
+a {
+  text-decoration: none !important;
+  color: inherit; 
+}
+a:hover {
+  text-decoration: none;
+  color: inherit; 
+}
+
+/* Font Colors */
+.fc-white {
+    color: var(--font-white); /* Using variable here */
+}
+.fc-black {
+    color: var(--font-black); /* Using variable here */
+}
+.fc-yellow {
+    color: var(--font-yellow); /* Using variable here */
+}
+.fc-red{
+    color: red;
+}
+
+/* Font Styles */
+.fs-1 {
+    font-size: 5rem;
+}
+.fs-18 {
+    font-size: 18px;
+}
+.fs-40 {
+    font-size: 40px;
+    color: var(--font-yellow);
+}
+.fs-lead {
+    font-size: 16px !important;
+}
+.fw-bold{
+  font-weight: bold !important;
+}
+
+/* Padding & Margins*/
+.p-1 {
+    padding: 8px 0px 8px 10px;
+}
+.py-5{
+    padding-top:2rem;
+    padding-bottom: 2rem;
+}
+.p-0 {
+    padding: 0px !important;
+}
+.m-0 {
+    margin: 0px !important;
+}
+.mt-20 {
+    margin-top: 20px;
+}
+.mt-5px {
+    margin-top: 5px;
+}
+.mt-50px {
+    margin-top: 50px;
+}
+.ml-20px {
+    margin-left: 20px;
+}
+
+/* Background Colour */
+.bg-grey {
+    background-color: var(--bg-black); /* Using variable here */
+}
+.bg-light {
+    background-color: #f1f1f1;
+}
+
+textarea { resize: none; }
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #acaaaa;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #747373;
+}
+
+/* Flex Utilities */
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.d-flex {
+    display: flex;
+}
+.align-center{
+    align-items: center;
+}
+.justify-content-between {
+    justify-content:space-between;
+}
+
+/* Button Reset */
+button{
+    outline: none !important;
+    background : transparent;
+    border: none !important;
+}
+button:focus { outline: none; }
+
+/* Global Footer Style (Uses base variables) */
+footer {
+    background-color:var(--bg-black);
+    color: var(--font-white);
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid var(--font-black);
+    /* === NEW PROPERTIES FOR FIXED BOTTOM FOOTER === */
+    position: fixed;
+    bottom: 0;     
+    left: 0;   
+    width: 100%;   
+    z-index: 1000; 
+    /* ============================================== */
+}
+
+/* Loading Spinner/Overlay Styles */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+.cv-spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+  background-color: var(--bg-white);
+  border-radius: 10%;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 10px #ddd solid;
+  border-top: 10px #4fa2c2 solid;
+  border-radius: 50%;
+  animation: sp-anime 0.8s infinite linear;
+  margin-bottom: 10px;
+}
+.spinner-text {
+  font-size: 1.2em;
+  color: #2e3c44;
+  font-weight: bold;
+}
+@keyframes sp-anime {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Print Style */
+@media print and (width: 21cm) and (height: 29.7cm) {
+     @page {
+        margin: 3cm;
+     }
+}

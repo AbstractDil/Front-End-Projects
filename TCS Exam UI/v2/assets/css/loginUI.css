@@ -1,0 +1,151 @@
+/*
+**********************************
+* Login UI CSS
+* updated on : 14/12/2025
+* updated by : Sagar Nandy
+**********************************
+*/
+
+/* Exam Name Bar */
+.exam-name {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px !important;
+    margin:0px;
+    border: 5px solid var(--font-black);
+    background-color: var(--bg-light-yellow); /* Uses variable from base.css */
+    color: var(--font-black) !important;
+}
+
+/* Login Section & Cautions */
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cautionMsg {
+  width: 400px;
+}
+
+.alert-danger {
+  background-color: red;
+  color: var(--font-white);
+  font-size: 14px;
+}
+
+.panel .panel-heading {
+  font-size: 18px;
+}
+
+.input-group {
+  margin: 10px 0px 10px 0px;
+}
+
+.login-container {
+  margin-top: 50px;
+}
+
+.timer-section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: red;
+  font-size: 15px;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Exam Info Section Styles */
+
+/* Jumbotron - Uses base variables */
+.jumbotron {
+  background-color: var(--bg-black) !important;
+  color: var(--text-light);
+  padding: 0px !important;
+  min-height: 162px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#examInfo {
+  color: var(--font-white);
+}
+
+@media screen and (max-width: 768px) {
+  #examInfo {
+    padding: 2% 0 2% 0;
+    margin-left: 0px !important;; 
+  }
+}
+
+#sysName {
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left:0px;
+  text-align: left;
+  color: var(--font-white);
+}
+
+@media screen and (max-width: 768px) {
+  #sysName {
+    font-size: 14px;
+  }
+}
+
+#sysNumber {
+  font-size: 40px;
+  margin-top: 0px !important;
+  margin-left: 0px;
+  text-align: left;
+  color: var(--font-yellow);
+}
+
+@media screen and (max-width: 768px) {
+  #sysNumber {
+    font-size: 24px;
+  }
+}
+
+.msg {
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left: 0px;
+  text-align: left;
+  color: var(--font-white);
+}
+
+.msg a {
+  color: var(--font-white);
+  text-decoration: none;
+}
+
+.userName,
+.userRollNumber,
+.subject {
+  margin-top: 5px;
+  font-size: 14px;
+}
+@media screen and (max-width: 768px) {
+  #displayCandidateName,
+  #displayRollNumber {
+    font-size: 14px;
+  }
+}
+
+.subjectName,
+.CandidateName,
+.RollNo{
+  color: var(--font-yellow);
+  font-size:15px;
+}
+
+.CandidatePhoto {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
