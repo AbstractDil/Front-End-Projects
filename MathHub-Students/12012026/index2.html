@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math Notes - Algebraic Identities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Indie+Flower&family=Patrick+Hand&display=swap");
+
+      /* ===============================
+   PRINT PAGE CONTROL (CRITICAL)
+================================ */
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      /* ===============================
+   COLOR VARIABLES
+================================ */
+      :root {
+        --paper-bg: #fffef0;
+        --line-color: #e0e7ff;
+        --margin-color: #fecaca;
+        --ink-color: #2b3a67;
+        --highlight: rgba(255, 255, 0, 0.4);
+        --red-circle: #ef4444;
+      }
+
+      /* ===============================
+   BASE BODY
+================================ */
+      body {
+        background-color: #d1d5db;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        font-family: "Patrick Hand", cursive;
+      }
+
+      /* ===============================
+   NOTEBOOK PAGE (A4 SAFE)
+================================ */
+      .notebook-page {
+        width: 200mm;
+        /* SAFE printable width */
+        height: 287mm;
+        /* SAFE printable height */
+        background-color: var(--paper-bg);
+        background-image: linear-gradient(
+          var(--line-color) 1px,
+          transparent 1px
+        );
+        background-size: 100% 1.5rem;
+        position: relative;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        border: 1px solid #e5e7eb;
+        color: var(--ink-color);
+        line-height: 1.5rem;
+        /* MATCH ruling */
+        box-sizing: border-box;
+        display: flex;
+      }
+
+
+      /* =============================
+      Warning stamp
+    ================================ */
+     .warning-stamp {
+            border: 2px solid #ef4444;
+            color: #ef4444;
+            padding: 8px 15px;
+            font-family: 'Gochi Hand', cursive;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            /* transform: rotate(-2deg); */
+            display: inline-block;
+            border-radius: 4px;
+            /* background-color: rgba(239, 68, 68, 0.05); */
+            margin-top:8px;
+        }
+
+      /* ===============================
+   PAGE CONTENT WRAPPER
+================================ */
+      .page-content {
+        padding: 1.5rem 2rem 1.5rem 5rem;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ===============================
+   LEFT MARGIN LINE
+================================ */
+      .notebook-page::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 4rem;
+        width: 2px;
+        height: 100%;
+        background-color: var(--margin-color);
+      }
+      
+
+      /* ===============================
+   TYPOGRAPHY
+================================ */
+      .heading {
+        font-family: "Gochi Hand", cursive;
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        text-decoration: underline wavy #6366f1;
+        transform: rotate(-0.5deg);
+      }
+
+      .section-title {
+        font-family: "Indie Flower", cursive;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-top: 0.75rem;
+        color: #1e3a8a;
+        display: inline-block;
+        border-bottom: 2px dashed #93c5fd;
+      }
+
+      /* ===============================
+   INLINE DECORATIONS
+================================ */
+      .highlight {
+        background: linear-gradient(
+          104deg,
+          rgba(255, 255, 0, 0) 1%,
+          rgba(255, 255, 0, 0.4) 6%,
+          rgba(255, 255, 0, 0.1) 95%,
+          rgba(255, 255, 0, 0) 99%
+        );
+        padding: 0 4px;
+        border-radius: 4px;
+      }
+
+      .circle-red {
+        border: 1.5px solid var(--red-circle);
+        border-radius: 50% 45% 55% 48%;
+        padding: 1px 4px;
+        display: inline-block;
+      }
+
+      /* ===============================
+   FORMULAS & NOTES
+================================ */
+      .formula {
+        font-family: "Fira Code", monospace;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .box-note {
+        border: 1px solid #94a3b8;
+        padding: 6px 10px;
+        margin: 4px 0;
+        background: rgba(255, 255, 255, 0.55);
+        border-radius: 5px;
+        font-size: 0.8rem;
+      }
+
+      .grid-formulas {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.3rem 1.5rem;
+      }
+
+      .formula-num {
+        font-size: 0.75rem;
+        color: #ef4444;
+        font-weight: bold;
+        margin-right: 4px;
+      }
+
+      section {
+        margin-bottom: 0.5rem;
+      }
+
+      /* ===============================
+   PRINT MODE OVERRIDES
+================================ */
+      @media print {
+        body {
+          background: none;
+          padding: 0;
+        }
+
+        .notebook-page {
+          box-shadow: none;
+          border: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="notebook-page">
+         <div class="page-content">
+      <h1 class="heading">Algebraic Identities - Master Sheet</h1>
+
+      <!-- Square Identities Section -->
+      <section>
+        <span class="section-title mt-8">I. Square Identities</span>
+
+        <div class="mt-1 space-y-0.5">
+          <p class="italic text-xs">
+            Fundamental Forms <span class="highlight">Expansion</span>:
+          </p>
+          <div class="ml-4 space-y-0.5">
+            <p>
+              1.
+              <span class="formula"
+                >(a + b)<sup class="circle-red">2</sup> = a<sup
+                  class="circle-red"
+                  >2</sup
+                >
+                + <span class="circle-red">2</span>ab + b<sup class="circle-red"
+                  >2</sup
+                ></span
+              >
+            </p>
+            <p>
+              2.
+              <span class="formula"
+                >(a - b)<sup class="circle-red">2</sup> = a<sup
+                  class="circle-red"
+                  >2</sup
+                >
+                - <span class="circle-red">2</span>ab + b<sup class="circle-red"
+                  >2</sup
+                ></span
+              >
+            </p>
+            <p>
+              3.
+              <span class="formula"
+                >(a<sup class="circle-red">2</sup> - b<sup class="circle-red"
+                  >2</sup
+                >) = (a + b)(a - b)</span
+              >
+              <span class="text-[10px] text-blue-500 ml-1"
+                >← Diff of Squares!</span
+              >
+            </p>
+          </div>
+
+          <div class="box-note">
+            <p class="font-bold underline mb-1">
+              Useful Combinations & Rearrangements:
+            </p>
+            <div class="grid-formulas">
+              <p class="formula text-xs">
+                <span class="formula-num">i.</span>
+                <span class="circle-red">2</span>(a<sup class="circle-red"
+                  >2</sup
+                >
+                + b<sup class="circle-red">2</sup>) = (a+b)<sup
+                  class="circle-red"
+                  >2</sup
+                >
+                + (a-b)<sup class="circle-red">2</sup>
+              </p>
+              <p class="formula text-xs">
+                <span class="formula-num">ii.</span>
+                <span class="circle-red">4</span>ab = (a + b)<sup
+                  class="circle-red"
+                  >2</sup
+                >
+                - (a - b)<sup class="circle-red">2</sup>
+              </p>
+              <p class="formula text-xs">
+                <span class="formula-num">iii.</span> ab = (<span class="frac"
+                  >a+b/2</span
+                >)<sup class="circle-red">2</sup> - (<span class="frac"
+                  >a-b/2</span
+                >)<sup class="circle-red">2</sup>
+              </p>
+              <p class="formula text-xs">
+                <span class="formula-num">iv.</span> a<sup class="circle-red"
+                  >2</sup
+                >
+                + b<sup class="circle-red">2</sup> = (a + b)<sup
+                  class="circle-red"
+                  >2</sup
+                >
+                - <span class="circle-red">2</span>ab
+              </p>
+              <p class="formula text-xs">
+                <span class="formula-num">v.</span> a<sup class="circle-red"
+                  >2</sup
+                >
+                + b<sup class="circle-red">2</sup> = (a - b)<sup
+                  class="circle-red"
+                  >2</sup
+                >
+                + <span class="circle-red">2</span>ab
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-1 ml-4">
+            <p class="italic text-xs">Switching between Sum and Difference:</p>
+            <p class="formula text-xs">
+              4. (a + b)<sup class="circle-red">2</sup> = (a - b)<sup
+                class="circle-red"
+                >2</sup
+              >
+              + <span class="circle-red">4</span>ab
+            </p>
+            <p class="formula text-xs">
+              5. (a - b)<sup class="circle-red">2</sup> = (a + b)<sup
+                class="circle-red"
+                >2</sup
+              >
+              - <span class="circle-red">4</span>ab
+            </p>
+          </div>
+
+          <div class="mt-1 ml-4">
+            <p class="highlight inline-block text-xs">
+              Triple Variable Square:
+            </p>
+            <p class="formula mt-0.5">
+              (a + b + c)<sup class="circle-red">2</sup> = a<sup
+                class="circle-red"
+                >2</sup
+              >
+              + b<sup class="circle-red">2</sup> + c<sup class="circle-red"
+                >2</sup
+              >
+              + <span class="circle-red">2</span>ab +
+              <span class="circle-red">2</span>bc +
+              <span class="circle-red">2</span>ca
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cubes Section -->
+      <section>
+        <span class="section-title">II. Cube Identities</span>
+        <div class="mt-1 space-y-1">
+          <div class="grid-formulas items-start">
+            <div>
+              <p class="italic text-xs">
+                <span class="highlight">Expanded Versions</span>:
+              </p>
+              <p class="formula text-xs mt-1">
+                6. (a + b)<sup class="circle-red">3</sup> = a<sup
+                  class="circle-red"
+                  >3</sup
+                >
+                + b<sup class="circle-red">3</sup> +
+                <span class="circle-red">3</span>a<sup class="circle-red">2</sup
+                >b + <span class="circle-red">3</span>ab<sup class="circle-red"
+                  >2</sup
+                >
+              </p>
+              <p class="formula text-xs">
+                7. (a - b)<sup class="circle-red">3</sup> = a<sup
+                  class="circle-red"
+                  >3</sup
+                >
+                - <span class="circle-red">3</span>a<sup class="circle-red"
+                  >2</sup
+                >b + <span class="circle-red">3</span>ab<sup class="circle-red"
+                  >2</sup
+                >
+                - b<sup class="circle-red">3</sup>
+              </p>
+            </div>
+            <div>
+              <p class="italic text-xs">
+                <span class="highlight">Factorized Versions</span>:
+              </p>
+              <p class="formula text-xs mt-1">
+                8. (a + b)<sup class="circle-red">3</sup> = a<sup
+                  class="circle-red"
+                  >3</sup
+                >
+                + b<sup class="circle-red">3</sup> +
+                <span class="circle-red">3</span>ab(a + b)
+              </p>
+              <p class="formula text-xs">
+                9. (a - b)<sup class="circle-red">3</sup> = a<sup
+                  class="circle-red"
+                  >3</sup
+                >
+                - b<sup class="circle-red">3</sup> -
+                <span class="circle-red">3</span>ab(a - b)
+              </p>
+            </div>
+          </div>
+
+          <p class="formula text-xs mt-1">
+            10. a<sup class="circle-red">3</sup> + b<sup class="circle-red"
+              >3</sup
+            >
+            = (a + b)<sup class="circle-red">3</sup> -
+            <span class="circle-red">3</span>ab(a + b)
+            <span class="text-[10px] text-red-500">← Alternative Form!</span>
+          </p>
+
+          <div class="flex items-center gap-4">
+            <div
+              class="p-2 border-2 border-dashed border-red-200 rounded bg-white/50 flex-grow"
+            >
+              <span class="highlight text-xs font-bold">Sum/Diff of Cubes:</span
+              ><br />
+              <span class="formula text-xs"
+                >a<sup class="circle-red">3</sup> + b<sup class="circle-red"
+                  >3</sup
+                >
+                = (a + b)(a<sup class="circle-red">2</sup> - ab + b<sup
+                  class="circle-red"
+                  >2</sup
+                >)</span
+              ><br />
+              <span class="formula text-xs"
+                >a<sup class="circle-red">3</sup> - b<sup class="circle-red"
+                  >3</sup
+                >
+                = (a - b)(a<sup class="circle-red">2</sup> + ab + b<sup
+                  class="circle-red"
+                  >2</sup
+                >)</span
+              >
+            </div>
+            <div class="text-[10px] italic leading-tight text-gray-500 w-24">
+              Watch signs!<br />
+              (+) gets (-)ab<br />
+              (-) gets (+)ab
+            </div>
+          </div>
+
+          <div class="box-note bg-blue-50/50">
+            <p class="highlight inline-block text-xs font-bold">
+              Triple Variable Cube:
+            </p>
+            <p class="formula mt-0.5 text-xs">
+              (a + b + c)<sup class="circle-red">3</sup> = a³ + b³ + c³ +
+              3(a+b)(b+c)(c+a)
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Section -->
+      <!-- The Big One -->
+      <section class="mt-2">
+        <span class="section-title">III. Conditional Identity</span>
+        <div class="mt-2">
+          <p class="formula text-xs">
+            a³ + b³ + c³ - 3abc = (a+b+c)(a² + b² + c² - ab - bc - ca)
+          </p>
+          <div class="box-note mt-1 bg-yellow-50">
+            <span class="highlight">IMPORTANT:</span> If
+            <span class="circle-red">a + b + c = 0</span>, then
+            <span class="formula">a³ + b³ + c³ = 3abc</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- WARNING MESSAGE -->
+        <div class="mt-2">
+            <div class="warning-stamp">
+                <p class="text-start mb-1"> <span class="font-bold text-underline">Warning 
+                    for Students: </span>
+                    <span>This content is only for <span class="underline">MathHub Students</span> students. Sharing this content with others is strictly prohibited.</span>
+                </p>
+            </div>
+        </div>
+
+      <!-- Footer Decoration -->
+      <div class="mt-auto pb-2 opacity-50 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <!-- <svg width="30" height="30" viewBox="0 0 60 60">
+            <circle
+              cx="30"
+              cy="30"
+              r="25"
+              fill="none"
+              stroke="#f87171"
+              stroke-width="2"
+            />
+            <path d="M15 30 Q30 10 45 30 T15 30" fill="#fef08a" />
+          </svg> -->
+          <span class="text-xs italic">
+            Prepared with ♥ for Math Enthusiasts by Sagar Nandy
+          </span>
+        </div>
+        <div class="text-[10px] text-gray-400">
+          Page <span>1</span>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </body>
+</html>

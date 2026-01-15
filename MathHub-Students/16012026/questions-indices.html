@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1st Internal Assessment Test - Mathematics - Class IX</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Gravitas+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+
+        
+
+        body {
+           font-family: 'Noto Sans Bengali', 'Kalpurush', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            box-sizing: border-box;
+        }
+        /* Header Setup */
+        .exam-header {
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            gap : 3rem;
+            border: 2px dashed #555;
+            /* border-bottom: 2px solid #000; */
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-family: poppins, sans-serif;
+        }
+        .logo-area {
+            width: 80px;
+            height: 80px;
+            /* border: 1px dashed #ccc; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            text-align: center;
+            /* margin-top:12px; */
+        }
+        .header-info {
+            text-align: left;
+            line-height: 1.6;
+        }
+        .header-info h2 {
+            margin: 0;
+            font-size:22px;
+            /* text-decoration: underline; */
+        }
+        .header-info p {
+            margin: 2px 0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Study Note Sections */
+        .section-title {
+            background: #f2f2f2;
+            padding: 5px 10px;
+            border-left: 5px solid #2c3e50;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+            font-size: 16px;
+        }
+        .formula-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            border: 1px solid #333;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .math-box {
+            font-size: 1.4em;
+            text-align: center;
+            padding: 15px;
+            background: #fff8e1;
+            border: 2px solid #ffc107;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .step-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .step {
+            border: 1px solid #2980b9;
+            padding: 8px;
+            border-radius: 4px;
+            background: #e1f5fe;
+            font-size: 13px;
+        }
+        .arrow { font-size: 20px; color: #e74c3c; }
+
+        /* Questions */
+        .question-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .question-list li {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            text-align: center;
+            border-top: 2px solid #ddd;
+            padding-top: 8px;
+            font-size: 11px;
+            color: #555;
+        }
+
+        
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; width: 100%; height: 100%; }
+            .print-btn { display: none; }
+        }
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Print This Page</button>
+
+<div class="page">
+    <!-- Header Section Starts -->
+    <div class="exam-header">
+        <div class="logo-area">
+            <!-- ORGANISATION<br>LOGO -->
+             <img src="images/logo.png" alt="Organisation Logo" style="max-width: 140%; max-height: 140%;">
+        </div>
+        <div class="header-info">
+            <h2>1ST INTERNAL ASSESSMENT TEST</h2>
+            <p>Class: IX &nbsp;&nbsp; Session: 2026</p>
+            <p>Subject: Mathematics &nbsp;&nbsp; Set-01</p>
+            <p>Full Marks: 30 &nbsp;&nbsp; Time: 60 Minutes</p>
+        </div>
+    </div>
+    <!-- Header Section Ends -->
+
+    <!-- <div class="section-title">⭐ বিশেষ গাণিতিক সমস্যা (Hot Question)</div>
+    <div class="math-box">
+        $[ \{(81^{-3/4})^{1/9}\}^3 ]^{-1}$
+    </div>
+
+    <div class="step-container">
+        <div class="step">ধাপ ১: $81 = 3^4$ বসাও</div>
+        <div class="arrow">➞</div>
+        <div class="step">ধাপ ২: ঘাতগুলি গুণ করো</div>
+        <div class="arrow">➞</div>
+        <div class="step">ধাপ ৩: উত্তর আসবে $3$</div>
+    </div> -->
+
+    <div class="section-title">Section-A: 
+        Answer the following questions: (1 marks each)
+    </div>
+    <ol class="question-list">
+        <li> সরলতম মান নির্ণয় করো: $[ \{(81^{-3/4})^{1/9}\}^3 ]^{-1}$</li>
+        <li>সরল করো: $\left[ \left( \frac{x^b}{x^c} \right)^{b+c} \times \left( \frac{x^c}{x^a} \right)^{c+a} \times \left( \frac{x^a}{x^b} \right)^{a+b} \right] $</li>
+        <li>\( 2^{\frac{1}{2}} \times 2^{-\frac{1}{2}} \times (16)^{\frac{1}{2}} \) এর মান কত?</li>
+        <li>সত্য না মিথ্যা লেখো: $5^0 = 0$</li>
+        <li>যদি $3^x = 81$ হয়, তবে $x$ এর মান কত?</li>
+        <li>$ (5^5 + 0.01)^2 - (5^5 - 0.01)^2 = 5^x $ হলে, $ x $ -এর মান কত?</li>
+        <li>
+        $ \frac{(2^3 \times 3^2)^4}{(2^2 \times 3^3)^2} $ এর মান নির্ণয় করো।
+        </li>
+        <li>
+        $ \sqrt[3]{54} + \sqrt[3]{16} - \sqrt[3]{2} $ এর মান নির্ণয় করো।
+        </li>
+        <li>
+        \( 3^{3^3} \) এবং \( (3^3)^3 \) -এর মধ্যে কোনটি বৃহত্তর?
+        </li>
+        <li>
+        \( 6^{2x+4} = 3^{3x} \cdot 2^{x+8} \) হলে, \( x \) -এর মান নির্ণয় করো।
+        </li>
+        <li>
+            মান নির্ণয় করো: \( [\{(2^{-1})^{-1}\}^{-1}]^{-1} \)
+        </li>
+    </ol>
+
+    <div class="section-title">Section-B: 
+        Answer any one question from the following: (4 marks)
+    </div>
+    <ol class="question-list">
+        <li>
+             <div class="question-item">
+             সমাধান করো:
+                \[ \frac{xy}{x+y} = \frac{1}{5} \quad  \quad \frac{xy}{x-y} = \frac{1}{9} \]
+            </div>
+        </li>
+        <li>
+           <div class="question-item">
+                 সমাধান করো:
+                \[ \frac{1}{x-1} + \frac{1}{y-2} = 3 \]
+                \[ \frac{2}{x-1} + \frac{3}{y-2} = 5 \]
+            </div>
+        </li>
+    </ol>
+
+   
+
+
+
+   <div class="footer">
+    <img src="images/footer.jpg"
+         alt="Organisation Footer"
+         style="max-width: 80%; opacity: 0.85;">
+    <div style="margin-top: 4px;">
+        © 2026 • Internal Assessment • Confidential
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
