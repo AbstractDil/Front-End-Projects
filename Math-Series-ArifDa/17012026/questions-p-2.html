@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internal Assessment</title>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+        },
+        svg: {
+          fontCache: "global",
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <style>
+      /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap'); */
+
+      @import url("https://fonts.googleapis.com/css2?family=Gravitas+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+      body {
+        /* font-family: 'Poppins', sans-serif; */
+        font-family: "Roboto Condensed", sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Pre and Code Styling */
+      pre {
+        /* border : 1px dashed #ccc; */
+        margin: 0;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 15mm;
+        margin: 10mm auto;
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+
+        /* ADD THESE THREE LINES */
+        box-sizing: border-box; 
+        border: 2px solid #000; /* Standard solid border */
+        outline: 4px double #000; /* Optional: Adds a secondary outer "frame" look */
+        outline-offset: -14px;    /* Pulls the double line inside the page */
+      }
+
+      /* ===== WATERMARK ===== */
+      .page::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300px;
+        height: 300px;
+        background: url("images/logo.png") no-repeat center;
+        background-size: contain;
+        opacity: 0.08;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Ensure content stays above watermark */
+      .page > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Header Setup */
+      .exam-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        border: 2px dashed #555;
+        border-radius: 8px;
+        /* border-bottom: 2px solid #000; */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .logo-area {
+        width: 80px;
+        height: 80px;
+        /* border: 1px dashed #ccc; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        text-align: center;
+        /* margin-top:12px; */
+      }
+
+      .header-info {
+        text-align: left;
+        line-height: 1.6;
+      }
+
+      .header-info h2 {
+        margin: 0;
+        font-size: 22px;
+        /* text-decoration: underline; */
+      }
+
+      .header-info p {
+        margin: 2px 0;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      /* Study Note Sections */
+      .section-title {
+        background: #f2f2f2;
+        padding: 5px 10px;
+        border-left: 5px solid #2c3e50;
+        font-weight: bold;
+        margin: 15px 0 10px 0;
+        font-size: 16px;
+      }
+
+      .formula-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        border: 1px solid #333;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
+
+      .math-box {
+        font-size: 1.4em;
+        text-align: center;
+        padding: 15px;
+        background: #fff8e1;
+        border: 2px solid #ffc107;
+        margin: 15px 0;
+        border-radius: 8px;
+      }
+
+      .step-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 10px 0;
+      }
+
+      .step {
+        border: 1px solid #2980b9;
+        padding: 8px;
+        border-radius: 4px;
+        background: #e1f5fe;
+        font-size: 13px;
+      }
+
+      .arrow {
+        font-size: 20px;
+        color: #e74c3c;
+      }
+
+      /* Questions */
+      .question-list {
+        margin-top: 10px;
+        padding-left: 12px;
+        list-style: none;
+        counter-reset: my-counter;
+      }
+
+      .question-list li {
+        margin-bottom: 8px;
+        font-size: 16px;
+        counter-increment: my-counter;
+      }
+
+      .question-list li::before {
+        content: counter(my-counter, lower-alpha) ") ";
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 10mm;
+        left: 15mm;
+        right: 15mm;
+        text-align: center;
+        border-top: 2px solid #ddd;
+        padding-top: 8px;
+        font-size: 11px;
+        color: #555;
+      }
+
+      .wish-container {
+    margin-top: 40px;
+    padding: 15px;
+    text-align: center;
+    border: 2px dashed #2c3e50;
+    border-radius: 10px;
+    background-color: #fdfdfd;
+}
+
+.wish-message {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.sub-wish {
+    font-size: 13px;
+    color: #7f8c8d;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+      @media print {
+        body {
+          background: none;
+        }
+
+        @media print {
+          .page {
+            page-break-after: always;
+          }
+        }
+
+        .page {
+          margin: 0;
+          box-shadow: none;
+          width: 100%;
+          height: 100%;
+        }
+
+        .print-btn {
+          display: none;
+        }
+      }
+
+      .print-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background: #27ae60;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="print-btn" onclick="window.print()">Print This Page</button>
+
+    <div class="page" data-page="1">
+      <!-- Header Section Starts -->
+      <div class="exam-header">
+        <div class="logo-area">
+          <!-- ORGANISATION<br>LOGO -->
+          <img
+            src="images/logo.png"
+            alt="Organisation Logo"
+            style="max-width: 140%; max-height: 140%"
+          />
+        </div>
+        <div class="header-info">
+          <h2>INTERNAL ASSESSMENT</h2>
+          <p>Class: U.G. Sem-3 &nbsp;&nbsp; Session: 2025-26</p>
+          <p>Subject: Math-H-SEC-T-1A ( C-Programming )</p>
+          <p>Full Marks: 45 &nbsp;&nbsp; Time: 2 Hours 15 Minutes</p>
+        </div>
+      </div>
+      <!-- Header Section Ends -->
+
+      <!-- <div class="section-title">⭐ বিশেষ গাণিতিক সমস্যা (Hot Question)</div>
+    <div class="math-box">
+        $[ \{(81^{-3/4})^{1/9}\}^3 ]^{-1}$
+    </div>
+
+    <div class="step-container">
+        <div class="step">ধাপ ১: $81 = 3^4$ বসাও</div>
+        <div class="arrow">➞</div>
+        <div class="step">ধাপ ২: ঘাতগুলি গুণ করো</div>
+        <div class="arrow">➞</div>
+        <div class="step">ধাপ ৩: উত্তর আসবে $3$</div>
+    </div> -->
+
+      <div class="section-title">
+        1. Answer any FIVE questions: (2 marks each)
+      </div>
+      <ol class="question-list" type="a">
+        <li>Explain nested if-else statements with an example.</li>
+        <li>What are the main Data Types present in C?</li>
+        <li>
+          Find <i>x</i> and <i>y</i>, where (<i>x.y</i>)<sub>10</sub> =
+          (10111.1101)<sub>2</sub>
+        </li>
+        <li>
+          What will be the output of the following C code?
+          <pre>
+            <code>
+    #include &lt;stdio.h&gt;
+
+    int main() {
+        int a = 10;
+        printf("%d, %d, %d, %d\n", a++, ++a, a--, --a);
+        printf("%d", a);
+        return 0;
+    }
+</code>
+</pre>
+        </li>
+
+        <li>
+          How many times will the loop be executed?
+          <pre>
+                        <code>
+    int x = <span class="number">2345</span>;
+    while(x > <span class="number">0</span>) 
+    {
+        x = x / <span class="number">10</span>;
+    }
+    </code>
+    </pre>
+        </li>
+
+        <li>Convert (101101)<sub>2</sub> to hexadecimal.</li>
+
+        <li>Differentiate between system software and application software.</li>
+
+        <li>
+          What are tokens in C programming? How many types of tokens are there?
+        </li>
+      </ol>
+
+      <div class="section-title">
+        2. Answer any THREE questions: (5 marks each)
+      </div>
+      <ol class="question-list">
+        <li>
+          How do you initialize a two-dimensional array in C? Can it be passed
+          through a function? Explain with an example.
+        </li>
+        <li>
+          Illustrate function prototypes with an example. Define a function in C
+          to calculate the factorial of a number using recursion.
+        </li>
+        <li>
+          Define string in C. Write a program to find the length of a string
+          without using library functions.
+        </li>
+      </ol>
+
+      <div class="footer">
+        <img
+          src="images/footer.jpg"
+          alt="Organisation Footer"
+          style="max-width: 80%; opacity: 0.85"
+        />
+        <div style="margin-top: 4px">Page - 1</div>
+      </div>
+    </div>
+
+    <div class="page" data-page="2">
+      <!-- <div class="section-title">
+        2. Answer any TWO questions (Continued):
+      </div> -->
+
+      <ol class="question-list" style="counter-reset: my-counter 3">
+        <li>
+          An electricity board charges the following rates to domestic
+          consumers.First 100 units: ₹1.50 per unit, Next 100 units: ₹2.50 per
+          unit and Above 200 units: ₹4.00 per unit. Write a C program to input
+          the number of units consumed by a consumer and calculate the total
+          electricity bill.Add a fixed meter charge of ₹50 to the final bill.
+          Display the total payable amount.
+        </li>
+         <li>
+          Write the two applications of C programming language. Write a C program to find simple interest. (2 + 3)
+        </li>
+      </ol>
+
+      <div class="section-title">
+        3. Answer any TWO questions: (10 marks each)
+      </div>
+      <ol class="question-list">
+        <li>
+        Write a C program to find the largest and smallest element in an array of 10 integers. 
+          Write a C program Write a program to perform Matrix Multiplication of two $3 \times 3$
+          matrices. (5 + 5)
+        </li>
+        <li>
+          What is a pointer? Explain pointer arithmetic. Write a program to swap
+          two numbers using call by reference.  (2 + 2 + 6)
+        </li>
+        <li>
+            Draw a flowchart to check if a given number is a palindrome or not. Write the C program for the same. Write a C program to find the mean of 10 given numbers. (4 + 4 + 2)
+        </li>
+        <li>
+           Write a short note on bubble sort. Write a C program that takes an integer as input from the user and checks wherther it is even or odd using bitwise operator. Write a C program to find all roots of a quadratic equation. (2 + 4 + 4)
+        </li>
+      </ol>
+
+
+     
+
+        <div class="wish-container" style="margin-top:450px;">
+    <p class="wish-message">🌟 BEST OF LUCK FOR YOUR EXAM! 🌟</p>
+    <p class="sub-wish">"Believe in yourself and all that you are."</p>
+</div>
+
+      <div class="footer">
+        <img
+          src="images/footer.jpg"
+          alt="Organisation Footer"
+          style="max-width: 80%; opacity: 0.85"
+        />
+        <div style="margin-top: 4px">Page - 2</div>
+      </div>
+    </div>
+
+  
+
+  </body>
+</html>

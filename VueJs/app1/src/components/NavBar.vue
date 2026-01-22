@@ -7,7 +7,7 @@
     <div class="container px-4">
       <!-- Logo and App Title -->
       <router-link class="navbar-brand" to="/">
-        <img width="30" height="30" alt="Vue logo" src="../assets/logo.png">
+        <img width="30" height="30" alt="Vue logo" src="@/assets/logo.png">
         <span class="mx-1 text-success">{{ appTitle }}</span>
       </router-link>
 
@@ -95,7 +95,7 @@
   <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
   <div class="offcanvas-header">
     <router-link class="navbar-brand" to="/">
-        <img width="30" height="30" alt="Vue logo" src="../assets/logo.png">
+        <img width="30" height="30" alt="Vue logo" src="@/assets/logo.png">
         <span class="mx-1 text-success fs-5" id="mobileSidebarLabel">{{ appTitle }}</span>
     </router-link>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
