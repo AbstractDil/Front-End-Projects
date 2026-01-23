@@ -9,7 +9,7 @@
         background-color: #f0f0f0;
          margin: 0;
         padding: 0;
-        font-family: "Poppins", sans-serif;
+        font-family: "Roboto", sans-serif;
       }
 
       /* Header Setup */
@@ -776,13 +776,387 @@ int main()
 
 <!-- ================= PAGE 10 ================= -->
 <div class="page">
+<div class="ques-ans">
+        <div class="question">
+          3.  (b) (i) Write a program in C to print the following outputs using for loops:<br>
+            1<br>
+            2 2<br>
+            3 3 3<br>
+            4 4 4 4<br>
+            5 5 5 5 5
+        </div>
 
+        <div>
+            <b>Answer:</b><br>
+            <b>Program:</b>
+            <div class="code-box">
+<pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int i, j;
+
+    for(i = 1; i <= 5; i++) {
+        for(j = 1; j <= i; j++) {
+            printf("%d ", i);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}</code></pre>
+            </div>
+            <br>
+            <b>Explanation:</b><br>
+            The program uses nested <b>for loops</b>. The outer loop (variable <code>i</code>) tracks the row number and the value to be printed (from 1 to 5). The inner loop (variable <code>j</code>) controls how many times that value is printed in each row. For row <code>i</code>, the inner loop runs <code>i</code> times. After the inner loop finishes, <code>printf("\n")</code> moves the cursor to the next line.
+        </div>
+    </div>
+
+    <div class="ques-ans">
+        <div class="question">
+           3. (b) (iii) Determine the value of the logical expression <code>a == c || b > a</code>, for <code>a = 5, b = 10, c = -6</code>.
+        </div>
+
+        <div>
+            <b>Answer:</b><br>
+            Given values: <code>a = 5, b = 10, c = -6</code><br>
+            Expression: <code>(a == c) || (b > a)</code><br><br>
+            
+            <b>Step-by-step Evaluation:</b>
+            <ul>
+                <li><b>(a == c):</b> 5 == -6 is <b>False (0)</b>.</li>
+                <li><b>(b > a):</b> 10 > 5 is <b>True (1)</b>.</li>
+                <li><b>Final Expression:</b> (0 || 1) results in <b>1 (True)</b>.</li>
+            </ul>
+
+            <b>Explanation:</b><br>
+            In C, the logical OR operator (<code>||</code>) evaluates to true if <i>either</i> or <i>both</i> operands are true. Since the second condition is true, the entire logical expression evaluates to 1.
+        </div>
+    </div>
    
 
     <div class="page-num">Page 10</div>
 </div>
 
+<!-- ================= PAGE 11 ================= -->
+<div class="page">
+   <div class="ques-ans">
+        <div class="question">
+          3. (b) (ii) Write a C program that will read the value of x and evaluate f(x), where:<br>
+            f(x) = e<sup>x</sup> - x (if x < 0)<br>
+            f(x) = sin(x) + 1 (if x &ge; 0)
+        </div>
+
+        <div>
+            <b>Answer:</b><br>
+            <b>Program:</b>
+            <div class="code-box">
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    double x, result;
+
+    printf("Enter the value of x: ");
+    if (scanf("%lf", &x) == 1) {
+        if (x < 0) {
+            result = exp(x) - x;
+        } else {
+            result = sin(x) + 1;
+        }
+        printf("f(x) = %lf\n", result);
+    }
+
+    return 0;
+}</code></pre>
+            </div>
+            <br>
+            <b>Explanation:</b><br>
+            This program utilizes the <code>math.h</code> library for the <code>exp()</code> and <code>sin()</code> functions. A simple <b>if-else</b> control structure evaluates the user's input against the condition <i>x < 0</i> to decide which mathematical formula to apply.
+        </div>
+    </div>
+
+    <div class="page-num">Page 11</div>
+</div>
+
+<!-- ================= PAGE 12 ================= -->
+<div class="page">
+<div class="ques-ans">
+    <div class="question">
+      3. (a) (i)  What is an if-else-if ladder structure? Explain it with a suitable C program example.
+    </div>
+
+    <div>
+        <b>Answer:</b><br> <br>
+        The <b>if-else-if ladder</b> is a multi-way decision-making structure used when we have multiple conditions to check. The conditions are evaluated from the top downwards. As soon as a true condition is found, the statement associated with it is executed, and the rest of the ladder is skipped. If none of the conditions are true, the final <code>else</code> statement is executed.
+        <br> <br>
+
+        <b>Program Example (Grading System):</b>
+        <div class="code-box">
+<pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int marks;
+
+    printf("Enter your marks (0-100): ");
+    scanf("%d", &marks);
+
+    if (marks >= 80) {
+        printf("Grade: A\n");
+    } 
+    else if (marks >= 60) {
+        printf("Grade: B\n");
+    } 
+    else if (marks >= 40) {
+        printf("Grade: C\n");
+    } 
+    else {
+        printf("Grade: Fail\n");
+    }
+
+    return 0;
+}</code></pre>
+        </div>
+         <br>
+        <b>Explanation:</b><br>
+        <ul>
+            <li><b>Sequential Evaluation:</b> The program first checks if <code>marks >= 80</code>. If this is true, it prints "Grade: A" and skips all subsequent <code>else if</code> and <code>else</code> blocks.</li>
+            <li><b>Branching:</b> If the first condition is false, it moves to <code>else if (marks >= 60)</code>. It only checks this because the previous condition failed.</li>
+            <li><b>Default Case:</b> The final <code>else</code> acts as a "catch-all" block. If none of the mathematical conditions (80, 60, or 40) are met, the program executes the code within the <code>else</code> block, printing "Grade: Fail".</li>
+        </ul>
+    </div>
+</div>
+
+  <div class="page-num">Page 12</div>
+
+</div>
+
+<!-- ================= PAGE 13 ================= -->
+<div class="page">
+
+  <div class="ques-ans">
+    <div class="question">
+      3. (a) (ii) Write a C program to find the sum of the series: 1 - 1/2 + 1/3 - 1/4 ... + 1/51.
+    </div>
+
+    <div>
+      <b>Answer:</b>
+      <div class="code-box">
+<pre><code>#include &lt;stdio.h&gt;
+ int main(){
+    int n, i;
+    float sum = 0.0;
+
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+
+    for(i = 1; i <= n; i++){
+        if(i % 2 == 0){
+            sum -= 1 /(float) i;
+        } else {
+            sum += 1 / (float)i;
+        }
+    }
+
+    printf("The sum of the series is: %.3f\n", sum);
+    return 0;
+}</code></pre>
+      </div>
+      <br>
+      <b>Explanation:</b><br />
+      <ul>
+        <li>
+          The program initializes a variable <code>sum</code> to store the sum of the series.
+        </li>
+        <li>
+          It uses a <code>for</code> loop to iterate from 1 to <code>n</code> (51 in this case).
+        </li>
+        <li>
+          Inside the loop, it checks if the current index <code>i</code> is even or odd using the modulus operator (<code>%</code>).
+        </li>
+        <li>
+          If <code>i</code> is even, it subtracts <code>1/i</code> from <code>sum</code>; if odd, it adds <code>1/i</code>.
+        </li>
+        <li>
+          Finally, it prints the computed sum of the series formatted to three decimal places.
+        </li>
+      </ul>
+    </div> 
+
+  </div>
+
+ <div class="ques-ans">
+    <div class="question">
+        3. (a) (iii) What is function call-by-value?
+    </div>
+
+    <div>
+        <b>Answer:</b><br>
+        Function <b>call-by-value</b> is a method of passing arguments to a function where the actual value of the argument is copied into the formal parameters of the function. Because the function works on a local copy, any changes made to the parameters inside the function do not affect the original variables used in the function call.
+
+        <br><br>
+        <b>Program Example:</b>
+        <div class="code-box">
+<pre><code>#include &lt;stdio.h&gt;
+
+int sum(int a, int b) {
+    a = a + 10; // Modifying the local copy 'a'
+    return a + b;
+}
+
+int main() {
+    int x = 5, y = 10;
+    int result = sum(x, y);
+
+    printf("Result: %d\n", result);      // Output: 25
+    printf("Original x: %d, y: %d\n", x, y); 
+    // Output: x: 5, y: 10 (unchanged)
+
+    return 0;
+}</code></pre>
+        </div>
+    </div>
+</div>
+  <div class="page-num">Page 13</div>
+
+  </div>
+
+  <!-- ================== Page-14 ================== -->
+
+  <div class="page">
+
+     <b>Explanation:</b><br>
+        In this example, the function <code>sum</code> receives copies of <code>x</code> and <code>y</code> into its local parameters <code>a</code> and <code>b</code>. Even though <code>a</code> is incremented by 10 inside the function, the original variable <code>x</code> in the <code>main</code> function remains 5. This demonstrates that call-by-value protects the original data from being modified by the called function.
+
+        <br> <br>
+
+        <div class="ques-ans">
+        <div class="question">
+            3. (d) (i) Write a C program to print the largest of three real numbers.
+        </div>
+
+        <div>
+            <b>Answer:</b><br>
+            <b>Program:</b>
+            <div class="code-box">
+<pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    float a, b, c;
+
+    printf("Enter three real numbers: ");
+    scanf("%f %f %f", &a, &b, &c);
+
+    if(a >= b && a >= c)
+        printf("Largest number = %f", a);
+    else if(b >= a && b >= c)
+        printf("Largest number = %f", b);
+    else
+        printf("Largest number = %f", c);
+
+    // Using ternary operator
+    // float largest = (a >= b && a >= c) ? a : (b >= a && b >= c) ? b : c;
+    // printf("Largest number = %f", largest);    
+
+    return 0;
+}</code></pre>
+            </div>
+             <br>
+            <b>Explanation:</b><br>
+            The program compares the three real numbers using conditional statements
+            and prints the largest among them.
+        </div>
+    </div>
+
+    <div class="ques-ans">
+        <div class="question">
+            3. (d) (ii) What do you mean by local and global variables in C?
+            Explain with suitable examples.
+        </div>
+
+        <div>
+            <b>Answer:</b><br> <br>
+            <b>Local Variables:</b><br>
+            Local variables are variables declared inside a function or block.
+            Their scope is limited to that function or block.
+            <br><br>
+
+            <b>Example:</b>
+            <div class="code-box">
+<pre><code>void fun()
+{
+    int x = 10;   // local variable
+    printf("%d", x);
+}</code></pre>
+            </div>
+
+           
+        </div>
+    </div>
+
+    <div class="page-num">Page 14</div>
+  </div>
+
+  <!-- ================= PAGE 15 ================= -->
+<div class="page">
+ <b>Global Variables:</b><br>
+            Global variables are variables declared outside all functions.
+            They can be accessed by all functions in the program.
+            <br><br>
+
+            <b>Example:</b>
+            <div class="code-box">
+<pre><code>int y = 20;   // global variable
+
+void fun()
+{
+    printf("%d", y);
+}</code></pre>
+            </div>
+
+            <br> <br>
+
+             <div class="ques-ans">
+        <div class="question">
+            3. (d) (iii) Write a C program to find whether a given year is leap year or not.
+        </div>
+
+        <div>
+            <b>Answer:</b><br>
+            <b>Program:</b>
+            <div class="code-box">
+<pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int year;
+
+    printf("Enter a year: ");
+    scanf("%d", &year);
+
+    if((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0))
+        printf("The year is a Leap Year.");
+    else
+        printf("The year is Not a Leap Year.");
+
+    return 0;
+}</code></pre>
+            </div>
+            <br>
+            <b>Explanation:</b><br>
+            A year is a leap year if it is divisible by 400 or
+            divisible by 4 but not divisible by 100.
+            The program checks these conditions and displays the result.
+        </div>
+    </div>
+    
+
+    <div class="page-num">Page 15</div>
+</div>
+
+
 
 
   </body>
 </html>
+
