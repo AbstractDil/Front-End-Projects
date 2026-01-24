@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>C Programming Study Notes</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Gravitas+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", sans-serif;
+        }
+
+        /* Header Setup */
+        .exam-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            border: 2px dashed #555;
+            border-radius: 8px;
+            /* border-bottom: 2px solid #000; */
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .logo-area {
+            width: 80px;
+            height: 80px;
+            /* border: 1px dashed #ccc; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            text-align: center;
+            /* margin-top:12px; */
+        }
+
+        .header-info {
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .header-info h3 {
+            margin: 0;
+            font-size: 18px;
+            /* text-decoration: underline; */
+        }
+
+        .header-info p {
+            margin: 2px 0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background-color: #fff;
+             background-image: 
+                linear-gradient(#e1e1e1 1px, transparent 1px);
+            background-size: 100% 30px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 40px 60px;
+            box-sizing: border-box;
+            line-height: 30px;
+        } */
+
+        /* Pre and Code Styling */
+        pre {
+            /* border : 1px dashed #ccc; */
+            margin: 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .page {
+            font-size: 14px;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+
+            /* ADD THESE THREE LINES */
+            box-sizing: border-box;
+            border: 2px solid #000;
+            /* Standard solid border */
+            outline: 4px double #000;
+            /* Optional: Adds a secondary outer "frame" look */
+            outline-offset: -14px;
+            /* Pulls the double line inside the page */
+        }
+
+        /* ===== WATERMARK ===== */
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: url("images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.08;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Ensure content stays above watermark */
+        .page>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* .margin-line {
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #ffcccc;
+        } */
+        h1 {
+            text-align: center;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .highlight {
+            background-color: #ffff00;
+            padding: 0 5px;
+            border-radius: 3px;
+        }
+
+        .circle-red {
+            border: 2px solid #ff0000;
+            border-radius: 50%;
+            padding: 0 5px;
+            display: inline-block;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .doodle {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.6;
+        }
+
+        .flowchart {
+            border: 2px dashed #888;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            width: fit-content;
+        }
+
+        .code-box {
+            border: 1px dashed #ccc;
+            padding: 10px;
+            /* background: #f9f9f9; */
+            font-family: "Courier New", monospace;
+            line-height: 1.2;
+            margin-top: 5px;
+        }
+
+        .ques-ans {
+            margin-bottom: 15px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .page-num {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+        }
+
+        .callout {
+            border: 1px solid #888;
+            padding: 5px;
+            font-size: 0.9em;
+            transform: rotate(-2deg);
+            background: #fff;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-left: 40px;
+            margin-top: 10px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                page-break-after: always;
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+@media print {
+  /* This targets the physical page */
+  @page {
+    margin: 0;
+  }
+  }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ======================= Page 1 ======================== -->
+    <div class="page">
+        <!-- Header Section Starts -->
+        <div class="exam-header">
+            <div class="logo-area">
+                <!-- ORGANISATION<br>LOGO -->
+                <img src="images/logo.png" alt="Organisation Logo" style="max-width: 140%; max-height: 140%" />
+            </div>
+            <div class="header-info">
+                <h3>U.G. 3rd Semester Examination - 2022</h3>
+                <p>Course: [MATHEMATICS HONOURS]</p>
+                <p>Paper: Skill Enhancement Course (SEC)</p>
+                <p>Course Code: MATH-H-SEC-T-1A</p>
+            </div>
+        </div>
+        <!-- Header Section Ends -->
+
+
+        <div class="ques-ans">
+            <!-- Question a -->
+            <div class="question">
+                1.(a) What are the properties that an Algorithm should have?
+            </div>
+            <div class="answer">
+                An algorithm is a finite set of well-defined instructions used to solve a problem. A good algorithm must
+                satisfy the following properties:
+                <ul>
+                    <li><strong>Input:</strong> An algorithm should have zero or more clearly defined inputs.</li>
+                    <li><strong>Output:</strong> An algorithm must produce at least one output.</li>
+                    <li><strong>Definiteness:</strong> Each step of the algorithm should be precise, unambiguous, and
+                        clearly defined.</li>
+                    <li><strong>Finiteness:</strong> The algorithm must terminate after a finite number of steps.</li>
+                    <li><strong>Effectiveness:</strong> Every instruction must be basic enough to be executed exactly
+                        and efficiently.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ques-ans">
+            <!-- Question b -->
+            <div class="question">
+                1. (b) Explain the coding schemes ASCII and EBCDIC.
+            </div>
+            <div class="answer">
+                <strong>ASCII (American Standard Code for Information Interchange):</strong><br>
+                ASCII is a 7-bit character encoding scheme used to represent text in computers and communication
+                devices. It can represent 128 characters including alphabets, digits, punctuation marks, and control
+                characters. ASCII is widely used in computers, programming languages, and data communication.
+
+                <br><br>
+                <strong>EBCDIC (Extended Binary Coded Decimal Interchange Code):</strong><br>
+                EBCDIC is an 8-bit character encoding scheme developed by IBM. It can represent 256 characters and
+                is mainly used in IBM mainframe and midrange computer systems.
+
+                <table>
+                    <tr>
+                        <th>ASCII</th>
+                        <th>EBCDIC</th>
+                    </tr>
+                    <tr>
+                        <td>7-bit code</td>
+                        <td>8-bit code</td>
+                    </tr>
+                    <tr>
+                        <td>Widely used</td>
+                        <td>Mainly used in IBM systems</td>
+                    </tr>
+                    <tr>
+                        <td>Sequential character order</td>
+                        <td>Non-sequential character order</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="ques-ans">
+            <!-- Question c -->
+            <div class="question">
+                1.(c) Find <em>x</em> and <em>y</em>, where (x . y)<sub>10</sub> = (10111.1101)<sub>2</sub>.
+            </div>
+            <div class="answer">
+                Given binary number: (10111.1101)<sub>2</sub>
+
+                <br><br>
+                <strong>Integer part:</strong><br>
+                10111<sub>2</sub> = (1×2⁴) + (0×2³) + (1×2²) + (1×2¹) + (1×2⁰)<br>
+                = 16 + 0 + 4 + 2 + 1 = 23
+
+                <br><br>
+                <strong>Fractional part:</strong><br>
+                .1101<sub>2</sub> = (1×2⁻¹) + (1×2⁻²) + (0×2⁻³) + (1×2⁻⁴)<br>
+                = 0.5 + 0.25 + 0 + 0.0625 = 0.8125
+
+                <br><br>
+                Therefore,<br>
+                <strong>x = 23</strong> and <strong>y = 0.8125</strong>
+            </div>
+
+        </div>
+
+        <div class="page-num">Page 1</div>
+    </div>
+
+
+    <!-- =============== Page 2 ================= -->
+
+    <div class="page">
+        <div class="ques-answer">
+            <!-- Question d -->
+            <div class="question">
+                1. (d) Explain two types of numeric constants with examples.
+            </div>
+            <div class="answer">
+                Numeric constants in C are classified into two main types:
+
+                <br><br>
+                <strong>1. Integer Constants:</strong><br>
+                These are whole numbers without any fractional part. They can be positive or negative.<br>
+                Examples: 10, -25, 0, 100
+
+                <br><br>
+                <strong>2. Floating Point Constants:</strong><br>
+                These are numbers containing a decimal point or exponent.<br>
+                Examples: 3.14, -0.75, 2.5E3
+            </div>
+
+        </div>
+        <br>
+
+        <div class="ques-ans">
+            <!-- Question e -->
+            <div class="question">
+                1. (e) Differentiate between Data and Information.
+            </div>
+            <div class="answer">
+                <table>
+                    <tr>
+                        <th>Data</th>
+                        <th>Information</th>
+                    </tr>
+                    <tr>
+                        <td>Raw facts and figures</td>
+                        <td>Processed and meaningful data</td>
+                    </tr>
+                    <tr>
+                        <td>Unorganized and unprocessed</td>
+                        <td>Organized and structured</td>
+                    </tr>
+                    <tr>
+                        <td>Example: 85, 90, 78</td>
+                        <td>Example: Average marks = 84.33</td>
+                    </tr>
+                    <tr>
+                        <td>Does not convey meaning</td>
+                        <td>Useful for decision making</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="ques-ans">
+            <!-- Question f -->
+            <div class="question">
+                1. (f) Explain nested if–else with a suitable example.
+            </div>
+            <div class="answer">
+                A <strong>nested if–else statement</strong> is an if–else statement in which one if or else block
+                contains another if–else statement.
+                It is used when multiple conditions need to be checked in a hierarchical manner.
+
+                <br><br>
+                <strong>Syntax:</strong>
+                <pre>
+if (condition1) {
+    if (condition2) {
+        statement;
+    } else {
+        statement;
+    }
+} else {
+    statement;
+}
+        </pre>
+
+                <strong>Example:</strong>
+                <pre>
+int a = 10, b = 20;
+
+if (a > b) {
+    printf("a is greater");
+} else {
+    if (a < b) {
+        printf("b is greater");
+    } else {
+        printf("a and b are equal");
+    }
+}
+        </pre>
+
+                <strong>Explanation:</strong><br>
+                First, the condition <code>a > b</code> is checked. If it is false, control goes to the else part,
+                where another if–else checks whether <code>a < b</code> or both values are equal.
+            </div>
+        </div>
+
+        <div class="page-num">Page 2</div>
+    </div>
+
+    <!-- =================== Page 3 ====================== -->
+    <div class="page">
+
+        <div class="ques-ans">
+            <!-- Question g -->
+            <div class="question">
+                1. (g) What will be the output of the following C code?
+            </div>
+            <div class="answer">
+                <pre>
+int main()
+{
+    constant int ary[4] = {1, 2, 3, 4};
+    int *p;
+
+    p = ary + 3;
+    *p = 5;
+
+    printf("%d\n", ary[3]);
+}
+        </pre>
+
+                <strong>Explanation:</strong><br>
+                The array <code>ary</code> contains four elements: {1, 2, 3, 4}.
+                The pointer <code>p</code> is assigned the address of <code>ary[3]</code> using pointer arithmetic.
+
+                <br><br>
+                The statement <code>*p = 5;</code> attempts to modify the value of <code>ary[3]</code>.
+                However, the array is declared as <code>constant int</code>, which means its elements cannot be
+                modified.
+
+                <br><br>
+                Also, the correct keyword in C for declaring a constant is <code>const</code>, not
+                <code>constant</code>.
+                Therefore, the line <code>constant int ary[4] = {1, 2, 3, 4};</code> will result in a compilation error.
+
+                <br><br>
+                Therefore, this program results in a <strong>compile-time error</strong>.
+
+                <br><br>
+                <strong>Output:</strong><br>
+                Compilation Error (assignment to read-only location)
+            </div>
+
+        </div>
+
+
+        <div class="ques-ans">
+
+            <!-- Question h -->
+            <div class="question">
+                1. (h) Write the syntax of while statement in C and draw the corresponding flow diagram.
+            </div>
+            <div class="answer">
+                <strong>Syntax of while loop:</strong>
+                <pre>
+while (condition) {
+    statements;
+}
+        </pre>
+
+                <strong>Explanation:</strong><br>
+                The while loop is an entry-controlled loop.
+                The condition is evaluated first. If it is true, the loop body is executed.
+                This process continues until the condition becomes false.
+
+                <br><br>
+                <strong>Flow Diagram:</strong><br><br>
+
+                <img src="images/while.png" alt="While Loop Flowchart"
+                    style="height:320px; max-width: 400px; border: 1px solid #ccc; padding: 5px;" />
+            </div>
+
+        </div>
+
+
+
+        <div class="page-num">Page 3</div>
+    </div>
+
+    <!-- ================== Page 4 ==================== -->
+    <div class="page">
+        <div class="ques-ans">
+
+            <!-- Question 2(a) -->
+            <div class="question">
+                2. (a) What are the differences between User-defined and Standard Library functions in C? Explain with a
+                suitable example.
+            </div>
+            <div class="answer">
+                <strong>Standard Library Functions</strong> are pre-defined functions provided by C libraries,
+                whereas <strong>User-defined Functions</strong> are functions written by the programmer to perform
+                specific tasks.
+
+                <br><br>
+                <table>
+                    <tr>
+                        <th>Standard Library Functions</th>
+                        <th>User-defined Functions</th>
+                    </tr>
+                    <tr>
+                        <td>Pre-defined and built-in</td>
+                        <td>Defined by the programmer</td>
+                    </tr>
+                    <tr>
+                        <td>Stored in header files</td>
+                        <td>Written inside the program</td>
+                    </tr>
+                    <tr>
+                        <td>Examples: printf(), scanf(), sqrt()</td>
+                        <td>Examples: sum(), factorial()</td>
+                    </tr>
+                    <tr>
+                        <td>Reusable across programs</td>
+                        <td>Reusable only if defined again</td>
+                    </tr>
+                </table>
+
+                <br>
+                <strong>Example:</strong>
+
+                <pre>
+#include &lt;stdio.h&gt;
+
+int add(int a, int b) {   // User-defined function
+    return a + b;
+}
+
+int main() {
+    printf("%d", add(5, 3));  // Calls user-defined function
+    return 0;
+}
+        </pre>
+            </div>
+
+        </div>
+
+
+        <div class="ques-ans">
+
+            <!-- Question 2(b) -->
+            <div class="question">
+                2. (b) Write the syntax of for-loop in C. Write a C program to find Fibonacci numbers using for-loop.
+            </div>
+            <div class="answer">
+                <strong>Syntax of for-loop:</strong>
+                <pre>
+for (initialization; condition; increment/decrement) {
+    statements;
+}
+        </pre>
+
+                <strong>Program to generate Fibonacci series:</strong>
+                <pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int n = 10, a = 0, b = 1, c;
+
+    printf("Fibonacci Series: ");
+    for (int i = 1; i <= n; i++) {
+        printf("%d ", a);
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    return 0;
+}
+        </pre>
+
+                <strong>Explanation:</strong><br>
+                The first two terms are initialized as 0 and 1.
+                Each new term is obtained by adding the previous two terms.
+                The for-loop controls the number of terms generated.
+            </div>
+
+        </div>
+
+        <div class="page-num">Page 4</div>
+    </div>
+
+    <!-- =================== Page 5 ==================== -->
+
+    <div class="page">
+        <div class="ques-ans">
+
+            <!-- Question 2(c) -->
+            <div class="question">
+                2. (c) How do you initialize a two-dimensional array in C? Can it be passed through a function?
+                Explain with a suitable example.
+            </div>
+            <div class="answer">
+                A two-dimensional array in C is initialized using rows and columns enclosed within braces.
+
+                <br><br>
+                <strong>Initialization:</strong>
+                <pre>
+int arr[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+        </pre>
+
+                <strong>Passing 2D array to a function:</strong><br>
+                Yes, a two-dimensional array can be passed to a function by specifying the column size.
+
+                <pre>
+#include &lt;stdio.h&gt;
+
+void display(int a[2][3]) {
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int arr[2][3] = {
+        {1,2,3},{4,5,6}
+    };
+    display(arr);
+    return 0;
+}
+        </pre>
+
+                <strong>Explanation:</strong><br>
+                While passing a 2D array to a function, the number of columns must be specified,
+                so that the compiler can correctly access memory locations.
+            </div>
+
+        </div>
+
+
+        <div class="ques-ans">
+
+            <!-- Question 2(d) -->
+            <div class="question">
+                2. (d) Write an Algorithm and draw the corresponding flowchart to find the largest of three distinct
+                numbers.
+            </div>
+
+            <div class="answer">
+                <strong>Algorithm:</strong>
+                <ol>
+                    <li>Start</li>
+                    <li>Read three distinct numbers a, b, and c</li>
+                    <li>If a > b and a > c, then largest = a</li>
+                    <li>Else if b > a and b > c, then largest = b</li>
+                    <li>Else largest = c</li>
+                    <li>Print the value of largest</li>
+                    <li>Stop</li>
+                </ol>
+
+                <strong>Explanation:</strong><br>
+                The algorithm compares the three numbers using conditional statements.
+                First, it checks whether <code>a</code> is greater than both <code>b</code> and <code>c</code>.
+                If not, it checks whether <code>b</code> is the greatest.
+                Otherwise, <code>c</code> is considered the largest.
+                Since the numbers are distinct, only one number can be the largest.
+            </div>
+
+        </div>
+
+
+
+        <div class="page-num">Page 5</div>
+    </div>
+
+    <!-- =================== Page 6 ==================== -->
+
+    <div class="page">
+        <br><br>
+        <strong>Flowchart:</strong><br><br>
+
+        <img src="images/largest_of_three_flowchart.jpg" alt="Flowchart to find largest of three numbers"
+            style="max-width: 100%; border: 1px solid #000;">
+
+        <br>
+        <div class="page-num">Page 6</div>
+    </div>
+
+    <!-- =================== Page 7 ==================== -->
+    <div class="page">
+
+        <div class="ques-ans">
+
+            <!-- Question 3(a)(i) -->
+            <div class="question">
+                3. (a) (i) Write a C program to find the sum of the first 1000 natural numbers.
+            </div>
+            <div class="answer">
+                <strong>Answer:</strong>
+                <pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int i, sum = 0;
+
+    for (i = 1; i <= 1000; i++) {
+        sum = sum + i;
+    }
+
+    printf("Sum = %d", sum);
+    return 0;
+}
+        </pre>
+
+                <strong>Explanation:</strong><br>
+                The loop runs from 1 to 1000 and adds each natural number to the variable <code>sum</code>.
+                Finally, the total sum is displayed.
+            </div>
+
+        </div>
+
+        <div class="ques-ans">
+
+            <!-- Question 3(a)(ii) -->
+            <div class="question">
+                3. (a) (ii) Distinguish between Call by Value and Call by Address.
+            </div>
+            <div class="answer">
+                <strong>Answer:</strong>
+                <table>
+                    <tr>
+                        <th>Call by Value</th>
+                        <th>Call by Address</th>
+                    </tr>
+                    <tr>
+                        <td>Copy of variable is passed</td>
+                        <td>Address of variable is passed</td>
+                    </tr>
+                    <tr>
+                        <td>Original value is not modified</td>
+                        <td>Original value can be modified</td>
+                    </tr>
+                    <tr>
+                        <td>No pointers are used</td>
+                        <td>Pointers are used</td>
+                    </tr>
+                    <tr>
+                        <td>Safer but less flexible</td>
+                        <td>More flexible</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+
+        <div class="ques-ans">
+
+            <!-- Question 3(a)(iii) -->
+            <div class="question">
+                3. (a) (iii) Write a C program to swap two numbers by using Call by Address.
+            </div>
+            <div class="answer">
+                <strong>Answer:</strong>
+                <pre>
+#include &lt;stdio.h&gt;
+
+void swap(int *x, int *y) {
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+int main() {
+    int a = 10, b = 20;
+    swap(&a, &b);
+    printf("a = %d, b = %d", a, b);
+    return 0;
+}
+        </pre>
+
+                <strong>Explanation:</strong><br>
+                The addresses of variables are passed to the function.
+                Changes made inside the function affect the original variables.
+            </div>
+
+        </div>
+
+
+
+        <div class="page-num">Page 7</div>
+    </div>
+
+    <!-- ============== Page 8 ================ -->
+
+    <div class="page">
+        <div class="ques-ans">
+
+            <!-- Question 3(b)(i) -->
+            <div class="question">
+                3. (b) (i) Explain break and continue statements.
+            </div>
+            <div class="answer">
+                <strong>Answer:</strong><br>
+                The <strong>break</strong> and <strong>continue</strong> statements are used to control the flow of
+                loops in C. <br>
+                <strong>break:</strong> Terminates the loop immediately and transfers control outside the loop.<br>
+                <strong>continue:</strong> Skips the remaining statements of the current iteration and continues with
+                the next iteration.
+
+                <br><br>
+                <strong>Example:</strong>
+                <pre>
+for (int i = 1; i <= 5; i++) {
+    if (i == 3)
+        continue;
+    printf("%d ", i);
+}
+        </pre>
+            </div>
+
+        </div>
+
+        <div class="ques-ans">
+
+            <!-- Question 3(b)(ii) -->
+            <div class="question">
+                3. (b) (ii) Write a C program to display prime numbers between 1 and 200 using break and continue
+                statements.
+            </div>
+            <div class="answer">
+                <strong>Answer:</strong>
+                <pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int i, j;
+
+    for (i = 2; i <= 200; i++) {
+        for (j = 2; j <= i/2; j++) {
+            if (i % j == 0)
+                break;
+        }
+        if (j > i/2)
+            printf("%d ", i);
+    }
+    return 0;
+}
+        </pre>
+
+                <strong>Explanation:</strong><br>
+                The inner loop checks whether a number is divisible.
+                If divisible, the loop breaks.
+                If no divisor is found, the number is printed as prime.
+            </div>
+
+        </div>
+
+        <div class="ques-ans">
+
+    <!-- Question 3(c)(i) -->
+    <div class="question">
+        3. (c) (i) Write the differences between Compiler and Assembler.
+    </div>
+    <div class="answer">
+       <table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Compiler</th>
+      <th>Interpreter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Programming Workflow</strong></td>
+      <td>Translates the entire program into machine code before execution</td>
+      <td>Translates and executes code line by line</td>
+    </tr>
+    <tr>
+      <td><strong>Program Execution Order</strong></td>
+      <td>Executes the entire compiled code in one go</td>
+      <td>Executes code sequentially, line by line</td>
+    </tr>
+    <tr>
+      <td><strong>Operational Speed</strong></td>
+      <td>Generally faster due to pre-compilation</td>
+      <td>Slower due to real-time translation</td>
+    </tr>
+    <tr>
+      <td><strong>Memory Requirements</strong></td>
+      <td>Requires more memory to store the compiled code</td>
+      <td>Requires less memory as it translates code on the fly</td>
+    </tr>
+    <!-- <tr>
+      <td><strong>System Objectives</strong></td>
+      <td>Produces an efficient executable program</td>
+      <td>Provides immediate execution and feedback</td>
+    </tr> -->
+    <tr>
+      <td><strong>Data Handling Capacity</strong></td>
+      <td>Suitable for large programs</td>
+      <td>Suitable for smaller programs or scripts</td>
+    </tr>
+    <tr>
+      <td><strong>Error Detection and Debugging</strong></td>
+      <td>Detects errors after entire code is compiled</td>
+      <td>Detects errors line by line, easing debugging</td>
+    </tr>
+    <!-- <tr>
+      <td><strong>Suitability and Applications</strong></td>
+      <td>Ideal for production environments needing speed</td>
+      <td>Ideal for development and testing with quick feedback</td>
+    </tr> -->
+    <tr>
+      <td><strong>Required Steps</strong></td>
+      <td>Write code &rarr; Compile &rarr; Execute</td>
+      <td>Write code &rarr; Execute directly</td>
+    </tr>
+    <!-- <tr>
+      <td><strong>Source Code Evaluation</strong></td>
+      <td>Evaluates entire source code at once</td>
+      <td>Evaluates source code line by line</td>
+    </tr> -->
+  </tbody>
+</table>
+    </div>
+
+</div>
+
+
+        <div class="page-num">Page 8</div>
+    </div>
+
+    <!-- ================ Page 9 ================= -->
+    <div class="page">
+
+        <div class="ques-ans">
+
+    <!-- Question 3(c)(ii) -->
+    <div class="question">
+        3. (c) (ii) Design a flowchart to find the G.C.D of two positive integers.
+    </div>
+    <div class="answer">
+        <strong>Flowchart:</strong><br><br>
+        <img src="images/Flowchart_GCD.png"
+             alt="GCD Flowchart"
+             style="max-width: 100%; border: 1px solid #8e8989; height:480px;">
+    </div>
+
+</div>
+
+        <div class="ques-ans">
+
+            <!-- Question 3(c)(iii) -->
+            <div class="question">
+                3. (c) (iii) Write a C program to find the sum of digits of a number.
+            </div>
+            <div class="answer">
+                <strong>Answer:</strong>
+                <pre>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int n, sum = 0, digit;
+
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    while (n > 0) {
+        digit = n % 10;
+        sum = sum + digit;
+        n = n / 10;
+    }
+
+    printf("Sum of digits = %d", sum);
+    return 0;
+}
+        </pre>
+
+                <strong>Explanation:</strong><br>
+                Each digit is extracted using modulus operator and added to the sum.
+                The loop continues until the number becomes zero.
+            </div>
+            </div>
+
+
+            <div class="page-num">Page 9</div>
+    </div>
+
+</body>
+
+</html>
