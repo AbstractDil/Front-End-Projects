@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class XI Mathematics Assessment</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+    body {
+      font-family: "Roboto Condensed", sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .wish-container {
+
+      margin-top: 40px;
+
+      padding: 15px;
+
+      text-align: center;
+
+      border: 2px dashed #2c3e50;
+
+      border-radius: 10px;
+
+      background-color: #fdfdfd;
+
+    }
+
+
+
+    .wish-message {
+
+      font-family: 'Poppins', sans-serif;
+
+      font-size: 18px;
+
+      font-weight: 600;
+
+      color: #2c3e50;
+
+      letter-spacing: 1px;
+
+      margin: 0;
+
+    }
+
+
+
+    .sub-wish {
+
+      font-size: 13px;
+
+      color: #7f8c8d;
+
+      margin-top: 5px;
+
+      font-style: italic;
+
+    }
+
+
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      outline: 2px solid #000;
+      outline-offset: -10px;
+    }
+
+    /* ===== TEXT WATERMARK ===== */
+    .page::before {
+      content: "SOURADEEP DAS";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 80px;
+      font-weight: 900;
+      color: rgba(0, 0, 0, 0.04);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header Styling Adjusted to Match Image */
+    .exam-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+
+    .exam-header h1 {
+      margin: 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .group-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      text-decoration: underline;
+      margin: 20px 0;
+    }
+
+    .section-instruction {
+      font-weight: bold;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .question-block {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .sub-question {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    /* .or-block {
+        margin-left: 40px;
+        font-style: italic;
+        color: #555;
+        font-weight: bold;
+      } */
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
+    @media print {
+      body {
+        background: none;
+      }
+
+      .page {
+        margin: 0;
+        box-shadow: none;
+        border: none;
+      }
+
+      .print-btn {
+        display: none;
+      }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download/Print PDF</button>
+
+  <!-- Page 1 -->
+  <div class="page">
+    <div class="exam-header" style="margin-top:0px;padding-top: 0px;">
+      <h1>4th Internal Assessment - 2026</h1>
+      <h3 style="padding: 0;margin-top:4px;">Class- XI &nbsp; &nbsp; Session: 2025-26</h3>
+      <div class="header-meta">
+        <span>Sub.- Mathematics</span>
+        <span>Time- 2hours</span>
+        <span>F.M.- 40</span>
+      </div>
+    </div>
+
+    <div class="group-title">Group-A</div>
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>1. নীচের প্রশ্নগুলির উত্তর দাও :</span>
+        <span>$2 \times 2 = 4$</span>
+      </div>
+
+      <div class="sub-question">
+        i) $(2x^2 - \frac{3}{2x})^8$ এর বিস্তৃতির শেষ দিক থেকে সপ্তম পদটি নির্ণয় করো।
+        <div class="or-block">অথবা, 
+          $(3x^2 - \frac{1}{2x^3})^{10}$-এর বিস্তৃতির বর্জিত পদটি নির্ণয় করো।
+        </div>
+      </div>
+
+      <div class="sub-question">
+        ii) দুটি সমান্তর শ্রেণির প্রথম $n$ সংখ্যক পদের সমষ্টির অনুপাত $(7n+1) : (4n+27)$ হলে, এদের 11 তম পদের অনুপাত কত?
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>2. নীচের প্রশ্নগুলির উত্তর দাও :</span>
+        <span>$2 \times 2 = 4$</span>
+      </div>
+
+      <div class="sub-question">
+        i) $\sqrt{3}x + y = 1$ সরলরেখার ওপর লম্ব সরলরেখা $X$ অক্ষের ধনাত্মক দিকের সঙ্গে যে কোণ উৎপন্ন করে তার পরিমাণ
+        নির্ণয় করো।
+      </div>
+       <div class="sub-question" style="margin-top: -10px;">
+        <div class="or-block">অথবা, কোনো সরলরেখার $x$-অক্ষের ও $y$-অক্ষের উপর ছিন্নাংশ $a$ এবং $b$। মূলবিন্দু থেকে রেখাটির উপর অঙ্কিত লম্বের দৈর্ঘ্য যদি $p$ হয়, তবে দেখাও যে, $1/p^2 = 1/a^2 + 1/b^2$</div>
+      </div>
+
+      <div class="sub-question">
+        ii) $y^2 = 4ax (a > 0)$ অধিবৃত্তের নাভিগামী একটি জ্যা এর দুটি প্রান্তবিন্দু $(at_1^2, 2at_1)$ এবং $(at_2^2,
+        2at_2)$ হলে $t_1$ ও $t_2$ এর মধ্যে সম্পর্ক নির্ণয় করো।
+        <div class="or-block">অথবা, 10 জন সদস্যের একটি পরিবারে ঠিক দুজনের জন্মদিন রবিবার হওয়ার সম্ভাবনা নির্ণয় করো।</div>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>3. নীচের প্রশ্নগুলির উত্তর দাও :</span>
+        <span>$2 \times 2 = 4$</span>
+      </div>
+
+      <div class="sub-question">
+        i) একটি থলিতে দুটি সাদা ও 4টি কালো বল আছে। ওই থলি থেকে যে কোনো তিনটি বল যথেচ্ছভাবে তোলা হল। তোলা বলগুলির কমপক্ষে
+        দুটি সাদা হওয়ার সম্ভাবনা নির্ণয় করো।
+        <div class="or-block">অথবা, দুটি পাশা একসঙ্গে চালনা করলে মোট 7 পড়ার সম্ভাবনা নির্ণয় করো।</div>
+      </div>
+
+      <div class="sub-question">
+        ii) কোনো সমসম্ভব পরীক্ষা E এর সঙ্গে সংশ্লিষ্ট দুটি ঘটনা A ও B পরস্পর পৃথক নয়। যদি $P(A) = \frac{1}{4}$, $P(B) =
+        \frac{2}{5}$ এবং $P(A \cup B) = \frac{1}{2}$ হয়, তবে $P(A \cap B^c)$ এর মান নির্ণয় করো।
+      </div>
+    </div>
+
+    <div class="group-title">Group-B</div>
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>4. নীচের প্রশ্নগুলির উত্তর দাও :</span>
+      </div>
+
+      <div class="sub-question" style="display: flex; justify-content: space-between;">
+        <span>i) $n \ge 3$ একটি অখণ্ড সংখ্যা হলে গাণিতিক আরোহ নীতির প্রয়োগে প্রমাণ করো যে, $(2n+1) < 2^n$</span>
+            <span>3</span>
+      </div>
+
+       <div class="sub-question" style="margin-top: -10px;">
+        <div class="or-block"> অথবা, গাণিতিক আরোহ পদ্ধতির সাহায্য নিয়ে প্রমাণ করো যে, $n$-এর সকল ধনাত্মক অখণ্ড মানের জন্য $n^3 + (n+1)^3 + (n+2)^3$ সংখ্যামালাটি $9$ দ্বারা বিভাজ্য।</div>
+      </div>
+
+      <div class="sub-question" style="display: flex; justify-content: space-between;">
+        <span>ii) $(1+x)^{18}$ বিস্তৃতিতে $(2r+4)$ তম এবং $(r-2)$ তম পদের সহগ সমান হলে, $r$ এর মান নির্ণয় করো।</span>
+        <span>4</span>
+      </div>
+
+      <!-- <div class="sub-question" style="display: flex; justify-content: space-between;">
+        <span>iii) দুটি ধনাত্মক সংখ্যার সমান্তরীয় মধ্যক ও গুণোত্তরীয মধ্যক যথাক্রমে $A$ ও $G$ হলে, দেখাও যে সংখ্যা
+          দুটির মান হবে $A \pm \sqrt{A^2 - G^2}$</span>
+        <span>4</span>
+      </div>
+      <div class="sub-question" style="margin-top: -10px;">
+        <div class="or-block">অথবা, $.7 + .77 + .777 + \dots n$ সংখ্যক পদের সমষ্টি নির্ণয় করো।</div>
+      </div> -->
+    </div>
+
+    <div class="footer">
+      Page - 1
+    </div>
+  </div>
+  <!-- Page 2 -->
+
+  <div class="page">
+
+    <div class="question-block">
+       <div class="sub-question" style="margin-top: -10px;">
+        <div class="or-block"> অথবা, $(1+x)^n$ এর বিস্তৃতির $p$-তম, $(p+1)$-তম এবং $(p+2)$-তম পদের সহগ তিনটি সমান্তর প্রগতিতে থাকলে, দেখাও যে, $n^2 - n(4p+1) + 4p^2 - 2 = 0$</div>
+      </div>
+      <div class="sub-question" style="display: flex; justify-content: space-between;">
+        <span>iii) দুটি ধনাত্মক সংখ্যার সমান্তরীয় মধ্যক ও গুণোত্তরীয মধ্যক যথাক্রমে $A$ ও $G$ হলে, দেখাও যে সংখ্যা
+          দুটির মান হবে $A \pm \sqrt{A^2 - G^2}$</span>
+        <span>4</span>
+      </div>
+      <div class="sub-question" style="margin-top: -10px;">
+        <div class="or-block">অথবা, $.7 + .77 + .777 + \dots n$ সংখ্যক পদের সমষ্টি নির্ণয় করো।</div>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>5. নীচের প্রশ্নগুলির উত্তর দাও :</span>
+      </div>
+
+      <div class="sub-question" style="display: flex; justify-content: space-between;">
+        <span>i) 4x - 3y = 1 সরলরেখাস্থিত (1, 1) বিন্দু থেকে ওই সরলরেখা বরাবর 2x - y = 3 সরলরেখার দূরত্ব নির্ণয় করো।
+          করো।</span>
+        <span>3</span>
+      </div>
+      <div class="sub-question" style="margin-top: -10px;">
+        <div class="or-block">অথবা, দেখাও যে, x + 3y = 7 রেখার সাপেক্ষে (3,8) বিন্দুর প্রতিবিদ্ধে স্থানাঙ্ক (-1,-4) </div>
+      </div>
+
+      <div class="sub-question" style="display: flex; justify-content: space-between;">
+        <span>ii) একটি উপবৃত্তের উৎকেন্দ্রতা $\frac{2}{3}$, নাভি $S$ এর স্থানাঙ্ক $(5, 4)$ এবং পরাক্ষ ও নিয়ামকের
+          ছেদবিন্দু $A$ এর স্থানাঙ্ক $(8, 7)$ হলে, উপবৃত্তটির কেন্দ্রের স্থানাঙ্ক নির্ণয় করো।</span>
+        <span>4</span>
+      </div>
+
+      <div class="sub-question" style="margin-top: -10px;">
+        <div class="or-block">অথবা, $y ^ 2$ = $4ax$ অধিবৃত্তে একটি সমবাহু ত্রিভুজ এরূপভাবে অঙ্কন করা হল যার একটি শীর্ষবিন্দু অধিবৃত্তের শীর্ষবিন্দু। ত্রিভুজটির বাহুর দৈর্ঘ্য নির্ণয় করো। </div>
+      </div>
+
+      <div class="sub-question" style="display: flex; justify-content: space-between;">
+        <span>iii) দেখাও যে, $3x^2 + 4y^2 = 48$ পরাবৃত্তের ওপর অবস্থিত যে কোনো বিন্দুর পরাবৃত্তের নাভি দুটি থেকে দূরত্ব
+          দুটির অন্তরের মান ধ্রুবক।</span>
+        <span>4</span>
+      </div>
+      <div class="sub-question" style="margin-top: -10px;">
+        <div class="or-block">অথবা, যদি $x^2 + y^2 + 2ax + c^2 = 0$ এবং $x^2 + y^2 + 2by + c^2 = 0$ বৃত্ত দুটি পরস্পর
+          স্পর্শ করে, তবে দেখাও যে $\frac{1}{a^2} + \frac{1}{b^2} = \frac{1}{c^2}$</div>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>6. নীচের প্রশ্নগুলির উত্তর দাও :</span>
+        <span>$3 \times 2 = 6$</span>
+      </div>
+
+      <div class="sub-question">
+          i) 32 টি সংখ্যার সমক বিচ্যুতি 5। যদি সংখ্যাগুলির যোগফল 80 হয়, তাহলে সংখ্যাগুলির বর্গের যোগফল নির্ণয় করো।
+          <div class="or-block" style="margin-top: 10px;">
+            অথবা, নিম্নলিখিত পরিসংখ্যা বিভাজন থেকে গড়ের সাপেক্ষে গড় বিচ্যুতি নির্ণয় করো:
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; text-align: center; font-size: 14px;">
+              <tr>
+                <td style="border: 1px solid black; padding: 5px; background-color: #f2f2f2;">শ্রেণি</td>
+                <td style="border: 1px solid black; padding: 5px;">10-20</td>
+                <td style="border: 1px solid black; padding: 5px;">20-30</td>
+                <td style="border: 1px solid black; padding: 5px;">30-40</td>
+                <td style="border: 1px solid black; padding: 5px;">40-50</td>
+                <td style="border: 1px solid black; padding: 5px;">50-60</td>
+                <td style="border: 1px solid black; padding: 5px;">60-70</td>
+                <td style="border: 1px solid black; padding: 5px;">70-80</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; padding: 5px; background-color: #f2f2f2;">পরিসংখ্যা</td>
+                <td style="border: 1px solid black; padding: 5px;">2</td>
+                <td style="border: 1px solid black; padding: 5px;">3</td>
+                <td style="border: 1px solid black; padding: 5px;">8</td>
+                <td style="border: 1px solid black; padding: 5px;">14</td>
+                <td style="border: 1px solid black; padding: 5px;">8</td>
+                <td style="border: 1px solid black; padding: 5px;">3</td>
+                <td style="border: 1px solid black; padding: 5px;">2</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      <div class="sub-question">
+        ii) $X, Y, Z$ তিনজন ছাত্রের গণিতের একটি প্রশ্ন সমাধান করার সম্ভাবনা যথাক্রমে $\frac{3}{7}, \frac{3}{8}$ এবং
+        $\frac{1}{3}$; যদি তারা প্রত্যেকে প্রশ্নটি স্বাধীনভাবে চেষ্টা করে, তাহলে কেবল একজন ছাত্রের পক্ষে প্রশ্নটি সমাধান
+        করার সম্ভাবনা নির্ণয় করো।
+
+        <div class="or-block" style="margin-top: 10px;">
+          অথবা, একটি তাসের প্যাকেটে অবিন্যস্তভাবে ভরা 52টি তাস আছে। তাসের প্যাকেট থেকে যথেচ্ছভাবে ২টি তাস টানা হল। তাস দুটির উভয়েই লাল হওয়ার অথবা উভয়েরই রাজা হওয়ার সম্ভাবনা নির্ণয় করো।
+        </div>
+
+      </div>
+    </div>
+
+   
+
+    <div class="wish-container" style="margin-top: 60px;">
+      <p class="wish-message">🌟 BEST OF LUCK FOR YOUR EXAM! 🌟</p>
+      <p class="sub-wish">"Believe in yourself and all that you are."</p>
+    </div>
+
+    <div class="footer">
+      Page - 2
+    </div>
+  </div>
+
+
+  <!-- Page 3 -->
+   <!-- <div class="page">
+
+     <div class="question-block">
+      <div class="section-instruction">
+        <span>6. নীচের প্রশ্নগুলির উত্তর দাও :</span>
+        <span>$3 \times 2 = 6$</span>
+      </div>
+
+      <div class="sub-question">
+          i) প্রথম 20টি স্বাভাবিক সংখ্যার ভেদমান নির্ণয় করো।
+          <div class="or-block" style="margin-top: 10px;">
+            অথবা, নিম্নলিখিত পরিসংখ্যা বিভাজন থেকে গড়ের সাপেক্ষে গড় বিচ্যুতি নির্ণয় করো:
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; text-align: center; font-size: 14px;">
+              <tr>
+                <td style="border: 1px solid black; padding: 5px; background-color: #f2f2f2;">শ্রেণি</td>
+                <td style="border: 1px solid black; padding: 5px;">10-20</td>
+                <td style="border: 1px solid black; padding: 5px;">20-30</td>
+                <td style="border: 1px solid black; padding: 5px;">30-40</td>
+                <td style="border: 1px solid black; padding: 5px;">40-50</td>
+                <td style="border: 1px solid black; padding: 5px;">50-60</td>
+                <td style="border: 1px solid black; padding: 5px;">60-70</td>
+                <td style="border: 1px solid black; padding: 5px;">70-80</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; padding: 5px; background-color: #f2f2f2;">পরিসংখ্যা</td>
+                <td style="border: 1px solid black; padding: 5px;">2</td>
+                <td style="border: 1px solid black; padding: 5px;">3</td>
+                <td style="border: 1px solid black; padding: 5px;">8</td>
+                <td style="border: 1px solid black; padding: 5px;">14</td>
+                <td style="border: 1px solid black; padding: 5px;">8</td>
+                <td style="border: 1px solid black; padding: 5px;">3</td>
+                <td style="border: 1px solid black; padding: 5px;">2</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      <div class="sub-question">
+        ii) $X, Y, Z$ তিনজন ছাত্রের গণিতের একটি প্রশ্ন সমাধান করার সম্ভাবনা যথাক্রমে $\frac{3}{7}, \frac{3}{8}$ এবং
+        $\frac{1}{3}$; যদি তারা প্রত্যেকে প্রশ্নটি স্বাধীনভাবে চেষ্টা করে, তাহলে কেবল একজন ছাত্রের পক্ষে প্রশ্নটি সমাধান
+        করার সম্ভাবনা নির্ণয় করো।
+      </div>
+    </div>
+
+    <div class="footer">
+      Page - 3
+    </div>
+   </div> -->
+
+</body>
+
+</html>
