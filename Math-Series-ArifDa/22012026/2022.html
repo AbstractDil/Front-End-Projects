@@ -1040,6 +1040,88 @@ int main() {
             <div class="page-num">Page 9</div>
     </div>
 
+    <!-- =================== Page 10 ================== -->
+     <div class="page">
+        <div class="ques-ans">
+            <div class="question">
+              3. (d)(i)  Write three applications of the C programming language.
+            </div>
+            <div class="answer">
+                <strong>Answer:</strong>
+                C is a powerful, general-purpose language that has been foundational in the field of computer science for decades. Its primary applications include:
+    <br><br>
+                <strong>System Software Development:</strong> C is widely used for developing operating systems,
+                compilers, and other system-level software due to its efficiency and low-level access to memory.
+
+                <br><br>
+                <strong>Embedded Systems:</strong> C is commonly used in programming microcontrollers and embedded
+                systems found in appliances, automotive systems, and IoT devices because of its performance and
+                portability.
+
+                <br><br>
+                <strong>Game Development:</strong> Many game engines and graphics libraries are built using C or C++
+                due to their ability to handle complex graphics and real-time processing efficiently. <br> <br>
+
+                <b>Compiler Design and System Utilities:</b>
+    Many other high-level programming languages rely on C for their existence. Compilers for languages like <b>Python, Perl, and PHP</b> are written in C. Additionally, system utilities and performance-critical software like database systems (e.g., <b>MySQL, Oracle</b>) are heavily built using C for speed and stability.
+    <br><br>
+
+            </div>
+        </div>
+
+        <div class="ques-ans">
+            <div class="question">
+                3. (d)(ii)  Write a short note on Software.
+            </div>
+            <div class="answer">
+                <strong>Answer:</strong>
+                Software refers to a collection of programs, data, and instructions that enable a computer system to perform specific tasks. It is intangible and exists in various forms, including applications, operating systems, and utilities. Software can be broadly categorized into two main types: system software and application software.
+
+                <br><br>
+                <strong>System Software:</strong> This type of software manages the hardware components of a computer and provides a platform for running application software. Examples include operating systems like Windows, macOS, and Linux.
+
+                <br><br>
+                <strong>Application Software:</strong> These are programs designed to perform specific user-oriented tasks, such as word processing, web browsing, or gaming. Examples include Microsoft Word, Google Chrome, and Adobe Photoshop.
+
+                <br><br>
+                Software development involves various stages, including planning, coding, testing, and maintenance. It plays a crucial role in modern society by enabling automation, enhancing productivity, and facilitating communication across the globe.
+            </div>
+        </div>
+
+        <div class="ques-ans">
+            <div class="question">
+                Write a C program to find the trace of a square matrix.
+            </div>
+            <div class="answer">
+                <strong>Answer:</strong>
+                <pre>
+#include &lt;stdio.h&gt;
+int main(){
+    int n, i, j;
+    printf("Enter the number of rows/columns: ");
+    scanf("%d", &n);
+    int matrix[n][n];
+    printf("Enter the elements of the matrix:\n");
+    for(i = 0; i < n; i++){
+        for(j = 0; j < n; j++){
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    int trace = 0;
+    for(i = 0; i < n; i++){
+        trace += matrix[i][i];
+    }
+    printf("The trace of the matrix is: %d\n", trace);
+    return 0;
+}
+</pre>
+        </div>
+    </div>
+
+        <div class="page-num">Page 10</div>
+     </div>
+
 </body>
 
 </html>

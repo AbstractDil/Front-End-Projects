@@ -1,62 +1,64 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <title>C Programming Study Notes</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Gravitas+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
-      body {
-        background-color: #f0f0f0;
-         margin: 0;
-        padding: 0;
-        font-family: "Roboto", sans-serif;
-      }
+        @import url("https://fonts.googleapis.com/css2?family=Gravitas+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-      /* Header Setup */
-      .exam-header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem;
-        border: 2px dashed #555;
-        border-radius: 8px;
-        /* border-bottom: 2px solid #000; */
-        padding-top: 10px;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-        font-family: "Poppins", sans-serif;
-      }
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", sans-serif;
+        }
 
-      .logo-area {
-        width: 80px;
-        height: 80px;
-        /* border: 1px dashed #ccc; */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        text-align: center;
-        /* margin-top:12px; */
-      }
+        /* Header Setup */
+        .exam-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            border: 2px dashed #555;
+            border-radius: 8px;
+            /* border-bottom: 2px solid #000; */
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-family: "Poppins", sans-serif;
+        }
 
-      .header-info {
-        text-align: left;
-        line-height: 1.6;
-      }
+        .logo-area {
+            width: 80px;
+            height: 80px;
+            /* border: 1px dashed #ccc; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            text-align: center;
+            /* margin-top:12px; */
+        }
 
-      .header-info h3 {
-        margin: 0;
-        font-size: 18px;
-        /* text-decoration: underline; */
-      }
+        .header-info {
+            text-align: left;
+            line-height: 1.6;
+        }
 
-      .header-info p {
-        margin: 2px 0;
-        font-weight: bold;
-        font-size: 14px;
-      }
+        .header-info h3 {
+            margin: 0;
+            font-size: 18px;
+            /* text-decoration: underline; */
+        }
 
-      /* .a4-page {
+        .header-info p {
+            margin: 2px 0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* .a4-page {
             width: 210mm;
             height: 297mm;
             background-color: #fff;
@@ -70,53 +72,57 @@
             line-height: 30px;
         } */
 
-      /* Pre and Code Styling */
-      pre {
-        /* border : 1px dashed #ccc; */
-        margin: 0;
-        border-radius: 5px;
-        overflow-x: auto;
-      }
-      .page {
-        font-size: 14px;
-        width: 210mm;
-        min-height: 297mm;
-        padding: 15mm;
-        margin: 10mm auto;
-        background: white;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        position: relative;
+        /* Pre and Code Styling */
+        pre {
+            /* border : 1px dashed #ccc; */
+            margin: 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
 
-        /* ADD THESE THREE LINES */
-        box-sizing: border-box;
-        border: 2px solid #000; /* Standard solid border */
-        outline: 4px double #000; /* Optional: Adds a secondary outer "frame" look */
-        outline-offset: -14px; /* Pulls the double line inside the page */
-      }
+        .page {
+            font-size: 14px;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
 
-      /* ===== WATERMARK ===== */
-      .page::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 300px;
-        height: 300px;
-        background: url("images/logo.png") no-repeat center;
-        background-size: contain;
-        opacity: 0.08;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-        z-index: 999;
-      }
+            /* ADD THESE THREE LINES */
+            box-sizing: border-box;
+            border: 2px solid #000;
+            /* Standard solid border */
+            outline: 4px double #000;
+            /* Optional: Adds a secondary outer "frame" look */
+            outline-offset: -14px;
+            /* Pulls the double line inside the page */
+        }
 
-      /* Ensure content stays above watermark */
-      .page > * {
-        position: relative;
-        z-index: 1;
-      }
+        /* ===== WATERMARK ===== */
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: url("images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.08;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 999;
+        }
 
-      /* .margin-line {
+        /* Ensure content stays above watermark */
+        .page>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* .margin-line {
             position: absolute;
             left: 50px;
             top: 0;
@@ -124,173 +130,221 @@
             width: 2px;
             background-color: #ffcccc;
         } */
-      h1 {
-        text-align: center;
-        text-decoration: underline;
-        margin-bottom: 20px;
-        font-size: 24px;
-      }
-      .highlight {
-        background-color: #ffff00;
-        padding: 0 5px;
-        border-radius: 3px;
-      }
-      .circle-red {
-        border: 2px solid #ff0000;
-        border-radius: 50%;
-        padding: 0 5px;
-        display: inline-block;
-      }
-      .section {
-        margin-bottom: 25px;
-      }
-      .doodle {
-        position: absolute;
-        font-size: 40px;
-        opacity: 0.6;
-      }
-      .flowchart {
-        border: 2px dashed #888;
-        padding: 10px;
-        margin: 10px 0;
-        text-align: center;
-        width: fit-content;
-      }
-      .code-box {
-        border: 1px dashed #ccc;
-        padding: 10px;
-        /* background: #f9f9f9; */
-        font-family: "Courier New", monospace;
-        line-height: 1.2;
-        margin-top: 5px;
-      }
-      .ques-ans {
-        margin-bottom: 15px;
-      }
-      .question {
-        font-weight: bold;
-        margin-bottom: 5px;
-        color: #333;
-      }
-      .page-num {
-        position: absolute;
-        bottom: 10mm;
-        left: 15mm;
-        right: 15mm;
-        text-align: center;
-        font-size: 11px;
-        color: #555;
-      }
-      .callout {
-        border: 1px solid #888;
-        padding: 5px;
-        font-size: 0.9em;
-        transform: rotate(-2deg);
-        background: #fff;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-      }
-
-       @media print {
-        body {
-          background: none;
+        h1 {
+            text-align: center;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 24px;
         }
-        .page {
-           page-break-after: always;
-          margin: 0;
-          box-shadow: none;
-          width: 100%;
-          height: 100%;
-        }
-      }
 
+        .highlight {
+            background-color: #ffff00;
+            padding: 0 5px;
+            border-radius: 3px;
+        }
+
+        .circle-red {
+            border: 2px solid #ff0000;
+            border-radius: 50%;
+            padding: 0 5px;
+            display: inline-block;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .doodle {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.6;
+        }
+
+        .flowchart {
+            border: 2px dashed #888;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            width: fit-content;
+        }
+
+        .code-box {
+            border: 1px dashed #ccc;
+            padding: 10px;
+            /* background: #f9f9f9; */
+            font-family: "Courier New", monospace;
+            line-height: 1.2;
+            margin-top: 5px;
+        }
+
+        .ques-ans {
+            margin-bottom: 15px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .page-num {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+        }
+
+        .callout {
+            border: 1px solid #888;
+            padding: 5px;
+            font-size: 0.9em;
+            transform: rotate(-2deg);
+            background: #fff;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                page-break-after: always;
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <!-- ======================= Page 1 ======================== -->
     <div class="page">
-      <!-- Header Section Starts -->
-      <div class="exam-header">
-        <div class="logo-area">
-          <!-- ORGANISATION<br>LOGO -->
-          <img
-            src="images/logo.png"
-            alt="Organisation Logo"
-            style="max-width: 140%; max-height: 140%"
-          />
+        <!-- Header Section Starts -->
+        <div class="exam-header">
+            <div class="logo-area">
+                <!-- ORGANISATION<br>LOGO -->
+                <img src="images/logo.png" alt="Organisation Logo" style="max-width: 140%; max-height: 140%" />
+            </div>
+            <div class="header-info">
+                <h3>U.G. 3rd Semester Examination - 2023</h3>
+                <p>Course: [MATHEMATICS HONOURS]</p>
+                <p>Paper: Skill Enhancement Course (SEC)</p>
+                <p>Course Code: MATH-H-SEC-T-1A</p>
+            </div>
         </div>
-        <div class="header-info">
-          <h3>U.G. 3rd Semester Examination - 2023</h3>
-          <p>Course: [MATHEMATICS HONOURS]</p>
-          <p>Paper: Skill Enhancement Course (SEC)</p>
-          <p>Course Code: MATH-H-SEC-T-1A</p>
-        </div>
-      </div>
-      <!-- Header Section Ends -->
+        <!-- Header Section Ends -->
 
-      
-      <div class="ques-ans">
-        <div class="question">
-          Q1 (a): Distinguish between *(p)[5] and *p[5].
-        </div>
-        <div>
-          <b>Answer:</b>
-          <code>*(p)[5]</code> refers to the value of the 5<sup>th</sup> element
-          of the array pointed to by <code>p</code>, whereas
-          <code>*p[5]</code> refers to the value pointed to by the 5<sup
-            >th</sup
-          >
-          element in an array of pointers. <br /><br />
-          <b>Example:</b><br />
-          <code>int a[10]; int *p = a;</code> → <code>*(p)[5]</code> is
-          <code>a[5]</code>
-        </div>
-      </div>
 
-      <div class="ques-ans">
-        <div class="question">
-          Q1 (b): Explain the use of scanf() and printf() functions in C.
+        <div class="ques-ans">
+            <div class="question"> Q1 (a): Distinguish between (*p)[5] and *p[5]. </div>
+            <div> <b>Answer:</b> The difference lies in operator precedence. <code>[]</code> has higher priority than
+                <code></code>, so parentheses are used to change the meaning: <ul>
+                    <li><code>(*p)[5]</code>: This is a <b>pointer to an array</b> of 5 integers. It is a single pointer
+                        variable.</li>
+                    <li><code>*p[5]</code>: This is an <b>array of 5 pointers</b>. It is a collection of 5 pointer
+                        variables.</li>
+                </ul>
+                <br />
+                <b> Example:</b><br />
+                <code>int arr[5] = {1, 2, 3, 4, 5};</code><br />
+                <code>int (*p)[5] = &arr;</code> → <code>(*p)[2]</code> accesses the value 3.<br />
+                <code>int *ptr_arr[5];</code> → <code>ptr_arr[2] = &arr[2];</code> stores the address of the third
+                element.
+            </div>
         </div>
-        <div>
-          <b>Answer:</b>
-          The <code>scanf()</code> function is used to read formatted input from
-          the standard input device, while the <code>printf()</code> function is
-          used to display formatted output on the standard output device.
-          <br /><br />
-          <b>Example:</b><br />
-          <code>scanf("%d", &x); printf("%d", x);</code>
-        </div>
-      </div>
 
-      <div class="ques-ans">
-        <div class="question">
-          Q1 (c): What are the main data types present in C?
+        <div class="ques-ans">
+            <div class="question">
+                Q1 (b): Explain the use of scanf() and printf() functions in C.
+            </div>
+            <div>
+                <b>Answer:</b>
+                The <code>scanf()</code> function is used to read formatted input from
+                the standard input device, while the <code>printf()</code> function is
+                used to display formatted output on the standard output device.
+                <br /><br />
+                <b>Example:</b><br />
+                <code>int num;</code><br />
+                <code>printf("Enter a number: "); // Displays a message</code><br />
+                <code>scanf("%d", &num);         // Reads user input and stores it in 'num'</code><br />
+                <code>printf("You entered: %d", num); // Displays the stored value</code>
+            </div>
         </div>
-        <div>
-          <b>Answer:</b>
-          The main data types in C are <code>int</code> (integer values),
-          <code>char</code> (characters), <code>float</code> (single precision
-          decimal values), <code>double</code> (double precision values), and
-          <code>void</code> (represents no value).
-        </div>
-      </div>
 
-      <div class="ques-ans">
-        <div class="question">
-          Q1 (d): How many times will the loop be executed?
+        <div class="ques-ans">
+            <div class="question">
+                Q1 (c): What are the main data types present in C?
+            </div>
+            <div>
+                <b>Answer:</b>
+                The main data types in C are <code>int</code> (integer values),
+                <code>char</code> (characters), <code>float</code> (single precision
+                decimal values), <code>double</code> (double precision values), and
+                <code>void</code> (represents no value).
+            </div>
         </div>
-        <pre><code>int x = 2345;
-while(x > 0) {
-    x = x / 10;
-}</code></pre>
-        <div>
-          <b>Answer:</b>
-          The loop will execute <b>4 times</b> because the value of x will
-          change from 2345 to 234, then to 23, to 2, and finally to 0, at which
-          point the loop terminates.
-        </div>
-      </div>
 
-      <!-- <div class="ques-ans">
+        <div class="ques-ans">
+            <div class="question"> Q1 (d): How many times will the loop be executed?
+                <pre><code>
+int x = 2345; 
+while(x > 0){ 
+x = x / 10;
+}
+</code></pre>
+            </div>
+            <div> <b>Answer:</b> The loop will execute <b>4 times</b>. <br /><br /> <b>Step-by-Step Execution Trace:</b>
+                <table border="1" style="border-collapse: collapse; width: 100%; text-align: center;">
+                    <tr style="background-color: #f2f2f2;">
+                        <th>Iteration</th>
+                        <th>Condition (x > 0)</th>
+                        <th>Operation (x = x / 10)</th>
+                        <th>New Value of x</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2345 > 0 (True)</td>
+                        <td>2345 / 10</td>
+                        <td>234</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>234 > 0 (True)</td>
+                        <td>234 / 10</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>23 > 0 (True)</td>
+                        <td>23 / 10</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>2 > 0 (True)</td>
+                        <td>2 / 10</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>End</td>
+                        <td>0 > 0 (False)</td>
+                        <td>---</td>
+                        <td>Loop Terminates</td>
+                    </tr>
+                </table> <br />
+
+                <b>Note:</b> In C, when you divide an integer like 2 by 10, the result is <b>0</b> (not 0.2), which
+                causes the loop condition to become false in the next check.
+            </div>
+        </div>
+
+        <!-- <div class="ques-ans">
     <div class="question">Q1 (e): Describe a situation where a pointer would be beneficial in C.</div>
     <div>
         <b>Answer:</b> 
@@ -298,81 +352,93 @@ while(x > 0) {
     </div>
 </div> -->
 
-      <div class="page-num">Page 1</div>
+        <div class="page-num">Page 1</div>
     </div>
 
     <!-- ================= PAGE 2 ================= -->
-<div class="page">
+    <div class="page">
 
-    <div class="ques-ans">
-        <div class="question">
-            1.(e) What are the three main types of control statements in C?
-        </div>
-        <div>
-            <b>Answer:</b><br>
-            The three main types of control statements in C are:
-            <ul>
-                <li><b>Selection statements</b> – <code>if</code>, <code>if-else</code>, <code>switch</code></li>
-                <li><b>Iteration statements</b> – <code>for</code>, <code>while</code>, <code>do-while</code></li>
-                <li><b>Jump statements</b> – <code>break</code>, <code>continue</code>, <code>goto</code>, <code>return</code></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="ques-ans">
-        <div class="question">
-            1.(i) What will be the output of the following C code?
+        <div class="ques-ans">
+            <div class="question">
+                1.(e) What are the three main types of control statements in C?
+            </div>
+            <div>
+                <b>Answer:</b><br>
+                The three main types of control statements in C are:
+                <ul>
+                    <li><b>Selection statements</b> – <code>if</code>, <code>if-else</code>, <code>switch</code></li>
+                    <li><b>Iteration statements</b> – <code>for</code>, <code>while</code>, <code>do-while</code></li>
+                    <li><b>Jump statements</b> – <code>break</code>, <code>continue</code>, <code>goto</code>,
+                        <code>return</code>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+     <div class="ques-ans">
+  <div class="question">
+    Q1 (i): What will be the output of the following C code?
 
-int main()
-{
-    int a = 10;
+    <pre><code>#include &lt;stdio.h&gt;
 
-    printf("%d,%d,%d,%d\n", a++, ++a, a--, --a);
-    printf("%d", a);
-
-    return 0;
+int main(){
+    int a = 10; 
+    printf("%d,%d,%d,%d\n", a++, ++a, a--, --a); 
+    printf("%d", a); 
+    return 0; 
 }</code></pre>
-        </div>
+  </div>
 
-        <div>
-            <b>Answer:</b><br>
-            The output of the program is:
-            <!-- <br><br> -->
-            <b>10,12,12,11</b> and
-            <b>11</b>
-            <br><br>
-            <b>Explanation:</b><br>
-            <ul>
-                <li><code>a++</code> → prints 10, then <code>a</code> becomes 11</li>
-                <li><code>++a</code> → increments first, so <code>a</code> becomes 12 and prints 12</li>
-                <li><code>a--</code> → prints 12, then <code>a</code> becomes 11</li>
-                <li><code>--a</code> → decrements first, so <code>a</code> becomes 10 and prints 11 (after sequence evaluation)</li>
-            </ul>
-            Finally, <code>a</code> remains <b>11</b>.
-        </div>
-    </div>
+  <div>
+    <b>Answer:</b><br />
+    The output on your system is:<br />
+    <b>9,10,9,10</b><br />
+    <b>10</b><br /><br />
 
-    <div class="page-num">Page 2</div>
+    <b>Explanation:</b>
+    <ul>
+      <li><b>--a:</b> <code>a</code> is decremented from 10 to <b>9</b>, value used = 9</li>
+      <li><b>a--:</b> value used = <b>10</b>, then <code>a</code> becomes 9</li>
+      <li><b>++a:</b> <code>a</code> becomes <b>10</b>, value used = 10</li>
+      <li><b>a++:</b> value used = <b>9</b>, then <code>a</code> becomes 10</li>
+    </ul>
+
+    <p>
+      Thus, the first <code>printf()</code> prints:
+      <br />
+      <b>9,10,9,10</b>
+    </p>
+
+    <p>
+      After all operations, the final value of <code>a</code> is <b>10</b>,
+      so the second <code>printf()</code> prints:
+      <b>10</b>
+    </p>
+
+    <br>
+    <b>Please note:</b> The output may vary depending on the compiler and system used. Because the order of evaluation of function arguments is unspecified in C, different compilers may produce different results.
+
+  </div>
 </div>
 
-<!-- ================= PAGE 3 ================= -->
-<div class="page">
 
-    <div class="ques-ans">
-        <div class="question">
-            1.(g) Write the syntax of if-else statement in C and draw the corresponding flow diagram.
-        </div>
-        <div>
-            <b>Answer:</b><br>
-            The <code>if-else</code> statement is used to execute different blocks of code based on a condition.
-            <br><br>
-            <b>Syntax:</b><br>
-            <div class="code-box">
-<pre><code>if(condition)
+        <div class="page-num">Page 2</div>
+    </div>
+
+    <!-- ================= PAGE 3 ================= -->
+    <div class="page">
+
+        <div class="ques-ans">
+            <div class="question">
+                1.(g) Write the syntax of if-else statement in C and draw the corresponding flow diagram.
+            </div>
+            <div>
+                <b>Answer:</b><br>
+                The <code>if-else</code> statement is used to execute different blocks of code based on a condition.
+                <br><br>
+                <b>Syntax:</b><br>
+                <div class="code-box">
+                    <pre><code>if(condition)
 {
     statements;
 }
@@ -380,123 +446,127 @@ else
 {
     statements;
 }</code></pre>
-            </div>
+                </div>
 
-            <b>Flow Diagram:</b><br>
-            <div class="flowchart">
-                <img src="images/1.png" alt="If-Else Flowchart" style="max-width:100%; height:auto;">
-                <!-- [ Condition ]<br>
+                <b>Flow Diagram:</b><br>
+                <div class="flowchart">
+                    <img src="images/1.png" alt="If-Else Flowchart" style="max-width:100%; height:auto;">
+                    <!-- [ Condition ]<br>
                 / &nbsp;&nbsp;&nbsp;&nbsp; \<br>
                True &nbsp;&nbsp; False<br>
                 | &nbsp;&nbsp;&nbsp;&nbsp; |<br>
              If-Block &nbsp; Else-Block -->
+                </div>
             </div>
         </div>
+
+
+
+        <div class="page-num">Page 3</div>
     </div>
 
-   
+    <!-- ================= PAGE 4 ================= -->
+    <div class="page">
 
-    <div class="page-num">Page 3</div>
-</div>
-
-<!-- ================= PAGE 4 ================= -->
-<div class="page">
-
-     <div class="ques-ans">
-        <div class="question">
-            (h) Explain do-while loop in C with a suitable example.
-        </div>
-        <div>
-            <b>Answer:</b><br>
-            A <code>do-while</code> loop is an exit-controlled loop in which the loop body is executed at least once,
-            even if the condition is false.
-            <br><br>
-            <b>Syntax:</b><br>
-            <div class="code-box">
-<pre><code>do
+        <div class="ques-ans">
+            <div class="question">
+                (h) Explain do-while loop in C with a suitable example.
+            </div>
+            <div>
+                <b>Answer:</b><br>
+                A <code>do-while</code> loop is an exit-controlled loop in which the loop body is executed at least
+                once,
+                even if the condition is false.
+                <br><br>
+                <b>Syntax:</b><br>
+                <div class="code-box">
+                    <pre><code>do
 {
     statements;
 }
 while(condition);</code></pre>
-            </div>
+                </div>
 
-            <b>Example:</b><br>
-            <div class="code-box">
-<pre><code>int i = 1;
+                <b>Example:</b><br>
+                <div class="code-box">
+                    <pre><code>int i = 1;
 do
 {
     printf("%d ", i);
     i++;
 }
 while(i <= 5);</code></pre>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="ques-ans">
-        <div class="question">
-            2. (a) What are break and continue statements in C? Explain with suitable examples.
-        </div>
-        <div>
-            <b>Answer:</b><br>
-            <b>break:</b> The <code>break</code> statement is used to terminate the loop or switch statement immediately.
-            <br><br>
-            <b>Example:</b><br>
-            <div class="code-box">
-<pre><code>for(int i = 1; i <= 5; i++)
+        <div class="ques-ans">
+            <div class="question">
+                2. (a) What are break and continue statements in C? Explain with suitable examples.
+            </div>
+            <div>
+                <b>Answer:</b><br>
+                <b>break:</b> The <code>break</code> statement is used to terminate the loop or switch statement
+                immediately.
+                <br><br>
+                <b>Example:</b><br>
+                <div class="code-box">
+                    <pre><code>for(int i = 1; i <= 5; i++)
 {
     if(i == 3)
         break;
     printf("%d ", i);
 }</code></pre>
-            </div>
+                </div>
 
-            <b>continue:</b> The <code>continue</code> statement skips the remaining statements of the current iteration
-            and moves to the next iteration.
-            <br><br>
-            <b>Example:</b><br>
-            <div class="code-box">
-<pre><code>for(int i = 1; i <= 5; i++)
+                <b>continue:</b> The <code>continue</code> statement skips the remaining statements of the current
+                iteration
+                and moves to the next iteration.
+                <br><br>
+                <b>Example:</b><br>
+                <div class="code-box">
+                    <pre><code>for(int i = 1; i <= 5; i++)
 {
     if(i == 3)
         continue;
     printf("%d ", i);
 }</code></pre>
+                </div>
             </div>
         </div>
+
+        <div class="page-num">Page 4</div>
+
     </div>
 
-    <div class="page-num">Page 4</div>
 
-</div>
+    <!-- ================= PAGE 5 ================= -->
+    <div class="page">
 
+        <div class="ques-ans">
+            <div class="question">
+                2.(b) Write the syntax of do-while statement in C. Write a C program to find factorial of a positive
+                integer using do-while statement.
+            </div>
 
-<!-- ================= PAGE 5 ================= -->
-<div class="page">
+            <div>
+                <b>Answer:</b><br>
+                A <code>do-while</code> statement is an exit-controlled loop in which the body of the loop
+                executes at least once before the condition is tested.
+                <br><br>
 
-    <div class="ques-ans">
-        <div class="question">
-            2.(b) Write the syntax of do-while statement in C. Write a C program to find factorial of a positive integer using do-while statement.
-        </div>
-
-        <div>
-            <b>Answer:</b><br>
-            A <code>do-while</code> statement is an exit-controlled loop in which the body of the loop
-            executes at least once before the condition is tested.
-            <br><br>
-
-            <b>Syntax:</b>
-            <div class="code-box">
-<pre><code>do
+                <b>Syntax:</b>
+                <div class="code-box">
+                    <pre><code>do
 {
     statements;
 }
 while(condition);</code></pre>
-            </div>
+                </div>
 
-            <b>Program to find factorial of a positive integer:</b>
-            <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+                <b>Program to find factorial of a positive integer:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 
 int main()
 {
@@ -515,41 +585,41 @@ int main()
     printf("Factorial = %d", fact);
     return 0;
 }</code></pre>
-            </div>
+                </div>
 
-            <b>Explanation:</b><br>
-            The loop multiplies the value of <code>n</code> repeatedly with <code>fact</code> and decrements
-            <code>n</code> by 1 in each iteration until <code>n</code> becomes zero.
+                <b>Explanation:</b><br>
+                The loop multiplies the value of <code>n</code> repeatedly with <code>fact</code> and decrements
+                <code>n</code> by 1 in each iteration until <code>n</code> becomes zero.
+            </div>
         </div>
+
+        <div class="page-num">Page 5</div>
     </div>
 
-    <div class="page-num">Page 5</div>
-</div>
+    <!-- ================= PAGE 6 ================= -->
+    <div class="page">
 
-<!-- ================= PAGE 6 ================= -->
-<div class="page">
-
-    <div class="ques-ans">
-        <div class="question">
-            2.(c) Illustrate function prototype in C with a suitable example.
-            Define a function in C to compute GCD of two positive integers.
-        </div>
-
-        <div>
-            <b>Answer:</b><br>
-            A function prototype in C specifies the function name, return type,
-            and parameters before the function is used. It helps the compiler
-            perform type checking.
-            <br><br>
-
-            <b>Example of function prototype:</b>
-            <div class="code-box">
-<pre><code>int add(int, int);</code></pre>
+        <div class="ques-ans">
+            <div class="question">
+                2.(c) Illustrate function prototype in C with a suitable example.
+                Define a function in C to compute GCD of two positive integers.
             </div>
 
-            <b>Program to compute GCD of two positive integers:</b>
-            <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+            <div>
+                <b>Answer:</b><br>
+                A function prototype in C specifies the function name, return type,
+                and parameters before the function is used. It helps the compiler
+                perform type checking.
+                <br><br>
+
+                <b>Example of function prototype:</b>
+                <div class="code-box">
+                    <pre><code>int add(int, int);</code></pre>
+                </div>
+
+                <b>Program to compute GCD of two positive integers:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 
 int gcd(int a, int b);
 
@@ -573,46 +643,46 @@ int gcd(int a, int b)
     }
     return a;
 }</code></pre>
-            </div>
+                </div>
 
-            <b>Explanation:</b><br>
-            The function uses the Euclidean algorithm to repeatedly calculate
-            the remainder until it becomes zero. The last non-zero value is the GCD.
+                <b>Explanation:</b><br>
+                The function uses the Euclidean algorithm to repeatedly calculate
+                the remainder until it becomes zero. The last non-zero value is the GCD.
+            </div>
         </div>
+
+        <div class="page-num">Page 6</div>
     </div>
 
-    <div class="page-num">Page 6</div>
-</div>
+    <!-- ================= PAGE 7 ================= -->
+    <div class="page">
 
-<!-- ================= PAGE 7 ================= -->
-<div class="page">
+        <div class="ques-ans">
+            <div class="question">
+                2.(d) Write an algorithm and draw the corresponding flowchart to find all roots of a quadratic equation.
+            </div>
 
-    <div class="ques-ans">
-        <div class="question">
-            2.(d) Write an algorithm and draw the corresponding flowchart to find all roots of a quadratic equation.
-        </div>
+            <div>
+                <b>Answer:</b><br>
+                A quadratic equation is of the form <b>ax² + bx + c = 0</b>,
+                where <code>a ≠ 0</code>.
+                <br><br>
 
-        <div>
-            <b>Answer:</b><br>
-            A quadratic equation is of the form <b>ax² + bx + c = 0</b>,
-            where <code>a ≠ 0</code>.
-            <br><br>
+                <b>Algorithm:</b>
+                <ol>
+                    <li>Start</li>
+                    <li>Read values of <code>a</code>, <code>b</code>, and <code>c</code></li>
+                    <li>Calculate discriminant <code>D = b² - 4ac</code></li>
+                    <li>If <code>D > 0</code>, roots are real and distinct</li>
+                    <li>If <code>D = 0</code>, roots are real and equal</li>
+                    <li>If <code>D < 0</code>, roots are complex</li>
+                    <li>Display the roots</li>
+                    <li>Stop</li>
+                </ol>
 
-            <b>Algorithm:</b>
-            <ol>
-                <li>Start</li>
-                <li>Read values of <code>a</code>, <code>b</code>, and <code>c</code></li>
-                <li>Calculate discriminant <code>D = b² - 4ac</code></li>
-                <li>If <code>D > 0</code>, roots are real and distinct</li>
-                <li>If <code>D = 0</code>, roots are real and equal</li>
-                <li>If <code>D < 0</code>, roots are complex</li>
-                <li>Display the roots</li>
-                <li>Stop</li>
-            </ol>
-
-            <b>Flowchart:</b>
-            <div class="flowchart">
-                <!-- Start<br>
+                <b>Flowchart:</b>
+                <div class="flowchart">
+                    <!-- Start<br>
                 ↓<br>
                 Read a, b, c<br>
                 ↓<br>
@@ -629,59 +699,59 @@ int gcd(int a, int b)
                  Equal Roots &nbsp; Complex Roots<br>
                 ↓<br>
                Stop -->
-               <img src="images/2.png" alt="Quadratic Equation Flowchart" style="max-width:100%; height:auto;">
+                    <img src="images/2.png" alt="Quadratic Equation Flowchart" style="max-width:100%; height:auto;">
+                </div>
             </div>
         </div>
+
+        <div class="page-num">Page 7</div>
     </div>
 
-    <div class="page-num">Page 7</div>
-</div>
 
+    <!-- ================= PAGE 8 ================= -->
+    <div class="page">
 
-<!-- ================= PAGE 8 ================= -->
-<div class="page">
-
-    <div class="ques-ans">
-        <div class="question">
-            3. (c) (i) Write the differences between Hardware and Software.
-        </div>
-        <div>
-            <b>Answer:</b><br>
-            <table border="1" cellpadding="6" cellspacing="0" width="100%">
-                <tr>
-                    <th>Hardware</th>
-                    <th>Software</th>
-                </tr>
-                <tr>
-                    <td>Hardware refers to the physical components of a computer.</td>
-                    <td>Software refers to the set of programs and instructions.</td>
-                </tr>
-                <tr>
-                    <td>It can be seen and touched.</td>
-                    <td>It cannot be seen or touched physically.</td>
-                </tr>
-                <tr>
-                    <td>Examples: Keyboard, Monitor, CPU.</td>
-                    <td>Examples: Operating System, Compiler, Application programs.</td>
-                </tr>
-                <tr>
-                    <td>Hardware cannot function without software.</td>
-                    <td>Software requires hardware to execute.</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="ques-ans">
-        <div class="question">
-            3. (c) (iii) Write a C program to check whether a given number is prime or not.
+        <div class="ques-ans">
+            <div class="question">
+                3. (c) (i) Write the differences between Hardware and Software.
+            </div>
+            <div>
+                <b>Answer:</b><br>
+                <table border="1" cellpadding="6" cellspacing="0" width="100%">
+                    <tr>
+                        <th>Hardware</th>
+                        <th>Software</th>
+                    </tr>
+                    <tr>
+                        <td>Hardware refers to the physical components of a computer.</td>
+                        <td>Software refers to the set of programs and instructions.</td>
+                    </tr>
+                    <tr>
+                        <td>It can be seen and touched.</td>
+                        <td>It cannot be seen or touched physically.</td>
+                    </tr>
+                    <tr>
+                        <td>Examples: Keyboard, Monitor, CPU.</td>
+                        <td>Examples: Operating System, Compiler, Application programs.</td>
+                    </tr>
+                    <tr>
+                        <td>Hardware cannot function without software.</td>
+                        <td>Software requires hardware to execute.</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
-        <div>
-            <b>Answer:</b><br>
-            <b>Program:</b>
-            <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+        <div class="ques-ans">
+            <div class="question">
+                3. (c) (iii) Write a C program to check whether a given number is prime or not.
+            </div>
+
+            <div>
+                <b>Answer:</b><br>
+                <b>Program:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 #include &lt;math.h&gt;
 
 int main()
@@ -710,31 +780,31 @@ int main()
 
     return 0;
 }</code></pre>
-            </div>
+                </div>
 
-            <b>Explanation:</b><br>
-            A number is prime if it is divisible only by 1 and itself.
-            The program checks divisibility from 2 to the square root of the number.
-            If any divisor is found, it marks the number as not prime.
+                <b>Explanation:</b><br>
+                A number is prime if it is divisible only by 1 and itself.
+                The program checks divisibility from 2 to the square root of the number.
+                If any divisor is found, it marks the number as not prime.
+            </div>
         </div>
+
+        <div class="page-num">Page 8</div>
     </div>
 
-    <div class="page-num">Page 8</div>
-</div>
+    <!-- ================= PAGE 9 ================= -->
+    <div class="page">
 
-<!-- ================= PAGE 9 ================= -->
-<div class="page">
+        <div class="ques-ans">
+            <div class="question">
+                3. (c) (ii) Write a C program to find the mean and variance of 10 given real numbers.
+            </div>
 
-    <div class="ques-ans">
-        <div class="question">
-            3. (c) (ii) Write a C program to find the mean and variance of 10 given real numbers.
-        </div>
-
-        <div>
-            <b>Answer:</b><br>
-            <b>Program:</b>
-            <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+            <div>
+                <b>Answer:</b><br>
+                <b>Program:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 
 int main()
 {
@@ -762,35 +832,35 @@ int main()
 
     return 0;
 }</code></pre>
-            </div>
+                </div>
 
-            <b>Explanation:</b><br>
-            First, the program calculates the sum of the 10 numbers and computes the mean.
-            Then, it calculates the variance by finding the average of the squared differences
-            between each number and the mean.
+                <b>Explanation:</b><br>
+                First, the program calculates the sum of the 10 numbers and computes the mean.
+                Then, it calculates the variance by finding the average of the squared differences
+                between each number and the mean.
+            </div>
         </div>
+
+        <div class="page-num">Page 9</div>
     </div>
 
-    <div class="page-num">Page 9</div>
-</div>
+    <!-- ================= PAGE 10 ================= -->
+    <div class="page">
+        <div class="ques-ans">
+            <div class="question">
+                3. (b) (i) Write a program in C to print the following outputs using for loops:<br>
+                1<br>
+                2 2<br>
+                3 3 3<br>
+                4 4 4 4<br>
+                5 5 5 5 5
+            </div>
 
-<!-- ================= PAGE 10 ================= -->
-<div class="page">
-<div class="ques-ans">
-        <div class="question">
-          3.  (b) (i) Write a program in C to print the following outputs using for loops:<br>
-            1<br>
-            2 2<br>
-            3 3 3<br>
-            4 4 4 4<br>
-            5 5 5 5 5
-        </div>
-
-        <div>
-            <b>Answer:</b><br>
-            <b>Program:</b>
-            <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+            <div>
+                <b>Answer:</b><br>
+                <b>Program:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 
 int main() {
     int i, j;
@@ -804,53 +874,58 @@ int main() {
 
     return 0;
 }</code></pre>
+                </div>
+                <br>
+                <b>Explanation:</b><br>
+                The program uses nested <b>for loops</b>. The outer loop (variable <code>i</code>) tracks the row number
+                and the value to be printed (from 1 to 5). The inner loop (variable <code>j</code>) controls how many
+                times that value is printed in each row. For row <code>i</code>, the inner loop runs <code>i</code>
+                times. After the inner loop finishes, <code>printf("\n")</code> moves the cursor to the next line.
             </div>
-            <br>
-            <b>Explanation:</b><br>
-            The program uses nested <b>for loops</b>. The outer loop (variable <code>i</code>) tracks the row number and the value to be printed (from 1 to 5). The inner loop (variable <code>j</code>) controls how many times that value is printed in each row. For row <code>i</code>, the inner loop runs <code>i</code> times. After the inner loop finishes, <code>printf("\n")</code> moves the cursor to the next line.
         </div>
+
+        <div class="ques-ans">
+            <div class="question">
+                3. (b) (iii) Determine the value of the logical expression <code>a == c || b > a</code>, for
+                <code>a = 5, b = 10, c = -6</code>.
+            </div>
+
+            <div>
+                <b>Answer:</b><br>
+                Given values: <code>a = 5, b = 10, c = -6</code><br>
+                Expression: <code>(a == c) || (b > a)</code><br><br>
+
+                <b>Step-by-step Evaluation:</b>
+                <ul>
+                    <li><b>(a == c):</b> 5 == -6 is <b>False (0)</b>.</li>
+                    <li><b>(b > a):</b> 10 > 5 is <b>True (1)</b>.</li>
+                    <li><b>Final Expression:</b> (0 || 1) results in <b>1 (True)</b>.</li>
+                </ul>
+
+                <b>Explanation:</b><br>
+                In C, the logical OR operator (<code>||</code>) evaluates to true if <i>either</i> or <i>both</i>
+                operands are true. Since the second condition is true, the entire logical expression evaluates to 1.
+            </div>
+        </div>
+
+
+        <div class="page-num">Page 10</div>
     </div>
 
-    <div class="ques-ans">
-        <div class="question">
-           3. (b) (iii) Determine the value of the logical expression <code>a == c || b > a</code>, for <code>a = 5, b = 10, c = -6</code>.
-        </div>
+    <!-- ================= PAGE 11 ================= -->
+    <div class="page">
+        <div class="ques-ans">
+            <div class="question">
+                3. (b) (ii) Write a C program that will read the value of x and evaluate f(x), where:<br>
+                f(x) = e<sup>x</sup> - x (if x < 0)<br>
+                    f(x) = sin(x) + 1 (if x &ge; 0)
+            </div>
 
-        <div>
-            <b>Answer:</b><br>
-            Given values: <code>a = 5, b = 10, c = -6</code><br>
-            Expression: <code>(a == c) || (b > a)</code><br><br>
-            
-            <b>Step-by-step Evaluation:</b>
-            <ul>
-                <li><b>(a == c):</b> 5 == -6 is <b>False (0)</b>.</li>
-                <li><b>(b > a):</b> 10 > 5 is <b>True (1)</b>.</li>
-                <li><b>Final Expression:</b> (0 || 1) results in <b>1 (True)</b>.</li>
-            </ul>
-
-            <b>Explanation:</b><br>
-            In C, the logical OR operator (<code>||</code>) evaluates to true if <i>either</i> or <i>both</i> operands are true. Since the second condition is true, the entire logical expression evaluates to 1.
-        </div>
-    </div>
-   
-
-    <div class="page-num">Page 10</div>
-</div>
-
-<!-- ================= PAGE 11 ================= -->
-<div class="page">
-   <div class="ques-ans">
-        <div class="question">
-          3. (b) (ii) Write a C program that will read the value of x and evaluate f(x), where:<br>
-            f(x) = e<sup>x</sup> - x (if x < 0)<br>
-            f(x) = sin(x) + 1 (if x &ge; 0)
-        </div>
-
-        <div>
-            <b>Answer:</b><br>
-            <b>Program:</b>
-            <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+            <div>
+                <b>Answer:</b><br>
+                <b>Program:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 #include &lt;math.h&gt;
 
 int main() {
@@ -868,31 +943,36 @@ int main() {
 
     return 0;
 }</code></pre>
+                </div>
+                <br>
+                <b>Explanation:</b><br>
+                This program utilizes the <code>math.h</code> library for the <code>exp()</code> and <code>sin()</code>
+                functions. A simple <b>if-else</b> control structure evaluates the user's input against the condition
+                <i>x < 0</i> to decide which mathematical formula to apply.
             </div>
-            <br>
-            <b>Explanation:</b><br>
-            This program utilizes the <code>math.h</code> library for the <code>exp()</code> and <code>sin()</code> functions. A simple <b>if-else</b> control structure evaluates the user's input against the condition <i>x < 0</i> to decide which mathematical formula to apply.
         </div>
+
+        <div class="page-num">Page 11</div>
     </div>
 
-    <div class="page-num">Page 11</div>
-</div>
+    <!-- ================= PAGE 12 ================= -->
+    <div class="page">
+        <div class="ques-ans">
+            <div class="question">
+                3. (a) (i) What is an if-else-if ladder structure? Explain it with a suitable C program example.
+            </div>
 
-<!-- ================= PAGE 12 ================= -->
-<div class="page">
-<div class="ques-ans">
-    <div class="question">
-      3. (a) (i)  What is an if-else-if ladder structure? Explain it with a suitable C program example.
-    </div>
+            <div>
+                <b>Answer:</b><br> <br>
+                The <b>if-else-if ladder</b> is a multi-way decision-making structure used when we have multiple
+                conditions to check. The conditions are evaluated from the top downwards. As soon as a true condition is
+                found, the statement associated with it is executed, and the rest of the ladder is skipped. If none of
+                the conditions are true, the final <code>else</code> statement is executed.
+                <br> <br>
 
-    <div>
-        <b>Answer:</b><br> <br>
-        The <b>if-else-if ladder</b> is a multi-way decision-making structure used when we have multiple conditions to check. The conditions are evaluated from the top downwards. As soon as a true condition is found, the statement associated with it is executed, and the rest of the ladder is skipped. If none of the conditions are true, the final <code>else</code> statement is executed.
-        <br> <br>
-
-        <b>Program Example (Grading System):</b>
-        <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+                <b>Program Example (Grading System):</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 
 int main() {
     int marks;
@@ -915,33 +995,40 @@ int main() {
 
     return 0;
 }</code></pre>
+                </div>
+                <br>
+                <b>Explanation:</b><br>
+                <ul>
+                    <li><b>Sequential Evaluation:</b> The program first checks if <code>marks >= 80</code>. If this is
+                        true, it prints "Grade: A" and skips all subsequent <code>else if</code> and <code>else</code>
+                        blocks.</li>
+                    <li><b>Branching:</b> If the first condition is false, it moves to
+                        <code>else if (marks >= 60)</code>. It only checks this because the previous condition failed.
+                    </li>
+                    <li><b>Default Case:</b> The final <code>else</code> acts as a "catch-all" block. If none of the
+                        mathematical conditions (80, 60, or 40) are met, the program executes the code within the
+                        <code>else</code> block, printing "Grade: Fail".
+                    </li>
+                </ul>
+            </div>
         </div>
-         <br>
-        <b>Explanation:</b><br>
-        <ul>
-            <li><b>Sequential Evaluation:</b> The program first checks if <code>marks >= 80</code>. If this is true, it prints "Grade: A" and skips all subsequent <code>else if</code> and <code>else</code> blocks.</li>
-            <li><b>Branching:</b> If the first condition is false, it moves to <code>else if (marks >= 60)</code>. It only checks this because the previous condition failed.</li>
-            <li><b>Default Case:</b> The final <code>else</code> acts as a "catch-all" block. If none of the mathematical conditions (80, 60, or 40) are met, the program executes the code within the <code>else</code> block, printing "Grade: Fail".</li>
-        </ul>
-    </div>
-</div>
 
-  <div class="page-num">Page 12</div>
+        <div class="page-num">Page 12</div>
 
-</div>
-
-<!-- ================= PAGE 13 ================= -->
-<div class="page">
-
-  <div class="ques-ans">
-    <div class="question">
-      3. (a) (ii) Write a C program to find the sum of the series: 1 - 1/2 + 1/3 - 1/4 ... + 1/51.
     </div>
 
-    <div>
-      <b>Answer:</b>
-      <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+    <!-- ================= PAGE 13 ================= -->
+    <div class="page">
+
+        <div class="ques-ans">
+            <div class="question">
+                3. (a) (ii) Write a C program to find the sum of the series: 1 - 1/2 + 1/3 - 1/4 ... + 1/51.
+            </div>
+
+            <div>
+                <b>Answer:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
  int main(){
     int n, i;
     float sum = 0.0;
@@ -960,43 +1047,48 @@ int main() {
     printf("The sum of the series is: %.3f\n", sum);
     return 0;
 }</code></pre>
-      </div>
-      <br>
-      <b>Explanation:</b><br />
-      <ul>
-        <li>
-          The program initializes a variable <code>sum</code> to store the sum of the series.
-        </li>
-        <li>
-          It uses a <code>for</code> loop to iterate from 1 to <code>n</code> (51 in this case).
-        </li>
-        <li>
-          Inside the loop, it checks if the current index <code>i</code> is even or odd using the modulus operator (<code>%</code>).
-        </li>
-        <li>
-          If <code>i</code> is even, it subtracts <code>1/i</code> from <code>sum</code>; if odd, it adds <code>1/i</code>.
-        </li>
-        <li>
-          Finally, it prints the computed sum of the series formatted to three decimal places.
-        </li>
-      </ul>
-    </div> 
+                </div>
+                <br>
+                <b>Explanation:</b><br />
+                <ul>
+                    <li>
+                        The program initializes a variable <code>sum</code> to store the sum of the series.
+                    </li>
+                    <li>
+                        It uses a <code>for</code> loop to iterate from 1 to <code>n</code> (51 in this case).
+                    </li>
+                    <li>
+                        Inside the loop, it checks if the current index <code>i</code> is even or odd using the modulus
+                        operator (<code>%</code>).
+                    </li>
+                    <li>
+                        If <code>i</code> is even, it subtracts <code>1/i</code> from <code>sum</code>; if odd, it adds
+                        <code>1/i</code>.
+                    </li>
+                    <li>
+                        Finally, it prints the computed sum of the series formatted to three decimal places.
+                    </li>
+                </ul>
+            </div>
 
-  </div>
+        </div>
 
- <div class="ques-ans">
-    <div class="question">
-        3. (a) (iii) What is function call-by-value?
-    </div>
+        <div class="ques-ans">
+            <div class="question">
+                3. (a) (iii) What is function call-by-value?
+            </div>
 
-    <div>
-        <b>Answer:</b><br>
-        Function <b>call-by-value</b> is a method of passing arguments to a function where the actual value of the argument is copied into the formal parameters of the function. Because the function works on a local copy, any changes made to the parameters inside the function do not affect the original variables used in the function call.
+            <div>
+                <b>Answer:</b><br>
+                Function <b>call-by-value</b> is a method of passing arguments to a function where the actual value of
+                the argument is copied into the formal parameters of the function. Because the function works on a local
+                copy, any changes made to the parameters inside the function do not affect the original variables used
+                in the function call.
 
-        <br><br>
-        <b>Program Example:</b>
-        <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+                <br><br>
+                <b>Program Example:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 
 int sum(int a, int b) {
     a = a + 10; // Modifying the local copy 'a'
@@ -1013,32 +1105,35 @@ int main() {
 
     return 0;
 }</code></pre>
+                </div>
+            </div>
         </div>
+        <div class="page-num">Page 13</div>
+
     </div>
-</div>
-  <div class="page-num">Page 13</div>
 
-  </div>
+    <!-- ================== Page-14 ================== -->
 
-  <!-- ================== Page-14 ================== -->
+    <div class="page">
 
-  <div class="page">
-
-     <b>Explanation:</b><br>
-        In this example, the function <code>sum</code> receives copies of <code>x</code> and <code>y</code> into its local parameters <code>a</code> and <code>b</code>. Even though <code>a</code> is incremented by 10 inside the function, the original variable <code>x</code> in the <code>main</code> function remains 5. This demonstrates that call-by-value protects the original data from being modified by the called function.
+        <b>Explanation:</b><br>
+        In this example, the function <code>sum</code> receives copies of <code>x</code> and <code>y</code> into its
+        local parameters <code>a</code> and <code>b</code>. Even though <code>a</code> is incremented by 10 inside the
+        function, the original variable <code>x</code> in the <code>main</code> function remains 5. This demonstrates
+        that call-by-value protects the original data from being modified by the called function.
 
         <br> <br>
 
         <div class="ques-ans">
-        <div class="question">
-            3. (d) (i) Write a C program to print the largest of three real numbers.
-        </div>
+            <div class="question">
+                3. (d) (i) Write a C program to print the largest of three real numbers.
+            </div>
 
-        <div>
-            <b>Answer:</b><br>
-            <b>Program:</b>
-            <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+            <div>
+                <b>Answer:</b><br>
+                <b>Program:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 
 int main()
 {
@@ -1060,72 +1155,72 @@ int main()
 
     return 0;
 }</code></pre>
+                </div>
+                <br>
+                <b>Explanation:</b><br>
+                The program compares the three real numbers using conditional statements
+                and prints the largest among them.
             </div>
-             <br>
-            <b>Explanation:</b><br>
-            The program compares the three real numbers using conditional statements
-            and prints the largest among them.
-        </div>
-    </div>
-
-    <div class="ques-ans">
-        <div class="question">
-            3. (d) (ii) What do you mean by local and global variables in C?
-            Explain with suitable examples.
         </div>
 
-        <div>
-            <b>Answer:</b><br> <br>
-            <b>Local Variables:</b><br>
-            Local variables are variables declared inside a function or block.
-            Their scope is limited to that function or block.
-            <br><br>
+        <div class="ques-ans">
+            <div class="question">
+                3. (d) (ii) What do you mean by local and global variables in C?
+                Explain with suitable examples.
+            </div>
 
-            <b>Example:</b>
-            <div class="code-box">
-<pre><code>void fun()
+            <div>
+                <b>Answer:</b><br> <br>
+                <b>Local Variables:</b><br>
+                Local variables are variables declared inside a function or block.
+                Their scope is limited to that function or block.
+                <br><br>
+
+                <b>Example:</b>
+                <div class="code-box">
+                    <pre><code>void fun()
 {
     int x = 10;   // local variable
     printf("%d", x);
 }</code></pre>
-            </div>
+                </div>
 
-           
+
+            </div>
         </div>
+
+        <div class="page-num">Page 14</div>
     </div>
 
-    <div class="page-num">Page 14</div>
-  </div>
+    <!-- ================= PAGE 15 ================= -->
+    <div class="page">
+        <b>Global Variables:</b><br>
+        Global variables are variables declared outside all functions.
+        They can be accessed by all functions in the program.
+        <br><br>
 
-  <!-- ================= PAGE 15 ================= -->
-<div class="page">
- <b>Global Variables:</b><br>
-            Global variables are variables declared outside all functions.
-            They can be accessed by all functions in the program.
-            <br><br>
-
-            <b>Example:</b>
-            <div class="code-box">
-<pre><code>int y = 20;   // global variable
+        <b>Example:</b>
+        <div class="code-box">
+            <pre><code>int y = 20;   // global variable
 
 void fun()
 {
     printf("%d", y);
 }</code></pre>
-            </div>
-
-            <br> <br>
-
-             <div class="ques-ans">
-        <div class="question">
-            3. (d) (iii) Write a C program to find whether a given year is leap year or not.
         </div>
 
-        <div>
-            <b>Answer:</b><br>
-            <b>Program:</b>
-            <div class="code-box">
-<pre><code>#include &lt;stdio.h&gt;
+        <br> <br>
+
+        <div class="ques-ans">
+            <div class="question">
+                3. (d) (iii) Write a C program to find whether a given year is leap year or not.
+            </div>
+
+            <div>
+                <b>Answer:</b><br>
+                <b>Program:</b>
+                <div class="code-box">
+                    <pre><code>#include &lt;stdio.h&gt;
 
 int main()
 {
@@ -1141,22 +1236,22 @@ int main()
 
     return 0;
 }</code></pre>
+                </div>
+                <br>
+                <b>Explanation:</b><br>
+                A year is a leap year if it is divisible by 400 or
+                divisible by 4 but not divisible by 100.
+                The program checks these conditions and displays the result.
             </div>
-            <br>
-            <b>Explanation:</b><br>
-            A year is a leap year if it is divisible by 400 or
-            divisible by 4 but not divisible by 100.
-            The program checks these conditions and displays the result.
         </div>
+
+
+        <div class="page-num">Page 15</div>
     </div>
-    
-
-    <div class="page-num">Page 15</div>
-</div>
 
 
 
 
-  </body>
+</body>
+
 </html>
-
