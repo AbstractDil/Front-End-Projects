@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>গণিত নোট - ট্রেনের গতিবেগ ও দূরত্ব</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+      body {
+        /* background-color: #fdf6e3; */
+        line-height: 1.6;
+        color: #2c3e50;
+        /* padding: 20px; */
+      }
+      .notebook-page {
+        background: white;
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 40px;
+        /* border-left: 5px solid #e74c3c; */
+        /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
+        border-radius: 5px;
+      }
+      h1 {
+        color: #d35400;
+        text-align: center;
+        border-bottom: 2px dashed #d35400;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+      }
+      .problem-box {
+        background-color: #ecf0f1;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 5px solid #3498db;
+        margin-bottom: 30px;
+        font-weight: 600;
+        font-size: 1.1em;
+      }
+      .step {
+        margin-bottom: 40px;
+      }
+      .step-title {
+        color: #27ae60;
+        font-weight: bold;
+        font-size: 1em;
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      /* ভগ্নাংশ তৈরির জন্য CSS (No MathJax Needed) */
+      .math-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 15px 0;
+        font-family: "Times New Roman", serif;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .frac {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        vertical-align: middle;
+        margin: 0 5px;
+      }
+      .frac .num {
+        border-bottom: 2px solid #2c3e50;
+        padding: 0 5px;
+      }
+      .frac .den {
+        padding: 0 5px;
+      }
+      .eq-box {
+        background: #fff9c4;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #f1c40f;
+        color: #c0392b;
+        margin: 15px 0;
+      }
+
+      .highlight {
+        color: #8e44ad;
+        font-weight: bold;
+      }
+      .diagram-container {
+        text-align: center;
+        margin: 25px 0;
+        background: #fafafa;
+        padding: 20px;
+        border: 1px dashed #bbb;
+        border-radius: 12px;
+      }
+      .result-box {
+        border: 4px double #27ae60;
+        padding: 25px;
+        margin-top: 40px;
+        text-align: center;
+        background-color: #e8f5e9;
+        font-size: 12px;
+        border-radius: 10px;
+      }
+      .bengali-label {
+        font-family: "Hind Siliguri", sans-serif;
+        font-size: 0.85em;
+        color: #2c3e50;
+        font-weight: normal;
+        margin: 0 5px;
+      }
+      svg text {
+        font-family: "Hind Siliguri", sans-serif;
+      }
+
+              /* Print settings */
+@page {
+    size: A4;
+    margin: 20mm;
+}
+
+/* Watermark container */
+.watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    opacity: 0.08;   /* adjust watermark visibility */
+    pointer-events: none;
+}
+
+/* Watermark image size */
+.watermark img {
+    width: 300px;   /* adjust as needed */
+}
+
+
+    </style>
+  </head>
+  <body>
+
+     <div class="watermark">
+    <img src="images/logo.png" alt="Watermark Logo">
+</div>
+
+    <div class="notebook-page">
+      <h1>📝 গণিত নোট: সময় ও দূরত্ব (নবম শ্রেণী)</h1>
+
+      <div class="problem-box">
+        Q18: হাওড়া স্টেশন থেকে একটি ট্রেন ছাড়ার 1 ঘণ্টা পরে বিশেষ কারণে 1 ঘণ্টা
+        দেরি করে এবং তারপর পূর্বে বেগের 3/5 অংশ বেগে চলে নির্দিষ্ট সময়ের 3 ঘণ্টা
+        পরে গন্তব্যস্থলে পৌঁছায়। যদি বিশেষ কারণটি আরও 50 কিমি. পরে হতো, তাহলে
+        ট্রেনটি 1 ঘণ্টা 20 মিনিট আগে পৌঁছাত। ট্রেনটি মোট কত পথ চলেছিল ও বেগ কত
+        ছিল?
+      </div>
+
+      <div class="step">
+        <span class="step-title">ধাপ ১: চলরাশি ধরে নেওয়া</span>
+        ধরি, ট্রেনটির স্বাভাবিক গতিবেগ =
+        <span class="highlight">x</span> কিমি/ঘণ্টা।<br />
+        এবং ট্রেনটির অতিক্রান্ত মোট দূরত্ব =
+        <span class="highlight">D</span> কিমি।
+      </div>
+
+      <div class="step">
+        <span class="step-title">ধাপ ২: প্রথম শর্তানুসারে সমীকরণ</span>
+        1 ঘণ্টা চলার পর অতিক্রান্ত দূরত্ব = x কিমি। অবশিষ্ট পথ = (D - x)
+        কিমি।<br />
+        পরিবর্তিত বেগ =
+        <div class="frac">
+          <div class="num">3</div>
+          <div class="den">5</div>
+        </div>
+        x কিমি/ঘণ্টা।
+
+        <div class="diagram-container">
+          <strong>চিত্র ১: প্রথম ক্ষেত্রে ট্রেনের গতিপথ</strong><br />
+          <svg width="100%" height="120" viewBox="0 0 600 120">
+            <line
+              x1="50"
+              y1="60"
+              x2="550"
+              y2="60"
+              stroke="#34495e"
+              stroke-width="3"
+            />
+            <circle cx="50" cy="60" r="7" fill="#e67e22" />
+            <circle cx="150" cy="60" r="7" fill="#e74c3c" />
+            <circle cx="550" cy="60" r="7" fill="#27ae60" />
+            <text x="35" y="40" fill="#d35400" font-weight="bold">হাওড়া</text>
+            <text x="120" y="40" fill="#c0392b" font-weight="bold">
+              দুর্ঘটনা (1 hr পর)
+            </text>
+            <text x="520" y="40" fill="#27ae60" font-weight="bold">
+              গন্তব্য
+            </text>
+            <text x="80" y="85" fill="#2c3e50">বেগ: x</text>
+            <text x="320" y="85" fill="#2c3e50">বেগ: 3/5 x</text>
+            <text x="140" y="110" fill="#e74c3c">এখানে 1 ঘণ্টা অপেক্ষা</text>
+          </svg>
+        </div>
+
+        <div class="math-row">
+          অতএব, 1 (চলার সময়) + 1 (দেরি) +
+          <div class="frac">
+            <div class="num">D - x</div>
+            <div class="den">
+              <div class="frac">
+                <div class="num">3x</div>
+                <div class="den">5</div>
+              </div>
+            </div>
+          </div>
+          =
+          <div class="frac">
+            <div class="num">D</div>
+            <div class="den">x</div>
+          </div>
+          + 3
+        </div>
+
+        <div class="eq-box">
+          বা, 2 +
+          <div class="frac">
+            <div class="num">5(D - x)</div>
+            <div class="den">3x</div>
+          </div>
+          =
+          <div class="frac">
+            <div class="num">D</div>
+            <div class="den">x</div>
+          </div>
+          + 3 <br />
+          বা, 2D - 5x = 3x <br />
+          বা, <strong>D = 4x</strong> ---- (1 নং সমীকরণ)
+        </div>
+      </div>
+    </div>
+
+    <div class="notebook-page">
+      <div class="step">
+        <span class="step-title">ধাপ ৩: দ্বিতীয় শর্তানুসারে সমীকরণ</span>
+        যদি দেরি আরও 50 কিমি পরে হতো, তবে ট্রেনটি মোট দেরি হতো:<br />
+        3 ঘণ্টা - 1 ঘণ্টা 20 মিনিট = 1 ঘণ্টা 40 মিনিট বা
+        <div class="frac">
+          <div class="num">5</div>
+          <div class="den">3</div>
+        </div>
+        ঘণ্টা।
+
+        <div class="diagram-container">
+          <strong>চিত্র ২: দুর্ঘটনা 50 কিমি পরে হলে</strong><br />
+          <svg width="100%" height="140" viewBox="0 0 600 140">
+            <line
+              x1="50"
+              y1="60"
+              x2="550"
+              y2="60"
+              stroke="#34495e"
+              stroke-width="3"
+            />
+            <circle cx="50" cy="60" r="7" fill="#e67e22" />
+            <circle cx="150" cy="60" r="4" fill="#95a5a6" />
+            <circle cx="250" cy="60" r="7" fill="#e74c3c" />
+            <circle cx="550" cy="60" r="7" fill="#27ae60" />
+            <text x="35" y="40" fill="#d35400">হাওড়া</text>
+            <text x="210" y="40" fill="#c0392b">নতুন দুর্ঘটনা স্থান</text>
+            <line
+              x1="150"
+              y1="80"
+              x2="250"
+              y2="80"
+              stroke="#8e44ad"
+              stroke-width="2"
+            />
+            <text x="180" y="100" fill="#8e44ad" font-weight="bold">
+              50 km অতিরিক্ত পথ (বেগ x)
+            </text>
+          </svg>
+        </div>
+
+        <div class="math-row">
+          অতএব,
+          <div class="frac">
+            <div class="num">x + 50</div>
+            <div class="den">x</div>
+          </div>
+          + 1 +
+          <div class="frac">
+            <div class="num">D - (x + 50)</div>
+            <div class="den">
+              <div class="frac">
+                <div class="num">3x</div>
+                <div class="den">5</div>
+              </div>
+            </div>
+          </div>
+          =
+          <div class="frac">
+            <div class="num">D</div>
+            <div class="den">x</div>
+          </div>
+          +
+          <div class="frac">
+            <div class="num">5</div>
+            <div class="den">3</div>
+          </div>
+        </div>
+
+        <div class="eq-box">
+          (D = 4x বসিয়ে পাই)<br />
+          বা, 15x - 100 = 11x <br />
+          বা, 4x = 100 <br />
+          বা, <strong>x = 25</strong>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-title">ধাপ ৪: চূড়ান্ত মান নির্ণয়</span>
+        1 নং সমীকরণে x = 25 বসিয়ে পাই:<br />
+        D = 4 × 25 = 100
+      </div>
+
+      <div class="result-box">
+        <strong>উত্তর:</strong><br />
+        ট্রেনটির পূর্বের গতিবেগ ছিল <span class="highlight">25 কিমি/ঘণ্টা</span
+        ><br />
+        এবং মোট অতিক্রান্ত পথ ছিল <span class="highlight">100 কিমি</span>।
+      </div>
+
+      <div class="footer">
+        <p
+          style="
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 50px;
+          "
+        >
+          This note is prepared by Sagar Nandy. For any queries or suggestions,
+          please contact:
+          <a href="mailto:nandysagar@yahoo.com">nandysagar@yahoo.com</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+[
+    {
+  "id": "1708365432",
+  "examName": "M.C.Q Test On Physical Science 01",
+  "subject": "Physical Science",
+  "topic": "Measurement, Force and Motion",
+  "class": "IX",
+  "time": "1 Hour",
+  "fullMarks": 50,
+  "dbFile": "db1.json",
+  "totalQuestions":20,
+  "questionsPerPage": 20
+}
+]

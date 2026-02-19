@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1st Internal Assessment Test - Mathematics - Class IX</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+           font-family: 'Noto Sans Bengali', 'Kalpurush', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 12mm; /* Slightly reduced padding to save space */
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        
+
+        .exam-header {
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            gap : 2rem;
+            border: 2px dashed #555;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-family: poppins, sans-serif;
+        }
+        .logo-area {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header-info {
+            text-align: left;
+            line-height: 1.4;
+        }
+        .header-info h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .header-info p {
+            margin: 1px 0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .section-title {
+            background: #f2f2f2;
+            padding: 3px 10px;
+            border-left: 5px solid #2c3e50;
+            font-weight: bold;
+            margin: 10px 0 8px 0;
+            font-size: 13px;
+        }
+
+        .question-list {
+            margin-top: 5px;
+            padding-left: 25px;
+        }
+        .question-list li {
+            margin-bottom: 10px;
+            font-size: 13px;
+            list-style-type: decimal;
+        }
+
+        /* MCQ Horizontal Style */
+        .mcq-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 25px; /* Adjust gap to fit your text width */
+            margin-top: 5px;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .mcq-container li {
+            margin-bottom: 0;
+            list-style-type: none;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 8mm;
+            left: 15mm;
+            right: 15mm;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            padding-top: 5px;
+            font-size: 10px;
+            color: #555;
+        }
+
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; width: 100%; height: 100%; }
+            .print-btn { display: none; }
+        }
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Print This Page</button>
+
+<div class="page">
+    <div class="exam-header">
+        <div class="logo-area">
+             <img src="images/logo.png" alt="Logo" style="max-width: 120%; max-height: 120%;">
+        </div>
+        <div class="header-info">
+            <h2>2ND INTERNAL ASSESSMENT TEST - 2026</h2>
+            <p>Class: IX &nbsp;|&nbsp; Subject: Mathematics &nbsp;|&nbsp; Set-01</p>
+            <p>Full Marks: 20 &nbsp;|&nbsp; Time: 40 Minutes</p>
+        </div>
+    </div>
+
+    <div class="section-title">Section-A: সঠিক উত্তরটি নির্বাচন করো (any 5) : (5 x 1) = 5 </div>
+    
+    <ol class="question-list">
+        <li>একটি বিন্দুর x-অক্ষ থেকে ধনাত্মক দিকে দূরত্ব 5 একক এবং y-অক্ষ থেকে ধনাত্মক দিকে দূরত্ব 7 একক। বিন্দুটির স্থানাঙ্ক কত?</li>
+        
+        <li>$x + y = 7$ সমীকরণের সমাধানগুলি হলো—
+            <ul class="mcq-container">
+                <li>(a) $(1, 6), (3, 4)$</li>
+                <li>(b) $(1, -6), (4, 3)$</li>
+                <li>(c) $(1, 6), (4, 3)$</li>
+                <li>(d) $(-1, 6), (-4, 3)$</li>
+            </ul>
+        </li>
+
+        <li>$4x + 3y = 25$ এবং $5x - 2y = 14$ সমীকরণদ্বয়ের সমাধান—
+            <ul class="mcq-container">
+                <li>(a) $x = 4, y = 3$</li>
+                <li>(b) $x = 3, y = 4$</li>
+                <li>(c) $x = 3, y = 3$</li>
+                <li>(d) $x = 4, y = -3$</li>
+            </ul>
+        </li>
+
+        <li>$(x, -7)$ এবং $(3, 3)$ বিন্দুদ্বয়ের মধ্যে দূরত্ব 5 একক হলে, x-এর মানগুলি হলো—
+            <ul class="mcq-container">
+                <li>(a) 0 অথবা 6</li>
+                <li>(b) 2 অথবা 3</li>
+                <li>(c) 5 অথবা 1</li>
+                <li>(d) -6 অথবা 0</li>
+            </ul>
+        </li>
+
+        <li>$20^{-x} = \frac{1}{7}$ হলে, $(20)^{2x}$-এর মান—
+            <ul class="mcq-container">
+                <li>(a) $\frac{1}{49}$</li>
+                <li>(b) $7$</li>
+                <li>(c) $49$</li>
+                <li>(d) $1$</li>
+            </ul>
+        </li>
+
+        <li>$(a + b, c - d)$ এবং $(a - b, c + d)$ বিন্দু দুটির মধ্যে দূরত্ব—
+            <ul class="mcq-container">
+                <li>(a) $2\sqrt{a^2 + c^2}$</li>
+                <li>(b) $2\sqrt{b^2 + d^2}$</li>
+                <li>(c) $\sqrt{a^2 + c^2}$</li>
+                <li>(d) $\sqrt{b^2 + d^2}$</li>
+            </ul>
+        </li>
+    </ol>
+
+    <div class="section-title">Section-B: সংক্ষিপ্ত উত্তর দাও (any 1): (1 x 3) = 3 </div>
+    <ol class="question-list">
+       <li>$p$-এর কোন মানের জন্য $px + 6y - p = 0$ এবং $(p - 1) x + 4y + (p - 5) = 0$ সমীকরণদ্বয়ের একাধিক সমাধান থাকবে?</li>
+       <li>দেখাও যে, $(2, 2), (-2, -2)$ এবং $(-2\sqrt{3}, 2\sqrt{3})$ বিন্দু তিনটি একটি সমবাহু ত্রিভুজের শীর্ষবিন্দু।</li>
+    </ol>
+
+    <div class="section-title">Section-C: দীর্ঘ উত্তরধর্মী প্রশ্ন (any 1): (1 x 4) = 4 </div>
+    <ol class="question-list">
+       <li>সুখদেব একটি দুই অঙ্কের সংখ্যা লিখেছে যাদের অঙ্কদ্বয়ের সমষ্টি 6 এবং সংখ্যাটির সঙ্গে 36 যোগ করলে অঙ্কদ্বয় স্থান বিনিময় করে। বিবৃতিটির সহ-সমীকরণ গঠন করো এবং লেখচিত্রের সাহায্যে সমাধান করে দুই অঙ্কের সংখ্যাটি নির্ণয় করো।</li>
+       <li>একটি নৌকা স্রোতের অনুকূলে 16 ঘণ্টায় 96 কিমি. যায় এবং স্রোতের প্রতিকূলে 8 ঘণ্টায় 16 কিমি. যায়। স্থির জলে নৌকার বেগ ও স্রোতের বেগ নির্ণয় করো।</li>
+    </ol>
+
+    <div class="section-title">Section-D: নিচের প্রশ্নগুলোর সমাধান করো: (2 x 4) = 8 </div>
+<ol class="question-list">
+    <li>
+        সমাধান করো (পরিবর্ত বা, তুলনামূলক পদ্ধতিতে):
+        $$ \frac{x}{2} + \frac{y}{3} = 1 $$
+        $$ \frac{x}{3} + \frac{y}{2} = 1 $$
+    </li>
+    <li>
+        সমাধান করো (বজ্রগুণন পদ্ধতিতে):
+        $$ x + 5y = 36 $$
+        $$ \frac{x + y}{x - y} = \frac{5}{3} $$
+    </li>
+</ol>
+
+   <div class="footer">
+    <img src="images/footer.jpg" alt="Footer" style="max-width:80%; height: auto;">
+    <div style="margin-top: 2px;">
+        © 2026 • Internal Assessment • Confidential
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
