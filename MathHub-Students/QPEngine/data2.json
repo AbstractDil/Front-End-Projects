@@ -8,8 +8,8 @@
   "time": "1 Hour",
   "fullMarks": 50,
   "dbFile": "qdb20022026.json",
-  "totalQuestions":40,
-  "questionsPerPage": 20
+  "totalQuestions":20,
+  "questionsPerPage":6
 },
     {
   "id": "1708365433",
@@ -20,7 +20,7 @@
   "time": "1 Hour",
   "fullMarks": 50,
   "dbFile": "db2.json",
-  "totalQuestions":15,
+  "totalQuestions":20,
   "questionsPerPage": 20
 }
 ]

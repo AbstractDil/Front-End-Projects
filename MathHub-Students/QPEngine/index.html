@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical Science MCQ Test</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gravitas+One&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Noto+Sans+Bengali:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 12mm;
+            margin: 10mm auto;
+            background: white;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: url("images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.05;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* হেডার স্টাইল */
+        .exam-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            border: 2px solid #333;
+            padding: 10px;
+            margin-bottom: 25px;
+        }
+
+        .logo-area img {
+            max-width: 80px;
+            max-height: 80px;
+        }
+
+        .header-info {
+            text-align: start;
+        }
+
+        .header-info h2 {
+            margin: 0;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .header-info p {
+            margin: 3px 0;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* কন্টেন্ট লেআউট */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .column {
+            position: relative;
+        }
+
+        .column:first-child {
+            border-right: 1px dashed #bbb;
+            padding-right: 20px;
+        }
+
+        .question-list {
+            padding-left: 25px;
+            margin: 0;
+            list-style-type: decimal;
+        }
+
+        .question-list li {
+            font-size: 14px;
+            margin-bottom:16px;
+            line-height: 1.4;
+            /* font-weight: bold; */
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 10px;
+            font-weight: normal;
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .options span {
+            display: block;
+            font-weight: normal;
+            font-size: 13px;
+        }
+
+        /* ফুটার স্টাইল (ইমেজ অনুযায়ী) */
+        .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 12mm;
+            right: 12mm;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-icon {
+            width: 32px;
+            height: 32px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .footer-text {
+            line-height: 1.2;
+        }
+
+        .footer-text b {
+            font-size: 12px;
+            display: block;
+        }
+
+        .footer-text span {
+            font-size: 11px;
+            color: #333;
+        }
+
+        @media print {
+            .print-btn { display: none; }
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; width: 100%; }
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="print-btn" onclick="window.print()">Download Question Paper PDF</button>
+
+    <div class="page">
+        <div class="exam-header">
+            <div class="logo-area">
+                <img src="../images/logo.png" alt="Logo">
+            </div>
+            <div class="header-info">
+                <h2>M.C.Q Test On Physical Science 01</h2>
+                <p>Topic: Measurement, Force and Motion | Class: IX</p>
+                <p>Full Marks: 50 | Time: 1 Hour</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="column">
+                <ol class="question-list">
+                    <li>নিম্নলিখিত কোনটির মাত্রা শক্তির সাথে একই?
+                        <div class="options">
+                            <span>(a) ঘাত</span>
+                            <span>(b) বল</span>
+                            <span>(c) কার্য</span>
+                            <span>(d) উপরের কোনটিই নয়</span>
+                        </div>
+                    </li>
+                    <li>পৃথিবী থেকে সূর্যের আনুমানিক দৈর্ঘ্যের এককটি হ'ল 
+    <div class="options">
+        <span>(a) কিলোমিটার</span>
+        <span>(b) জ্যোতির্বিদ্যা একক</span>
+        <span>(c) কেলভিন</span>
+        <span>(d) জুল</span>
+    </div>
+</li>
+<li>নিউটন-মিটার (Nm) নিম্নলিখিত কোন ভৌত মাত্রার SI একক? 
+    <div class="options">
+        <span>(a) ত্বরণ </span>
+        <span>(b) টর্ক</span>
+        <span>(c) বিদ্যুৎ</span>
+        <span>(d) বল</span>
+    </div>
+</li>
+<li>নিচের কোনটি নিউটনের তৃতীয় গতি সূত্রের প্রয়োগ নয়?
+    <div class="options">
+        <span>(a) মাটিতে হাঁটা একজন মানুষ</span>
+        <span>(b) নৌকা চালানো</span>
+        <span>(c) বল ধরার সময় ফিল্ডার হাত পিছনে টেনে নেয়</span>
+        <span>(d) বলের বাউন্সিং</span>
+    </div>
+</li>
+
+ <li>দ্রুতির মাত্রিক সূত্র নিম্নোক্ত কোনটি?
+                        <div class="options">
+                            <span>(a) $[ML^0T^{-1}]$</span>
+                            <span>(b) $[MLT^{-1}]$</span>
+                            <span>(c) $[M^0LT^{-1}]$</span>
+                            <span>(d) $[MLT^{-2}]$</span>
+                        </div>
+                    </li>
+
+                    <li>তড়িৎ বিভব পার্থক্যের SI একক কী? 
+    <div class="options">
+        <span>(a) ওয়াট</span>
+        <span>(b) ভোল্ট</span>
+        <span>(c) ওহম</span>
+        <span>(d) কুলম্ব</span>
+    </div>
+</li>
+<li>নিচের কোনটি মাত্রাহীন রাশি? 
+    <div class="options">
+        <span>(a) বেগ</span>
+        <span>(b) কোণ</span>
+        <span>(c) ভর</span>
+        <span>(d) ক্ষেত্রফল</span>
+    </div>
+</li>
+<li>সরলরেখা বরাবর চলমান কোনো বস্তুর দ্রুতি ধ্রুবক থাকলে, তার গতিকে বলা হয়: 
+    <div class="options">
+        <span>(a) সম</span>
+        <span>(b) পর্যায়ক্রমিক</span>
+        <span>(c) বৃত্তীয়</span>
+        <span>(d) অসম</span>
+    </div>
+</li>
+
+                </ol>
+            </div>
+
+            <div class="column">
+                <ol class="question-list" start="2">
+                   
+                </ol>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon">
+                    <i class="fa fa-globe"></i>
+                </div>
+                <div class="footer-text">
+                    <b>MathHub Students Web Portal :</b>
+                    <span>https://students.nandysagar.in</span>
+                </div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text">
+                    <b>Email ID :</b>
+                    <span>nandysagar@yahoo.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

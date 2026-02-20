@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Question Set Picker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <link rel="stylesheet" href="css/qpicker.css" />
+</head>
+<body>
+
+<div id="app" class="min-h-screen flex flex-col">
+
+  <!-- ══════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════ -->
+  <header class="flex items-center justify-between px-8 py-5 border-b" style="border-color:var(--border)">
+    <div>
+      <h1 class="font-display text-4xl" style="color:var(--gold)">QPicker</h1>
+      <p class="text-xs" style="color:var(--muted)">Fair &amp; Random Question Set Assignment</p>
+    </div>
+    <div class="flex gap-2">
+      <span class="tab-pill" :class="{ active: tab === 'setup' }">① Setup</span>
+      <span class="tab-pill" :class="{ active: tab === 'lottery' }">② Draw</span>
+      <span class="tab-pill" :class="{ active: tab === 'results' }">③ Results</span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       TAB: SETUP
+  ══════════════════════════════════════ -->
+  <main v-if="tab === 'setup'" class="flex-1 px-8 py-8 max-w-5xl mx-auto w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Students Panel -->
+      <div class="card p-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <h2 class="font-display text-2xl">STUDENTS</h2>
+          <span class="badge-gold">{{ students.length }}</span>
+        </div>
+        <div class="flex gap-2">
+          <input class="inp flex-1" v-model="studentInput" placeholder="Enter student name…" @keyup.enter="addStudent" />
+          <button class="btn-primary" @click="addStudent">Add</button>
+        </div>
+        <div class="flex flex-col gap-2 overflow-y-auto" style="max-height:300px">
+          <div v-for="(s, i) in students" :key="s" class="student-row">
+            <span class="text-xs font-mono" style="color:var(--muted); min-width:1.5rem">{{ i + 1 }}</span>
+            <span class="flex-1 text-sm">{{ s }}</span>
+            <button @click="removeStudent(i)" class="text-xs px-2 py-1 rounded hover:text-red-400 transition-colors" style="color:var(--muted)">✕</button>
+          </div>
+          <p v-if="students.length === 0" class="text-sm text-center py-4" style="color:var(--muted)">No students added yet.</p>
+        </div>
+        <div class="flex items-center gap-3 pt-2 border-t" style="border-color:var(--border)">
+          <span class="text-xs" style="color:var(--muted)">Import from JSON:</span>
+          <label class="btn-ghost text-xs cursor-pointer">
+            Choose file
+            <input type="file" accept=".json" @change="importJSON" class="hidden" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Question Sets Panel -->
+      <div class="card p-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <h2 class="font-display text-2xl">QUESTION SETS</h2>
+          <span class="badge-gold">{{ questionSetList.length }}</span>
+        </div>
+        <p class="text-sm" style="color:var(--muted)">
+          Add alphanumeric set codes. Each student will be randomly assigned one unique code.
+        </p>
+        <div class="flex gap-2">
+          <input
+            class="inp flex-1 font-mono tracking-widest"
+            v-model="questionSetInput"
+            placeholder="e.g. 1PZ6"
+            @keyup.enter="addSet"
+            maxlength="8"
+            style="text-transform:uppercase"
+          />
+          <button class="btn-primary" @click="addSet">Add</button>
+        </div>
+        <div class="flex flex-col gap-2 overflow-y-auto" style="max-height:200px">
+          <div v-for="(code, i) in questionSetList" :key="code" class="student-row">
+            <span class="text-xs font-mono" style="color:var(--muted); min-width:1.5rem">{{ i + 1 }}</span>
+            <span class="flex-1 font-mono tracking-widest text-sm" style="color:var(--gold)">{{ code }}</span>
+            <button @click="removeSet(i)" class="text-xs px-2 py-1 rounded hover:text-red-400 transition-colors" style="color:var(--muted)">✕</button>
+          </div>
+          <p v-if="questionSetList.length === 0" class="text-sm text-center py-4" style="color:var(--muted)">No sets added yet.</p>
+        </div>
+        <div v-if="students.length > questionSetList.length && students.length > 0"
+             class="text-xs px-3 py-2 rounded"
+             style="background:rgba(239,68,68,0.15); color:#f87171; border:1px solid rgba(239,68,68,0.3)">
+          ⚠ Need at least {{ students.length }} sets for {{ students.length }} students.
+        </div>
+        <div v-else-if="canStart"
+             class="text-xs px-3 py-2 rounded"
+             style="background:rgba(245,200,66,0.1); color:var(--gold); border:1px solid rgba(245,200,66,0.3)">
+          ✓ Ready — {{ students.length }} students, {{ questionSetList.length }} sets.
+        </div>
+        <div class="mt-auto pt-2">
+          <button class="btn-primary w-full text-lg py-3 font-display tracking-wider" :disabled="!canStart" @click="startLottery">
+            Ready to Assign Sets →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ══════════════════════════════════════
+       TAB: LOTTERY DRAW
+  ══════════════════════════════════════ -->
+  <main v-if="tab === 'lottery'" class="flex-1 px-8 py-8 max-w-5xl mx-auto w-full flex flex-col gap-6">
+
+    <div class="card p-8 flex flex-col items-center gap-4">
+      <p class="text-sm font-medium" style="color:var(--muted)">
+        <span v-if="currentIndex < 0">Ready to begin — press Draw</span>
+        <span v-else-if="spinning">Drawing for <strong style="color:var(--text)">{{ drawOrder[currentIndex + 1] ?? drawOrder[currentIndex] }}</strong>…</span>
+        <span v-else-if="lotteryDone">🎉 All students have drawn!</span>
+        <span v-else>
+          <strong style="color:var(--gold)">{{ drawOrder[currentIndex] }}</strong>
+          received <strong style="color:var(--gold)">{{ assignments[drawOrder[currentIndex]] }}</strong>
+        </span>
+      </p>
+
+      <!-- Spinner box -->
+      <div
+        class="font-display flex items-center justify-center rounded-2xl font-mono tracking-widest"
+        style="width:220px; height:140px; background:var(--ink); border:2px solid var(--border); font-size:2.8rem; color:var(--gold);"
+        :class="{ 'spin-active': spinning, 'pop-in': !spinning && currentIndex >= 0 }"
+      >
+        {{ spinDisplay }}
+      </div>
+
+      <button
+        v-if="!lotteryDone"
+        class="btn-primary text-xl py-4 px-12 font-display tracking-widest"
+        :disabled="spinning"
+        @click="drawNext"
+      >
+        {{ currentIndex < 0 ? 'BEGIN DRAW' : spinning ? 'DRAWING…' : 'NEXT DRAW' }}
+      </button>
+      <div v-else class="flex gap-3">
+        <button class="btn-primary text-base px-8" @click="goToResults">VIEW RESULTS →</button>
+        <button class="btn-ghost" @click="resetAll">Restart</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Queue -->
+      <div class="card p-5">
+        <h3 class="font-display text-lg mb-3" style="color:var(--muted)">QUEUE</h3>
+        <div class="flex flex-col gap-2">
+          <template v-for="(s, i) in drawOrder" :key="s">
+            <div v-if="assignments[s] === undefined" class="student-row text-sm"
+                 :style="i === currentIndex + 1 ? 'border-color: var(--gold)' : ''">
+              <span class="text-xs font-mono w-5" style="color:var(--muted)">{{ i + 1 }}</span>
+              <span class="flex-1">{{ s }}</span>
+              <span v-if="i === currentIndex + 1" class="text-xs" style="color:var(--gold)">← NEXT</span>
+            </div>
+          </template>
+          <p v-if="Object.keys(assignments).length === drawOrder.length && drawOrder.length > 0"
+             class="text-sm py-2 text-center" style="color:var(--muted)">All drawn ✓</p>
+        </div>
+      </div>
+
+      <!-- Drawn — clickable -->
+      <div class="card p-5">
+        <h3 class="font-display text-lg mb-3" style="color:var(--gold)">DRAWN</h3>
+        <div class="flex flex-col gap-2">
+          <template v-for="s in drawOrder" :key="'d' + s">
+            <div
+              v-if="assignments[s] !== undefined"
+              class="student-row drawn text-sm cursor-pointer"
+              @click="showModal(s, assignments[s])"
+              title="Click to enlarge"
+            >
+              <span class="flex-1">{{ s }}</span>
+              <span class="badge-gold text-sm font-mono tracking-widest">{{ assignments[s] }}</span>
+              <span class="text-xs ml-1" style="color:var(--muted)">⤢</span>
+            </div>
+          </template>
+          <p v-if="Object.keys(assignments).length === 0"
+             class="text-sm py-2 text-center" style="color:var(--muted)">No draws yet</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ══════════════════════════════════════
+       TAB: RESULTS
+  ══════════════════════════════════════ -->
+  <main v-if="tab === 'results'" class="flex-1 px-8 py-8 max-w-3xl mx-auto w-full">
+    <div class="card overflow-hidden">
+      <div class="flex items-center justify-between px-6 py-4 border-b" style="border-color:var(--border)">
+        <h2 class="font-display text-2xl">FINAL RESULTS</h2>
+        <div class="flex gap-2">
+          <button class="btn-ghost text-sm" @click="exportResults">⬇ Export JSON</button>
+          <button class="btn-ghost text-sm" @click="resetAll">New Lottery</button>
+        </div>
+      </div>
+      <div class="result-row" style="background:var(--ink); color:var(--muted); font-size:0.75rem; font-weight:600; letter-spacing:0.1em;">
+        <span>#</span>
+        <span>STUDENT</span>
+        <span>SET CODE</span>
+      </div>
+      <div
+        v-for="(r, i) in resultsList"
+        :key="r.student"
+        class="result-row cursor-pointer hover:bg-white/5 transition-colors"
+        @click="showModal(r.student, r.set)"
+        title="Click to expand"
+      >
+        <span class="text-sm font-mono" style="color:var(--muted)">{{ i + 1 }}</span>
+        <span class="text-sm font-medium">{{ r.student }}</span>
+        <span class="badge-gold font-mono tracking-widest">{{ r.set }}</span>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mt-6">
+      <div class="card p-4 text-center">
+        <div class="font-display text-3xl" style="color:var(--gold)">{{ resultsList.length }}</div>
+        <div class="text-xs mt-1" style="color:var(--muted)">Students</div>
+      </div>
+      <div class="card p-4 text-center">
+        <div class="font-display text-3xl" style="color:var(--gold)">{{ questionSetList.length }}</div>
+        <div class="text-xs mt-1" style="color:var(--muted)">Available Sets</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="px-8 py-3 text-center text-xs" style="color:var(--muted); border-top:1px solid var(--border)">
+    Question Set Picker — all draws are random &amp; unique
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       MODAL: Result Announcement
+  ══════════════════════════════════════ -->
+  <transition name="modal-fade">
+    <div
+      v-if="modal.show"
+      class="fixed inset-0 flex items-center justify-center"
+      style="background: rgba(0,0,0,0.78); backdrop-filter: blur(8px); z-index: 100;"
+      @click.self="closeModal"
+    >
+      <div class="modal-card flex flex-col items-center gap-6 p-12 text-center" @click.stop>
+        <div style="width:60px; height:3px; background:var(--gold); border-radius:9999px"></div>
+        <p class="text-xs font-semibold tracking-widest uppercase" style="color:var(--muted)">Question Set Assigned</p>
+        <h2 class="font-display leading-tight" style="font-size: clamp(2rem, 5vw, 3.5rem); color:var(--text)">{{ modal.student }}</h2>
+        <div class="modal-set-badge font-bold text-8xl text-green-600 tracking-widest">{{ modal.set }}</div>
+        <p class="text-sm" style="color:var(--muted)">has been assigned this question set</p>
+        <button class="btn-primary px-12 mt-2 text-base" @click="closeModal">DISMISS</button>
+      </div>
+    </div>
+  </transition>
+
+</div>
+
+<!-- Data defaults -->
+<script src="js/qpickerData.js"></script>
+<!-- Vue App -->
+<script src="js/qpicker.js"></script>
+</body>
+</html>

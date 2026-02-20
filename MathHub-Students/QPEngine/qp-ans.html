@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathSquadz Solution Engine</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+        },
+        svg: { fontCache: "global" },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Noto Sans Bengali", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 12mm;
+        margin: 10mm auto;
+        background: white;
+        box-sizing: border-box;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      .page::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300px;
+        height: 300px;
+        background: url("images/logo.png") no-repeat center;
+        background-size: contain;
+        opacity: 0.05;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+
+      .exam-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        border: 2px solid #333;
+        padding: 10px;
+        margin-bottom: 25px;
+        position: relative;
+        z-index: 1;
+        text-align: start;
+      }
+      .logo-area img {
+        max-width: 80px;
+        max-height: 80px;
+      }
+      .header-info h2 {
+        margin: 0;
+        font-size: 20px;
+        text-transform: uppercase;
+        color: #000;
+      }
+      .header-info p {
+        margin: 3px 0;
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      .main-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        position: relative;
+        z-index: 1;
+      }
+      .column {
+        position: relative;
+      }
+      .column-border {
+        border-right: 1px dashed #bbb;
+        padding-right: 20px;
+      }
+
+      .question-list {
+        padding-left: 25px;
+        margin: 0;
+        list-style-type: decimal;
+      }
+      .question-list li {
+        font-size: 14px;
+        margin-bottom: 25px;
+        line-height: 1.5;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .qid-text {
+        color: #7f8c8d;
+        font-size: 11px;
+        font-weight: normal;
+        margin-left: 5px;
+      }
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 8px;
+        list-style-type: none;
+        padding-left: 0;
+      }
+      .option-item {
+        font-size: 13px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .correct {
+        color: #27ae60;
+        background: #eafaf1;
+        font-weight: bold;
+      }
+      .incorrect {
+        color: #e74c3c;
+        opacity: 0.7;
+      }
+
+      .explanation-box {
+        margin-top: 8px;
+        padding: 8px;
+        background: #fdf2e9;
+        border-left: 3px solid #e67e22;
+        font-size: 12px;
+        color: #5d4037;
+        border-radius: 0 4px 4px 0;
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 10mm;
+        left: 12mm;
+        right: 12mm;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .footer-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .footer-icon {
+        width: 34px;
+        height: 34px;
+        background: #000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+      }
+      .footer-text b {
+        font-size: 12px;
+        display: block;
+      }
+      .footer-text span {
+        font-size: 11px;
+        color: #333;
+      }
+
+      @media print {
+        .print-btn {
+          display: none;
+        }
+        body {
+          background: none;
+        }
+        .page {
+          margin: 0;
+          box-shadow: none;
+          width: 100%;
+        }
+      }
+      .print-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background: #2c3e50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button class="print-btn" onclick="window.print()">
+        Print Answer Key
+      </button>
+
+      <div v-for="(page, pIdx) in paginatedQuestions" :key="pIdx" class="page">
+        <div v-if="pIdx === 0" class="exam-header">
+          <div class="logo-area">
+            <img src="images/logo.png" alt="Logo" />
+          </div>
+          <div class="header-info">
+            <h2>{{ examData.examName }}</h2>
+            <p style="color:#27ae60;font-size:16px;">Answer Key with Explanation</p>
+            <p>Subject: {{ examData.subject }} | Class: {{ examData.class }}</p>
+            <p>Topic: {{ examData.topic }}</p>
+          </div>
+        </div>
+
+        <div class="main-content">
+          <div
+            v-for="(column, cIdx) in page"
+            :key="cIdx"
+            :class="['column', { 'column-border': cIdx === 0 }]"
+          >
+            <ol class="question-list" :start="column.startIndex">
+              <li v-for="(q, qIdx) in column.questions" :key="q.qid">
+                <span v-html="q.q"></span>
+                <span class="qid-text">({{ q.qid }})</span>
+
+                <div class="options">
+                  <div
+                    v-for="(opt, oIdx) in q.options"
+                    :key="oIdx"
+                    :class="['option-item', isCorrect(q, oIdx) ? 'correct' : 'incorrect']"
+                  >
+                    <i
+                      :class="isCorrect(q, oIdx) ? 'fa fa-check-circle' : 'fa fa-times-circle'"
+                    ></i>
+                    <b>{{ getLabel(oIdx) }}</b>
+                    <span v-html="opt"></span>
+                  </div>
+                </div>
+
+                <div class="explanation-box" v-if="q.explanation">
+                  <strong>ব্যাখ্যা:</strong>
+                  <span v-html="q.explanation"></span>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footer-item">
+            <div class="footer-icon"><i class="fa fa-globe"></i></div>
+            <div class="footer-text">
+              <b>Web Portal :</b>
+              <span>students.nandysagar.in</span>
+            </div>
+          </div>
+          <div class="footer-item">
+            <div class="footer-icon"><b>{{ pIdx + 1 }}</b></div>
+            <!-- <div class="footer-text"><b>Page</b></div> -->
+          </div>
+          <div class="footer-item">
+            <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+            <div class="footer-text">
+              <b>Email ID :</b>
+              <span>nandysagar@yahoo.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/qp-ans.js"></script>
+  </body>
+</html>
