@@ -1,0 +1,82 @@
+[
+  {
+    "q": "Which Article of the Indian Constitution is related to the Abolition of Untouchability?",
+    "options": ["Article 14", "Article 17", "Article 19", "Article 21"]
+  },
+  {
+    "q": "The Battle of Plassey was fought in which year?",
+    "options": ["1757", "1764", "1526", "1857"]
+  },
+  {
+    "q": "Who was the first Governor-General of Bengal?",
+    "options": ["Robert Clive", "Warren Hastings", "Lord William Bentinck", "Lord Cornwallis"]
+  },
+  {
+    "q": "Which river is known as the 'Sorrow of Bihar'?",
+    "options": ["Ganga", "Yamuna", "Kosi", "Son"]
+  },
+  {
+    "q": "Sattriya is a classical dance form of which Indian state?",
+    "options": ["Manipur", "Odisha", "Assam", "Kerala"]
+  },
+  {
+    "q": "What is the chemical name of Baking Soda?",
+    "options": ["Sodium Carbonate", "Sodium Bicarbonate", "Calcium Sulphate", "Sodium Chloride"]
+  },
+  {
+    "q": "Which planet is known as the 'Earth's Twin'?",
+    "options": ["Mars", "Venus", "Jupiter", "Saturn"]
+  },
+  {
+    "q": "The Fundamental Duties were incorporated in the Indian Constitution on the recommendation of which committee?",
+    "options": ["Verma Committee", "Sarkaria Commission", "Swaran Singh Committee", "Balwant Rai Mehta Committee"]
+  },
+  {
+    "q": "Who wrote the book 'Indica'?",
+    "options": ["Megasthenes", "Fa-Hien", "Hiuen Tsang", "Al-Biruni"]
+  },
+  {
+    "q": "Which part of the human brain is responsible for maintaining body balance?",
+    "options": ["Cerebrum", "Cerebellum", "Medulla Oblongata", "Hypothalamus"]
+  },
+  {
+    "q": "In which session of the Indian National Congress was the demand for 'Purna Swaraj' adopted?",
+    "options": ["Karachi Session 1931", "Lucknow Session 1916", "Lahore Session 1929", "Calcutta Session 1906"]
+  },
+  {
+    "q": "What is the SI unit of Pressure?",
+    "options": ["Joule", "Watt", "Pascal", "Newton"]
+  },
+  {
+    "q": "Which deficiency causes the disease 'Rickets'?",
+    "options": ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin K"]
+  },
+  {
+    "q": "Who is the ex-officio Chairman of the NITI Aayog?",
+    "options": ["President of India", "Finance Minister", "Prime Minister", "Vice-President"]
+  },
+  {
+    "q": "The 'Nathu La' Pass is located in which Indian state?",
+    "options": ["Arunachal Pradesh", "Sikkim", "Himachal Pradesh", "Uttarakhand"]
+  },
+  {
+    "q": "Which instrument is used to measure the intensity of an earthquake?",
+    "options": ["Barometer", "Seismograph", "Hydrometer", "Polygraph"]
+  },
+  {
+    "q": "Who was the founder of the Slave Dynasty (Mamluk Dynasty) in India?",
+    "options": ["Iltutmish", "Razia Sultan", "Qutub-ud-din Aibak", "Balban"]
+  },
+  {
+    "q": "The 'Tropic of Cancer' does NOT pass through which of the following Indian states?",
+    "options": ["Rajasthan", "Chhattisgarh", "Odisha", "Tripura"]
+  },
+  {
+    "q": "Which schedule of the Indian Constitution contains the 'Anti-Defection Law'?",
+    "options": ["8th Schedule", "9th Schedule", "10th Schedule", "11th Schedule"]
+  },
+  {
+    "q": "The 'Panchatantra' was written by whom?",
+    "options": ["Kalidasa", "Vishnu Sharma", "Chanakya", "Banabhatta"]
+  }
+]

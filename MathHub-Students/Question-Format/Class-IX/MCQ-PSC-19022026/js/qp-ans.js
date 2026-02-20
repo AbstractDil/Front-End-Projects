@@ -5,7 +5,7 @@ createApp({
     return {
       examData: {},
       questions: [],
-      questionsPerPage: 10,
+      questionsPerPage: 8, 
     };
   },
   computed: {
@@ -30,18 +30,29 @@ createApp({
     },
   },
   methods: {
+   
+    isCorrect(question, optionIndex) {
+      return question.correct_option.includes(optionIndex + 1);
+    },
+   
+    getLabel(index) {
+      return `(${String.fromCharCode(97 + index)})`;
+    },
     async init() {
       const params = new URLSearchParams(window.location.search);
       const targetId = params.get("id");
 
       try {
-        const resMeta = await fetch("data.json");
+       
+        const resMeta = await fetch("data2.json");
         const allExams = await resMeta.json();
         const found = allExams.find((e) => e.id == targetId);
 
         if (found) {
           this.examData = found;
-          this.questionsPerPage = found.questionsPerPage || 16;
+         
+          this.questionsPerPage = found.questionsPerPage || 8; 
+          
           const resQ = await fetch(`db/${this.examData.dbFile}`);
           this.questions = await resQ.json();
 
