@@ -1,314 +1,890 @@
 <!DOCTYPE html>
-<html lang="bn">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physical Science MCQ Test</title>
-    <script>
-        MathJax = {
-            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
-            svg: { fontCache: 'global' }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gravitas+One&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Noto+Sans+Bengali:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Noto Sans Bengali', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QPEngine — Question Set Management Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .page {
-            width: 210mm;
-            min-height: 297mm;
-            padding: 12mm;
-            margin: 10mm auto;
-            background: white;
-            box-sizing: border-box;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
+    :root {
+      --bg:       #080c10;
+      --surface:  #0e1419;
+      --card:     #131a22;
+      --border:   #1e2d3d;
+      --accent:   #00d4ff;
+      --accent2:  #f5c842;
+      --text:     #dce8f0;
+      --muted:    #5a7085;
+      --glow:     rgba(0,212,255,0.18);
+    }
 
+    html { scroll-behavior: smooth; }
 
-        .page::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            height: 300px;
-            background: url("images/logo.png") no-repeat center;
-            background-size: contain;
-            opacity: 0.05;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 0;
-        }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Instrument Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        /* হেডার স্টাইল */
-        .exam-header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            border: 2px solid #333;
-            padding: 10px;
-            margin-bottom: 25px;
-        }
+    /* ── Noise grain overlay ──────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+    }
 
-        .logo-area img {
-            max-width: 80px;
-            max-height: 80px;
-        }
+    /* ── Grid background ──────────────────────────────── */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+      opacity: 0.45;
+    }
 
-        .header-info {
-            text-align: start;
-        }
+    /* ── Glow orbs ────────────────────────────────────── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .orb-1 { width: 500px; height: 500px; background: rgba(0,212,255,0.07); top: -100px; left: -100px; }
+    .orb-2 { width: 400px; height: 400px; background: rgba(245,200,66,0.05); top: 200px; right: -80px; }
+    .orb-3 { width: 300px; height: 300px; background: rgba(0,212,255,0.04); bottom: 0; left: 30%; }
 
-        .header-info h2 {
-            margin: 0;
-            font-size: 20px;
-            text-transform: uppercase;
-        }
+    /* ── Typography ───────────────────────────────────── */
+    .font-display { font-family: 'Syne', sans-serif; }
 
-        .header-info p {
-            margin: 3px 0;
-            font-weight: bold;
-            font-size: 13px;
-        }
+    /* ── Navbar ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: rgba(8,12,16,0.75);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
 
-        /* কন্টেন্ট লেআউট */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
 
-        .column {
-            position: relative;
-        }
+    /* Company logo image placeholder */
+    .logo-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-        .column:first-child {
-            border-right: 1px dashed #bbb;
-            padding-right: 20px;
-        }
+    /* Fallback SVG logo (shown when no image is set) */
+    .logo-img svg { width: 22px; height: 22px; }
 
-        .question-list {
-            padding-left: 25px;
-            margin: 0;
-            list-style-type: decimal;
-        }
+    .nav-brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
 
-        .question-list li {
-            font-size: 14px;
-            margin-bottom:16px;
-            line-height: 1.4;
-            /* font-weight: bold; */
-        }
+    .nav-brand span { color: var(--accent); }
 
-        .options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin-top: 10px;
-            font-weight: normal;
-            list-style-type: none;
-            padding-left: 0;
-        }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
 
-        .options span {
-            display: block;
-            font-weight: normal;
-            font-size: 13px;
-        }
+    .nav-dev {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
 
-        /* ফুটার স্টাইল (ইমেজ অনুযায়ী) */
-        .footer {
-            position: absolute;
-            bottom: 10mm;
-            left: 12mm;
-            right: 12mm;
-            border-top: 1px solid #ccc;
-            padding-top: 15px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
+    .nav-dev strong { color: var(--text); font-weight: 500; }
 
-        .footer-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 6rem;
+      overflow: hidden;
+    }
 
-        .footer-icon {
-            width: 32px;
-            height: 32px;
-            background: #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-        }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(0,212,255,0.25);
+      background: rgba(0,212,255,0.07);
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      margin-bottom: 2rem;
+      animation: fade-up 0.7s ease both;
+    }
 
-        .footer-text {
-            line-height: 1.2;
-        }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s infinite;
+    }
 
-        .footer-text b {
-            font-size: 12px;
-            display: block;
-        }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
 
-        .footer-text span {
-            font-size: 11px;
-            color: #333;
-        }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      animation: fade-up 0.7s 0.1s ease both;
+    }
 
-        @media print {
-            .print-btn { display: none; }
-            body { background: none; }
-            .page { margin: 0; box-shadow: none; width: 100%; }
-        }
+    .hero-title .accent-word {
+      background: linear-gradient(135deg, var(--accent) 0%, #80eaff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        .print-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 1000;
-            font-weight: bold;
-        }
-    </style>
+    .hero-title .gold-word {
+      background: linear-gradient(135deg, var(--accent2) 0%, #ffe580 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin: 1.8rem auto 2.8rem;
+      font-weight: 300;
+      animation: fade-up 0.7s 0.2s ease both;
+    }
+
+    /* ── CTA Button ───────────────────────────────────── */
+    .btn-cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      border-radius: 12px;
+      padding: 1rem 2.2rem;
+      cursor: pointer;
+      text-decoration: none;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(0,212,255,0.35), 0 4px 16px rgba(0,0,0,0.4);
+      animation: fade-up 0.7s 0.3s ease both;
+    }
+
+    .btn-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 0 50px rgba(0,212,255,0.5), 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .btn-cta:active { transform: translateY(0) scale(0.99); }
+
+    /* Arrow icon */
+    .btn-cta .arrow {
+      display: inline-flex;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+    .btn-cta:hover .arrow { transform: translateX(4px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1.8rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      animation: fade-up 0.7s 0.35s ease both;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ── Feature strip ────────────────────────────────── */
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 5rem;
+      padding: 0 1rem;
+      animation: fade-up 0.7s 0.5s ease both;
+    }
+
+    .feature-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .feature-chip .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    /* ── Screen mockup ────────────────────────────────── */
+    .mockup-wrap {
+      position: relative;
+      margin: 5rem auto 0;
+      max-width: 900px;
+      width: 90%;
+      animation: fade-up 0.9s 0.45s ease both;
+    }
+
+    .mockup-frame {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(0,212,255,0.08),
+        0 40px 80px rgba(0,0,0,0.6),
+        0 0 60px rgba(0,212,255,0.05);
+    }
+
+    .mockup-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    .mockup-body {
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .mock-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+    }
+
+    .mock-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .mock-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .mock-badge {
+      display: inline-block;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: var(--accent2);
+      color: #080c10;
+      padding: 0.1rem 0.6rem;
+      border-radius: 6px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Sections ─────────────────────────────────────── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Info cards grid ──────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .info-card:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-4px);
+    }
+
+    .info-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.2rem;
+    }
+
+    .info-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .info-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Developer section ────────────────────────────── */
+    .dev-section {
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .dev-card {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dev-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .dev-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #0066ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--bg);
+      border: 2px solid rgba(0,212,255,0.3);
+      box-shadow: 0 0 30px rgba(0,212,255,0.2);
+    }
+
+    .dev-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--text);
+    }
+
+    .dev-role {
+      font-size: 0.82rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .dev-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      max-width: 340px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* ── CTA Section ──────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-bottom: 8rem;
+    }
+
+    .cta-glow-box {
+      display: inline-block;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,212,255,0.07) 0%, transparent 70%);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: 24px;
+      padding: 5rem 4rem;
+      position: relative;
+    }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .footer-brand span { color: var(--accent); }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── Company logo & name ──────────────────────────── */
+    .company-block {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .company-logo-img {
+      width: 32px; height: 32px;
+      border-radius: 7px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    /* Fallback logo when no image provided */
+    .logo-fallback {
+      width: 32px; height: 32px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #0a2a3a, #0e3f52);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .company-name-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    /* ── Animations ───────────────────────────────────── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .float { animation: float 5s ease-in-out infinite; }
+
+    /* ── Divider ──────────────────────────────────────── */
+    .divider-line {
+      width: 48px; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.2rem; }
+      .mockup-body { grid-template-columns: 1fr; }
+      .dev-card { padding: 2rem 1.5rem; }
+      .cta-glow-box { padding: 3rem 1.5rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <button class="print-btn" onclick="window.print()">Download Question Paper PDF</button>
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <nav>
+    <!-- Logo + Brand -->
+    <a href="#" class="nav-logo">
+      <!--
+        COMPANY LOGO:
+        Replace the <div class="logo-img"> below with an <img> tag like:
+        <img src="assets/logo.png" alt="Company Logo" class="logo-img" />
+        and remove the fallback SVG div.
+      -->
+      <div class="logo-img">
+        <!-- Fallback icon when no logo image is provided -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.9"/>
+          <rect x="13" y="3" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.5"/>
+          <rect x="3" y="13" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.5"/>
+          <rect x="13" y="13" width="8" height="8" rx="2" fill="#f5c842" opacity="0.9"/>
+        </svg>
+      </div>
+      <span class="nav-brand">QP<span>Engine</span></span>
+    </a>
 
-    <div class="page">
-        <div class="exam-header">
-            <div class="logo-area">
-                <img src="../images/logo.png" alt="Logo">
-            </div>
-            <div class="header-info">
-                <h2>M.C.Q Test On Physical Science 01</h2>
-                <p>Topic: Measurement, Force and Motion | Class: IX</p>
-                <p>Full Marks: 50 | Time: 1 Hour</p>
-            </div>
+    <!-- Developer credit -->
+    <div class="nav-right">
+      <span class="nav-dev">
+        Built by <strong><!-- DEVELOPER NAME HERE --> Sagar Nandy</strong>
+      </span>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <div class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-bg"></div>
+
+    <!-- Company badge -->
+    <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:1.5rem; animation: fade-up 0.6s ease both;">
+      <!--
+        TO USE YOUR COMPANY LOGO IMAGE:
+        Replace the .logo-fallback div with:
+        <img src="assets/company-logo.png" alt="Company" class="company-logo-img" />
+      -->
+      <div class="logo-fallback">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="3" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.9"/>
+          <rect x="13" y="3" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.5"/>
+          <rect x="3" y="13" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.5"/>
+          <rect x="13" y="13" width="8" height="8" rx="2" fill="#f5c842" opacity="0.9"/>
+        </svg>
+      </div>
+      <span class="company-name-text"><!-- COMPANY NAME HERE -->MathSquadz</span>
+    </div>
+
+    <!-- Eyebrow -->
+    <div class="hero-eyebrow">Question Set Management Platform</div>
+
+    <!-- Title -->
+    <h1 class="hero-title">
+      <span class="accent-word">QP</span><span>Engine</span>
+    </h1>
+    <h2 class="hero-title" style="font-size: clamp(1.8rem, 5vw, 4rem); margin-top:0.4rem; color: var(--muted);">
+      Smart. Fair. <span class="gold-word">Random.</span>
+    </h2>
+
+    <!-- Subheading -->
+    <p class="hero-sub">
+      The complete platform for managing and distributing question sets — 
+      powered by a transparent lottery engine that guarantees fairness for every student.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="hero-actions">
+      <a href="qpicker.html" class="btn-cta">
+        🎯 Launch QPicker
+        <span class="arrow">→</span>
+      </a>
+      <a href="#features" class="btn-secondary">
+        Learn more ↓
+      </a>
+    </div>
+
+    <!-- Feature chips -->
+    <div class="features">
+      <div class="feature-chip"><div class="dot"></div>Tamper-proof randomization</div>
+      <div class="feature-chip"><div class="dot"></div>Live draw animations</div>
+      <div class="feature-chip"><div class="dot"></div>Alphanumeric set codes</div>
+      <div class="feature-chip"><div class="dot"></div>Instant result export</div>
+    </div>
+
+    <!-- App mockup preview -->
+    <div class="mockup-wrap float" style="margin-top:4rem;">
+      <div class="mockup-frame">
+        <div class="mockup-bar">
+          <div class="mockup-dot" style="background:#ff5f57"></div>
+          <div class="mockup-dot" style="background:#febc2e"></div>
+          <div class="mockup-dot" style="background:#28c840"></div>
+          <div style="flex:1; margin-left:0.8rem; font-size:0.7rem; color:var(--muted); font-family:monospace">
+            QPEngine — Question Set Lottery
+          </div>
         </div>
-
-        <div class="main-content">
-            <div class="column">
-                <ol class="question-list">
-                    <li>নিম্নলিখিত কোনটির মাত্রা শক্তির সাথে একই?
-                        <div class="options">
-                            <span>(a) ঘাত</span>
-                            <span>(b) বল</span>
-                            <span>(c) কার্য</span>
-                            <span>(d) উপরের কোনটিই নয়</span>
-                        </div>
-                    </li>
-                    <li>পৃথিবী থেকে সূর্যের আনুমানিক দৈর্ঘ্যের এককটি হ'ল 
-    <div class="options">
-        <span>(a) কিলোমিটার</span>
-        <span>(b) জ্যোতির্বিদ্যা একক</span>
-        <span>(c) কেলভিন</span>
-        <span>(d) জুল</span>
-    </div>
-</li>
-<li>নিউটন-মিটার (Nm) নিম্নলিখিত কোন ভৌত মাত্রার SI একক? 
-    <div class="options">
-        <span>(a) ত্বরণ </span>
-        <span>(b) টর্ক</span>
-        <span>(c) বিদ্যুৎ</span>
-        <span>(d) বল</span>
-    </div>
-</li>
-<li>নিচের কোনটি নিউটনের তৃতীয় গতি সূত্রের প্রয়োগ নয়?
-    <div class="options">
-        <span>(a) মাটিতে হাঁটা একজন মানুষ</span>
-        <span>(b) নৌকা চালানো</span>
-        <span>(c) বল ধরার সময় ফিল্ডার হাত পিছনে টেনে নেয়</span>
-        <span>(d) বলের বাউন্সিং</span>
-    </div>
-</li>
-
- <li>দ্রুতির মাত্রিক সূত্র নিম্নোক্ত কোনটি?
-                        <div class="options">
-                            <span>(a) $[ML^0T^{-1}]$</span>
-                            <span>(b) $[MLT^{-1}]$</span>
-                            <span>(c) $[M^0LT^{-1}]$</span>
-                            <span>(d) $[MLT^{-2}]$</span>
-                        </div>
-                    </li>
-
-                    <li>তড়িৎ বিভব পার্থক্যের SI একক কী? 
-    <div class="options">
-        <span>(a) ওয়াট</span>
-        <span>(b) ভোল্ট</span>
-        <span>(c) ওহম</span>
-        <span>(d) কুলম্ব</span>
-    </div>
-</li>
-<li>নিচের কোনটি মাত্রাহীন রাশি? 
-    <div class="options">
-        <span>(a) বেগ</span>
-        <span>(b) কোণ</span>
-        <span>(c) ভর</span>
-        <span>(d) ক্ষেত্রফল</span>
-    </div>
-</li>
-<li>সরলরেখা বরাবর চলমান কোনো বস্তুর দ্রুতি ধ্রুবক থাকলে, তার গতিকে বলা হয়: 
-    <div class="options">
-        <span>(a) সম</span>
-        <span>(b) পর্যায়ক্রমিক</span>
-        <span>(c) বৃত্তীয়</span>
-        <span>(d) অসম</span>
-    </div>
-</li>
-
-                </ol>
+        <div class="mockup-body">
+          <div class="mock-card">
+            <div class="mock-label">Students</div>
+            <div class="mock-value">8</div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-label">Sets Available</div>
+            <div class="mock-value">8</div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-label">Last Drawn</div>
+            <div class="mock-value" style="color:var(--accent2)"><span class="mock-badge">1PZ6</span></div>
+          </div>
+          <div class="mock-card" style="grid-column: span 2">
+            <div class="mock-label">Draw Status</div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.4rem;">
+              <span class="mock-badge" style="font-size:0.75rem">Y78G</span>
+              <span class="mock-badge" style="font-size:0.75rem">OR5F</span>
+              <span class="mock-badge" style="font-size:0.75rem">A15F</span>
+              <span class="mock-badge" style="font-size:0.75rem; background:var(--border); color:var(--muted)">AMXF</span>
+              <span class="mock-badge" style="font-size:0.75rem; background:var(--border); color:var(--muted)">OEHP</span>
             </div>
-
-            <div class="column">
-                <ol class="question-list" start="2">
-                   
-                </ol>
+          </div>
+          <div class="mock-card">
+            <div class="mock-label">Progress</div>
+            <div style="margin-top:0.5rem; height:6px; background:var(--border); border-radius:3px; overflow:hidden">
+              <div style="width:62%; height:100%; background:linear-gradient(90deg, var(--accent), #0088bb); border-radius:3px;"></div>
             </div>
+            <div style="font-size:0.7rem; color:var(--muted); margin-top:0.3rem">5 / 8 drawn</div>
+          </div>
         </div>
-
-        <div class="footer">
-            <div class="footer-item">
-                <div class="footer-icon">
-                    <i class="fa fa-globe"></i>
-                </div>
-                <div class="footer-text">
-                    <b>MathHub Students Web Portal :</b>
-                    <span>https://students.nandysagar.in</span>
-                </div>
-            </div>
-            <div class="footer-item">
-                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
-                <div class="footer-text">
-                    <b>Email ID :</b>
-                    <span>nandysagar@yahoo.com</span>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       FEATURES
+  ════════════════════════════════════════ -->
+  <section id="features">
+    <div class="divider-line"></div>
+    <div class="section-label">What it does</div>
+    <h2 class="section-title">Everything you need for<br>fair question distribution</h2>
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="info-card-icon">🎲</div>
+        <h3>Transparent Lottery</h3>
+        <p>Each draw is seeded randomly with live slot-machine animation. Every student sees exactly what happens in real time.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🔑</div>
+        <h3>Alphanumeric Set Codes</h3>
+        <p>Assign unique set IDs like <strong style="color:var(--accent2); font-family:monospace">1PZ6</strong> or <strong style="color:var(--accent2); font-family:monospace">OR5F</strong> — no plain numbers, no patterns to guess.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📋</div>
+        <h3>Instant Setup</h3>
+        <p>Add students and question set codes manually or import from a JSON file. No account required, runs fully in-browser.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📤</div>
+        <h3>Export Results</h3>
+        <p>Download a clean JSON report of all assignments the moment the draw is complete. Ready to print or archive.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🔍</div>
+        <h3>Result Spotlight</h3>
+        <p>After each draw, a full-screen announcement modal shows the student's name and their assigned set in large, readable type.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🛡️</div>
+        <h3>No Duplicates, Ever</h3>
+        <p>The engine guarantees each set code is drawn only once. The remaining pool is updated live after every assignment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       DEVELOPER
+  ════════════════════════════════════════ -->
+  <section class="dev-section">
+    <div class="divider-line" style="margin:0 auto 1rem;"></div>
+    <div class="section-label" style="text-align:center">The Developer</div>
+    <h2 class="section-title" style="text-align:center; margin-bottom:3rem">Built with care</h2>
+https://nandysagar.in/src/images/SagarLogo.png
+    <div style="text-align:center">
+      <div class="dev-card">
+        <!--
+          DEVELOPER AVATAR:
+          Replace the .dev-avatar div with an <img> tag if you have a photo:
+          <img src="assets/developer.jpg" style="width:72px;height:72px;border-radius:50%;object-fit:cover;" />
+        -->
+        <div class="dev-avatar">
+          <!-- Shows initials — change "SN" to your initials -->
+          <img src="https://nandysagar.in/src/images/SagarLogo.png" alt="Developer Avatar" style="width:72px;height:72px;border-radius:50%;object-fit:cover;" />
+        </div>
+        <div>
+          <div class="dev-name">Sagar Nandy</div>
+          <div class="dev-role" style="margin-top:0.3rem">Developer &amp; Designer</div>
+        </div>
+        <p class="dev-desc">
+          QPEngine was designed and developed to bring fairness, speed, and clarity to 
+          classroom question set distribution — no spreadsheets, no manual draws.
+        </p>
+        <!-- Company badge under dev -->
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.5rem; padding: 0.5rem 1rem; border:1px solid var(--border); border-radius:8px;">
+          <div class="logo-fallback" style="width:22px;height:22px;border-radius:5px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.9"/>
+              <rect x="13" y="3" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.5"/>
+              <rect x="3" y="13" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.5"/>
+              <rect x="13" y="13" width="8" height="8" rx="2" fill="#f5c842" opacity="0.9"/>
+            </svg>
+          </div>
+          <span style="font-size:0.78rem; color:var(--muted);">MathSquadz</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FINAL CTA
+  ════════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-glow-box">
+      <div class="section-label" style="text-align:center">Ready to draw?</div>
+      <h2 class="section-title" style="text-align:center; margin-bottom:0.8rem">
+        Launch <span style="color:var(--accent)">QPicker</span><br>and run your lottery
+      </h2>
+      <p style="color:var(--muted); font-size:0.92rem; margin-bottom:2.5rem; max-width:400px; margin-left:auto; margin-right:auto; line-height:1.7;">
+        Open the Question Set Picker, add your students and set codes, and run a transparent live draw in under a minute.
+      </p>
+      <a href="qpicker.html" class="btn-cta" style="font-size:1.05rem; padding:1.1rem 2.8rem;">
+        🎯 Open QPicker
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer>
+    <div class="company-block">
+      <div class="logo-fallback">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="3" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.9"/>
+          <rect x="13" y="3" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.5"/>
+          <rect x="3" y="13" width="8" height="8" rx="2" fill="#00d4ff" opacity="0.5"/>
+          <rect x="13" y="13" width="8" height="8" rx="2" fill="#f5c842" opacity="0.9"/>
+        </svg>
+      </div>
+      <span class="footer-brand">QP<span>Engine</span></span>
+      <span style="color:var(--border); margin:0 0.4rem">·</span>
+      <span style="font-size:0.78rem; color:var(--muted)">MathSquadz</span>
+    </div>
+    <div class="footer-copy">
+      Developed by <strong style="color:var(--text)">Sagar Nandy</strong>
+      &nbsp;·&nbsp; All draws are random &amp; tamper-proof
+    </div>
+  </footer>
+
 </body>
-
 </html>
