@@ -1,8 +1,9 @@
 // Default sample data — edit or replace via the UI
 const defaultStudents = [
- "Sun",
- "Swarnadip",
- "Adrij"
+ "Sunanda",
+"Annesha",
+ "Subhangini",
+ "Sandip"
 ];
 
-const defaultQuestionSets = ["Y6EQ","SVTB","J0FO","GR1U","CRMH","9LCG","3GKG"];
+const defaultQuestionSets = ["Y6EQ","J0FO","9LCG","3GKG"];
