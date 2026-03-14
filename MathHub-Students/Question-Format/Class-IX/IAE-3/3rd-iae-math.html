@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSquadz Question Paper Engine</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+        displayMath: [
+          ["$$", "$$"],
+          ["\\[", "\\]"],
+        ],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Noto Sans Bengali", sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm;
+      margin: 10mm auto;
+      background: white;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: url("../images/Logo3.jpeg") no-repeat center;
+      background-size: contain;
+      opacity: 0.1;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .exam-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      border: 2px solid #333;
+      padding: 8px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-area img {
+      max-width: 96px;
+      max-height: 96px;
+    }
+
+    .header-info {
+      text-align: start;
+    }
+
+    .header-info h2 {
+      margin: 0;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .header-info p {
+      margin: 3px 0;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .exam-content {
+      padding: 10px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #000;
+    }
+
+    .question-section {
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: bold;
+      margin-bottom: 4px;
+      border-bottom: 1px dashed #666;
+    }
+
+    .question-item {
+      margin-bottom: 8px;
+    }
+
+    .question-text {
+      display: flex;
+      gap: 8px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      padding-left: 30px;
+      margin-top: 5px;
+    }
+
+    .sub-question-list {
+      list-style-type: none;
+      padding-left: 20px;
+    }
+
+    .marks {
+      font-weight: bold;
+      float: right;
+    }
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    /* Wish Container Styling */
+.wish-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 15px auto;
+  max-width: 80%;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  border-radius: 8px;
+  border-left: 5px solid #e74c3c; /* Matches your print button color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Wish Message Text Styling */
+.wish-message {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.wish-message span {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: #7f8c8d;
+  margin-top: 5px;
+}
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 12mm;
+      right: 12mm;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .footer-icon {
+      width: 34px;
+      height: 34px;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .footer-text {
+      line-height: 1.2;
+    }
+
+    .footer-text b {
+      font-size: 12px;
+      display: block;
+    }
+
+    .footer-text span {
+      font-size: 11px;
+      color: #333;
+    }
+
+    @media print {
+      .print-btn {
+        display: none;
+      }
+
+      body {
+        background: none;
+      }
+
+      /* Set default browser margin to none while printing */
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+      }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="print-btn" onclick="window.print()">
+    Download
+  </button>
+
+  <div class="page">
+    <div class="exam-header">
+      <div class="logo-area">
+        <img src="../images/Logo3.jpeg" alt="Logo" />
+      </div>
+      <div class="header-info">
+        <h2>3RD Internal Assessment Examination</h2>
+        <p> Session: 2026 | Topic: Mathematics | Class: IX | Full Marks: 40 </p>
+        <p>
+          Time: 80 Minutes | Date: 17-03-2026 | Slot: I | Set: A
+        </p>
+      </div>
+    </div>
+
+    <div class="exam-content">
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>1. সঠিক উত্তরটি নির্বাচন করো:</span>
+          <span>$1 \times 6 = 6$</span>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(i)</span>
+            <span>$\pi$ এবং $\frac{22}{7}$ হল—</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) উভয়েই মূলদ</span>
+            <span>(b) উভয়েই অমূলদ</span>
+            <span>(c) অমূলদ ও মূলদ</span>
+            <span>(d) কোনটিই নয়</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(ii)</span>
+            <span>$2 \times 5^x = 250$ হলে $x$ এর মান হবে—</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) 2</span>
+            <span>(b) 3</span>
+            <span>(c) 4</span>
+            <span>(d) 5</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(iii)</span>
+            <span>$(x, y)$ বিন্দুটি তৃতীয় পাদে অবস্থিত হলে, প্রদত্ত কোনটি সঠিক?</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $xy > 0$</span>
+            <span>(b) $xy < 0$</span>
+                <span>(c) $xy \ge 0$</span>
+                <span>(d) $xy \le 0$</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(iv)</span>
+            <span>একটি বৃত্তের কেন্দ্রের স্থানাঙ্ক $(0,0)$ ও পরিধির ওপর অবস্থিত একটি বিন্দুর স্থানাঙ্ক $(3,4)$ হলে
+              বৃত্তটির ব্যাসার্ধের দৈর্ঘ্য—</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) 5 একক</span>
+            <span>(b) 4 একক</span>
+            <span>(c) 3 একক</span>
+            <span>(d) কোনোটিই নয়</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(v)</span>
+            <span>$ABCD$ রম্বসের $\angle ACB = 40^\circ$ হলে $\angle ADB$ এর মান হবে—</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $50^\circ$</span>
+            <span>(b) $110^\circ$</span>
+            <span>(c) $90^\circ$</span>
+            <span>(d) $120^\circ$</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(vi)</span>
+            <span>$3x + 6y = 15$ এবং $6x + 12y = 30$ সমীকরণদ্বয়ের—</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) একটি নির্দিষ্ট সমাধান আছে</span>
+            <span>(b) অসংখ্য সমাধান আছে</span>
+            <span>(c) কোনো সমাধান নেই</span>
+            <span>(d) কোনটিই নয়</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>2. নীচের প্রশ্নগুলির উত্তর দাও:</span>
+          <span>$2 \times 6 = 12$</span>
+        </div>
+
+        <ul class="sub-question-list">
+          <li>(i) $3^{3^3}$ এবং $(3^3)^3$ এর মধ্যে কোনটি বড়ো? যুক্তি দাও।</li>
+          <li>(ii) যদি $x^2 + x + 1 = 0$ তবে $x^3$ এর মান কত?</li>
+          <li>(iii) $0.4\dot{7}$ সংখ্যাটিকে $\frac{p}{q}$ আকারে প্রকাশ করো (যেখানে $p, q$ পূর্ণসংখ্যা এবং $q \ne 0$)।
+          </li>
+          <li>(iV) $\frac{1}{7}$ এবং $\frac{1}{6}$ এর মধ্যে 2 টি মূলদ সংখ্যা নির্ণয় করো।</li>
+          <li>(v) $ABCD$ সামান্তরিকের $\angle ABC = 55^\circ$ হলে $\angle ADC$ ও $\angle BCD$ এর মান নির্ণয় করো।</li>
+          <li>(vi) $ax + by + c = 0$ ($a=0, b \ne 0, c \ne 0$) সমীকরণের লেখচিত্রটি কোন্ অক্ষের সমান্তরাল?</li>
+          <li>(vii) $\sqrt{6}$ কে সংখ্যারেখায় স্থাপন করো।</li>
+          <li>(viii) $p(x) = x + 4$ হলে, $p(x) + p(-x)$-এর মান লেখো।</li>
+        </ul>
+      </div>
+
+
+
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>1</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="page">
+
+    <div class="exam-content">
+
+
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>3. যে কোনো একটি প্রশ্নের উত্তর দাও:</span>
+          <span class="marks">3</span>
+        </div>
+        <div class="clearfix"></div>
+        <ul class="sub-question-list">
+          <li>(i) দেখাও যে, $(2,5), (5,9), (9,12)$ এবং $(6,8)$ বিন্দুগুলি পরস্পর যোগ করলে একটি রম্বস উৎপন্ন হয়।</li>
+
+          <li>(ii) দেখাও যে, $(2, 2), (-2, -2)$ এবং $(-2\sqrt{3}, 2\sqrt{3})$ বিন্দু তিনটি একটি সমবাহু ত্রিভুজের
+            শীর্ষবিন্দু।</li>
+        </ul>
+      </div>
+
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>4. সমাধান করো (যে কোনো একটি):</span>
+          <span class="marks">3</span>
+        </div>
+        <div class="clearfix"></div>
+        <ul class="sub-question-list">
+          <li>(i) রহমত চাচা তার নৌকা নিয়ে স্রোতের অনুকূলে 6 ঘণ্টায় 30 মাইল গিয়ে এই পথ স্রোতের প্রতিকূলে 10 ঘণ্টায় ফিরে
+            এলেন। স্থির জলে রহমত চাচার নৌকার গতিবেগ ও স্রোতের গতিবেগ কত?</li>
+          <li>(ii) $\frac{x}{2} + \frac{y}{3} = 1$; $\frac{x}{3} + \frac{y}{2} = 1$</li>
+        </ul>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>5. উৎপাদকে বিশ্লেষণ করো:</span>
+          <span class="marks">3</span>
+        </div>
+        <div class="clearfix"></div>
+        <ul class="sub-question-list">
+          <li>(i) $x^3 - 7x - 6$</li>
+          <li>(ii) যদি $f(x) = \frac{a(x - b)}{a - b} + \frac{b(x - a)}{b - a}$ হয়, তাহলে দেখাও যে, $f(a) + f(b) = f(a +
+            b)$</li>
+        </ul>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>6. লেখচিত্রের সাহায্যে সমাধান করো (যে কোনো একটি):</span>
+          <span class="marks">3</span>
+        </div>
+        <div class="clearfix"></div>
+        <ul class="sub-question-list">
+          <li>(i) $4x - y = 3$, $2x + 3y = 5$</li>
+          <li>(ii) দুটি সংখ্যার সমষ্টি 15 এবং অন্তর 3</li>
+        </ul>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>7. যে কোনো একটি প্রশ্নের উত্তর দাও:</span>
+          <span class="marks">3</span>
+        </div>
+        <div class="clearfix"></div>
+        <ul class="sub-question-list">
+          <li>(i) $x^{\frac{1}{a}} = y^{\frac{1}{b}} = z^{\frac{1}{c}}$ এবং $xyz = 1$ হলে, দেখাই যে, $a + b + c = 0$
+          </li>
+          <li>(ii) $a^x = b^y = c^z$ এবং $abc = 1$ হলে, দেখাই যে, $xy + yz + zx = 0$</li>
+        </ul>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>8. যে কোনো একটি প্রশ্নের উত্তর দাও:</span>
+          <span class="marks">4</span>
+        </div>
+        <div class="clearfix"></div>
+        <ul class="sub-question-list">
+          <li>(i) প্রমাণ করো যে, কোনো চতুর্ভুজের একজোড়া বিপরীত বাহু সমান ও সমান্তরাল হলে চতুর্ভুজটি সামান্তরিক হবে।</li>
+          <li>(ii) প্রমাণ করো যে, সামান্তরিকের কর্ণদ্বয় পরস্পরকে সমদ্বিখণ্ডিত করে।</li>
+        </ul>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>9. নিচের প্রশ্নের উত্তর দাও:</span>
+          <span class="marks">3</span>
+        </div>
+        <div class="clearfix"></div>
+        <ul class="sub-question-list">
+          <li>প্রমাণ করো যে, কোনো সামান্তরিকের চারটি কোণের সমদ্বিখণ্ডকগুলি পরস্পর মিলিত হয়ে আয়তাকার চিত্র গঠন করে।</li>
+        </ul>
+      </div>
+
+    </div>
+
+
+    <!-- Wish Message -->
+    <div class="wish-container">
+  <div class="wish-message">
+    Best of Luck for your Examination!
+    <span>MathSquadz: Empowering Logical Thinking</span>
+  </div>
+</div>
+
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>2</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
