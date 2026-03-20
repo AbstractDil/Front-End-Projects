@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class XI Mathematics Assessment</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+    body {
+      font-family: "Roboto Condensed", sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .wish-container {
+      margin-top: 40px;
+      padding: 15px;
+      text-align: center;
+      border: 2px dashed #2c3e50;
+      border-radius: 10px;
+      background-color: #fdfdfd;
+    }
+
+    .wish-message {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c3e50;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .sub-wish {
+      font-size: 13px;
+      color: #7f8c8d;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      outline: 2px solid #000;
+      outline-offset: -10px;
+    }
+
+    /* ===== TEXT WATERMARK ===== */
+    .page::before {
+      content: "SOURADEEP DAS";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 80px;
+      font-weight: 900;
+      color: rgba(0, 0, 0, 0.04);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .exam-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+
+    .exam-header h1 {
+      margin: 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .group-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      text-decoration: underline;
+      margin: 20px 0;
+    }
+
+    .section-instruction {
+      font-weight: bold;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .question-block {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .sub-question {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .options-row {
+      display: flex;
+      gap: 30px;
+      margin-top: 5px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
+    @media print {
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; border: none; }
+      .print-btn { display: none; }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download/Print PDF</button>
+
+  <div class="page">
+    <div class="exam-header" style="margin-top:0px;padding-top: 0px;">
+      <h1>1ST Internal Assessment - 2026</h1>
+      <h3 style="padding: 0;margin-top:4px;">Class- XII &nbsp; &nbsp; Session: 2026-27</h3>
+      <div class="header-meta">
+        <span>Sub.- Mathematics</span>
+        <span>Time- 40 Minutes</span>
+        <span>F.M.- 20</span>
+      </div>
+    </div>
+
+    <div class="group-title">
+        Topic: Continuity and Differentiability
+    </div>
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>নীচের প্রশ্নগুলির সঠিক উত্তরটি নির্বাচন করো :</span>
+      </div>
+
+      <div class="sub-question">
+        1. $f(x) = |x-1| + |x+1|$ অপেক্ষকটি $[0, 2]$ অন্তরালে যে বিন্দুগুলিতে অসন্তত তার সংখ্যা:
+        <div class="options-row">
+          <span>a. 2</span><span>b. 3</span><span>c. 1</span><span>d. 0</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        2. $f(x) = \frac{|\sin x|}{\sin x}$ অপেক্ষকটির অসন্তত বিন্দুগুলির সেট হল:
+        <div class="options-row">
+          <span>a. $\{0\}$</span><span>b. $\{n\pi \mid n \in \mathbb{Z}\}$</span><span>c. $\phi$</span><span>d. কোনটিই নয়</span>
+        </div>
+      </div>
+
+      <!-- <div class="sub-question">
+        3. $f(x) = \frac{1}{1-x}$ হলে, $f(f(x))$-এর অসন্তত বিন্দুসমূহের সেট হল:
+        <div class="options-row">
+          <span>a. $\{0, 1\}$</span><span>b. $\phi$</span><span>c. $\{n\pi \mid n \in \mathbb{Z}\}$</span><span>d. কোনটিই নয়</span>
+        </div>
+      </div> -->
+
+      <div class="sub-question">
+        3. $y = |x-2| + |x-3|$, $\left.\frac{dy}{dx}\right|_{x=2.5} = ?$
+        <div class="options-row">
+          <span>a. 1</span><span>b. 2</span><span>c. 0</span><span>d. NOTA</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        4. যদি $f(x) = \begin{cases} ax-1, & x \le \pi/2 \\ b-\sin x, & x > \pi/2 \end{cases}$ অপেক্ষকটি $x = \pi/2$ তে সন্তত হয়, তবে:
+        <div class="options-row">
+          <span>a. $a = b$</span><span>b. $a = \frac{b\pi}{2}$</span><span>c. $b = \frac{a\pi}{2}$</span><span>d. কোনটিই নয়</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        5. $f(x) = [x]$ অপেক্ষকটি:
+        <div class="options-row">
+          <span>a. সর্বত্র অসন্তত</span><span>b. অখণ্ড সংখ্যার বিন্দুগুলিতে অসন্তত</span><span>c. ভগ্নাংশ সংখ্যার বিন্দুগুলিতে অসন্তত</span><span>d. NOTA</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        6. $f(x) = |\sin x|$ অপেক্ষকটির অসন্তত বিন্দুসমূহের সেট হল:
+        <div class="options-row">
+          <span>a. $\{0\}$</span><span>b. $\phi$</span><span>c. $\{n\pi \mid n \in \mathbb{Z}\}$</span><span>d. NOTA</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        7. $x = a \cos^3 t, y = a \sin^3 t$ হলে, $\frac{dy}{dx} = ?$
+        <div class="options-row">
+          <span>a. $\tan t$</span><span>b. $-\tan t$</span><span>c. $\cot t$</span><span>d. $-\cot t$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        8. যদি $y = \sqrt{x + \sqrt{x + \sqrt{x + \dots \infty}}}$ হয়, তবে $(2y-1)\frac{dy}{dx} = ?$
+        <div class="options-row">
+          <span>a. 1</span><span>b. -1</span><span>c. 0</span><span>d. NOTA</span>
+        </div>
+      </div>
+
+      <!-- <div class="sub-question">
+        9. যদি $x^y = e^{x-y}$ হয়, তবে $\frac{dy}{dx} = ?$
+        <div class="options-row">
+          <span>a. $\frac{1+x}{1+\log x}$</span><span>b. $\frac{1-\log x}{1+\log x}$</span><span>c. $\frac{\log x}{(1+\log x)^2}$</span><span>d. NOTA</span>
+        </div>
+      </div> -->
+
+      <div class="sub-question">
+        9. $y = \cos(2 \sin^{-1} x)$ হলে, $(1-x^2)y_2 - xy_1 = ?$
+        <div class="options-row">
+          <span>a. $4y$</span><span>b. $-4y$</span><span>c. 0</span><span>d. $2y$</span>
+        </div>
+      </div>
+
+        <!-- <div class="sub-question">
+        10. $x^3 y^4 = (x+y)^7$ হলে, $\frac{d^2y}{dx^2} = ?$
+        <div class="options-row">
+          <span>a. $y/x$</span><span>b. $-y/x$</span><span>c. $x/y$</span><span>d. 0</span>
+        </div>
+      </div> -->
+
+      <div class="sub-question">
+        10. $x\sqrt{1+y} + y\sqrt{1+x} = 0$ হলে, $\frac{d^2y}{dx^2} = ?$
+        <div class="options-row">
+          <span>a. $\frac{1}{(1+x)^2}$</span><span>b. $\frac{2}{(1+x)^2}$</span><span>c. $\frac{1}{(1+x)^3}$</span><span>d. $\frac{2}{(1+x)^3}$</span>
+        </div>
+      </div>
+
+     
+    </div>
+
+    <div class="footer">
+      Page - 1
+    </div>
+  </div>
+
+  <div class="page">
+
+    <div class="question-block">
+       
+
+      <div class="sub-question">
+        11. $h(x) = f''(x) + 2f'(x) + f(x) + 2$ যেখানে $f(x) = e^{5x}$ হলে, $h(0) = ?$
+        <div class="options-row">
+          <span>a. 0</span><span>b. 8</span><span>c. 38</span><span>d. 4</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        12. $y = 4 \cos 5x$ হলে, $\frac{d^2y}{dx^2} = ?$
+        <div class="options-row">
+          <span>a. $20y$</span><span>b. $-20y$</span><span>c. $-25y$</span><span>d. $25y$</span>
+        </div>
+      </div>
+
+      <!-- <div class="sub-question">
+        13. $y = e^{-x}(A \cos x + B \sin x)$ হয় তবে কোনটি সত্য?
+        <div class="options-row">
+          <span>a. $y_2 + 2y_1 = 0$</span><span>b. $y_2 - 2y_1 + 2y = 0$</span><span>c. $y_2 + 2y_1 + 2y = 0$</span><span>d. $y_2 + 2y = 0$</span>
+        </div>
+      </div> -->
+
+      <div class="sub-question">
+        13. $y = \sin^{-1} \left( \frac{2\cos x - 3\sin x}{\sqrt{13}} \right)$ হলে, $\frac{dy}{dx}$-এর সরলতম মান হবে —
+        <div class="options-row">
+          <span>a. 0</span><span>b. -1</span><span>c. 1</span><span>d. কোনটিই নয়</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        14. $x = at^2, y = 2at$ হলে, $\frac{d^2y}{dx^2} = ?$
+        <div class="options-row">
+          <span>a. $2at^3$</span><span>b. $-2at^3$</span><span>c. $-\frac{1}{2at^3}$</span><span>d. $\frac{1}{2at^3}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        15. যদি $y = \left(\frac{1}{x}\right)^x$ হয়, তবে $x = 1$-এ $\frac{d^2y}{dx^2}$-এর মান —
+        <div class="options-row">
+          <span>a. -1</span><span>b. 1</span><span>c. 0</span><span>d. 2</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        16. $\frac{dx}{dy} = u$ ও $\frac{d^2x}{dy^2} = v$ হলে, $\frac{d^2y}{dx^2} =$
+        <div class="options-row">
+          <span>a. $-\frac{v}{u^2}$</span><span>b. $-\frac{v}{u^3}$</span><span>c. $\frac{v}{u}$</span><span>d. $-\frac{v}{u}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        17. যদি $\sin^{-1} \left( \frac{x^2 - y^2}{x^2 + y^2} \right) = k$ হয়, ($k$ একটি ধ্রুবক) তাহলে $\frac{dy}{dx} =$
+        <div class="options-row">
+          <span>a. $\frac{x}{y}$</span><span>b. $\frac{y}{x}$</span><span>c. $\frac{x^2}{y^2}$</span><span>d. $\frac{y^2}{x^2}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        18. $y = \log_5(\log_5 x)$ হলে $\frac{dy}{dx}$-এর মান হবে —
+        <div class="options-row" style="gap: 15px;">
+          <span>a. $\frac{1}{x \log_5 x (\log_e 5)}$</span><span>b. $\frac{1}{x \log_5 x (\log_e 5)^2}$</span><span>c. $\frac{1}{x (\log_e 5)^2}$</span><span>d. কোনটিই নয়</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        19. $e^{\cos x}$ সাপেক্ষে $\sin^2 x$-এর অন্তরকলজ হবে —
+        <div class="options-row">
+          <span>a. $\frac{2 \cos x}{e^{\cos x}}$</span><span>b. $-\frac{\cos x}{e^{\cos x}}$</span><span>c. $-\frac{2 \cos x}{e^{\cos x}}$</span><span>d. কোনটিই নয়</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        20. যদি $f(x) = x + 1$ হয়, তবে $\frac{d}{dx} (f \circ f)(x)$-এর মান হবে —
+        <div class="options-row">
+          <span>a. 0</span><span>b. 1</span><span>c. -1</span><span>d. 2</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wish-container" style="margin-top: 60px;">
+      <p class="wish-message">🌟 BEST OF LUCK FOR YOUR EXAM! 🌟</p>
+      <p class="sub-wish">"Believe in yourself and all that you are."</p>
+    </div>
+    <div class="footer">
+      Page - 2
+    </div>
+  </div>
+
+</body>
+</html>

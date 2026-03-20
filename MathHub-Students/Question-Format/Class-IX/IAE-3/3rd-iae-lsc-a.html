@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSquadz Question Paper Engine - Life Science</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+    <style>
+    body {
+      font-family: "Noto Sans Bengali", sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm;
+      margin: 10mm auto;
+      background: white;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: url("../images/logo.png") no-repeat center;
+      background-size: contain;
+      opacity: 0.1;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .exam-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      border: 2px solid #333;
+      padding: 8px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-area img {
+      max-width: 92px;
+      max-height: 92px;
+    }
+
+    .header-info {
+      text-align: start;
+    }
+
+    .header-info h2 {
+      margin: 0;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .header-info p {
+      margin: 3px 0;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .exam-content {
+      padding: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #000;
+    }
+
+    .question-section {
+      margin-bottom:14px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: bold;
+      margin-bottom: 4px;
+      border-bottom: 1px dashed #666;
+    }
+
+    .question-item {
+      margin-bottom: 8px;
+    }
+
+    .question-text {
+      display: flex;
+      gap: 8px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      padding-left: 30px;
+      margin-top: 5px;
+    }
+
+    .sub-question-list {
+      list-style-type: none;
+      padding-left: 20px;
+    }
+
+    .marks {
+      font-weight: bold;
+      float: right;
+    }
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    /* Wish Container Styling */
+    .wish-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin: 22px auto;
+      max-width: 80%;
+      /* background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); */
+      /* border-radius: 8px; */
+      /* border-left: 5px solid #e74c3c; */
+      /* Matches your print button color */
+      /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); */
+    }
+
+    /* Wish Message Text Styling */
+    .wish-message {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      color: #2c3e50;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .wish-message span {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      color: #7f8c8d;
+      margin-top: 5px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 12mm;
+      right: 12mm;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .footer-icon {
+      width: 34px;
+      height: 34px;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .footer-text {
+      line-height: 1.2;
+    }
+
+    .footer-text b {
+      font-size: 12px;
+      display: block;
+    }
+
+    .footer-text span {
+      font-size: 11px;
+      color: #333;
+    }
+
+    @media print {
+      .print-btn {
+        display: none;
+      }
+
+      body {
+        background: none;
+      }
+
+      /* Set default browser margin to none while printing */
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+      }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download</button>
+
+  <div class="page">
+    <div class="exam-header">
+      <div class="logo-area"><img src="../images/logo.png" alt="Logo" /></div>
+      <div class="header-info">
+        <h2>3RD Internal Assessment - 2026</h2>
+        <p>Session: 2026 | Subject: Life Science | Class: IX </p>
+        <p>Full Marks: 40 | Time: 1 hr. 20 min. | Set: A</p>
+      </div>
+    </div>
+
+    <div class="exam-content">
+      <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - ক</span>
+          <span class="marks">$1 \times 7 = 7$</span>
+        </div>
+        <p><strong>1. সঠিক উত্তরটি নির্বাচন করে পূর্ণ বাক্যে লেখো:</strong></p>
+        
+        <div class="question-item">
+          (i) 'গরম তরল স্যুপ' (Hot dilute soup) কথাটির প্রবর্তক হলেন—
+          <div class="options-grid">
+            <span>(a) সিডনি ফক্স</span>
+            <span>(b) হ্যালডেন</span>
+            <span>(c) ওপারিন</span>
+            <span>(d) ওপারিন ও হ্যালডেন</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (ii) প্রদত্ত কোন্ পর্বের প্রাণীতে এপিডারমাল আঁশ দেখা যায়?
+          <div class="options-grid">
+            <span>(a) অসটিকথিস</span>
+            <span>(b) কনড্রিকথিস</span>
+            <span>(c) ম্যামেলিয়া</span>
+            <span>(d) রেপটিলিয়া</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (iii) 'RBC-এর কবরখানা' হল—
+          <div class="options-grid">
+            <span>(a) প্লীহা</span>
+            <span>(b) যকৃৎ</span>
+            <span>(c) পাকস্থলী</span>
+            <span>(d) অগ্ন্যাশয়</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (iv) মানবদেহের কোন্ অঙ্গে গ্রাফিয়ান ফলিকল দেখা যায়?
+          <div class="options-grid">
+            <span>(a) শুক্রাশয়</span>
+            <span>(b) ডিম্বাশয়</span>
+            <span>(c) অগ্ন্যাশয়</span>
+            <span>(d) মস্তিষ্ক</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (v) কোন্ যোগ কলায় রক্ত সরবরাহ থাকে না?
+          <div class="options-grid">
+            <span>(a) অস্থি</span>
+            <span>(b) তরুণাস্থি</span>
+            <span>(c) অ্যারিওলার কলা</span>
+            <span>(d) ঘন যোগকলা</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (vi) জাইলেমের সজীব উপাদানটি হল— 
+          <div class="options-grid">
+            <span>(a) ট্রাকিড</span>
+            <span>(b) ভেসেল</span>
+            <span>(c) জাইলেম প্যারেনকাইমা</span>
+            <span>(d) জাইলেম তন্তু</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (vii) ভিটামিন A-এর অভাবজনিত রোগটি হল— 
+          <div class="options-grid">
+            <span>(a) রাতকানা</span>
+            <span>(b) জেরোপথ্যালমিয়া</span>
+            <span>(c) ফ্রিনোডার্মা</span>
+            <span>(d) সবকটি</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - খ</span>
+          <span class="marks">$1 \times 11 = 11$</span>
+        </div>
+        <p><strong>2. একটি বাক্যে উত্তর দাও (যে-কোনো 11টি):</strong></p>
+        <ul class="sub-question-list">
+          <li>(i) কোন্ পর্বের প্রাণীগোষ্ঠীতে কোম্বপ্লেট বা চিরুনি প্লেট থাকে?</li>
+          <li>(ii) ICBN-এর পুরো নাম কী?</li>
+          <li>(iii) কোন্ পর্বে নোটোকর্ড ও নার্ভকর্ড দেখা যায়?</li>
+          <li>(iv) সত্য বা মিথ্যা: কেঁচো হল আর্থ্রোপোডা পর্বের একটি প্রাণী।</li>
+          <li>(v) সত্য বা মিথ্যা: পেশিতে গ্লাইকোজেনরূপে শর্করা জমা থাকে।</li>
+        
+         
+         
+          
+        </ul>
+      </div>
+    </div>
+
+     <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>1</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="exam-content">
+
+      <div class="question-section">
+         <div class="sub-question-list">
+           <li>(vi) কোন্ পর্বের প্রাণীদের দেহে কোয়ানোসাইট কোশ উপস্থিত থাকে?</li>
+          <li>(vii) যোগকলা দেহের __________ ব্যবস্থায় সাহায্য করে।</li>
+         <li>(viii) উদ্ভিদদেহে সামগ্রিক বৃদ্ধি ঘটায় __________ কলা।</li>
+         <li>(ix) সত্য বা মিথ্যা: রক্ত মেসোডার্ম থেকে উৎপন্ন হয়।</li>
+        <li>(x) কোন্ কলা প্রাণীদেহে বহিঃকঙ্কাল গঠন করে?</li>
+          <li>(xi) কোন্ কোশ অঙ্গাণুকে 'কোশের মস্তিষ্ক' বলে?</li>
+          <li>(xii) আয়োডিনের অভাবে __________ রোগ হয়।</li>
+          <li>(xiii) নিডারিয়া পর্বের প্রাণীদের দেহে __________ কোশ উপস্থিত থাকে।</li>
+         </div>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - গ</span>
+          <span class="marks">$2 \times 6 = 12$</span>
+        </div>
+        <p><strong>3. নীচের প্রশ্নগুলির সংক্ষিপ্ত উত্তর দাও (যে-কোনো 6টি):</strong></p>
+        <ul class="sub-question-list">
+          <li>(i) ম্যাক্রো মলিকিউল ও মাইক্রো মলিকিউল-এর মধ্যে পার্থক্য লেখো।</li>
+          <li>(ii) মানবদেহে ভিটামিন D-এর ভূমিকা লেখো।</li>
+          <li>(iii) যকৃতের দুটি কাজ লেখো।</li>
+          <li>(iv) যোগকলার গঠনগত বৈশিষ্ট্য লেখো।</li>
+          <li>(v) কোশপর্দার কাজ লেখো।</li>
+          <li>(vi) প্ল্যাটিহেলমিনথিস পর্বভুক্ত দুটি প্রাণীর উদাহরণ দাও।</li>
+          <li>(vii) ব্রায়োফাইটা ও টেরিডোফাইটার মধ্যে পার্থক্য লেখো।</li>
+          <li>(viii) মোনেরা ও প্রোটিস্টার মধ্যে পার্থক্য লেখো।</li>
+        </ul>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - ঘ </span>
+          <span class="marks">$5 \times 2 = 10$</span>
+        </div>
+        <p><strong>4. নিম্নলিখিত প্রশ্নগুলির উত্তর দাও (বিকল্প প্রশ্নগুলি লক্ষণীয়):</strong></p>
+        <ul class="sub-question-list">
+          <li>
+            (i) ট্যাক্সোনমিক হায়ারার্কি বলতে কী বোঝো? ট্যাক্সোনমির প্রয়োজনীয়তা কী?<span class="marks">($2+3$)</span><br>
+            <strong>অথবা,</strong> উদাহরণসহ দ্বিপদ নামকরণের তিনটি নিয়ম লেখো। হাঙর যে শ্রেণির অন্তর্গত, সেই শ্রেণির দুটি বৈশিষ্ট্য উল্লেখ করো।<span class="marks">($3+2$)</span>
+          </li>
+          <li style="margin-top: 15px;">
+            (ii) প্রদত্ত ভিটামিনগুলির একটি করে কাজ লেখো— (a) ভিটামিন C, (b) ভিটামিন $B_{12}$, (c) ভিটামিন K (d) ভিটামিন D, (e) ভিটামিন E  <span class="marks">($1+1+1+1+1$) </span><br>
+            <strong>অথবা,</strong> চিহ্নিত চিত্রসহ নিউক্লিয়াসের গঠন বর্ণনা করো।  <span class="marks">($3+2$)</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="wish-container">
+        <div class="wish-message">Best of Luck for your Examination!</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>2</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
