@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathSquadz Question Paper Engine - Physical Science</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+            },
+            svg: { fontCache: "global" },
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: "Noto Sans Bengali", sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 12mm;
+            margin: 10mm auto;
+            background: white;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: url("../images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .exam-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            border: 2px solid #333;
+            padding: 8px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-area img {
+            max-width: 92px;
+            max-height: 92px;
+        }
+
+        .header-info {
+            text-align: start;
+        }
+
+        .header-info h2 {
+            margin: 0;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .header-info p {
+            margin: 3px 0;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .exam-content {
+            padding: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #000;
+            position: relative;
+            z-index: 1;
+        }
+
+        .question-section {
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: bold;
+            margin-bottom: 4px;
+            border-bottom: 1px dashed #666;
+        }
+
+        .question-item {
+            margin-bottom: 8px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding-left: 30px;
+            margin-top: 5px;
+        }
+
+        .sub-question-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .marks {
+            font-weight: bold;
+            float: right;
+        }
+
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 22px auto;
+            max-width: 80%;
+        }
+
+        .wish-message {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 12mm;
+            right: 12mm;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .footer-icon {
+            width: 34px;
+            height: 34px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .footer-text {
+            line-height: 1.2;
+        }
+
+        .footer-text b {
+            font-size: 12px;
+            display: block;
+        }
+
+        .footer-text span {
+            font-size: 11px;
+            color: #333;
+        }
+
+        @media print {
+            .print-btn {
+                display: none;
+            }
+
+            body {
+                background: none;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+            }
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-btn" onclick="window.print()">Download</button>
+
+    <div class="page">
+        <div class="exam-header">
+            <div class="logo-area"><img src="../images/logo.png" alt="Logo" /></div>
+            <div class="header-info">
+                <h2>3RD Internal Assessment - 2026</h2>
+                <p>Session: 2026 | Subject: Physical Science | Class: IX </p>
+                <p>Full Marks: 40 | Time: 1 hr. 20 min. | Set: A</p>
+            </div>
+        </div>
+
+        <div class="exam-content">
+            <div class="question-section">
+                <div class="section-title">
+                    <span>Group - A</span>
+                    <span class="marks">$1 \times 8 = 8$</span>
+                </div>
+                <p><strong>1. সঠিক উত্তরটি নির্বাচন করে পূর্ণ বাক্যে লেখো:</strong></p>
+
+                <div class="question-item">
+                    (i) তিনটি মৌলিক একক নিয়ে গঠিত একটি স্কেলার রাশি ও একটি ভেক্টর রাশি হল –
+                    <div class="options-grid">
+                        <span>(a) দ্রুতি, বেগ</span><span>(b) কার্য, ত্বরণ</span>
+                        <span>(c) কার্য, বল</span><span>(d) ক্ষমতা, ত্বরণ</span>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    (ii) ত্বরণের মাত্রীয় সংকেত হল—
+                    <div class="options-grid">
+                        <span>(a) $[MLT^{-1}]$</span><span>(b) $[LT^{-2}]$</span>
+                        <span>(c) $[LT^{-1}]$</span><span>(d) $[MLT^{-2}]$</span>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    (iii) প্রদত্ত এককগুলির মধ্যে লব্ধ এককটি হল—
+                    <div class="options-grid">
+                        <span>(a) মোল</span><span>(b) অ্যাম্পিয়ার</span>
+                        <span>(c) আলোকবর্ষ</span><span>(d) নিউটন</span>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    (iv) সূর্যের চারিদিকে পৃথিবীর গতি হল—
+                    <div class="options-grid">
+                        <span>(a) ঘূর্ণন গতি</span><span>(b) বৃত্তীয় গতি</span>
+                        <span>(c) চলন গতি</span><span>(d) কোনটিই নয়</span>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    (v) ${}_{15}^{31}P$ এবং ${}_{16}^{31}S$-এর মধ্যে সম্পর্ক হল—
+                    <div class="options-grid">
+                        <span>(a) আইসোটোপ</span><span>(b) আইসোবার</span>
+                        <span>(c) আইসোটোন</span><span>(d) কোনোটিই নয়</span>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    (vi) $O^{2-}$ আয়নের যোজন কক্ষে ইলেকট্রন সংখ্যা কত?
+                    <div class="options-grid">
+                        <span>(a) 7</span><span>(b) 6</span>
+                        <span>(c) 8</span><span>(d) 10</span>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    (vii) একটি পরমাণুর M কক্ষে 1টি ইলেকট্রন থাকলে পরমাণুটিতে উপস্থিত মোট প্রোটন সংখ্যা হবে—
+                    <div class="options-grid">
+                        <span>(a) 10টি</span><span>(b) 11টি</span>
+                        <span>(c) 8টি</span><span>(d) 12টি</span>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    (viii) প্রদত্ত কোন্ লেখচিত্রটি কোনো কণার সমত্বরণে গতি প্রকাশ করে? —
+                    <div class="options-grid"
+                        style="grid-template-columns: repeat(4, 1fr); text-align: center; margin-top: 10px;">
+
+                        <div>
+                            (a) <br>
+                            <svg width="120" height="110" viewBox="0 0 120 110">
+                                <defs>
+                                    <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5"
+                                        markerHeight="5" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" />
+                                    </marker>
+                                </defs>
+                                <line x1="35" y1="80" x2="35" y2="15" stroke="black" stroke-width="1.2"
+                                    marker-end="url(#arrowhead)" />
+                                <line x1="35" y1="80" x2="110" y2="80" stroke="black" stroke-width="1.2"
+                                    marker-end="url(#arrowhead)" />
+                                <text x="20" y="88" font-size="14px">O</text>
+                                <text x="18" y="55" font-size="13px" font-weight="bold">v</text>
+                                <text x="18" y="38" font-size="14px" font-weight="bold">↑</text>
+                                <text x="80" y="96" font-size="13px" font-weight="bold">t →</text>
+                                <path d="M 35,35 Q 45,75 100,78" stroke="black" stroke-width="1.5" fill="none" />
+                            </svg>
+                        </div>
+
+                        <div>
+                            (b) <br>
+                            <svg width="120" height="110" viewBox="0 0 120 110">
+                                <line x1="35" y1="80" x2="35" y2="15" stroke="black" stroke-width="1.2"
+                                    marker-end="url(#arrowhead)" />
+                                <line x1="35" y1="80" x2="110" y2="80" stroke="black" stroke-width="1.2"
+                                    marker-end="url(#arrowhead)" />
+                                <text x="20" y="88" font-size="14px">O</text>
+                                <text x="18" y="55" font-size="13px" font-weight="bold">v</text>
+                                <text x="18" y="38" font-size="14px" font-weight="bold">↑</text>
+                                <text x="80" y="96" font-size="13px" font-weight="bold">t →</text>
+                                <line x1="35" y1="55" x2="95" y2="25" stroke="black" stroke-width="1.5" />
+                            </svg>
+                        </div>
+
+                        <div>
+                            (c) <br>
+                            <svg width="120" height="110" viewBox="0 0 120 110">
+                                <line x1="35" y1="80" x2="35" y2="15" stroke="black" stroke-width="1.2"
+                                    marker-end="url(#arrowhead)" />
+                                <line x1="35" y1="80" x2="110" y2="80" stroke="black" stroke-width="1.2"
+                                    marker-end="url(#arrowhead)" />
+                                <text x="20" y="88" font-size="14px">O</text>
+                                <text x="18" y="55" font-size="13px" font-weight="bold">v</text>
+                                <text x="18" y="38" font-size="14px" font-weight="bold">↑</text>
+                                <text x="80" y="96" font-size="13px" font-weight="bold">t →</text>
+                                <line x1="35" y1="35" x2="90" y2="75" stroke="black" stroke-width="1.5" />
+                            </svg>
+                        </div>
+
+                        <div>
+                            (d) <br>
+                            <svg width="120" height="110" viewBox="0 0 120 110">
+                                <line x1="35" y1="80" x2="35" y2="15" stroke="black" stroke-width="1.2"
+                                    marker-end="url(#arrowhead)" />
+                                <line x1="35" y1="80" x2="110" y2="80" stroke="black" stroke-width="1.2"
+                                    marker-end="url(#arrowhead)" />
+                                <text x="20" y="88" font-size="14px">O</text>
+                                <text x="18" y="55" font-size="13px" font-weight="bold">v</text>
+                                <text x="18" y="38" font-size="14px" font-weight="bold">↑</text>
+                                <text x="80" y="96" font-size="13px" font-weight="bold">t →</text>
+                                <line x1="35" y1="40" x2="100" y2="40" stroke="black" stroke-width="1.5" />
+                            </svg>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>1</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="exam-content">
+
+            <div class="question-section">
+                 <div class="section-title">
+                    <span>Group - B</span>
+                    <span class="marks">$1 \times 7 = 7$</span>
+                </div>
+                <p><strong>2. নিম্নলিখিত প্রশ্নগুলির উত্তর দাও (বিকল্প প্রশ্নগুলি লক্ষণীয়):</strong></p>
+                <ul class="sub-question-list">
+                     <li>(i) শূন্যস্থান পূরণ করো: $1 \mathring{\text{A}} = \_\_\_\_\_\_\_ m$</li>
+                     <li>(ii) একটি এককবিহীন ভৌতরাশির নাম লেখো। <b>অথবা,</b> তড়িৎপ্রবাহমাত্রা একটি ________ রাশি।</li>
+                    <li>(iii) বেগ-সময় লেখচিত্রের নতি কী নির্দেশ করে?</li>
+                    <li>(iv) দুটি বস্তু A ও B-এর ভর যথাক্রমে 60 kg এবং 50 kg হলে, কোন্ বস্তুর জাড্যের পরিমাণ বেশি?</li>
+                    <li>(v) সংস্পর্শ ছাড়াও পারস্পরিক ক্রিয়াশীল কার্যকরী বলের একটি উদাহরণ দাও। <b>অথবা,</b> ________
+                        স্থানেও রকেট চলতে পারে।</li>
+                    <li>(vi) $X^{3+}$ আয়নটির ইলেকট্রন সংখ্যা 10 এবং নিউট্রন সংখ্যা 14 হলে, পরমাণুটির ভরসংখ্যা কত?</li>
+                    <li>(vii) শূন্যস্থান পূরণ করো: ${}_{4}^{9}Be + {}_{2}He \rightarrow \_\_\_\_\_\_\_ + {}_{0}^{1}n$
+                    </li>
+                    </>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">
+                    <span>Group - C</span>
+                    <span class="marks">$2 \times 8 = 16$</span>
+                </div>
+                <p><strong>3. নিম্নলিখিত প্রশ্নগুলির উত্তর দাও (বিকল্প প্রশ্নগুলি লক্ষণীয়):</strong></p>
+                <ul class="sub-question-list">
+                    <li>(i) ভালো তুলাযন্ত্রের চারটি গুণাবলি লেখো।</li>
+                    <li>(ii) একটি খালি বোতলের ভর 200g। বোতলটিকে তরল দ্বারা পূর্ণ করায় ভর হল 450g। তরলের আয়তন 100 $cm^3$
+                        হলে তরলের ঘনত্ব কত?</li>
+                    <li>(iii) বলের সংযোজন সংক্রান্ত সামান্তরিক সূত্রটি লেখো।
+                       <b> অথবা,</b> $4\text{ kg}$ লোহার টুকরোর আয়তন $500\text{ cm}^3$ হলে, লোহার ঘনত্ব কত?
+                    </li>
+                    <li>(iv) প্রতিমিত বল কী? একটি উদাহরণ দাও। <b>অথবা,</b> একটি বন্দুক থেকে গুলি ছুঁড়লে বন্দুকটি পিছিয়ে
+                        আসে কেন?</li>
+                    <li>(v) এক ব্যক্তি পশ্চিমদিকে 4 km যাওয়ার পর উত্তরদিকে 3 km গেলেন। ওই ব্যক্তির সরণ কত?</li>
+                    <li>(vi) ${}_{13}X^{30}$ মৌলটির একটি পরমাণুর মধ্যে 2টি প্রোটন, 2টি ইলেকট্রন ও 3টি নিউট্রন যোগ করা
+                        হল। চূড়ান্ত পরমাণুটি কী হবে?</li>
+                    <li>(vii) পারমাণবিক সংখ্যাকে মৌলের মূলগত ধর্ম বলা হয় কেন?
+                       <b> অথবা,</b> একটি মৌলের পরমাণুতে $K$ কক্ষে 2টি, $L$ কক্ষে 8টি এবং $M$ কক্ষে 7টি ইলেকট্রন আছে। মৌলটির যোজ্যতা কত? মৌলটির ভরসংখ্যা 38 হলে, নিউট্রন সংখ্যা কত?
+                    </li>
+                    <li>(viii) আইসোটোপের রাসায়নিক ধর্ম অভিন্ন হয় কেন?</li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">
+                    <span>Group - D</span>
+                    <span class="marks">$3 \times 3 = 9$</span>
+                </div>
+                <p><strong>4. নিম্নলিখিত প্রশ্নগুলির উত্তর দাও (বিকল্প প্রশ্নগুলি লক্ষণীয়):</strong></p>
+                <ul class="sub-question-list">
+                    <li>(i) একটি গাড়ি ব্রেক কষে 6 $m/s^2$ মন্দন সৃষ্টি করে এবং 2 s পরে থেমে যায়। গাড়িটি কতটা দূরত্ব
+                        অতিক্রম করবে? <b>অথবা,</b> লেখচিত্রের সাহায্যে $v=u+at$ সমীকরণটি প্রতিষ্ঠা করো।</li>
+                    <li>(ii) মাপনী চোঙের সাহায্যে কীভাবে অসম আকৃতির কঠিন বস্তুর আয়তন নির্ণয় করা যায়?</li>
+                    <li>(iii) রাদারফোর্ডের পরমাণু মডেলের ত্রুটি লেখো। <b>অথবা,</b> বোরের পরমাণু মডেলের তিনটি স্বীকার্য
+                        লেখো।</li>
+                </ul>
+            </div>
+
+            <div class="wish-container">
+                <div class="wish-message">Best of Luck for your Examination!</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>2</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

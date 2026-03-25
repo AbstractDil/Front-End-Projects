@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathSquadz Question Paper Engine - Physical Science</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+            },
+            svg: { fontCache: "global" },
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: "Noto Sans Bengali", sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 12mm;
+            margin: 10mm auto;
+            background: white;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: url("../images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .exam-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            border: 2px solid #333;
+            padding:5px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-area img {
+            max-width: 92px;
+            max-height: 92px;
+        }
+
+        .header-info {
+            text-align: start;
+        }
+
+        .header-info h2 {
+            margin: 0;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .header-info p {
+            margin: 3px 0;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .exam-content {
+            padding: 10px;
+            font-size: 13.5px;
+            line-height: 1.4;
+            color: #000;
+            position: relative;
+            z-index: 1;
+        }
+
+        .question-section {
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: bold;
+            margin-bottom: 4px;
+            border-bottom: 1px dashed #666;
+        }
+
+        .question-item {
+            margin-bottom: 8px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding-left: 30px;
+            margin-top: 5px;
+        }
+
+        .sub-question-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .marks {
+            font-weight: bold;
+            float: right;
+        }
+
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 22px auto;
+            max-width: 80%;
+        }
+
+        .wish-message {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 12mm;
+            right: 12mm;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .footer-icon {
+            width: 34px;
+            height: 34px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .footer-text {
+            line-height: 1.2;
+        }
+
+        .footer-text b {
+            font-size: 12px;
+            display: block;
+        }
+
+        .footer-text span {
+            font-size: 11px;
+            color: #333;
+        }
+
+        @media print {
+            .print-btn {
+                display: none;
+            }
+
+            body {
+                background: none;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+            }
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-btn" onclick="window.print()">Download</button>
+
+    <div class="page">
+        <div class="exam-header">
+            <div class="logo-area"><img src="../images/logo.png" alt="Logo" /></div>
+            <div class="header-info">
+                <h2>3RD Internal Assessment - 2026</h2>
+                <p>Session: 2026 | Subject: Physical Science | Class: IX </p>
+                <p>Full Marks: 40 | Time: 1 hr. 20 min. | Set: B</p>
+            </div>
+        </div>
+
+        <div class="exam-content">
+           <div class="question-section">
+    <div class="section-title">
+        <span>Group - A</span>
+        <span class="marks">$1 \times 8 = 8$</span>
+    </div>
+    <p><strong>1. সঠিক উত্তরটি বেছে নিয়ে লেখো:</strong> </p>
+
+    <div class="question-item">
+        (i) 1 মাইক্রন = কত ন্যানোমিটার? 
+        <div class="options-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <span>(a) $10^{9}$</span><span>(b) $10^{6}$</span>
+            <span>(c) $10^{3}$</span><span>(d) $10^{-6}$</span> 
+        </div>
+    </div>
+
+    <div class="question-item">
+        (ii) ত্বরণের একককে সময়ের একক দিয়ে গুণ করলে কোন্ ভৌত রাশির একক পাওয়া যায়? 
+        <div class="options-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <span>(a) সরণ</span><span>(b) বেগ</span>
+            <span>(c) বল</span><span>(d) ভরবেগ</span> 
+        </div>
+    </div>
+
+    <div class="question-item">
+        (iii) সাধারণ রৈখিক স্কেলের সাহায্যে ন্যূনতম কত দূরত্ব মাপা যায়? 
+        <div class="options-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <span>(a) 0.10 cm</span><span>(b) 1.00 cm</span>
+            <span>(c) 0.01 cm</span><span>(d) 0.001 cm</span> 
+        </div>
+    </div>
+
+    <div class="question-item">
+        (iv) $Ca^{2+}$ আয়নের ইলেকট্রন-বিন্যাস হল— 
+        <div class="options-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <span>(a) 2, 8, 8</span><span>(b) 2, 8, 8, 2</span>
+            <span>(c) 2, 8, 8, 1</span><span>(d) 2, 8</span> 
+        </div>
+    </div>
+
+    <div class="question-item">
+        (v) ${}_{6}C^{14}$ পরমাণুতে উপস্থিত তড়িৎ আধানযুক্ত কণার সংখ্যা— 
+        <div class="options-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <span>(a) 6</span><span>(b) 8</span>
+            <span>(c) 12</span><span>(d) 14</span> 
+        </div>
+    </div>
+
+    <div class="question-item">
+        (vi) যে পরমাণুর L কক্ষটি ইলেকট্রন দ্বারা পূর্ণ থাকে, সেটি হল— 
+        <div class="options-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <span>(a) He</span><span>(b) Be</span>
+            <span>(c) F</span><span>(d) Ne</span> 
+        </div>
+    </div>
+
+    <div class="question-item">
+        (vii) কোনো বস্তুকণা R ব্যাসার্ধের বৃত্তাকার পথে ঘুরছে। অর্ধেক পথ ঘুরলে কণার সরণ হবে— 
+        <div class="options-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <span>(a) R</span><span>(b) $2\pi R$</span>
+            <span>(c) 0</span><span>(d) 2R</span> 
+        </div>
+    </div>
+
+    <div class="question-item">
+        (viii) অবাধে পতনশীল বস্তুর ক্ষেত্রে স্থির রাশি হল— 
+        <div class="options-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <span>(a) সরণ</span><span>(b) ত্বরণ</span>
+            <span>(c) বেগ</span><span>(d) দ্রুতি</span> 
+        </div>
+    </div>
+</div>
+
+            <div class="question-section">
+                <div class="section-title">
+                    <span>Group - B</span>
+                    <span class="marks">$1 \times 7 = 7$</span>
+                </div>
+                <p><strong>2. নীচের প্রশ্নগুলির অতি-সংক্ষিপ্ত উত্তর দাও : (বিকল্প প্রশ্নগুলি লক্ষণীয়)</strong></p>
+                <ul class="sub-question-list">
+                    <li>(i) সত্য বা মিথ্যা লেখো: আলোকবর্ষ হল সময়ের একক। <strong>অথবা,</strong> চাপ স্কেলার রাশি না ভেক্টর রাশি?</li>
+                    <li>(ii) $v = At^{2}$ সমীকরণে $v$ হল বেগ ও $t$ হল সময়। $A$-এর মাত্রীয় সংকেত কী? <strong>অথবা,</strong> 37.36 g পরিমাপের জন্য ন্যূনতম কতগুলি বাটখারা প্রয়োজন?</li>
+                    <li>(iii) একটি ক্ষেত্রজনিত বলের উদাহরণ দাও।</li>
+                    <li>(iv) নিউটনের গতিসূত্রগুলি কী জাতীয় নির্দেশতন্ত্রে প্রযোজ্য? <strong>অথবা,</strong> 1000 g ভরের বস্তুর মধ্যে $1 \, m/s^{2}$ ত্বরণ সৃষ্টি করতে কত নিউটন বল প্রয়োগ করতে হবে?</li>
+                    <li>(v) কোন্ ক্ষেত্রে বস্তুর দ্রুতি ও বেগ একই হয়?</li>
+                    <li>(vi) ${}_{b}X^{a}$ ও ${}_{d}Y^{c}$ পরস্পরের আইসোটোপ হলে, $b$ ও $d$-এর মধ্যে সম্পর্ক লেখো।</li>
+                    <li>(vii) নিউক্লিয়াস থেকে যত দূরে যাওয়া যায় কক্ষগুলির শক্তির কীরূপ পরিবর্তন ঘটে? <strong>অথবা,</strong> পরমাণুর মধ্যে সবথেকে ভারী কণাটির নাম কী?</li>
+                </ul>
+            </div>
+
+             <div class="question-section">
+                <div class="section-title">
+                    <span>Group - C</span>
+                    <span class="marks">$2 \times 8 = 16$</span>
+                </div>
+                <p><strong>3. নীচের প্রশ্নগুলির সংক্ষিপ্ত উত্তর দাও (বিকল্প প্রশ্নগুলি লক্ষণীয়):</strong></p>
+                <ul class="sub-question-list">
+                    <li>(i) আয়তন মাপক চোঙের সাহায্যে একটি ড্রপারের একফোঁটা জলের আয়তন কীভাবে নির্ণয় করবে?</li> 
+                </ul>
+            </div>
+
+        </div>
+
+        
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>1</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="exam-content">
+            <div class="question-section">
+                <ul class="sub-question-list">
+                    <li>(ii) লোহার ঘনত্ব $7.8 \, g/cm^{3}$। এই মান SI-তে নির্ণয় করো। <strong>অথবা,</strong> সাধারণ তুলাযন্ত্রের সুবেদিতা বলতে কী বোঝায়? সাধারণ তুলাযন্ত্রের সুবেদিতার শর্তগুলি লেখো।</li>
+                    <li>(iii) নিউটনের যে সূত্র থেকে পদার্থের জাড্য ধর্ম সম্পর্কে জানা যায় সেই সূত্রটি লেখো।</li>
+                    <li>(iv) $t$ সময়ে কোনো কণার সরণ, $S = 4t + 5t^{2}$। সরণ মিটার (m) এককে ও সময় সেকেন্ড (s) এককে মাপা হলে কণাটির ত্বরণ কত? <strong>অথবা,</strong> একটি ট্রেন ব্রেক কষার 5s পর থামল। ট্রেনের মন্দন $2 \, m/s^{2}$ হলে, ব্রেক কষার সময় ট্রেনের বেগ কত ছিল?</li>
+                    <li>(v) নিউটনের দ্বিতীয় গতিসূত্র থেকে প্রথম গতিসূত্র প্রতিষ্ঠা করো। <strong>অথবা,</strong> 5 kg ভরের একটি বন্দুক থেকে 20 g ভরের একটি বুলেট $400 \, m/s$ বেগে নির্গত হলে বন্দুকের প্রতিক্ষেপ বেগ নির্ণয় করো।</li>
+                    <li>(vi) আইসোটোপগুলির রাসায়নিক ধর্ম অভিন্ন হয় কেন? <strong>অথবা,</strong> রাদারফোর্ডের পরমাণু মডেল ও বোরের পরমাণু মডেলের দুটি বৈসাদৃশ্য লেখো।</li>
+                    <li>(vii) Ne-এর মতো ইলেকট্রন-বিন্যাসবিশিষ্ট একটি ক্যাটায়ন ও একটি অ্যানায়নের নাম ও চিহ্ন লেখো।</li>
+                    <li>(viii) পারমাণবিক ভরসংখ্যা ও পারমাণবিক ক্রমাঙ্কের মধ্যে সম্পর্ক কী? নিউট্রনবিহীন পরমাণু থাকে কোন্ মৌলের? <strong>অথবা,</strong> একটি পরমাণুর তিনটি কক্ষপথ আছে। সর্ববহিস্থ কক্ষপথে 7টি ইলেকট্রন আছে। পরমাণুটির পারমাণবিক ক্রমাঙ্ক কত নির্ণয় করো।</li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">
+                    <span>Group - D</span>
+                    <span class="marks">$3 \times 3 = 9$</span>
+                </div>
+                <p><strong>4. নীচের প্রশ্নগুলির উত্তর দাও : (বিকল্প প্রশ্নগুলি লক্ষণীয়)</strong></p>
+                <div class="question-item">
+                    (i) প্রদত্ত লেখচিত্র থেকে বস্তুটির (a) মন্দন ও (b) মোট অতিক্রান্ত দূরত্ব নির্ণয় করো। <span class="marks">$1+2$</span>
+                    <div style="text-align: center; margin: 10px 0;">
+                        <svg width="220" height="150" viewBox="0 0 220 150">
+                            <line x1="30" y1="120" x2="200" y2="120" stroke="black" stroke-width="1.5" /> <line x1="30" y1="120" x2="30" y2="20" stroke="black" stroke-width="1.5" /> <text x="202" y="125" font-size="12">t(s) →</text>
+                            <text x="10" y="55" font-size="12" writing-mode="vertical-rl" transform="rotate(180,10,79)">v(m/s) →</text>
+                            <text x="15" y="125" font-size="12">0</text>
+                            <path d="M 30,120 L 70,40 L 130,40 L 160,120" stroke="black" stroke-width="2" fill="none" />
+                            <line x1="30" y1="40" x2="70" y2="40" stroke="black" stroke-dasharray="4" />
+                            <text x="10" y="45" font-size="12">20</text>
+                            <line x1="70" y1="40" x2="70" y2="120" stroke="black" stroke-dasharray="4" />
+                            <text x="65" y="135" font-size="12">4</text>
+                            <line x1="130" y1="40" x2="130" y2="120" stroke="black" stroke-dasharray="4" />
+                            <text x="125" y="135" font-size="12">8</text>
+                            <text x="155" y="135" font-size="12">10</text>
+                        </svg>
+                    </div>
+                    <strong><strong>অথবা,</strong></strong> প্রদত্ত লেখচিত্র থেকে 5 সেকেন্ডে কণাটির অতিক্রান্ত দূরত্ব নির্ণয় করো। ভরবেগের SI একক লেখো। <span class="marks">$2+1$</span>
+                    <div style="text-align: center; margin: 10px 0;">
+                        <svg width="220" height="150" viewBox="0 0 220 150">
+                            <line x1="30" y1="120" x2="200" y2="120" stroke="black" stroke-width="1.5" /> <line x1="30" y1="120" x2="30" y2="20" stroke="black" stroke-width="1.5" /> <text x="202" y="125" font-size="12">t(s) →</text>
+                            <text x="10" y="55" font-size="12" writing-mode="vertical-rl"
+                            transform="rotate(180,10,79)">v(m/s) →</text>
+                            <text x="15" y="125" font-size="12">0</text>
+                            <path d="M 30,120 L 70,40 L 130,120" stroke="black" stroke-width="2" fill="none" />
+                            <line x1="30" y1="40" x2="70" y2="40" stroke="black" stroke-dasharray="4" />
+                            <text x="10" y="45" font-size="12">20</text>
+                            <line x1="70" y1="40" x2="70" y2="120" stroke="black" stroke-dasharray="4" />
+                            <text x="65" y="135" font-size="12">4</text>
+                            <text x="125" y="135" font-size="12">10</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    (ii) (a) শূন্যস্থান পূরণ করো: ________-এর মাত্রা নেই কিন্তু একক আছে। (b) চাপের মাত্রীয় সংকেত নির্ণয় করো। <span class="marks">$1+2$</span>
+                </div>
+
+                <div class="question-item">
+                   <strong><strong>অথবা,</strong></strong>  লম্বন ত্রুটি বলতে কী বোঝায়? (ছবি এঁকে দেখাও)। কীভাবে এটি দূর করা যায়? SI ও CGS পদ্ধতিতে সাধারণ (common) রাশির সংখ্যা কটি? <span class="marks">$1+1+1$</span>
+                </div>
+
+                <div class="question-item">
+                    
+  (iii) একটি মৌলের পরমাণুতে $K$ কক্ষে 2টি, $L$ কক্ষে 8টি এবং $M$ কক্ষে 7টি ইলেকট্রন আছে। মৌলটির যোজ্যতা কত? মৌলটির ভরসংখ্যা 37 হলে, নিউট্রন সংখ্যা কত? আইসোবারগুলি শনাক্ত করো — ${}_{6}C^{13}$, ${}_{6}C^{14}$, ${}_{7}C^{14}$। <span class="marks">1+1+1</span>
+  <br>
+  <strong>অথবা,</strong> নিউক্লীয় বল কাকে বলে? এই বলের উৎপত্তি হয় কীভাবে? <span class="marks">1+2</span>
+
+                </div>
+
+            </div>
+
+            <div class="wish-container">
+                <div class="wish-message">Best of Luck for your Examination!</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>2</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

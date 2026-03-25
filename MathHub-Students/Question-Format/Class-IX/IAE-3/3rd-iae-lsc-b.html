@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSquadz Question Paper Engine</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    body { font-family: "Noto Sans Bengali", sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+    .page { width: 210mm; min-height: 297mm; padding: 12mm; margin: 10mm auto; background: white; box-sizing: border-box; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); position: relative; }
+    .page::before { content: ""; position: absolute; top: 50%; left: 50%; width: 300px; height: 300px; background: url("../images/logo.png") no-repeat center; background-size: contain; opacity: 0.1; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; }
+    .exam-header { display: flex; justify-content: center; align-items: center; gap: 2rem; border: 2px solid #333; padding: 8px; margin-bottom: 18px; position: relative; z-index: 1; }
+    .logo-area img { max-width: 92px; max-height: 92px; }
+    .header-info { text-align: start; }
+    .header-info h2 { margin: 0; font-size: 20px; text-transform: uppercase; }
+    .header-info p { margin: 3px 0; font-weight: bold; font-size: 13px; }
+    .exam-content { padding: 10px; font-size: 14px; line-height: 1.6; color: #000; position: relative; z-index: 1; }
+    .question-section { margin-bottom: 14px; }
+    .section-title { display: flex; justify-content: space-between; align-items: baseline; font-weight: bold; margin-bottom: 4px; border-bottom: 1px dashed #666; }
+    .question-item { margin-bottom: 8px; }
+    .options-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding-left: 20px; margin-top: 2px; font-size: 13px; }
+    .sub-question-list { list-style-type: none; padding-left: 20px; }
+    .marks { font-weight: bold; float: right; }
+    .matching-table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 10px; }
+    .matching-table td, .matching-table th { border: 1px solid #333; padding: 5px 10px; text-align: left; }
+    .wish-container { display: flex; justify-content: center; align-items: center; padding: 20px; margin: 22px auto; max-width: 80%; }
+    .wish-message { font-family: 'Poppins', sans-serif; font-size: 18px; color: #2c3e50; font-weight: 600; text-align: center; line-height: 1.4; }
+    .footer { position: absolute; bottom: 10mm; left: 12mm; right: 12mm; border-top: 1px solid #ccc; padding-top: 15px; display: flex; justify-content: space-around; align-items: center; }
+    .footer-item { display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .footer-icon { width: 34px; height: 34px; background: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; }
+    .footer-text { line-height: 1.2; }
+    .footer-text b { font-size: 12px; display: block; }
+    .footer-text span { font-size: 11px; color: #333; }
+    @media print { .print-btn { display: none; } body { background: none; } .page { margin: 0; box-shadow: none; width: 100%; } }
+    .print-btn { position: fixed; top: 20px; right: 20px; padding: 10px 20px; background: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; z-index: 1000; font-weight: bold; }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download</button>
+
+  <div class="page">
+    <div class="exam-header">
+      <div class="logo-area"><img src="../images/logo.png" alt="Logo" /></div>
+      <div class="header-info">
+        <h2>3RD Internal Assessment Examination</h2>
+        <p>Session: 2026 | Topic: Life Science | Class: IX  </p>
+        <p>Full Marks: 40 | Time: 1 hr. 20 min. | Slot: I | Set: B</p>
+      </div>
+    </div>
+
+    <div class="exam-content">
+      <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - ক</span>
+          <span class="marks">$1 \times 7 = 7$</span>
+        </div>
+        <p><strong>1. সঠিক উত্তরটি নির্বাচন করো:</strong></p>
+        
+        <div class="question-item">
+          (i) টিনোফোরা পর্বভুক্ত প্রাণীদেহে কোম্বপ্লেটের সংখ্যা—
+          <div class="options-grid">
+            <span>(a) 10 টি</span><span>(b) 6 টি</span><span>(c) 9 টি</span><span>(d) 8 টি</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (ii) পরস্পর সাদৃশ্যযুক্ত কয়েকটি বর্গ নিয়ে গঠিত গোষ্ঠী হল—
+          <div class="options-grid">
+            <span>(a) গোত্র</span><span>(b) শ্রেণি</span><span>(c) গণ</span><span>(d) পর্ব</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (iii) কোন্ জৈব যৌগে C, H ও O-এর অনুপাত $1:2:1$ থাকে?—
+          <div class="options-grid">
+            <span>(a) নিউক্লিওটাইড</span><span>(b) ফ্যাটি অ্যাসিড</span><span>(c) প্রোটিন</span><span>(d) কার্বোহাইড্রেট</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (iv) কোন্ খনিজ মৌল হৃৎপিণ্ডের সংকোচন ঘটায় ও স্নায়ুকে উদ্দীপিত করে?—
+          <div class="options-grid">
+            <span>(a) সোডিয়াম</span><span>(b) আয়োডিন</span><span>(c) তামা</span><span>(d) ক্যালশিয়াম</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (v) রক্ততঞ্চনে সাহায্যকারী ভিটামিন হল—
+          <div class="options-grid">
+            <span>(a) ভিটামিন A</span><span>(b) ভিটামিন D</span><span>(c) ভিটামিন C</span><span>(d) ভিটামিন K</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (vi) প্লাজমোডেসমাটার কাজ হল—
+          <div class="options-grid">
+            <span>(a) খাদ্য পরিবহণ</span><span>(b) খনিজ লবণ পরিবহণ</span><span>(c) উদ্ভিদ হরমোন পরিবহণ</span><span>(d) সবগুলি</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (vii) চালুনি ছিদ্রের উপস্থিতি দেখা যায়—
+          <div class="options-grid">
+            <span>(a) স্থায়ী কলায়</span><span>(b) জাইলেমে</span><span>(c) ফ্লোয়েমে</span><span>(d) ভাজক কলায়</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - খ</span>
+          <span class="marks">$1 \times 11 = 11$</span>
+        </div>
+        <p><strong>2. একটি বাক্যে উত্তর দাও (যে-কোনো 3টি):</strong></p>
+        <ul class="sub-question-list">
+          <li>(i) নগ্ন জিন (Naked Gene) কী?</li>
+          <li>(ii) জিমনোস্পার্মের প্রধান উদ্ভিদদেহটি কী প্রকৃতির?</li>
+          <li>(iii) ভিটামিন E-এর রাসায়নিক নাম কী?</li>
+          <li>(iv) একটি সজীব কোশান্তর রন্ধ্রবিহীন স্থায়ী কলার উদাহরণ দাও।</li>
+        </ul>
+
+        <p><strong>3. শূন্যস্থান পূরণ করো: (যে-কোনো 2টি)</strong></p>
+        <ul class="sub-question-list">
+          <li>(i) বিজ্ঞানের যে শাখায় জীবাশ্ম সম্পর্কে আলোচনা করা হয়, তা হল _________। </li>
+          <li>(ii) পাকস্থলীর _________ কোশ থেকে হাইড্রোক্লোরিক অ্যাসিড ক্ষরিত হয়। </li>
+          <li>(iii) নিউক্লিওটাইড = পেন্টোজ শর্করা + _________ + নাইট্রোজেনযুক্ত ক্ষার। </li>
+        </ul>
+
+        <p><strong>4. ঠিক বাক্যের পাশে '✔' আর ভুল বাক্যের পাশে '✖' দাও:</strong></p>
+        <ul class="sub-question-list">
+          <li>(i) হুইটেকারের পাঁচ রাজ্য শ্রেণিবিভাগ অনুযায়ী, লোহিত শৈবাল ও বাদামি শৈবালকে উদ্ভিদ রাজ্যের অন্তর্ভুক্ত করা হয়নি।</li>
+          <li>(ii) গলগি বস্তুর চারপাশে থাকা অঙ্গাণুবিহীন সাইটোপ্লাজমের অংশকে জোন অব এক্সকুশন বলে।</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>1</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="exam-content">
+      <div class="question-section">
+        <p><strong>5. A স্তম্ভের সঙ্গে B স্তম্ভের সম্পর্ক স্থাপন করে লেখো:</strong> </p>
+        <table class="matching-table">
+          <thead>
+            <tr><th>A স্তম্ভ</th><th>B স্তম্ভ</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>(i) ভিত্তিপর্দা </td><td>(a) প্রোক্যারিওটিক কোশ </td></tr>
+            <tr><td>(ii) তরুণাস্থি </td><td>(b) লাইকোপোডিয়াম </td></tr>
+            <tr><td>(iii) $70S$ রাইবোজোম </td><td>(c) হাঙর </td></tr>
+            <tr><td>(iv) টেরিডোফাইটা </td><td>(d) আবরণী কলা </td></tr>
+            <tr><td></td><td>(e) পাইনাস</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - গ</span>
+          <span class="marks">$2 \times 6 = 12$</span>
+        </div>
+        <p><strong>6. সংক্ষিপ্ত উত্তর দাও: (যে-কোনো 6টি)</strong></p>
+        <ul class="sub-question-list">
+          <li>(i) দ্বিপদ নামকরণের দুটি নিয়ম লেখো।</li>
+          <li>(ii) প্রদত্ত বৈশিষ্ট্যের ভিত্তিতে কনড্রিক্থিস ও অসটিক্থিসের মধ্যে পার্থক্য লেখো— (ক) অন্তঃকঙ্কাল, (খ) পটকা।</li>
+          <li>(iii) ব্রায়োফাইটাকে 'উভচর উদ্ভিদ' বলা হয় কেন?</li>
+          <li>(iv) DNA উপস্থিত এরূপ দুটি কোশ অঙ্গাণুর নাম লেখো।</li>
+          <li>(v) দুটি অপরিহার্য ফ্যাটি অ্যাসিডের উদাহরণ দাও।</li>
+          <li>(vi) অ্যারিওলার যোগকলা ও অ্যাডিপোজ যোগকলার একটি করে কাজ লেখো।</li>
+          <li>(vii) সুক্রোজ ও মলটোজে উপস্থিত মনোস্যাকারাইড বা একক শর্করাগুলির নাম লেখো। </li>
+          <li>(viii) পার্থক্য লেখো— জাইলেম ও ফ্লোয়েম।</li>
+        </ul>
+      </div>
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - ঘ</span>
+          <span class="marks">$5 \times 2 = 10$</span>
+        </div>
+        <p><strong>7. নিম্নলিখিত প্রশ্নগুলির উত্তর দাও: (বিকল্প প্রশ্নগুলি লক্ষণীয়)</strong></p>
+        <ul class="sub-question-list">
+          <li>
+            (i) একাইনোডারমাটা পর্বের মুখ্য বৈশিষ্ট্যগুলি লেখো। কোন্ পর্বের প্রাণীদের দেহ ম্যান্টল পর্দা দ্বারা আবৃত থাকে এবং এই পর্বের একটি প্রাণীর উদাহরণ দাও। <span class="marks">($3+1+1$)</span><br>
+            <strong>অথবা,</strong> রাজ্য মোনেরার নিউক্লিয়াস, রাইবোজোম ও কোশপ্রাচীরের বৈশিষ্ট্য লেখো। গুপ্তবীজী ও ব্যক্তবীজী উদ্ভিদের সস্য কী প্রকৃতির হয়?<span class="marks">($3+2$)</span>
+          </li>
+        </ul>
+        <ul class="sub-question-list">
+  <li>
+    (ii) চিত্রসহ ভাজক কলার বৈশিষ্ট্য ও কাজ উল্লেখ করো। <span class="marks">($3+2$)</span> <br>
+    <strong>অথবা,</strong> মাইটোকন্ড্রিয়ার একটি বিজ্ঞানসম্মত চিত্র অঙ্কন করো এবং নিম্নলিখিত অংশগুলি চিহ্নিত করো — (a) পারসনের অধঃএকক, (b) ক্রিস্টি, (c) $F_0 - F_1$ বস্তু, (d) পেরি মাইটোকন্ড্রিয়াল স্থান। <span class="marks">($3+2$)</span>
+  </li>
+</ul>
+      </div>
+
+      <div class="wish-container">
+        <div class="wish-message">Best of Luck for your Examination!</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>2</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
