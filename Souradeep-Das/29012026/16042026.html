@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class XII Mathematics Assessment - Relations and Functions</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+ 
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+    body {
+      font-family: "Roboto Condensed", sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 12px;
+    }
+
+    .wish-container {
+      margin-top: 40px;
+      padding: 15px;
+      text-align: center;
+      border: 2px dashed #2c3e50;
+      border-radius: 10px;
+      background-color: #fdfdfd;
+    }
+
+    .wish-message {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c3e50;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .sub-wish {
+      font-size: 13px;
+      color: #7f8c8d;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      outline: 2px solid #000;
+      outline-offset: -10px;
+    }
+
+    .page::before {
+      content: "SOURADEEP DAS";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 80px;
+      font-weight: 900;
+      color: rgba(0, 0, 0, 0.04);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .exam-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+
+    .exam-header h1 {
+      margin: 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .group-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      text-decoration: underline;
+      margin: 20px 0;
+    }
+
+    .section-instruction {
+      font-weight: bold;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .question-block {
+      margin-bottom:18px;
+      line-height: 1.4;
+    }
+
+    .sub-question {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .options-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    /* New layout for short options in a single line */
+    .options-row-inline {
+      display: flex;
+      justify-content: flex-start;
+      gap: 50px;
+      margin-top: 8px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
+    @media print {
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; border: none; }
+      .print-btn { display: none; }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download/Print PDF</button>
+
+  <div class="page">
+    <div class="exam-header">
+      <h1>2ND Internal Assessment - 2026</h1>
+      <h3 style="padding: 0;margin-top:4px;"> Topic: Relations and Functions &nbsp; Class- XII &nbsp; &nbsp; Session: 2026-27</h3>
+      <div class="header-meta">
+        <span>Sub.- Mathematics</span>
+        <span>Time- 40 Minutes</span>
+        <span>F.M.- 20</span>
+      </div>
+    </div>
+
+   
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>নীচের প্রশ্নগুলির সঠিক উত্তরটি নির্বাচন করো :</span>
+      </div>
+
+      <div class="sub-question">
+        1. $A=\{a, b, c\}$ এবং $B=\{1, 2, 3, 4\}$ হলে, $A$ থেকে $B$-তে মোট সম্বন্ধের সংখ্যা এবং $A$ সেটের ওপর সম্বন্ধের সংখ্যা —
+        <div class="options-row-inline">
+          <span>a. $2^4, 2^3$</span><span>b. $2^3, 2^4$</span><span>c. $2^{12}, 2^{16}$</span><span>d. $2^{12}, 2^9$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        2. বাস্তব সংখ্যার সেট $\mathbb{R}$-এ একটি সম্বন্ধ $\rho = \{(x, y) \mid xy + 1 > 0, x, y \in \mathbb{R}\}$, $\rho$ সম্বন্ধটি —
+        <div class="options-row">
+          <span>a. স্বসম ও প্রতিসম কিন্তু সংক্রমণ নয়</span><span>b. স্বসম ও সংক্রমণ কিন্তু প্রতিসম নয়</span><span>c. স্বসম কিন্তু প্রতিসম বা সংক্রমণ নয়</span><span>d. সমতুল্যতা সম্বন্ধ</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        3. সকল অখণ্ড সংখ্যার সেট $\mathbb{Z}$-এ একটি সম্বন্ধ 
+       $R = \{(x, y) \mid x - y,  \text{ divisible by 4}\}$ সম্বন্ধটি
+        <div class="options-row">
+          <span>a. স্বসম ও প্রতিসম কিন্তু সংক্রমণ নয়</span><span>b. স্বসম ও সংক্রমণ কিন্তু প্রতিসম নয়</span><span>c. স্বসম কিন্তু প্রতিসম বা সংক্রমণ নয়</span><span>d. সমতুল্যতা সম্বন্ধ</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        4. $n(A) = 2, n(B) = 3$ হলে, $A$ থেকে $B$ সেটে সংজ্ঞাত হতে পারে এরূপ বাইজেকটিভ চিত্রণের সংখ্যা কত?
+        <div class="options-row-inline">
+          <span>A. 2</span><span>B. 0</span><span>C. 3</span><span>D. 4</span>
+        </div>
+      </div>
+
+      <!-- <div class="sub-question">
+        4. $A$ সেটে $R$ এবং $S$ দুটি (অশূন্য) সম্বন্ধ হলে, নীচের কোনটি ভুল?
+        <div class="options-row">
+          <span>a. $R$ এবং $S$ সংক্রমণ হলে, $R \cup S$-ও সংক্রমণ হবে</span><span>b. $R$ এবং $S$ সংক্রমণ হলে, $R \cap S$-ও সংক্রমণ হবে</span><span>c. $R$ এবং $S$ প্রতিসম হলে, $R \cup S$-ও প্রতিসম হবে</span><span>d. $R$ এবং $S$ স্বসম হলে, $R \cap S$-ও স্বসম হবে</span>
+        </div>
+      </div> -->
+
+      <div class="sub-question">
+        5. $A = \{1, 2, 3, 4, 5, 6, 7\}$ থেকে $B = \{1, 4, 7\}$ সেটে $R$ সম্বন্ধটি হল : $R = \{(x, y) \mid x > y\}$, নীচের কোনটি সত্য?
+        <div class="options-row">
+          <span>a. $R$-এর সংজ্ঞার অঞ্চল = $A$</span><span>b. $R$-এর পাল্লা = $B$</span><span>c. $R^{-1}$-এর সংজ্ঞার অঞ্চল = $\{1, 4\}$</span><span>d. $R^{-1}$-এর পাল্লা = $\{1, 2, 3, 4, 5, 6, 7\}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        6. $\rho = \{(x, y) \mid x - y + \sqrt{2}, \text{ a irrational number}, x, y \in \mathbb{R} \}$ হলে, $\rho$ হল —
+        <div class="options-row-inline">
+          <span>a. স্বসম</span><span>b. প্রতিসম</span><span>c. সংক্রমণ</span><span>d. সমতুল্যতা সম্বন্ধ</span>
+        </div>
+      </div>
+
+       <div class="sub-question">
+        7. $f: \mathbb{R} \to \mathbb{R}, g: \mathbb{R} \to \mathbb{R}$ যেখানে $f(x) = 5 - x^2$ এবং $g(x) = 3x - 4$, এখানে $(f \circ g)(-1)$-এর মান হবে —
+        <div class="options-row-inline">
+          <span>a. 8</span><span>b. -44</span><span>c. 54</span><span>d. 16</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        8. $f: \mathbb{R} \to \mathbb{R}$ যখন $f(x) = |x|$ চিত্রণটি হবে —
+        <div class="options-row">
+          <span>a. এক-এক নয়, উপরিচিত্রণ</span><span>b. এক-এক নয়, উপরিচিত্রণ নয়</span><span>c. বহু-এক উপরিচিত্রণ</span><span>d. এক-এক উপরিচিত্রণ</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        9. $f: \mathbb{R} \to \mathbb{R}$ যখন $f(x) = x^3 + 2x, f$ চিত্রণটি হবে —
+        <div class="options-row-inline">
+          <span>a. এক-এক অন্তচিত্রণ</span><span>b. বহু-এক উপরিচিত্রণ</span><span>c. এক-এক উপরিচিত্রণ</span><span>d. কোনোটিই নয়</span>
+        </div>
+      </div>
+
+      <!-- <div class="sub-question">
+        10. $f: \mathbb{R} \to \mathbb{R}$ যখন $f(x) = \sin x$ —
+        <div class="options-row">
+          <span>a. এক-এক, উপরিচিত্রণ নয়</span><span>b. এক-এক নয়, উপরিচিত্রণ</span><span>c. এক-এক নয়, উপরিচিত্রণ নয়</span><span>d. এক-এক, উপরিচিত্রণ</span>
+        </div>
+      </div> -->
+
+      <div class="sub-question">
+        10. $f: \mathbb{N} \to \mathbb{N}$, যেখানে $f(x) = 5x$ চিত্রণটি হবে —
+        <div class="options-row-inline">
+          <span>A. এক-এক উপরিচিত্রণ</span><span>B. এক-এক কিন্তু উপরিচিত্রণ নয়</span><span>C. বহু-এক উপরিচিত্রণ</span><span>D. কোনোটিই নয়</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        11. $f: \mathbb{R} \to \mathbb{R}$ চিত্রণটি $f(x) = x^3$ দ্বারা সংজ্ঞাত হলে, $f^{-1}\{-125, 27\} = $ 
+        <div class="options-row-inline">
+          <span>a. $\{5, 3\}$</span><span>b. $\{-5, 3\}$</span><span>c. $\{-5, -3\}$</span><span>d. $\{-3, 5\}$</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      Page - 1
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="question-block">
+      
+      
+
+      <div class="sub-question">
+        12. $f: \mathbb{R} \to \mathbb{R}$ চিত্রণ $f(x) = 3x - 7, f^{-1}: \mathbb{R} \to \mathbb{R}$ হল —
+        <div class="options-row-inline">
+          <span>a. $f^{-1}(x) = \frac{x+7}{3}$</span><span>b. $f^{-1}(x) = \frac{x-7}{3}$</span><span>c. $f^{-1}(x) = \frac{7-x}{3}$</span><span>d. $f^{-1}(x) = -(\frac{x+7}{3})$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        13. <strong>বিবৃতি-I :</strong> $f: \mathbb{N} \to \mathbb{N}$ যেখানে $f(x) = x - (-1)^x$, $f$ চিত্রণটি এক-এক কিন্তু উপরিচিত্রণ নয়।<br>
+        <strong>বিবৃতি-II :</strong> $f: [0, \frac{\pi}{2}] \to [0, 1]$ যেখানে $f(x) = \sin x$, $f$ চিত্রণটি বাইজেকটিভ।
+        <div class="options-row" style="margin-top: 15px;">
+          <span>A. বিবৃতি-I সত্য কিন্তু বিবৃতি-II মিথ্যা</span><span>B. বিবৃতি-I মিথ্যা কিন্তু বিবৃতি-II সত্য</span><span>C. বিবৃতি-I ও বিবৃতি-II উভয়ই সত্য</span><span>D. বিবৃতি-I ও বিবৃতি-II উভয়ই মিথ্যা</span>
+        </div>
+      </div>
+
+      
+
+      <div class="sub-question">
+        14. $A = \{x \in \mathbb{R} : -1 \le x \le 1\}$ এবং $f: A \to A$ একটি চিত্রণ যেখানে $f(x) = x|x|$, তাহলে $f$ চিত্রণটি হবে —
+        <div class="options-row">
+          <span>A. একৈক কিন্তু উপরিচিত্রণ নয়</span><span>B. উপরিচিত্রণ কিন্তু একৈক নয়</span><span>C. একৈকও নয়, উপরিচিত্রণও নয়</span><span>D. একৈক-উপরিচিত্রণ</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        15. যদি $f: \mathbb{R} \to \mathbb{R}$ অপেক্ষকটি সংজ্ঞাত হয় $f(x) = (x^2 + 1)^{35},   \forall x \in \mathbb{R}$, তবে অপেক্ষকটি হবে —
+        <div class="options-row">
+          <span>A. একৈক (one-one) কিন্তু উপরিচিত্রণ (onto) নয়</span><span>B. উপরিচিত্রণ (onto) কিন্তু একৈক (one-one) নয়</span><span>C. একৈক (one-one) নয় এবং উপরিচিত্রণ (onto) নয়</span><span>D. একৈক (one-one) এবং উপরিচিত্রণ (onto) উভয়ই</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        16. $f: \mathbb{R} \to \mathbb{R}$ চিত্রণটি $f(x) = e^x + e^{-x}$ দ্বারা সংজ্ঞাত, তাহলে $f$ চিত্রণটি হবে —
+        <div class="options-row-inline">
+          <span>A. এক এক</span><span>B. উপরিচিত্রণ</span><span>C. বাইজেকটিভ</span><span>D. বাইজেকটিভ নয়</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        17. $f: \mathbb{R} - \{ \frac{1}{3} \} \to \mathbb{R} - \{ \frac{1}{3} \}$ একটি চিত্রণ যা $f(x) = \frac{x+3}{3x-1}$ দ্বারা সংজ্ঞাত। $f^{-1}(x)$-এর মান হবে —
+        <div class="options-row-inline">
+          <span>A. $\frac{x+3}{3x+1}$</span><span>B. $\frac{x+3}{3x-1}$</span><span>C. $\frac{x+2}{3x-1}$</span><span>D. $\frac{x+1}{2x+1}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        18. $f(x) = [x]$ এবং $g(x) = |x|$ হলে $(f+3g)(-1)$-এর মান —
+        <div class="options-row-inline">
+          <span>A. 1</span><span>B. 2</span><span>C. 3</span><span>D. 4</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        19. <strong>বিবৃতি (A) :</strong> $f: \mathbb{R} \to \mathbb{R}, g: \mathbb{R} \to \mathbb{R}$ যেখানে $f(x) = 2x+3$ এবং $g(x) = 3x-2$ হলে $(f \circ g)(x)$ একটি বাইজেকটিভ ম্যাপিং।<br>
+        <strong>কারণ (R) :</strong> দুটি বাইজেকটিভ ম্যাপিং-এর সংযোজন একটি বাইজেকটিভ ম্যাপিং।
+        <div class="options-row" style="margin-top: 10px;">
+          <span>A. A ও R উভয়ই সত্য এবং R, A-এর সঠিক ব্যাখ্যা</span><span>B. A ও R উভয়ই সত্য এবং R, A-এর সঠিক ব্যাখ্যা নয়</span><span>C. A সত্য কিন্তু R মিথ্যা</span><span>D. A মিথ্যা কিন্তু R সত্য</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        20. <strong>বিবৃতি-I :</strong> $f: \mathbb{R} \to \{x \in \mathbb{R}, -1 < x < 1\}$ যেখানে $f(x) = \frac{x}{1+|x|}$ অপেক্ষকটি বাইজেকটিভ।<br>
+        <strong>বিবৃতি-II :</strong> $f(x) = 1$, যখন $x \in \mathbb{Q}$ এবং $f(x) = -1$, যখন $x \notin \mathbb{Q}$ হলে $f(\pi) = 1$.
+        <div class="options-row" style="margin-top: 10px;">
+          <span>A. বিবৃতি-I সত্য কিন্তু বিবৃতি-II মিথ্যা</span><span>B. বিবৃতি-I মিথ্যা কিন্তু বিবৃতি-II সত্য</span><span>C. বিবৃতি-I ও বিবৃতি-II উভয়ই সত্য</span><span>D. বিবৃতি-I ও বিবৃতি-II উভয়ই মিথ্যা</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wish-container" style="margin-top: 40px;">
+      <p class="wish-message">🌟 BEST OF LUCK FOR YOUR EXAM! 🌟</p>
+      <p class="sub-wish">"Believe in yourself and all that you are."</p>
+    </div>
+    <div class="footer">
+      Page - 2
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Pad - Dr. Moslin Ali Mondal</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* The main "paper" container */
+        .prescription-pad {
+            background-color: white;
+            width: 210mm; /* A4 Width */
+            min-height: 297mm; /* A4 Height */
+            padding: 50px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+        }
+
+        /* Watermark Styling */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            opacity: 0.07; /* Very light as seen in the source */
+            pointer-events: none; /* Allows clicking through the image to edit text */
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .doctor-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .specialization {
+            font-size: 18px;
+            color: #444;
+            margin: 5px 0;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #666;
+            margin: 2px 0;
+        }
+
+        .date-section {
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .editable-area {
+            margin-top: 50px;
+            min-height: 500px;
+            line-height: 1.6;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .rx-symbol {
+            font-size: 32px;
+            font-family: serif;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Print formatting */
+        @media print {
+            body { background-color: white; padding: 0; }
+            .prescription-pad { box-shadow: none; border: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="prescription-pad">
+        <img src="https://img.freepik.com/free-vector/hand-drawn-medical-symbol_23-2149491353.jpg" alt="watermark" class="watermark">
+
+        <div class="content">
+            <header class="header">
+                <div class="doctor-name" contenteditable="true">Dr. Tapas Barman</div>
+                <div class="specialization" contenteditable="true">General Physician</div>
+                <div class="contact-info" contenteditable="true">Batna Kritibas Road, Nadia</div>
+                <div class="contact-info" contenteditable="true">Phone No.- 6294521878</div>
+            </header>
+
+            <div class="date-section">
+                Date: <span contenteditable="true" style="border-bottom: 1px dotted #000; min-width: 150px; display: inline-block;">&nbsp;</span>
+            </div>
+
+            <div class="rx-symbol">Rx</div>
+
+            <div class="editable-area" contenteditable="true">
+                
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

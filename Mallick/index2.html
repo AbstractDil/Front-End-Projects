@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Prescription Pad</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Controls for the user */
+        .controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* The Prescription Pad */
+        .prescription-container {
+            width: 210mm;
+            min-height: 297mm;
+            background-color: white;
+            padding: 60px;
+            box-sizing: border-box;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        /* Watermark Styles */
+        #watermark-layer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            opacity: 0.1; /* Adjust transparency here */
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Layout */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+        }
+
+        .doctor-info-left {
+            text-align: left;
+        }
+
+        .contact-info-right {
+            text-align: right;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .address, .phone {
+            font-size: 14px;
+            margin: 3px 0;
+        }
+
+        .rx-section {
+            font-size: 30px;
+            font-family: "Times New Roman", serif;
+            margin-top: 50px;
+        }
+
+        .editable-body {
+            margin-top: 20px;
+            min-height: 500px;
+            outline: none;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        @media print {
+            .controls { display: none; }
+            body { background: white; padding: 0; }
+            .prescription-container { box-shadow: none; border: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <label><b>Add Your Watermark:</b></label>
+        <input type="file" id="watermark-upload" accept="image/*">
+        <button onclick="window.print()">Print to PDF</button>
+    </div>
+
+    <div class="prescription-container" id="printable">
+        <!-- <img id="watermark-layer" src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Caduceus.svg" alt="watermark"> -->
+
+        <div class="content-layer">
+            <div class="header">
+                <div class="doctor-info-left">
+                    <div class="name" contenteditable="true">Dr. Sankar Ghosh</div>
+                    <div class="title" contenteditable="true">General Physician</div>
+                    <div class="address" contenteditable="true">Bhimpur, Joginidaha, Nadia</div>
+                </div>
+
+                <div class="contact-info-right">
+                    <div class="phone" contenteditable="true">Phone No.- 7029845978</div>
+                    <div class="phone" contenteditable="true">Date :- ____________</div>
+                </div>
+            </div>
+
+            <div class="rx-section">Rx</div>
+            
+            <div class="editable-body" contenteditable="true">
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script to handle watermark upload
+        const upload = document.getElementById('watermark-upload');
+        const watermark = document.getElementById('watermark-layer');
+
+        upload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    watermark.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+</body>
+</html>
