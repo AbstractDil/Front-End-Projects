@@ -1,0 +1,1400 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handwritten Math Notes - Optimized MathJax</title>
+
+    <!-- MathJax Configuration -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+        },
+      };
+    </script>
+
+    <style>
+      /* General Page Setup */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        font-family:
+          "Comic Sans MS", "cursive", sans-serif; /* Simulates handwriting */
+        line-height: 1.8;
+      }
+
+      :root {
+        --paper-color: #ffffff;
+        --margin-line: #ff8e8e;
+        --notebook-line: #dee2ff;
+        --text-black: #2b2b2b;
+        --text-blue: #0056b3;
+        --text-red: #c62828;
+        --highlight: #fff59d;
+        --text-green: #2e7d32;
+        --text-gray: #616161;
+      }
+
+      /* Watermark Styling */
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 55%; /* Adjusted slightly to account for the left margin */
+    transform: translate(-50%, -50%) rotate(0deg); /* Classic watermark tilt */
+    width: 60%; /* Adjust size as needed */
+    opacity: 0.05; /* Keeps it very subtle so it doesn't hide the math */
+    z-index: 999; /* Sits above the lines but behind the ink */
+    pointer-events: none; /* Allows you to still select text easily */
+    user-select: none;
+}
+
+.watermark img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%); /* Optional: makes the logo neutral */
+}
+
+      .a4-page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 20px auto;
+        background-color: var(--paper-color);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        position: relative;
+        padding: 20mm 15mm 15mm 30mm;
+        box-sizing: border-box;
+        background-image: linear-gradient(
+          var(--notebook-line) 1px,
+          transparent 1px
+        );
+        background-size: 100% 32px; /* Line height match */
+      }
+
+      .a4-page::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 20mm;
+        width: 2px;
+        height: 100%;
+        background-color: var(--margin-line);
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+      }
+
+      h1.question {
+        color: var(--text-blue);
+        font-size: 1.15rem;
+        margin-bottom: 20px;
+        border: 2px dashed var(--text-blue);
+        padding: 10px;
+        border-radius: 8px;
+      }
+
+      h2.solution {
+        color: var(--text-red);
+        font-size: 1.1rem;
+        text-decoration: underline wavy;
+        margin-bottom: 10px;
+      }
+
+      /* New Shortcut Box Style */
+      .shortcut-box {
+        background-color: #fff3e0; /* Soft orange/yellow tint */
+        border: 2px dashed #ff9800; /* Dashed hand-drawn look */
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 15px 5px 12px 4px;
+        position: relative;
+        box-shadow: 3px 3px 0px rgba(255, 152, 0, 0.2);
+      }
+
+      .shortcut-title {
+        color: #e65100;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      .shortcut-title::before {
+        content: "🔥"; /* Fire icon from image */
+      }
+
+      /* Boxed Footer Page Numbering */
+      .page-footer {
+        position: absolute;
+        bottom: 15mm;
+        right: 15mm;
+        z-index: 3;
+      }
+
+      .page-box {
+        border: 2px dotted var(--text-gray);
+        padding: 5px 15px;
+        border-radius: 4px;
+        font-weight: bold;
+        display: inline-block;
+        background: #fff;
+        transform: rotate(-1deg);
+        box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      .page-label {
+        font-size: 0.85rem;
+        color: var(--text-green);
+        margin-right: 5px;
+      }
+
+      .step {
+        margin-bottom: 8px;
+      }
+      .therefore {
+        color: var(--text-red);
+        font-weight: bold;
+      }
+      .highlighter {
+        background-color: var(--highlight);
+        padding: 2px 4px;
+      }
+
+      @media print {
+        body {
+          background: none;
+        }
+        .a4-page {
+          margin: 0;
+          box-shadow: none;
+          page-break-after: always;
+        }
+        * {
+          -webkit-print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <div class="a4-page">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <h1 class="question" style="display: block; text-align: center; border: 3px double var(--ink-blue);">
+                লাভ ও ক্ষতি (Profit & Loss) - প্রয়োজনীয় সূত্রাবলী
+            </h1>
+
+            <h2 class="solution">মৌলিক ধারণা (Basic Concepts):</h2>
+            
+            <div class="math-row">
+                $1.$ লাভ (Profit) $=$ বিক্রয়মূল্য (SP) - ক্রয়মূল্য (CP) <span style="color:var(--ink-green);">[যখন $SP > CP$]</span>
+            </div>
+            <div class="math-row">
+                $2.$ ক্ষতি (Loss) $=$ ক্রয়মূল্য (CP) - বিক্রয়মূল্য (SP) <span style="color:var(--ink-red);">[যখন $CP > SP$]</span>
+            </div>
+
+            <h2 class="solution">শতকরা হিসাব (Percentage Calculation):</h2>
+            
+            <div class="math-row">
+                $3.$ শতকরা লাভ $=$  (মোট লাভ $ \div $ ক্রয়মূল্য) $ \times 100$
+            </div>
+            <div class="math-row">
+                $4.$ শতকরা ক্ষতি $= $ (মোট ক্ষতি $ \div $ ক্রয়মূল্য) $ \times 100$
+            </div>
+            <div class="note" style="color: var(--text-red);">
+                মনে রেখো: লাভ বা ক্ষতি সবসময় ক্রয়মূল্যের (CP) ওপর ভিত্তি করে হিসাব করা হয় (যদি না অন্য কিছু বলা থাকে)।
+            </div>
+
+            <h2 class="solution">বিক্রয়মূল্য ও ক্রয়মূল্য নির্ণয় (Finding SP & CP):</h2>
+
+            <div class="math-row" style="background: #e8f5e9; padding: 10px; border-radius: 8px;">
+                <strong>লাভের ক্ষেত্রে ($x\%$ লাভ হলে):</strong><br>
+                $5.$ বিক্রয়মূল্য (SP) $= \text{CP} \times \frac{100 + x}{100}$ <br>
+                $6.$ ক্রয়মূল্য (CP) $= \frac{SP \times 100}{100 + x}$
+            </div>
+
+            <div class="math-row" style="background: #ffebee; padding: 10px; border-radius: 8px; margin-top: 10px;">
+                <strong>ক্ষতির ক্ষেত্রে ($y\%$ ক্ষতি হলে):</strong><br>
+                $7.$ বিক্রয়মূল্য (SP) $= \text{CP} \times \frac{100 - y}{100}$ <br>
+                $8.$ ক্রয়মূল্য (CP) $= \frac{SP \times 100}{100 - y}$
+            </div>
+
+            <h2 class="solution">ধার্যমূল্য ও ছাড় (Marked Price & Discount):</h2>
+
+            <div class="math-row">
+                $9.$ ছাড় (Discount) $=$ ধার্যমূল্য (MP) - বিক্রয়মূল্য (SP)
+            </div>
+            <div class="math-row">
+                $10.$ শতকরা ছাড় $=$ (ছাড় $ \div $ ধার্যমূল্য) $ \times 100$
+            </div>
+            <div class="math-row">
+                $11.$ বিক্রয়মূল্য (SP) $=$ ধার্যমূল্য (MP) - ছাড় (Discount)
+            </div>
+
+            <div class="shortcut-box" style="margin-top: 20px;">
+                <div class="shortcut-title">Pro Tip!</div>
+                <div class="math-row">
+                    যদি কোনো অংকে বলা থাকে "বিক্রয়মূল্যের ওপর 20% লাভ", তবে:<br>
+                    লাভ $= SP \times \frac{20}{100}$ <br>
+                    এক্ষেত্রে ক্রয়মূল্য (CP) হবে $= SP -$ লাভ
+                </div>
+            </div>
+        </div>
+
+       
+    </div>
+
+    <!-- PAGE 1: Problem 9 -->
+    <div class="a4-page" id="p1">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+      <div class="content">
+        <h1 class="question">
+          9. নিয়ামতচাচা প্রতিটি $5$ টাকা দরে $150$ টি ডিম কিনেছেন। কিন্তু দোকানে
+          এনে দেখলেন $8$ টি ডিম ফেটে গেছে এবং $7$ টি ডিম পচা। প্রতিটি ডিম $6$
+          টাকা দরে বিক্রি করলে, নিয়ামতচাচার শতকরা কত লাভ বা ক্ষতি হবে হিসাব করে
+          লিখি।
+        </h1>
+
+        <h2 class="solution">সমাধানঃ</h2>
+        <div class="step">
+          নিয়ামতচাচা প্রতিটি $5$ টাকা দরে $150$ টি ডিম কিনেছেন।
+        </div>
+        <div class="step">
+          <span class="therefore">∴</span> $150$ টি ডিমের ক্রয়মূল্য $(150 \times
+          5)$ টাকা $= 750$ টাকা
+        </div>
+
+        <div class="step">
+          $150$ টি ডিমের মধ্যে $8$ টি ডিম ফেটে গেছে এবং $7$ টি ডিম পচা।
+        </div>
+        <div class="step">
+          <span class="therefore">∴</span> এখন ডিমের সংখ্যা $= \{150-(8+7)\}$ টি
+          $= 135$ টি।
+        </div>
+
+        <div class="step">$135$ টি ডিম প্রতিটি $6$ টাকা দরে বিক্রয় করলে,</div>
+        <div class="step">
+          $135$ টি ডিমের বিক্রয়মূল্য $= (135 \times 6)$ টাকা $= 810$ টাকা
+        </div>
+
+        <div class="step">
+          <span class="therefore">∴</span> লাভ = বিক্রয়মূল্য – ক্রয়মূল্য $= (810
+          – 750)$ টাকা $= 60$ টাকা।
+        </div>
+
+        <div class="step"><span class="therefore">∴</span> শতকরা লাভ</div>
+        <div class="step">
+          $= \left( \frac{60}{750} \times 100 \right)$ টাকা
+        </div>
+        <div class="step">$= 8$ টাকা</div>
+        <div class="step highlighter">
+          <span class="therefore">∴</span> নিয়ামতচাচার শতকরা লাভ হবে $8$ টাকা।
+        </div>
+
+        <div style="margin-top: 30px">
+          <h1 class="question">
+            10. আসিফচাচা একটি খেলনা $5\%$ লাভে বিক্রি করলে। যদি খেলনাটির
+            ক্রয়মূল্য $20\%$ কম এবং বিক্রয়মূল্য $34$ টাকা কম হতো, তাহলে
+            আসিফচাচার $10\%$ লাভ হতো। খেলনাটির ক্রয়মূল্য কত হিসাব করি।
+          </h1>
+
+          <h2 class="solution">সমাধানঃ</h2>
+          <div class="step">মনে করি, খেলনাটির ক্রয়মূল্য $x$ টাকা</div>
+          <div class="step">
+            $5\%$ লাভে খেলনাটি বিক্রি করলে খেলনাটির বিক্রয়মূল্য
+          </div>
+          <div class="step">
+            $= \left( x + x \text{-এর } \frac{5}{100} \right)$ টাকা
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-box"><span class="page-label">Page:</span> 01</div>
+      </div>
+    </div>
+
+    <!-- PAGE 2: Problem 10 (Part 1) -->
+    <div class="a4-page" id="p2">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+      <div class="content">
+        <div class="step">$= \left( x + \frac{x}{20} \right)$ টাকা</div>
+        <div class="step">$= \left( \frac{20x+x}{20} \right)$ টাকা</div>
+        <div class="step">$= \frac{21x}{20}$ টাকা</div>
+
+        <div class="step">খেলনাটির ক্রয়মূল্য $20\%$ কম হলে, ক্রয়মূল্য হয়</div>
+        <div class="step">
+          $= \left( x - x \text{-এর } \frac{20}{100} \right)$ টাকা
+        </div>
+        <div class="step">$= \left( x - \frac{x}{5} \right)$ টাকা</div>
+        <div class="step">$= \left( \frac{5x-x}{5} \right)$ টাকা</div>
+        <div class="step">$= \frac{4x}{5}$ টাকা</div>
+
+        <div class="step">
+          বিক্রয়মূল্য $34$ টাকা কম হলে বিক্রয়মূল্য হয় $= \left( \frac{21x}{20} -
+          34 \right)$ টাকা
+        </div>
+        <div class="step">
+          এক্ষেত্রে লাভ $= \left( \frac{21x}{20} - 34 - \frac{4x}{5} \right)$
+          টাকা
+        </div>
+        <div class="step">
+          $= \left( \frac{21x}{20} - \frac{4x}{5} - 34 \right)$ টাকা
+        </div>
+        <div class="step">$= \left( \frac{21x-16x}{20} - 34 \right)$ টাকা</div>
+        <div class="step">$= \left( \frac{5x}{20} - 34 \right)$ টাকা</div>
+        <div class="step">$= \left( \frac{x}{4} - 34 \right)$ টাকা</div>
+        <h4>শর্তানুসারে,</h4>
+        <div class="step">
+          $$\frac{\frac{x}{4} - 34}{\frac{4x}{5}} \times 100 =
+          10$$
+        </div>
+        <div class="step">
+          বা, $\frac{x-136}{4} \times \frac{5}{4x} = \frac{10}{100}$
+        </div>
+        <div class="step">বা, $\frac{5x-680}{16x} = \frac{1}{10}$</div>
+        <div class="step">বা, $50x - 6800 = 16x$</div>
+        <div class="step">বা, $50x - 16x = 6800$</div>
+        <div class="step">বা, $34x = 6800$</div>
+        <div class="step">বা, $x = \frac{6800}{34} = 200$</div>
+        <div class="step highlighter">
+          <span class="therefore">∴</span> খেলনাটির ক্রয়মূল্য $200$ টাকা।
+        </div>
+      </div>
+      <div class="page-footer">
+        <div class="page-box"><span class="page-label">Page:</span> 02</div>
+      </div>
+    </div>
+
+    <!-- PAGE 3: Problem 11 -->
+    <div class="a4-page" id="p3">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+      <div class="content">
+        <h1 class="question">
+          11. টাকায় 12 টি জিনিস বিক্রয় করে 4% ক্ষতি হয়। টাকায় কটি জিনিস বিক্রয়
+          করলে 44% লাভ হবে?
+        </h1>
+
+        <h2 class="solution">সমাধানঃ</h2>
+        <div class="math-row">12 টি জিনিসের বিক্রয়মূল্য 1 টাকা।</div>
+        <div class="math-row">
+          <span class="therefore">∴</span> 1 টি জিনিসের বিক্রয়মূল্য $
+          \frac{1}{12} $ টাকা।
+        </div>
+
+        <div class="math-row">12 টি জিনিস বিক্রি করে 4% ক্ষতি হয়।</div>
+        <div class="math-row">
+          <span class="therefore">∴</span> 96 টাকা বিক্রয়মূল্য হলে ক্রয়মূল্য 100
+          টাকা
+        </div>
+        <div class="math-row">
+          1 টাকা বিক্রয়মূল্য হলে ক্রয়মূল্য $ \frac{100}{96} $ টাকা
+        </div>
+        <div class="math-row">
+          এবং, $ \frac{1}{12} $ টাকা বিক্রয়মূল্য হলে ক্রয়মূল্য $ \left(
+          \frac{100}{96} \times \frac{1}{12} \right) $ টাকা $ = \frac{25}{288} $
+          টাকা।
+        </div>
+
+        <div class="math-row">44% লাভ অর্থাৎ ,</div>
+        <div class="math-row">100 টাকা ক্রয়মূল্য হলে বিক্রয়মূল্য 144 টাকা</div>
+        <div class="math-row">
+          1 টাকা ক্রয়মূল্য হলে বিক্রয়মূল্য $ \frac{144}{100} $ টাকা
+        </div>
+        <div class="math-row">
+          $ \frac{25}{288} $ টাকা ক্রয়মূল্য হলে বিক্রয়মূল্য $ \left(
+          \frac{144}{100} \times \frac{25}{288} \right) $ টাকা $ = \frac{1}{8} $
+          টাকা।
+        </div>
+
+        <div class="math-row">
+          <span class="therefore">∴</span> $ \frac{1}{8} $ টাকায় পাওয়া যায় 1 টি
+          জিনিস।
+        </div>
+        <div class="math-row">
+          <span class="therefore">∴</span> 1 টাকায় পাওয়া যায় $ \left( 1 \div
+          \frac{1}{8} \right) $ টি জিনিস $ = (1 \times 8) $ টি জিনিস $ = 8 $ টি
+          জিনিস।
+        </div>
+
+        <div class="math-row highlighter">
+          <span class="therefore">∴</span> টাকায় 8 টি জিনিস বিক্রয় করলে তার 44%
+          লাভ হবে।
+        </div>
+
+        <!-- Shortcut Method Box -->
+        <div class="shortcut-box">
+          <div class="shortcut-title">One-line method (shortcut)</div>
+          <!-- Added Concept Section -->
+          <div
+            class="math-row"
+            style="
+              color: var(--ink-green);
+              font-size: 0.95rem;
+              margin-bottom: 15px;
+            "
+          >
+            <strong>Concept used:</strong> $\text{Items} \propto \frac{1}{SP\%}$
+          </div>
+          <div class="math-row">
+            ধরি, 1 টাকায় $x$ টি জিনিস বিক্রি করলে 44% লাভ হবে
+          </div>
+          <div class="math-row">তাহলে,</div>
+          <div class="math-row" style="text-align: center">
+            $12 : x = 144 : 96$ <br />
+            বা, $x = \frac{12 \times 96}{144} = 8$
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-box"><span class="page-label">Page:</span> 03</div>
+      </div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="a4-page" id="p4">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <!-- Question 12 Section -->
+            <h1 class="question">
+                12. রমা পিসি দুটি শাড়ি তৈরি করে একটি 15% এবং অপরটি 20% লাভে বিক্রি করলেন। তার মোট লাভ হল 262.50 টাকা। শাড়ি দুটির উৎপাদন ব্যয় 1:3 হলে, শাড়ি দুটির প্রত্যেকটির উৎপাদন ব্যয় কত ?
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <div class="math-row">
+                ধরি , একটি শাড়ির উৎপাদন ব্যয় $x$ টাকা
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> অন্য শাড়ির উৎপাদন ব্যয় $3x$ টাকা ।
+            </div>
+
+            <div class="math-row" style="margin-top: 15px;">
+                রমা পিসি প্রথম শাড়িতে লাভ করেন 15%
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> লাভ $= \frac{15x}{100}$ টাকা ।
+            </div>
+
+            <div class="math-row" style="margin-top: 10px;">
+                রমা পিসি দ্বিতীয় শাড়িতে লাভ করেন 20%
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> লাভ $= \frac{20 \times 3x}{100}$ টাকা $= \frac{60x}{100}$ টাকা
+            </div>
+
+            <h4>শর্তানুসারে,</h4>
+            
+            <div class="math-row">
+                $\frac{15x}{100} + \frac{60x}{100} = 262.50$
+            </div>
+            <div class="math-row">
+                বা, $\frac{15x+60x}{100} = 262.50$
+            </div>
+            <div class="math-row">
+                বা, $75x = 26250$
+            </div>
+            <div class="math-row">
+                বা, $x = \frac{26250}{75}$
+            </div>
+            <div class="math-row">
+                বা, $x = 350$
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> $3x = 3 \times 350 = 1050$
+            </div>
+
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 20px;">
+                <span class="therefore">∴</span> প্রথম শাড়ির উৎপাদন ব্যয় 350 টাকা এবং দ্বিতীয় শাড়ির উৎপাদন ব্যয় 1050 টাকা ।
+            </div>
+        </div>
+
+        <!-- Footer Page Numbering -->
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 04
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="a4-page" id="p5">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <!-- Question 13 Section -->
+            <h1 class="question">
+                13. এক ব্যক্তি 2 টাকায় 15 টি হিসেবে কিছু লজেন্স কিনলেন। তিনি অর্ধেক টাকায় 5 টি দরে এবং বাকি অর্ধেক টাকায় 10 টি দরে বিক্রি করলেন। তার শতকরা কত লাভ বা ক্ষতি হল ?
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <div class="math-row">
+                ধরি , ওই ব্যক্তি $2x$ টি লজেন্স কিনেছেন ।
+            </div>
+            
+            <div class="math-row">
+                <span class="therefore">∴</span> $15$ টি লজেন্সের দাম $2$ টাকা
+            </div>
+            <div class="math-row">
+                $1$ টি লজেন্সের দাম $\frac{2}{15}$ টাকা
+            </div>
+            <div class="math-row">
+                $2x$ টি লজেন্সের দাম $\frac{2 \times 2x}{15}$ টাকা $= \frac{4x}{15}$ টাকা
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> $2x$ টি লজেন্সের ক্রয়মূল্য $\frac{4x}{15}$ টাকা
+            </div>
+
+            <div class="note" style="margin-top: 20px;">
+                তিনি অর্ধেক টাকায় $5$ টি দরে এবং বাকি অর্ধেক টাকায় $10$ টি দরে বিক্রি করলেন ।
+            </div>
+
+            <div class="math-row">
+                <span class="therefore">∴</span> $x$ টি লজেন্স বিক্রি করেন টাকায় $5$ টি দরে এবং বাকি $x$ টি লজেন্স বিক্রি করেন টাকায় $10$ টি দরে ।
+            </div>
+
+            <div class="math-row" style="margin-top: 15px;">
+                <span class="therefore">∴</span> $5$ টি লজেন্সের বিক্রয়মূল্য $1$ টাকা
+            </div>
+            <div class="math-row">
+                $1$ টি লজেন্সের বিক্রয়মূল্য $\frac{1}{5}$ টাকা
+            </div>
+            <div class="math-row">
+                $x$ টি লজেন্সের বিক্রয়মূল্য $\frac{x}{5}$ টাকা
+            </div>
+
+             <div class="math-row">
+                আবার,
+            </div>
+
+            <div class="math-row">
+                $10$ টি লজেন্সের বিক্রয়মূল্য $1$ টাকা
+            </div>
+            <div class="math-row">
+                $1$ টি লজেন্সের বিক্রয়মূল্য $\frac{1}{10}$ টাকা
+            </div>
+            <div class="math-row">
+                $x$ টি লজেন্সের বিক্রয়মূল্য $\frac{x}{10}$ টাকা
+            </div>
+
+             <div class="math-row" style="margin-top: 20px;">
+                <span class="therefore">∴</span> মোট $2x$ টি লজেন্সের বিক্রয়মূল্য
+            </div>
+            <div class="math-row">
+                $= (\frac{x}{5} + \frac{x}{10})$ টাকা
+            </div>
+            <div class="math-row">
+                $= \frac{2x+x}{10}$ টাকা
+            </div>
+            <div class="math-row">
+                $= \frac{3x}{10}$ টাকা
+            </div>
+
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 05
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="a4-page" id="p6">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <div class="math-row" style="margin-top: 20px;">
+                <span class="therefore">∴</span> $2x$ টি লজেন্স বিক্রয় করে লাভ
+            </div>
+            <div class="math-row"> 
+                $=$ (বিক্রয়মূল্য - ক্রয়মূল্য)
+            </div>
+            <div class="math-row">
+                $= (\frac{3x}{10} - \frac{4x}{15})$ টাকা
+            </div>
+            <div class="math-row">
+                $= \frac{9x-8x}{30}$ টাকা
+            </div>
+            <div class="math-row">
+                $= \frac{x}{30}$ টাকা
+            </div>
+
+            <h4>$\therefore$ শতকরা লাভ</h4>
+        
+            <div class="math-row">
+                $= \frac{\frac{x}{30}}{\frac{4x}{15}} \times 100$ টাকা
+            </div>
+            <div class="math-row">
+                $= \frac{x}{30} \times \frac{15}{4x} \times 100$ টাকা
+            </div>
+            <div class="math-row">
+                $= \frac{100}{8}$
+            </div>
+            <div class="math-row">
+                $= \frac{25}{2}$ টাকা
+            </div>
+            <div class="math-row">
+                $= 12\frac{1}{2}$ টাকা
+            </div>
+
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 25px; padding: 10px;">
+                <strong>উত্তর:</strong> তার শতকরা লাভ হল $12\frac{1}{2}$ টাকা ।
+            </div>
+
+
+             <!-- Question 14 -->
+            <h1 class="question">
+                14. আফসারচাচা দুটি কাঠের চেয়ার একই দামে তৈরি করলেন এবং কাঠের চেয়ার দুটির প্রত্যেকটির ধার্যমূল্য ঠিক করলেন 1250 টাকা। তিনি একটি চেয়ার 8% ছাড়ে বিক্রি করে 15% লাভ করলেন। যদি তিনি দ্বিতীয় চেয়ারটি 1120 টাকায় বিক্রি করেন , তাহলে তার মোটের ওপর শতকরা কত লাভ বা ক্ষতি হল ।
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <!-- Handwritten Solution Section -->
+            <div class="math-row">
+               প্রথম চেয়ারের বিক্রয়মূল্য
+            </div>
+             <div class="math-row" style="margin-left: 2cm;">
+                $= 1250 - (1250 \times 8\%)$  টাকা
+            </div>
+            <div class="math-row" style="margin-left: 2cm;">
+                $= 1250 - (1250 \times \frac{8}{100})$ টাকা
+            </div>
+            <div class="math-row" style="margin-left: 2cm;">
+                $= 1150$ টাকা
+            </div>
+
+            <div class="math-row" style="margin-top: 15px;">
+                লাভ $= 15\%$
+            </div>
+            <div class="math-row">
+                মনেকরি,
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                ক্রয়মূল্য $= x$ টাকা
+            </div>
+
+
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 06
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="a4-page" id="p7">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+        
+            <h4>শর্তানুসারে,</h4>
+            <div class="math-row" style="margin-left: 1cm;">
+                $\frac{1150 - x}{x} \times 100 = 15$
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $\Rightarrow 115000 - 100x = 15x$
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $\Rightarrow 115x = 115000$
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $\Rightarrow x = 1000$
+            </div>
+
+            <!-- Final Calculation Section -->
+            <div class="math-row" style="margin-top: 20px;">
+                <span class="therefore">∴</span> দুটি চেয়ারের মোট ক্রয়মূল্য $= (1000 + 1000)$ টাকা $= 2000$ টাকা
+            </div>
+            <div class="math-row">
+                আবার দুটি চেয়ারের মোট বিক্রয়মূল্য $= (1150 + 1120)$ টাকা $= 2270$ টাকা
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> লাভ $=$ (বিক্রয়মূল্য - ক্রয়মূল্য) $= (2270 - 2000)$ টাকা $= 270$ টাকা            </div>
+
+            <h4>শতকরা লাভঃ</h4>
+            <div class="math-row">
+                $= (\frac{270}{2000} \times 100)$ টাকা
+            </div>
+            <div class="math-row">
+                $= \frac{27}{2}$ টাকা  $= 13.5$ টাকা
+            </div>
+
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 20px;">
+                <span class="therefore">∴</span> আফসারচাচা মোটের ওপর শতকরা 13.5% লাভ করে।
+            </div>
+        </div>
+
+        <!-- Boxed Page Footer -->
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 07
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 8 -->
+    <div class="a4-page" id="p8">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <!-- Question 15 Section -->
+            <h1 class="question">
+                15. একটি বিশেষ ধরনের কলমের ধার্যমূল্য 36.50 টাকা। রফিকচাচা শুভমকে একটি পেনে 2.90 টাকা ছাড় দিয়ে বিক্রি করে 12% লাভ করলেন। যদি ওই ধরনের আরেকটি কলম মিতাকে 34.50 টাকায় বিক্রি করেন , তাহলে তার মোটের ওপর শতকরা কত লাভ বা ক্ষতি হল নির্ণয় করি।
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <div class="math-row">
+                কলমটির ধার্যমূল্য $36.50$ টাকা
+            </div>
+            <div class="math-row">
+                ছাড় $= 2.90$ টাকা
+            </div>
+            
+            <!-- Modified Label from Snippet -->
+            <div class="math-row" style="margin-top: 10px; color: var(--ink-blue);">
+                প্রথম পেনের বিক্রয়মূল্য $= (36.50 - 2.90)$ টাকা $= 33.60$ টাকা
+            </div>
+
+            <div class="math-row">
+                শতকরা লাভ $= 12\%$
+            </div>
+
+            <!-- Cost Price Calculation using Snippet Formula -->
+            <div class="math-row" style="margin-top: 15px; color: var(--ink-blue);">
+                প্রথম পেনের ক্রয়মূল্য $= \left( \frac{33.60}{112} \times 100 \right)$ টাকা
+            </div>
+            <div class="math-row" style="margin-left: 3.5cm;">
+                $= 30$ টাকা
+            </div>
+
+            <div class="math-row">
+                <span class="therefore">∴</span> একই প্রকারের দ্বিতীয় কলমের ক্রয়মূল্য $= 30$ টাকা
+            </div>
+
+            <div class="math-row" style="margin-top: 20px;">
+                দ্বিতীয় পেনের বিক্রয়মূল্য $= 34.50$ টাকা
+            </div>
+
+            <!-- Total Calculation Section -->
+            
+            <div class="math-row">
+                মোট ক্রয়মূল্য $= (30 + 30)$ টাকা $= 60$ টাকা
+            </div>
+            <div class="math-row">
+                মোট বিক্রয়মূল্য $= (33.60 + 34.50)$ টাকা $= 68.10$ টাকা
+            </div>
+
+            <div class="math-row" style="margin-top: 15px;">
+                <span class="therefore">∴</span> মোট লাভ = (বিক্রয়মূল্য - ক্রয়মূল্য)
+                $= (68.10 - 60)$ টাকা $= 8.10$ টাকা
+            </div>
+        
+           <div class="math-row">
+                <span class="therefore">∴</span> মোটের ওপর শতকরা লাভ
+                $= \left( \frac{8.10}{60} \times 100 \right)$ টাকা
+                $= \frac{81}{6}$টাকা $= 13.5$ টাকা
+           </div>
+
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 25px; padding: 10px;">
+                <strong>উত্তর:</strong> তার মোটের ওপর শতকরা <span style="color: #d32f2f;">$13.5\%$</span> লাভ হল।
+            </div>
+        </div>
+
+        <!-- Footer Page Numbering -->
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 08
+            </div>
+        </div>
+    </div>
+
+    <div class="a4-page" id="p9">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <h1 class="question">
+                16. এক পুস্তক প্রকাশক 2000 কপি বই ছাপার জন্য 3,875 টাকার কাগজ কিনতে, 3,315 টাকা ছাপতে এবং 810 টাকা বাঁধানোর জন্য খরচ করেন। তিনি পুস্তক বিক্রেতাদের 20% ছাড় দিয়ে 20% লাভে বিক্রি করেন। প্রতিটি বইয়ের ধার্যমূল্য কত নির্ণয় করি?
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <div class="math-row">
+                2000 কপি বই ছাপার জন্য মোট খরচ $= (3875 + 3315 + 810)$ টাকা $= 8000$ টাকা
+            </div>
+           
+            <div class="math-row">
+                <span class="therefore">∴</span> 1 টি কপি বই ছাপার খরচ $= \frac{8000}{2000}$ টাকা $= 4$ টাকা
+            </div>
+
+            <div class="math-row" style="margin-top: 15px;">
+                মনে করি, প্রতিটি বই-র ধার্যমূল্য $x$ টাকা
+            </div>
+
+            <div class="math-row">
+                <span class="therefore">∴</span> তিনি পুস্তক বিক্রেতাদের 20% ছাড় দিয়ে 20% লাভ করেন
+            </div>
+
+            <h4>শর্তানুসারে,</h4>
+            <div class="math-row">
+                <span class="therefore">∴</span> $x - x\text{-এর } 20\% = 4 + 4\text{-এর } 20\%$
+            </div>
+            <div class="math-row">
+                বা, $x - x\text{-এর } \frac{20}{100} = 4 + 4\text{-এর } \frac{20}{100} \text{ টাকা}$
+            </div>
+            <div class="math-row">
+                বা, $x - \frac{x}{5} = 4 + \frac{4}{5}$
+            </div>
+            <div class="math-row">
+                বা, $\frac{5x-x}{5} = \frac{20+4}{5}$
+            </div>
+            <div class="math-row">
+                বা, $4x = 24$
+            </div>
+            <div class="math-row">
+                বা, $x = 6$
+            </div>
+
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 25px; padding: 10px;">
+                <span class="therefore">∴</span> প্রতিটি বই-র ধার্যমূল্য $6$ টাকা।
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 09
+            </div>
+        </div>
+    </div>
+
+    <div class="a4-page" id="p10">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <h1 class="question">
+                17. হাসিমাবিবি দুটি হস্তশিল্পের প্রত্যেকটি 1248 টাকায় বিক্রি করেন। তিনি প্রথমটিতে 4% লাভ করেন, কিন্তু দ্বিতীয়টিতে তার 4% ক্ষতি হয়। তার মোট লাভ বা ক্ষতি কত হলো?
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <div class="math-row">
+                প্রথম হস্তশিল্পের ক্রয়মূল্য মনে করি $x$ টাকা
+            </div>
+            <div class="math-row">
+                এবং দ্বিতীয় হস্তশিল্পের ক্রয়মূল্য মনে করি $y$ টাকা
+            </div>
+
+            <h4>প্রথম শর্তানুসারে,</h4>
+            <div class="math-row">
+                $x + x\text{-এর } 4\% = 1248$
+            </div>
+            <div class="math-row">
+                বা, $x + x\text{-এর } \frac{4}{100} = 1248$
+            </div>
+            <div class="math-row">
+                বা, $x + \frac{x}{25} = 1248$
+            </div>
+            <div class="math-row">
+                বা, $\frac{26x}{25} = 1248$
+            </div>
+            <div class="math-row">
+                বা, $x = \frac{1248 \times 25}{26} = 1200$
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> প্রথম হস্তশিল্পের ক্রয়মূল্য $1200$ টাকা।
+            </div>
+
+            <h4>দ্বিতীয় শর্তানুসারে,</h4>
+            <div class="math-row">
+                $y - y\text{-এর } 4\% = 1248$
+            </div>
+            <div class="math-row">
+                বা, $y - y\text{-এর } \frac{4}{100} = 1248$
+            </div>
+            <div class="math-row">
+                বা, $y - \frac{y}{25} = 1248$
+            </div>
+            <div class="math-row">
+                বা, $\frac{24y}{25} = 1248$
+            </div>
+            <div class="math-row">
+                বা, $y = \frac{1248 \times 25}{24} = 1300$
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> দ্বিতীয় হস্তশিল্পের ক্রয়মূল্য $1300$ টাকা।
+            </div>
+
+            <div class="math-row" style="margin-top: 20px;">
+              <span class="therefore">∴</span>
+                মোট ক্রয়মূল্য $= (1200 + 1300)$ টাকা $= 2500$ টাকা
+            </div>
+            <div class="math-row">
+              <span class="therefore">∴</span>
+                মোট বিক্রয়মূল্য $= (1248 + 1248)$ টাকা $= 2496$ টাকা
+            </div>
+
+            <div class="math-row" style="margin-top: 15px;">
+              <span class="therefore">∴</span>
+                মোট ক্ষতি $=$ (ক্রয়মূল্য - বিক্রয়মূল্য) $= (2500 - 2496)$ টাকা $= 4$ টাকা
+            </div>
+
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 10
+            </div>
+        </div>
+    </div>
+
+    <div class="a4-page" id="p11">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <h1 class="question">
+                18. করিম, মোহনকে 4860 টাকায় একটি মোবাইল ফোন বিক্রি করায় 19% ক্ষতি হয়। মোহন, রহিমকে যে দামে বিক্রি করে সেই দামে করিম মোহনকে বিক্রি করলে করিমের 17% লাভ হয়। মোহনের শতকরা লাভ কত?
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <div class="math-row">
+                মনে করি, করিম মোবাইল ফোনটি কেনে $x$ টাকায়
+            </div>
+            <div class="math-row">
+                মোবাইল ফোনটি বিক্রি করে = 4860 টাকায়
+            </div>
+
+            <div class="math-row">
+                <span class="therefore">∴</span> মোহন ফোনটি কেনে = 4860 টাকায়
+            </div>
+
+            <div class="math-row">
+                শর্তানুসারে,
+            </div>
+            
+            <div class="math-row">
+                 $x - x\text{-এর } 19\% = 4860$
+            </div>
+            <div class="math-row">
+                বা, $x - x\text{-এর } \frac{19}{100} = 4860$
+            </div>
+            <div class="math-row">
+                বা, $x - \frac{19x}{100} = 4860$
+            </div>
+            <div class="math-row">
+                বা, $\frac{100x-19x}{100} = 4860$
+            </div>
+            <div class="math-row">
+                বা, $\frac{81x}{100} = 4860$
+            </div>
+            <div class="math-row">
+                বা, $x = \frac{4860 \times 100}{81}$
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> $x = 6000$
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> করিমের কেনা দাম = 6000 টাকা
+            </div>
+
+            <div class="math-row">
+                মোহন রহিমকে মোবাইলটি বিক্রি করে $=$
+            </div>
+            <div class="math-row">
+                $(6000 + 6000\text{-এর } 17\%)$ টাকায়
+            </div>
+            <div class="math-row">
+                $= (6000 + 6000\text{-এর } \frac{17}{100})$ টাকায়
+            </div>
+            <div class="math-row">
+                $= (6000 + 1020)$ $= 7020$ টাকায়
+            </div>
+
+            <div class="math-row">
+                <span class="therefore">∴</span> মোহনের লাভ $= (7020 - 4860)$  টাকা $= 2160$ টাকা
+            </div>
+
+            <div class="math-row">
+                শতকরা লাভ  $= \left( \frac{2160}{4860} \times 100 \right)$ টাকা
+            </div>
+        
+            <div class="math-row" style="margin-left:5.3rem;">
+                $= \frac{400}{9}$ টাকা $= 44\frac{4}{9}$ টাকা
+            </div>
+
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 20px;">
+                <strong>উত্তর:</strong> মোহনের শতকরা লাভ $44\frac{4}{9}$ টাকা।
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 11
+            </div>
+        </div>
+    </div>
+
+    <div class="a4-page" id="p12">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <h1 class="question">
+                19. ফিরোজচাচা একটি প্যান্ট 20% লাভে এবং একটি জামা 15% লাভে বিক্রি করে মোট 719.50 টাকা পেলেন। তিনি যদি প্যান্টটি 25% এবং জামাটি 20% লাভে বিক্রি করতেন, তাহলে তিনি আরও 30.50 টাকা বেশি পেতেন। প্যান্ট ও জামার ক্রয়মূল্য নির্ণয় করি।
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <div class="math-row">
+                মনে করি, একটি প্যান্ট ও একটি জামার দাম যথাক্রমে $x$ টাকা ও $y$ টাকা।
+            </div>
+            
+            <div class="note">প্রথম শর্তানুসারে,</div>
+            <div class="math-row">
+                $(x + x\text{-এর } 20\%) + (y + y\text{-এর } 15\%) = 719.50$
+            </div>
+            <div class="math-row">
+                বা, $\left(x + \frac{20x}{100}\right) + \left(y + \frac{15y}{100}\right) = 719.50$
+            </div>
+            <div class="math-row">
+                বা, $\frac{120x}{100} + \frac{115y}{100} = 719.50$
+            </div>
+            <div class="math-row">
+                বা, $120x + 115y = 71950$
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> $24x + 23y = 14390 \dots (i)$
+            </div>
+
+            <div class="note" style="margin-top: 15px;">দ্বিতীয় শর্তানুসারে,</div>
+            <div class="math-row">
+                $(x + x\text{-এর } 25\%) + (y + y\text{-এর } 20\%) = 719.50 + 30.50$
+            </div>
+            <div class="math-row">
+                বা, $\left(x + \frac{25x}{100}\right) + \left(y + \frac{20y}{100}\right) = 750$
+            </div>
+            <div class="math-row">
+                বা, $\frac{125x}{100} + \frac{120y}{100} = 750$
+            </div>
+            <div class="math-row">
+                বা, $125x + 120y = 75000$
+            </div>
+            <div class="math-row">
+                <span class="therefore">∴</span> $25x + 24y = 15000 \dots (ii)$
+            </div>
+
+            <div class="math-row" style="margin-top: 15px;">
+                $(ii)$ থেকে $(i)$ বিয়োগ করে পাই,
+            </div>
+            <div class="math-row">
+                $x + y = 610 \dots (iii)$
+            </div>
+
+            <div class="math-row">
+                $(iii)$ নং সমীকরণকে উভয় দিকে $25$ দিয়ে গুণ করে পাই,
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $25x + 25y = 15250$
+            </div>
+            <div class="math-row" style="margin-left: 1cm; border-bottom: 2px solid var(--ink-black); padding-bottom: 5px;">
+                এবং $25x + 24y = 15000$ <span style="font-size: 0.8rem; color: var(--ink-green);">[$\dots (ii)$ থেকে পাই]</span>
+            </div>
+            <div class="math-row" style="margin-left: 1cm; font-weight: bold;">
+                $y = 250$
+            </div>
+
+            <div class="math-row" style="margin-top: 10px;">
+                <span class="therefore">∴</span> $x + y = 610$
+            </div>
+            <div class="math-row">
+                বা, $x + 250 = 610$
+            </div>
+            <div class="math-row">
+                বা, $x = 610 - 250$
+            </div>
+            
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 12
+            </div>
+        </div>
+    </div>
+
+    <div class="a4-page" id="p13">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            <div class="math-row">
+                বা, $x = 360$
+            </div>
+
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 15px; padding: 10px;">
+                <strong>উত্তর:</strong> একটি প্যান্টের দাম $360$ টাকা ও একটি জামার দাম $250$ টাকা।
+            </div>
+
+            <h1 class="question">
+                20. রবীন কাকু $3000$ টাকার চাল কিনলেন। তিনি $1/3$ অংশ 20% ক্ষতিতে, $2/5$ অংশ 25% লাভে বিক্রি করলেন। শতকরা কত লাভে তিনি বাকি অংশ বিক্রি করলে তাঁর মোটের ওপর 10% লাভ হবে।
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <div class="math-row">
+                মোটে ওপর 10% লাভ হতে গেলে সমগ্র চালের বিক্রয়মূল্য হবে –
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (3000 + 3000 \times \frac{10}{100})$ টাকা
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (3000 + 300)$ টাকা
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= 3300$ টাকা
+            </div>
+            <div class="math-row" style="margin-top: 15px;">
+                $\frac{1}{3}$ অংশ চালের ক্রয়মূল্য
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (3000 \times \frac{1}{3})$ টাকা $= 1000$ টাকা
+            </div>
+
+            <div class="math-row">
+                $\frac{1}{3}$ অংশ চাল 20% ক্ষতিতে বিক্রয় করলে বিক্রয়মূল্য
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (1000 - 1000 \times \frac{20}{100})$ টাকা
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (1000 - 200)$ টাকা $= 800$ টাকা
+            </div>
+
+            <div class="math-row" style="margin-top: 15px;">
+                আবার, $\frac{2}{5}$ অংশ চালের ক্রয়মূল্য
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (3000 \times \frac{2}{5})$ টাকা $= 1200$ টাকা
+            </div>
+
+            <div class="math-row">
+                $\frac{2}{5}$ অংশ চাল 25% লাভে বিক্রয় করলে বিক্রয়মূল্য
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (1200 + 1200 \times \frac{25}{100})$ টাকা
+            </div>
+
+             <div class="math-row" style="margin-left: 1cm;">
+                $= (1200 + 300)$ টাকা $= 1500$ টাকা
+            </div>
+
+            <div class="math-row" style="margin-top: 20px;">
+                <span class="therefore">∴</span> অবশিষ্ট চালের ক্রয়মূল্য
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= \{3000 - (1000 + 1200)\}$ টাকা
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (3000 - 2200)$ টাকা $= 800$ টাকা
+            </div>
+            
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 13
+            </div>
+        </div>
+    </div>
+
+    <div class="a4-page" id="p14">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+        
+            <div class="math-row">
+                অবশিষ্ট চালের বিক্রয়মূল্য হবে
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= \{3300 - (800 + 1500)\}$ টাকা
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (3300 - 2300)$ টাকা $= 1000$ টাকা
+            </div>
+
+            <div class="math-row" style="margin-top: 15px;">
+                <span class="therefore">∴</span> অবশিষ্ট চাল বিক্রি করে লাভ $(1000 - 800)$ টাকা $= 200$ টাকা
+            </div>
+
+            <div class="math-row">$\therefore$ অবশিষ্ট চাল বিক্রি করে শতকরা লাভ</div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= (\frac{200}{800} \times 100)$ টাকা
+            </div>
+            <div class="math-row" style="margin-left: 1cm;">
+                $= 25$ টাকা
+            </div>
+
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 20px;">
+                <strong>উত্তর:</strong> বাকী চাল তাকে 25% লাভে বিক্রয় করতে হবে।
+            </div>
+        </div>
+
+        <h1 class="question">
+                21. এক ব্যবসায়ী এক ধরনের চা 80 টাকা প্রতি কিগ্রা দরে বিক্রি করে 20% ক্ষতি এবং অপর এক ধরনের চা 200 টাকা প্রতি কিগ্রা দরে বিক্রি করে 25% লাভ করেন। তিনি দু-ধরনের চা কি অনুপাতে মিশিয়ে প্রতি কিগ্রা 150 টাকা দরে বিক্রি করলে 25% লাভ হবে?
+            </h1>
+
+            <h2 class="solution">সমাধানঃ</h2>
+            
+            <div class="math-row">
+                প্রথম প্রকারের চায়ের সাথে দ্বিতীয় প্রকারের চা $x$ kg এবং $y$ kg অনুপাতে মেশাতে হবে।
+            </div>
+
+            <div class="math-row">
+                মোট চা $= (x+y)$ কেজি।
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                <div style="width: 48%; border-right: 1px solid var(--line-blue); padding-right: 10px;">
+                    <div class="note"><b>১ম ক্ষেত্রে:</b></div>
+                    <div class="math-row">ধরি,</div>
+                    <div class="math-row">চায়ের ক্রয়মূল্য $= m$ টাকা</div>
+                    <div class="math-row">বিক্রয়মূল্য $= 80$ টাকা</div>
+                    <div class="math-row">ক্ষতি $= 20\%$</div>
+                    <div class="note">শর্তানুসারে,</div>
+                    <div class="math-row">
+                        $20 = \frac{m - 80}{m} \times 100$
+                    </div>
+                    <div class="math-row">
+                        $\Rightarrow 20m = 100m - 8000$
+                    </div>
+                    <div class="math-row">
+                        $\Rightarrow 80m = 8000$
+                    </div>
+                    <div class="math-row">
+                        $\Rightarrow m = 100$
+                    </div>
+                </div>
+
+                <div style="width: 48%; padding-left: 10px;">
+                    <div class="note"><b>২য় ক্ষেত্রে:</b></div>
+                    <div class="math-row">ধরি,</div>
+                    <div class="math-row">চায়ের ক্রয়মূল্য $= n$ টাকা</div>
+                    <div class="math-row">বিক্রয়মূল্য $= 200$ টাকা</div>
+                    <div class="math-row">লাভ $= 25\%$</div>
+                    <div class="note">শর্তানুসারে,</div>
+                    <div class="math-row">
+                        $25 = \frac{200 - n}{n} \times 100$
+                    </div>
+                    <div class="math-row">
+                        $\Rightarrow 25n = 20000 - 100n$
+                    </div>
+                    <div class="math-row">
+                        $\Rightarrow 125n = 20000$
+                    </div>
+                    <div class="math-row">
+                        $\Rightarrow n = 160$
+                    </div>
+                </div>
+            </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 14
+            </div>
+        </div>
+    </div>
+
+    <div class="a4-page" id="p15">
+        <div class="watermark">
+    <img src="logo.png" alt="MathSquadz Watermark">
+</div>
+        <div class="content">
+            
+            
+
+            <div class="math-row" style="margin-top: 20px;">
+                $(x+y)$ কেজি চায়ের ক্রয়মূল্য $= (100x + 160y)$
+            </div>
+
+            <h4>শর্তানুসারে,</h4>
+            <div class="math-row">
+                $\frac{5}{4} (100x + 160y) = 150(x+y)$
+            </div>
+            <div class="math-row">
+                $\Rightarrow 500x + 800y = 600x + 600y$
+            </div>
+            <div class="math-row">
+                $\Rightarrow 500x - 600x = 600y - 800y$
+            </div>
+            <div class="math-row">
+                $\Rightarrow -100x = -200y$
+            </div>
+            <div class="math-row">
+                $\Rightarrow 100x = 200y$
+            </div>
+            <div class="math-row">
+                $\Rightarrow \frac{x}{y} = \frac{2}{1}$
+            </div>
+            
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 15px; display: inline-block; padding: 5px 15px;">
+                $\Rightarrow x : y = 2 : 1$
+            </div>
+
+            <div class="math-row" style="margin-top: 10px;">
+                <strong>উত্তর:</strong> চা দুটি $2:1$ অনুপাতে মেশাতে হবে।
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">Page:</span> 15
+            </div>
+        </div>
+    </div>
+
+    
+
+  </body>
+</html>

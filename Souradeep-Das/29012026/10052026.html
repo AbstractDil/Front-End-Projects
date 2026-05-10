@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class XII Mathematics Assessment - Relations and Functions</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+ 
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+    body {
+      font-family: "Roboto Condensed", sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 13px;
+    }
+
+    .wish-container {
+      margin-top: 40px;
+      padding: 15px;
+      text-align: center;
+      border: 2px dashed #2c3e50;
+      border-radius: 10px;
+      background-color: #fdfdfd;
+    }
+
+    .wish-message {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c3e50;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .sub-wish {
+      font-size: 13px;
+      color: #7f8c8d;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      outline: 2px solid #000;
+      outline-offset: -10px;
+    }
+
+    .page::before {
+      content: "SOURADEEP DAS";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 80px;
+      font-weight: 900;
+      color: rgba(0, 0, 0, 0.04);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .exam-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+
+    .exam-header h1 {
+      margin: 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .group-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      text-decoration: underline;
+      margin: 20px 0;
+    }
+
+    .section-instruction {
+      font-weight: bold;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .question-block {
+      margin-bottom:18px;
+      line-height: 1.4;
+    }
+
+    .sub-question {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .options-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    /* New layout for short options in a single line */
+    .options-row-inline {
+      display: flex;
+      justify-content: flex-start;
+      gap: 50px;
+      margin-top: 8px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
+    @media print {
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; border: none; }
+      .print-btn { display: none; }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download/Print PDF</button>
+
+  <div class="page">
+    <div class="exam-header">
+      <h1>3RD Internal Assessment - 2026</h1>
+      <h3 style="padding: 0;margin-top:4px;"> Topic: Inverse Trigonometric Function &nbsp; Class- XII &nbsp; &nbsp; Session: 2026-27</h3>
+      <div class="header-meta">
+        <span>Sub.- Mathematics</span>
+        <span>Time- 40 Minutes</span>
+        <span>F.M.- 20</span>
+      </div>
+    </div>
+
+   
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>নীচের প্রশ্নগুলির সঠিক উত্তরটি নির্বাচন করো :</span>
+      </div>
+
+
+
+      <div class="sub-question">
+        1. নীচের লেখচিত্রটি প্রদত্ত কোন্ অপেক্ষককে উপস্থাপিত করে?
+        <div style="text-align: center; margin: 10px 0;">
+          <img src="images/diagram-1.png" alt="Graph of a function" style="max-width: 40%; height:70;">
+        </div>
+        <div class="options-row-inline">
+          <span>a. $y = \sec x$</span><span>b. $y = \sec^{-1} x$</span><span>c. $y = \cot^{-1} x$</span><span>d. $y = \text{cosec}^{-1} x$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        2. $\tan^{-1}(-\sqrt{3})$-এর মুখ্য মান —
+        <div class="options-row-inline">
+          <span>A. $\pi/3$</span><span>B. $\pi/4$</span><span>C. $-\pi/4$</span><span>D. $-\pi/3$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        3. একটি ত্রিভুজের দুটি কোণ $\tan^{-1}(1)$ এবং $\tan^{-1}(2)$ হলে, তৃতীয় কোণটির মান —
+        <div class="options-row-inline">
+          <span>A. $\tan^{-1}(1/2)$</span><span>B. $\tan^{-1}(3)$</span><span>C. $\tan^{-1}(1/3)$</span><span>D. কোনোটিই নয়</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        4. যদি $x+y=1, xy=2$ হয়, তবে $\tan^{-1}x + \tan^{-1}y$-এর মান হবে —
+        <div class="options-row-inline">
+          <span>A. $\pi/4$</span><span>B. $\pi/2$</span><span>C. $3\pi/4$</span><span>D. $-\pi/4$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        5. $\sin^{-1} 2x$-এর সংজ্ঞার অঞ্চল হল —
+        <div class="options-row-inline">
+          <span>A. $[0, 1]$</span><span>B. $[-1, 1]$</span><span>C. $[-1/2, 1/2]$</span><span>D. $[-2, 2]$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        6. যদি $3\tan^{-1} x + \cot^{-1} x = \pi$ হয়, তবে $x$-এর মান —
+        <div class="options-row-inline">
+          <span>A. $0$</span><span>B. $1$</span><span>C. $-1$</span><span>D. $1/2$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        7. $\tan(\cos^{-1} x)$-এর সরলতম আকারটি হল —
+        <div class="options-row-inline">
+          <span>A. $\frac{\sqrt{1-x^2}}{x}$</span><span>B. $\frac{x}{1+x^2}$</span><span>C. $\frac{\sqrt{1+x^2}}{x}$</span><span>D. $\sqrt{1-x^2}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        8. যদি $\cos^{-1}\alpha + \cos^{-1}\beta + \cos^{-1}\gamma = 3\pi$ হয়, তবে $(\alpha\beta + \beta\gamma + \gamma\alpha)$-এর মান —
+        <div class="options-row-inline">
+          <span>A. 1</span><span>B. 2</span><span>C. 3</span><span>D. কোনোটিই নয়</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        9. $\tan^{-1}(a/x) + \tan^{-1}(b/x) = \pi/2$ হলে, $x$-এর মান হবে —
+        <div class="options-row-inline">
+          <span>A. $\sqrt{ab}$</span><span>B. $\sqrt{2ab}$</span><span>C. $ab$</span><span>D. $2ab$</span>
+        </div>
+      </div>
+
+    
+
+    </div>
+
+    <div class="footer">
+      Page - 1
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="question-block">
+
+        
+      
+       <div class="sub-question">
+        10. $\tan(\pi/4 + \frac{1}{2}\cos^{-1}\frac{a}{b}) + \tan(\pi/4 - \frac{1}{2}\cos^{-1}\frac{a}{b})$-এর মান হল —
+        <div class="options-row-inline">
+          <span>A. $\frac{2a}{b}$</span><span>B. $\frac{2a}{b^2}$</span><span>C. $\frac{2b}{a}$</span><span>D. $\frac{2b^2}{a}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        11. $\cot^{-1}(\frac{ab+1}{a-b}) + \cot^{-1}(\frac{bc+1}{b-c}) + \cot^{-1}(\frac{ca+1}{c-a})$-এর মান —
+        <div class="options-row-inline">
+          <span>A. 0</span><span>B. $\pi/4$</span><span>C. 1</span><span>D. 5</span>
+        </div>
+      </div>
+
+
+
+      <div class="sub-question">
+        12. $\tan[2\tan^{-1} \frac{1}{5} - \pi/4]$-এর মান —
+        <div class="options-row-inline">
+          <span>A. $7/17$</span><span>B. $-7/17$</span><span>C. $7/12$</span><span>D. $-7/12$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        13. যদি $\sin^{-1}(\frac{2a}{1+a^2}) + \cos^{-1}(\frac{1-a^2}{1+a^2}) = \tan^{-1}(\frac{2x}{1-x^2})$ হয়, যেখানে $a, x \in (0, 1)$, তবে $x = ?$
+        <div class="options-row-inline">
+          <span>A. 0</span><span>B. $a/2$</span><span>C. $a$</span><span>D. $\frac{2a}{1-a^2}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        14. $\cos(\sin^{-1}\frac{2}{5} + \cos^{-1}x) = 0$ হলে, $x = ?$
+        <div class="options-row-inline">
+          <span>A. $1/5$</span><span>B. $2/5$</span><span>C. $0$</span><span>D. $1$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        15. $\cos^{-1}x > \sin^{-1}x$ হলে —
+        <div class="options-row-inline">
+          <span>A. $1/\sqrt{2} < x \le 1$</span><span>B. $0 \le x < 1/\sqrt{2}$</span><span>C. $-1 \le x < 1/\sqrt{2}$</span><span>D. $x > 0$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        16. $\tan^2(\sec^{-1}2) + \cot^2(\text{cosec}^{-1}3) = ?$
+        <div class="options-row-inline">
+          <span>A. 5</span><span>B. 11</span><span>C. 13</span><span>D. 15</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        17. $\tan(\frac{1}{2}\cos^{-1}\frac{\sqrt{5}}{3}) = ?$
+        <div class="options-row-inline">
+          <span>A. $\frac{3+\sqrt{5}}{2}$</span><span>B. $\frac{3-\sqrt{5}}{2}$</span><span>C. $\frac{2+\sqrt{5}}{3}$</span><span>D. $\frac{2-\sqrt{5}}{3}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        18. $\cot^{-1}\left(\frac{3a^2x - x^3}{a^3 - 3ax^2}\right) = \frac{\pi}{2} - \alpha \cot^{-1}(a/x)$ হলে, $\alpha$-এর মান হবে —
+        <div class="options-row-inline">
+          <span>A. 1</span><span>B. 3</span><span>C. 4</span><span>D. 9</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        19. $\tan^{-1}(x/y) + \tan^{-1}(\frac{x+y}{x-y}) = ?$
+        <div class="options-row-inline">
+          <span>A. $3\pi/4$</span><span>B. $\pi/4$</span><span>C. $2\pi/3$</span><span>D. $2\pi/5$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        20. $\sin^{-1}(\cos x) = \frac{\pi}{2} - x$ হবে তখন —
+        <div class="options-row-inline">
+          <span>A. $x \in [0, \pi]$</span><span>B. $x \in [-\pi, 0]$</span><span>C. $x \in [-\pi/2, \pi/2]$</span><span>D. কোনোটিই নয়</span>
+        </div>
+      </div>
+
+    
+
+    </div>
+
+    <div class="wish-container" style="margin-top: 40px;">
+      <p class="wish-message">🌟 BEST OF LUCK FOR YOUR EXAM! 🌟</p>
+      <p class="sub-wish">"Believe in yourself and all that you are."</p>
+    </div>
+    <div class="footer">
+      Page - 2
+    </div>
+  </div>
+
+</body>
+</html>

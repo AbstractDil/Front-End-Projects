@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSquadz Question Paper Engine - 4th Internal</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+        displayMath: [
+          ["$$", "$$"],
+          ["\\[", "\\]"],
+        ],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Noto Sans Bengali", sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm;
+      margin: 10mm auto;
+      background: white;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: url("../images/logo.png") no-repeat center;
+      background-size: contain;
+      opacity: 0.1;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .exam-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      border: 2px solid #333;
+      padding: 8px;
+      margin-bottom:12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-area img {
+      max-width: 92px;
+      max-height: 92px;
+    }
+
+    .header-info {
+      text-align: start;
+    }
+
+    .header-info h2 {
+      margin: 0;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .header-info p {
+      margin: 3px 0;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .exam-content {
+      padding: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #000;
+    }
+
+    .question-section {
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: bold;
+      margin-bottom: 4px;
+      border-bottom: 1px dashed #666;
+    }
+
+    .question-item {
+      margin-bottom: 8px;
+    }
+
+    .question-text {
+      display: flex;
+      gap: 8px;
+    }
+
+    .q-table { width: 90%; border-collapse: collapse; margin: 10px auto; font-size: 14px; }
+    .q-table th, .q-table td { border: 1px solid #333; padding: 4px; text-align: center; }
+
+    /* .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      padding-left: 30px;
+      margin-top: 5px;
+    } */
+
+    .options-grid {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 30px; /* Adjust spacing between options */
+  row-gap: 5px;    /* Space if they wrap to a new line */
+  padding-left: 30px;
+  margin-top: 5px;
+}
+
+.options-grid span {
+  white-space: nowrap; /* Keeps "(a) 400 টাকা" on one line */
+}
+
+    .sub-question-list {
+      list-style-type: none;
+      padding-left: 20px;
+    }
+
+    .sub-question-list li {
+        margin-bottom: 12px;
+        position: relative;
+    }
+
+    .marks {
+      font-weight: bold;
+      float: right;
+    }
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .wish-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin: 15px auto;
+      max-width: 80%;
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      border-radius: 8px;
+      border-left: 5px solid #e74c3c;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .wish-message {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      color: #2c3e50;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 12mm;
+      right: 12mm;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .footer-icon {
+      width: 34px;
+      height: 34px;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .footer-text {
+      line-height: 1.2;
+    }
+
+    .footer-text b {
+      font-size: 12px;
+      display: block;
+    }
+
+    .footer-text span {
+      font-size: 11px;
+      color: #333;
+    }
+
+    @media print {
+      .print-btn { display: none; }
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; width: 100%; }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="print-btn" onclick="window.print()">
+    Download PDF
+  </button>
+
+  <div class="page">
+    <!-- Header -->
+    <div class="exam-header">
+      <div class="logo-area">
+        <img src="../images/logo.png" alt="Logo" />
+      </div>
+      <div class="header-info">
+        <h2>4th Internal Assessment Examination</h2>
+        <p> Session: 2026 | Subject: Mathematics | Class: IX </p>
+        <p>
+           Full Marks: 20 | Time: 40 Minutes | Date: 09-05-2026 
+        </p>
+      </div>
+    </div>
+
+    <!-- Exam Content -->
+    <div class="exam-content">
+
+      <!-- Section 1: MCQ -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>1. সঠিক উত্তরটি নির্বাচন করো:</span>
+          <span>$1 \times 5 = 5$</span>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(i)</span>
+            <span>ধার্যমূল্যের ওপর 10% কমিশন দিয়ে 20% লাভ হলে, বিক্রয়মূল্য ও ক্রয়মূল্যের অনুপাত কত হবে?</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $6:5$</span>
+            <span>(b) $5:6$</span>
+            <span>(c) $1.2:1$</span>
+            <span>(d) কোনটিই নয়</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(ii)</span>
+            <span>একটি জামা 360 টাকাতে বিক্রয় করায় 10% ক্ষতি হল, জামাটির ক্রয়মূল্য কত?</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) 380 টাকা</span>
+            <span>(b) 400 টাকা</span>
+            <span>(c) 420 টাকা</span>
+            <span>(d) 450 টাকা</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(iii)</span>
+            <span>কোনো আয়তক্ষেত্রের কর্ণের দৈর্ঘ্য 5 সেমি হলে, তার দৈর্ঘ্য এবং প্রস্থ হতে পারে যথাক্রমে—</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) 3 সেমি, 4 সেমি</span>
+            <span>(b) 3 সেমি, 2 সেমি</span>
+            <span>(c) 4 সেমি, 1 সেমি</span>
+            <span>(d) 4 সেমি, 3 সেমি</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(iv)</span>
+            <span>105-140 শ্রেণিটির পরিসংখ্যা 14 হলে, শ্রেণিটির পরিসংখ্যা ঘনত্ব হবে—</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) 2.5</span>
+            <span>(b) 0.4</span>
+            <span>(c) 0.35</span>
+            <span>(d) 0.141</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <div class="question-text">
+            <span>(v)</span>
+            <span>একটি রম্বসের দুটি কর্ণের দৈর্ঘ্য যথাক্রমে 12 সেমি ও 16 সেমি হলে রম্বসটির একটি বাহুর দৈর্ঘ্য হবে—</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) 8 সেমি</span>
+            <span>(b) 9 সেমি</span>
+            <span>(c) 10 সেমি</span>
+            <span>(d) 20 সেমি</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Subjective Questions -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>2. নীচের প্রশ্নগুলির উত্তর দাও (যে কোনো পাঁচটি):</span>
+          <span>$3 \times 5 = 15$</span>
+        </div>
+
+        <ul class="sub-question-list">
+          <li>(i) সুরজিতবাবু 660 টাকায় একটি শাল বিক্রি করলেন। শাল বিক্রি করে সুরজিতবাবুর যত টাকা লাভ হলো 640 টাকায় বিক্রি করলে তত টাকা ক্ষতি হতো। সুরজিতবাবু শালটি কত টাকায় কিনেছিলেন?</li>
+          <li>(ii) জয়ন্তবাবু একটি টেলিভিশন 10% লাভে বিক্রি করেন। যদি ক্রয়মূল্য 10% কম এবং বিক্রয়মূল্য 180 টাকা কম হতো, তাহলে জয়ন্তবাবুর 20% লাভ হতো। টেলিভিশনটির ক্রয়মূল্য কত?</li>
+          <li>(iii) একটি আয়তক্ষেত্রের পরিসীমা 34 সেমি. এবং ক্ষেত্রফল 60 বর্গ সেমি.। আয়তক্ষেত্রের প্রতিটি কর্ণের দৈর্ঘ্য কত?</li>
+          <li>(iv) একটি ঘরের চার দেয়ালের ক্ষেত্রফল 42 বর্গ মিটার এবং মেঝের ক্ষেত্রফল 12 বর্গ মিটার। ঘরটির দৈর্ঘ্য 4 মিটার হলে, ঘরটির উচ্চতা কত?</li>
+        
+        <li>(v) মারিয়া একটি হাসপাতালের 300 জন রোগীর বয়সের তথ্য সংগ্রহ করেছে:
+          <table class="q-table">
+            <tr><th>বয়স (বছরে)</th><td>10-20</td><td>20-30</td><td>30-40</td><td>40-50</td><td>50-60</td><td>60-70</td></tr>
+            <tr><th>রোগীর সংখ্যা</th><td>80</td><td>40</td><td>50</td><td>70</td><td>40</td><td>20</td></tr>
+          </table>
+          উপরের তথ্যের বৃহত্তর-সূচক ক্রমযৌগিক পরিসংখ্যা বিভাজন তালিকা তৈরি করো।
+        </li>
+        <li>(vi) মৃগাঙ্ক তাদের কারখানার 30 জন কর্মচারীর বয়স লিখেছে:
+          <table class="q-table">
+            <tr><th>বয়স (বছর)</th><td>21-23</td><td>23-25</td><td>25-27</td><td>27-29</td><td>29-31</td><td>31-33</td><td>33-35</td></tr>
+            <tr><th>কর্মচারীর সংখ্যা</th><td>3</td><td>4</td><td>5</td><td>6</td><td>5</td><td>4</td><td>3</td></tr>
+          </table>
+          উপরের তথ্যের ক্রমযৌগিক পরিসংখ্যা বিভাজন তালিকা তৈরি করো এবং (a) 27 বছরের কম কতজন, (b) 25 বছর বা তার বেশি কতজন কর্মচারী আছে?
+        </li>
+        </ul>
+      </div>
+
+    </div>
+
+    
+
+    <!-- Wish Message -->
+    <!-- <div class="wish-container">
+      <div class="wish-message">
+        Best of Luck for your Examination!
+      </div>
+    </div> -->
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>1</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+.exam-name {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    border: 5px solid black;
+    background-color: var(--bg-light-yellow);
+    color: black !important;
+}

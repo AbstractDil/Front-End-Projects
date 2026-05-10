@@ -14,38 +14,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+Bengali:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!-- Base CSS -->
     <link rel="stylesheet" href="assets/css/base.css">
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
   </head>
-  <body>
+  <body class="bg-body">
     <!-- Header Starts -->
     <header>
-      <!-- Navigation Bar Starts -->
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="#">Mock Examination</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-              </li>
-            </ul>
+     <div class="container-fluid bg-body-tertiary">
+        <div class="row align-items-center py-2">
+          <div class="col-md-6">
+            <div class="pb-2">
+              <div class="fw-bold text-uppercase border border-4 border-black rounded py-2 px-3 d-inline-block text-center bg-warning-subtle">
+                <a class="text-decoration-none text-dark" href="javascript:void(0);">
+                RRB NTPC Graduate Level Examination, Tier-1, 2023
+              </a>
+              </div>
+            </div>
+
           </div>
+
+
+          <div class="col-md-6 d-flex justify-content-end align-items-center">
+             <!-- Show Setting Dropdown button  -->
+             <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-gear"></i>
+                Settings
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="javascript:void(0);" onclick="openFullscreen();" >
+                  <i class="bi bi-arrows-fullscreen"></i>
+                  Open Fullscreen
+                </a></li>
+                <li><a class="dropdown-item" href="javascript:void(0);" onclick="closeFullscreen();">
+                  <i class="bi bi-x-lg"></i>
+                  Close Fullscreen
+                </a></li>
+              </ul>
+            </div>
+          </div> 
         </div>
-      </nav>
-      <!-- Navigation Bar Ends -->
+      </div>
     </header>
     <!-- Header Ends -->
 
     <!-- Main Content Starts -->
-    <main>
+    <main class="mb-5 pb-5">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-sm-12 col-md-8 col-lg-5">
@@ -63,11 +77,11 @@
                 <form class="p-2">
                   <div class="input-group input-group-lg mb-3">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                    <input type="text" class="form-control" placeholder="Enter Username" aria-label="Username" value="candidate123" data-bs-toggle="tooltip" data-bs-title="Username is pre-filled and cannot be changed" readonly>
+                    <input type="text" class="form-control" placeholder="Enter Username"  value="candidate123" readonly>
                   </div>
                   <div class="input-group input-group-lg mb-3">
                     <span class="input-group-text"><i class="bi bi-shield-lock-fill"></i></span>
-                    <input type="password" class="form-control" placeholder="Enter Password" aria-label="Password" data-bs-toggle="tooltip" data-bs-title="Enter your password">
+                    <input type="password" class="form-control" placeholder="Enter Password">
                     <span class="input-group-text" data-bs-toggle="tooltip" data-bs-title="Virtual Keyboard"><i class="bi bi-keyboard"></i></span>
                   </div>
 
@@ -95,9 +109,11 @@
     <!-- Main Content Ends -->
 
     <!-- Footer Starts -->
-    <footer>
-      <div class="container">
-        <p>&copy; 2023 Mock Examination. All rights reserved.</p>
+    <footer class="position-fixed bottom-0 w-100 bg-secondary py-1 text-light mt-5">
+      <div class="container d-flex justify-content-center align-items-center">
+        <span class="me-2">
+          <small>&copy; iMOES Version 2.0.0</small>
+        </span>
       </div>
     </footer>
     <!-- Footer Ends -->

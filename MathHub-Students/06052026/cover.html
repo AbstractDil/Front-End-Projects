@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten Math Notes - Profit & Loss</title>
+    <!-- MathJax Configuration -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+   
+    <style>
+        /* Front Cover Specific Styles */
+.cover-page {
+    width: 210mm;
+    height: 297mm;
+    margin: 30px auto;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20mm;
+    border: 15px solid #002366; /* Deep Royal Blue Border */
+    overflow: hidden;
+}
+
+.cover-inner-border {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid #008080; /* Bright Teal Inner Line */
+    pointer-events: none;
+}
+
+.brand-header {
+    text-align: center;
+    z-index: 2;
+}
+
+.brand-name {
+    font-size: 3.5rem;
+    color: #002366;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 2px;
+    font-weight: 900;
+}
+
+.brand-tagline {
+    font-size: 1.2rem;
+    color: #008080;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.main-title-box {
+    text-align: center;
+    z-index: 2;
+}
+
+.subject-label {
+    font-size: 1.8rem;
+    color: #ffbf00; /* Warm Amber */
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.topic-title {
+    font-size: 5rem;
+    color: #1a1a1a;
+    border-bottom: 8px solid #ffbf00;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.note-type {
+    font-size: 1.5rem;
+    background: #002366;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+.author-footer {
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+}
+
+.author-name {
+    font-size: 1.6rem;
+    color: #002366;
+    font-weight: bold;
+}
+
+.session-info {
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Background Math Decorations */
+.math-decor {
+    position: absolute;
+    font-size: 5rem;
+    color: rgba(0, 35, 102, 0.03);
+    font-weight: bold;
+    z-index: 1;
+    user-select: none;
+}
+    </style>
+</head>
+<body class="handwritten">
+
+  <div class="cover-page" id="front-cover">
+        <div class="cover-inner-border"></div>
+
+        <div class="math-decor" style="top: 10%; left: 5%; transform: rotate(15deg);">+</div>
+        <div class="math-decor" style="top: 20%; right: 10%; transform: rotate(-10deg);">
+            π
+        </div>
+        <div class="math-decor" style="bottom: 15%; left: 10%; transform: rotate(-20deg);">√</div>
+        <div class="math-decor" style="bottom: 25%; right: 5%; transform: rotate(25deg);">∞</div>
+        <div class="math-decor" style="top: 50%; left: 50%; font-size: 15rem; opacity: 0.02;">%</div>
+
+        <div class="brand-header">
+            <h1 class="brand-name">MathHub Students</h1>
+            <div class="brand-tagline">students.nandysagar.in</div>
+        </div>
+
+        <div class="main-title-box">
+            <div class="subject-label">MATHEMATICS</div>
+            <div class="topic-title">লাভ ও ক্ষতি</div>
+            <div class="note-type">Handwritten Comprehensive Notes</div>
+        </div>
+
+        <div style="width: 150px; height: 150px; z-index: 2;">
+            <img src="logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 50%;">
+        </div>
+
+        <div class="author-footer">
+            <div style="border-top: 2px solid #eee; width: 60%; margin: 0 auto 20px;"></div>
+            <div class="author-name">Sagar Nandy</div>
+            <div class="session-info">Academic Session: 2026</div>
+        </div>
+    </div>
+
+</body>
+</html>

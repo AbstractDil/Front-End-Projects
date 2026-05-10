@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten Math Notes - Page Numbered</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          }
+        };
+    </script>
+
+    <style>
+        /* General Page Setup */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            /* Using a common handwritten-style font stack */
+            font-family: 'Segoe Print', 'Comic Sans MS', cursive, sans-serif;
+            line-height: 1.8;
+            color: #1a1a1a;
+        }
+
+        :root {
+            --paper-white: #ffffff;
+            --margin-red: #ff6b6b;
+            --line-blue: #dae8ff;
+            --ink-black: #202124;
+            --ink-blue: #004aad;
+            --ink-red: #d32f2f;
+            --ink-green: #2e7d32;
+            --highlight: #fff9c4;
+        }
+
+        /* A4 Page Container */
+        .a4-page {
+            width: 210mm;
+            height: 297mm; /* Fixed height for consistent print */
+            margin: 30px auto;
+            background-color: var(--paper-white);
+            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+            position: relative;
+            box-sizing: border-box;
+            padding: 20mm 15mm 25mm 35mm; /* Bottom padding for footer */
+            overflow: hidden;
+            background-image: linear-gradient(var(--line-blue) 1px, transparent 1px);
+            background-size: 100% 32px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Vertical Red Margin */
+        .a4-page::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 30mm;
+            width: 2px;
+            height: 100%;
+            background-color: var(--margin-red);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+        }
+
+        /* Handwritten UI Elements */
+        h1.question {
+            color: var(--ink-blue);
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            border: 2px solid var(--ink-blue);
+            padding: 12px;
+            border-radius: 12px 5px 15px 8px; /* Irregular for hand-drawn look */
+            background-color: rgba(0, 74, 173, 0.03);
+        }
+
+        h2.section-title {
+            color: var(--ink-red);
+            font-size: 1.1rem;
+            text-decoration: underline wavy;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .math-row {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .therefore {
+            color: var(--ink-red);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .highlighter {
+            background-color: var(--highlight);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px dashed #ffd600;
+        }
+
+        /* Boxed Footer Page Numbering */
+        .page-footer {
+            position: absolute;
+            bottom: 15mm;
+            right: 15mm;
+            z-index: 3;
+        }
+
+        .page-box {
+            border: 2px solid var(--ink-black);
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            background: #fff;
+            transform: rotate(-1deg); /* Slight tilt for organic feel */
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        .page-label {
+            font-size: 0.85rem;
+            color: var(--ink-green);
+            margin-right: 5px;
+        }
+
+        /* Side Note Styling */
+        .note {
+            color: var(--ink-green);
+            font-size: 0.9rem;
+            font-style: italic;
+            border-left: 3px solid var(--ink-green);
+            padding-left: 10px;
+            margin: 10px 0;
+        }
+
+        /* Print Settings */
+        @media print {
+            body { background: none; }
+            .a4-page { margin: 0; box-shadow: none; page-break-after: always; }
+            .page-box { border-color: black !important; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="a4-page" id="page-01">
+        <div class="content">
+            <h1 class="question">
+                9. নিয়ামতচাচা প্রতিটি $5$ টাকা দরে $150$ টি ডিম কিনেছেন। কিন্তু দোকানে এনে দেখলেন $8$ টি ডিম ফেটে গেছে এবং $7$ টি ডিম পচা। প্রতিটি ডিম $6$ টাকা দরে বিক্রি করলে, নিয়ামতচাচার শতকরা কত লাভ বা ক্ষতি হবে হিসাব করে লিখি।
+            </h1>
+
+            <h2 class="section-title">সমাধানঃ</h2>
+            <div class="math-row">নিয়ামতচাচা প্রতিটি $5$ টাকা দরে $150$ টি ডিম কিনেছেন।</div>
+            <div class="math-row"><span class="therefore">∴</span> $150$ টি ডিমের ক্রয়মূল্য $(150 \times 5)$ টাকা $= 750$ টাকা</div>
+            
+            <div class="math-row"> $150$ টি ডিমের মধ্যে $8$ টি ডিম ফেটে গেছে এবং $7$ টি ডিম পচা।</div>
+            <div class="math-row"><span class="therefore">∴</span> এখন ডিমের সংখ্যা $= \{150-(8+7)\}$ টি $= 135$ টি।</div>
+            
+            <div class="math-row">$135$ টি ডিম প্রতিটি $6$ টাকা দরে বিক্রয় করলে,</div>
+            <div class="math-row">$135$ টি ডিমের বিক্রয়মূল্য $= (135 \times 6)$ টাকা $= 810$ টাকা</div>
+            
+            <div class="math-row"><span class="therefore">∴</span> লাভ = বিক্রয়মূল্য – ক্রয়মূল্য $= (810 – 750)$ টাকা $= 60$ টাকা।</div>
+            
+            <div class="math-row"><span class="therefore">∴</span> শতকরা লাভ</div>
+            <div class="math-row">$= \left( \frac{\text{লাভ}}{\text{ক্রয়মূল্য}} \times 100 \right)$ টাকা</div>
+            <div class="math-row">$= \left( \frac{60}{750} \times 100 \right)$ টাকা</div>
+            <div class="math-row">$= 8$ টাকা</div>
+            
+            <div class="math-row highlighter">
+                <span class="therefore">∴</span> নিয়ামতচাচার শতকরা লাভ হবে $8$ টাকা।
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">পৃষ্ঠা নং:</span> 01
+            </div>
+        </div>
+    </div>
+
+    <div class="a4-page" id="page-02">
+        <div class="content">
+            <h1 class="question">
+                10. আসিফচাচা একটি খেলনা $5\%$ লাভে বিক্রি করলে। যদি খেলনাটির ক্রয়মূল্য $20\%$ কম এবং বিক্রয়মূল্য $34$ টাকা কম হতো, তাহলে আসিফচাচার $10\%$ লাভ হতো। খেলনাটির ক্রয়মূল্য কত হিসাব করি।
+            </h1>
+
+            <h2 class="section-title">সমাধানঃ</h2>
+            <div class="math-row">মনে করি, খেলনাটির ক্রয়মূল্য $x$ টাকা</div>
+            
+            <div class="note">ধাপ ১: ৫% লাভে বিক্রয়মূল্য নির্ণয়</div>
+            <div class="math-row">$= \left( x + x \text{-এর } \frac{5}{100} \right)$ টাকা</div>
+            <div class="math-row">$= \left( x + \frac{x}{20} \right)$ টাকা</div>
+            <div class="math-row">$= \left( \frac{20x+x}{20} \right)$ টাকা</div>
+            <div class="math-row">$= \frac{21x}{20}$ টাকা</div>
+
+            <div class="note">ধাপ ২: শর্তসাপেক্ষ নতুন ক্রয়মূল্য</div>
+            <div class="math-row">খেলনাটির ক্রয়মূল্য $20\%$ কম হলে, ক্রয়মূল্য হয়</div>
+            <div class="math-row">$= \left( x - x \text{-এর } \frac{20}{100} \right)$ টাকা</div>
+            <div class="math-row">$= \left( x - \frac{x}{5} \right)$ টাকা $= \frac{4x}{5}$ টাকা</div>
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">পৃষ্ঠা নং:</span> 02
+            </div>
+        </div>
+    </div>
+
+    <div class="a4-page" id="page-03">
+        <div class="content">
+            <div class="note">ধাপ ৩: নতুন বিক্রয়মূল্য ও লাভ</div>
+            <div class="math-row">বিক্রয়মূল্য $34$ টাকা কম হলে বিক্রয়মূল্য হয় $= \left( \frac{21x}{20} - 34 \right)$ টাকা</div>
+            <div class="math-row">এক্ষেত্রে লাভ $= \left( \frac{21x}{20} - 34 - \frac{4x}{5} \right)$ টাকা</div>
+            <div class="math-row">$= \left( \frac{21x-16x}{20} - 34 \right)$ টাকা $= \left( \frac{x}{4} - 34 \right)$ টাকা</div>
+
+            <h2 class="section-title">শর্তানুসারে সমীকরণঃ</h2>
+            <div class="math-row">
+                $$\frac{\frac{x}{4} - 34}{\frac{4x}{5}} \times 100 = 10$$
+            </div>
+            
+            <div class="math-row">বা, $\frac{x-136}{4} \times \frac{5}{4x} = \frac{10}{100}$</div>
+            <div class="math-row">বা, $\frac{5x-680}{16x} = \frac{1}{10}$</div>
+            <div class="math-row">বা, $50x - 6800 = 16x$</div>
+            <div class="math-row">বা, $34x = 6800$</div>
+            <div class="math-row">বা, $x = \frac{6800}{34} = 200$</div>
+            
+            <div class="math-row highlighter" style="border: 2px solid var(--ink-red); margin-top: 15px;">
+                <span class="therefore">∴</span> খেলনাটির ক্রয়মূল্য $200$ টাকা।
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div class="page-box">
+                <span class="page-label">পৃষ্ঠা নং:</span> 03
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
