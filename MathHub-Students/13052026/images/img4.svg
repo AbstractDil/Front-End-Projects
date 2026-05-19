@@ -1,0 +1,7 @@
+<svg width="140" height="120" viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg">
+  <path d="M30 10 L30 100 L120 100 Z" fill="none" stroke="#2e7d32" stroke-width="2"/>
+  <rect x="30" y="90" width="10" height="10" fill="none" stroke="#2e7d32" stroke-width="1"/>
+  <text x="15" y="55" font-size="12" fill="#2e7d32">a</text>
+  <text x="75" y="115" font-size="12" fill="#2e7d32" text-anchor="middle">b</text>
+  <text x="80" y="50" font-size="12" fill="#0d6efd">c</text>
+</svg>

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formula</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+Bengali:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rancho&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <!-- MathJax for rendering LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']], // Enables both $ and \(
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    chtml: {
+      displayAlign: 'left',
+      matchFontHeight: true
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom styling to ensure formulas look balanced and clean */
+        .math-formula {
+            font-size:14px;
+            
+        }
+        .formula-index {
+            width: 30px;
+            font-weight: 700;
+        }
+        /* Remove bottom border from the last item in a card */
+        .formula-row:last-child {
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Style for the new diagram containers */
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .diagram-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 180px; /* Limit image height */
+        }
+
+    </style>
+  </head>
+  <body>
+    
+    <div class="heading px-3 mb-3">
+        <h4 class="text-center mt-3 border border-3 border-dark bg-dark text-light py-2 text-uppercase">Formulas and Identities</h4>
+    </div>
+
+    <div class="container-fluid pb-3">
+        <div class="row g-3 mb-2"> <!-- Added g-3 for better spacing between columns on mobile -->
+            
+            <!-- Square Formulae Column -->
+            <div class="col-md-6">
+                <div class="card border-dark h-100 rounded-0"> <!-- h-100 to make cards equal height -->
+                    <div class="card-header bg-dark text-light rounded-0 fw-bold">
+                       Algebraic Square Formulae
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">1.</div>
+                            <div class="math-formula">\( a^2 - b^2 = (a + b)(a - b) \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">2.</div>
+                            <div class="math-formula">\( (a + b)^2 = a^2 + b^2 + 2ab \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">3.</div>
+                            <div class="math-formula">\( (a - b)^2 = a^2 + b^2 - 2ab \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">4.</div>
+                            <div class="math-formula">\( ab = \frac{(a + b)^2 - (a^2 + b^2)}{2} \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">5.</div>
+                            <div class="math-formula">\( 2(a^2 + b^2) = (a + b)^2 + (a - b)^2 \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">6.</div>
+                            <div class="math-formula">\( 4ab = (a + b)^2 - (a - b)^2 \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">7.</div>
+                            <div class="math-formula">\( (a + b)^2 = (a - b)^2 + 4ab \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">8.</div>
+                            <div class="math-formula">\( (a - b)^2 = (a + b)^2 - 4ab \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">9.</div>
+                            <div class="math-formula">\( a^2 + b^2 = (a + b)^2 - 2ab = (a - b)^2 + 2ab \)</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cube Formulae Column -->
+            <div class="col-md-6">
+                 <div class="card border-dark h-100 rounded-0"> <!-- h-100 to make cards equal height -->
+                    <div class="card-header bg-dark text-light rounded-0 fw-bold">
+                       Algebraic Cube Formulae
+                    </div>
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">1.</div>
+                            <div class="math-formula">\( (a + b)^3 = a^3 + b^3 + 3a^2b + 3ab^2 \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">2.</div>
+                            <div class="math-formula">\( (a + b)^3 = a^3 + b^3 + 3ab(a + b) \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">3.</div>
+                            <div class="math-formula">\( a^3 + b^3 = (a + b)^3 - 3ab(a + b) \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">4.</div>
+                            <div class="math-formula">\( a^3 + b^3 = (a + b)[(a + b)^2 - 3ab] \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">5.</div>
+                            <div class="math-formula">\( a^3 + b^3 = (a + b)(a^2 + b^2 - ab) \)</div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">8.</div>
+                            <div class="math-formula">\( (a - b)^3 = a^3 - b^3 - 3a^2b + 3ab^2 \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">9.</div>
+                            <div class="math-formula">\( (a - b)^3 = a^3 - b^3 - 3ab(a - b) \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">10.</div>
+                            <div class="math-formula">\( a^3 - b^3 = (a - b)^3 + 3ab(a - b) \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">11.</div>
+                            <div class="math-formula">\( a^3 - b^3 = (a - b)(a^2 + b^2 + ab) \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">12.</div>
+                            <div class="math-formula">\( a^3 - b^3 = (a - b)[(a - b)^2 + 3ab] \)</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+         <!-- Second Row: Mensuration Formulae (New) -->
+        <div class="row g-3">
+            
+            <!-- Rectangle Formulae Column (New) -->
+            <div class="col-md-6">
+                <div class="card border-dark h-100 rounded-0">
+                    <div class="card-header bg-dark text-light rounded-0 fw-bold">
+                        Rectangle Formulae
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">1.</div>
+                            <div class="math-formula">Area: \( A = l \times w \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">2.</div>
+                            <div class="math-formula">Perimeter: \( P = 2(l + w) \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">3.</div>
+                            <div class="math-formula">
+                                Diagonal: \( d = \sqrt{l^2 + w^2} \)
+                            </div>
+                        </div>
+                        
+                        <div class="diagram-container">
+                            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230713164036/Rectangle.png" alt="Rectangle Diagram" class="diagram-img">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Square Formulae Column (New) -->
+            <div class="col-md-6">
+                 <div class="card border-dark h-100 rounded-0">
+                    <div class="card-header bg-dark text-light rounded-0 fw-bold">
+                        Square Formulae
+                    </div>
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">1.</div>
+                            <div class="math-formula">Area: \( A = a^2 \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">2.</div>
+                            <div class="math-formula">Perimeter: \( P = 4a \)</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 pb-2 border-bottom formula-row">
+                            <div class="formula-index">3.</div>
+                            <div class="math-formula">Diagonal: \( d = a\sqrt{2} \)</div>
+                        </div>
+                        
+                        <div class="diagram-container">
+                            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20200724173112/squarjpeg.jpg" alt="Square Diagram" class="diagram-img">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    
+  </body>
+</html>

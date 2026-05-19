@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formula - Algebraic Identities and Mensuration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+Bengali:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rancho&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <!-- MathJax for rendering LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+     <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']], // Enables both $ and \(
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    chtml: {
+      displayAlign: 'left',
+      matchFontHeight: true
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom styling to ensure formulas look balanced and clean */
+        .math-formula {
+            font-size:14px;
+            
+        }
+        .formula-index {
+            width: 30px;
+            font-weight: 700;
+        }
+        /* Remove bottom border from the last item in a card */
+        .formula-row:last-child {
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Style for the new diagram containers */
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .diagram-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 180px; /* Limit image height */
+        }
+
+        .diagram-box {
+            background: #fdfdfd;
+            border: 1px dashed #ced4da;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            border-radius: 8px;
+        }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container-fluid pb-3">
+       <div class="row g-3 mt-1">
+    
+    <!-- Equilateral Triangle -->
+    <div class="col-md-6">
+        <div class="card border-dark h-100">
+            <div class="card-header bg-dark text-light rounded-0 fw-bold">Equilateral Triangle</div>
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">1.</div>
+                    <div class="math-formula">Height: $h = \frac{\sqrt{3}}{2} a$</div>
+                </div>
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">2.</div>
+                    <div class="math-formula">Area: $A = \frac{\sqrt{3}}{4} a^2$</div>
+                </div>
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">3.</div>
+                    <div class="math-formula">Perimeter: $P = 3a$</div>
+                </div>
+                <div class="diagram-box mt-3">
+                    <img src="images/img3.svg" alt="Equilateral Triangle" style="max-height: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Angle Triangle -->
+    <div class="col-md-6">
+        <div class="card border-dark h-100">
+            <div class="card-header bg-dark text-light rounded-0 fw-bold">Right Angle Triangle</div>
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">1.</div>
+                    <div class="math-formula">Area: $A = \frac{1}{2} \times b \times h$</div>
+                </div>
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">2.</div>
+                    <div class="math-formula">Perimeter: $P = a + b + c$</div>
+                </div>
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">3.</div>
+                    <div class="math-formula">Hypotenuse: $c = \sqrt{a^2 + b^2}$</div>
+                </div>
+                <div class="diagram-box mt-3">
+                    <img src="images/img4.svg" alt="Right Triangle" style="max-height: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Isosceles Triangle -->
+    <div class="col-md-6">
+        <div class="card border-dark h-100">
+            <div class="card-header bg-dark text-light rounded-0 fw-bold">Isosceles Triangle</div>
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">1.</div>
+                    <div class="math-formula">Height: $h = \sqrt{a^2 - \frac{b^2}{4}}$</div>
+                </div>
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">2.</div>
+                    <div class="math-formula">Area: $A = \frac{b}{4} \sqrt{4a^2 - b^2}$</div>
+                </div>
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">3.</div>
+                    <div class="math-formula">Perimeter: $P = 2a + b$</div>
+                </div>
+                <div class="diagram-box mt-3">
+                    <img src="images/img5.svg" alt="Isosceles Triangle" style="max-height: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Heron's Formula Card -->
+    <div class="col-md-6">
+        <div class="card border-dark h-100">
+            <div class="card-header bg-dark text-light rounded-0 fw-bold">General Triangle (Heron's Formula)</div>
+            <div class="card-body">
+                <p class="small text-muted mb-2">Used when all three sides ($a, b, c$) are known.</p>
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">1.</div>
+                    <div class="math-formula">Semi-perimeter: $s = \frac{a+b+c}{2}$</div>
+                </div>
+                <div class="d-flex align-items-center mb-2 pb-2 formula-row border-bottom">
+                    <div class="formula-index">2.</div>
+                    <div class="math-formula">Area: $A = \sqrt{s(s-a)(s-b)(s-c)}$</div>
+                </div>
+                <div class="diagram-box mt-3" style="border-style: solid; border-color: #e9ecef; background: #fff;">
+                    <svg width="140" height="100" viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M50 15 L20 85 L120 85 Z" fill="none" stroke="#2e7d32" stroke-width="2"/>
+                      <text x="30" y="45" font-size="12" fill="#2e7d32">a</text>
+                      <text x="90" y="45" font-size="12" fill="#2e7d32">b</text>
+                      <text x="70" y="98" font-size="12" fill="#2e7d32" text-anchor="middle">c</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row g-3 mt-1">
+    <div class="col-md-12">
+        <div class="card border-dark h-100">
+            <div class="card-header bg-dark text-light rounded-0 fw-bold">
+                Circle Formulas
+            </div>
+            <div class="card-body text-center">
+                <img src="images/img6.png" class="img-thumbnail border-0" alt="Circle Diagram" style="max-width:60%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    </div>
+    
+  </body>
+</html>

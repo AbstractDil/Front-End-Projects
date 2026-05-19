@@ -1,0 +1,19 @@
+{
+        "examination_type":"live_proctored",
+        "examination_id": "TCS2026NTPC001",
+        "examination_name": "RRB NTPC Graduate Level Examination, Tier-1, 2026",
+        "subjects": "Mathematics, General Intelligence and Reasoning, General Awareness, English Language",
+        "duration": "120 minutes",
+        "login_active_time": "10 minutes",
+        "examination_start_time": "2026-05-20T10:00:00",
+        "examination_end_time": "2026-05-20T12:00:00",
+        "total_marks": 100,
+        "passing_marks": 40,
+        "instructions": [
+            "Read all questions carefully.",
+            "Do not use any external resources.",
+            "Ensure a stable internet connection.",
+            "Submit the exam within the allotted time."
+        ]
+    
+}

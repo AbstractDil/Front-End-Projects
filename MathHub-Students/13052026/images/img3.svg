@@ -1,0 +1,8 @@
+<svg width="140" height="120" viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70 10 L10 110 L130 110 Z" fill="none" stroke="#2e7d32" stroke-width="2"/>
+  <line x1="70" y1="10" x2="70" y2="110" stroke="#d32f2f" stroke-width="1" stroke-dasharray="4"/>
+  <text x="35" y="55" font-size="12" fill="#2e7d32">a</text>
+  <text x="105" y="55" font-size="12" fill="#2e7d32">a</text>
+  <text x="70" y="118" font-size="12" fill="#2e7d32" text-anchor="middle">a</text>
+  <text x="75" y="65" font-size="12" fill="#d32f2f">h</text>
+</svg>
