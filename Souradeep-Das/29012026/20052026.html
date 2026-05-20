@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class XII Mathematics Assessment - Matrices</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+ 
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+    body {
+      font-family: "Roboto Condensed", sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 12px;
+    }
+
+    .wish-container {
+      margin-top:10px;
+      padding:10px;
+      text-align: center;
+      border: 2px dashed #2c3e50;
+      border-radius: 10px;
+      background-color: #fdfdfd;
+    }
+
+    .wish-message {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c3e50;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .sub-wish {
+      font-size: 13px;
+      color: #7f8c8d;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      outline: 2px solid #000;
+      outline-offset: -10px;
+    }
+
+    .page::before {
+      content: "SOURADEEP DAS";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 80px;
+      font-weight: 900;
+      color: rgba(0, 0, 0, 0.04);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .exam-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+
+    .exam-header h1 {
+      margin: 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .section-instruction {
+      font-weight: bold;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .question-block {
+      margin-bottom:18px;
+      line-height: 1.5;
+    }
+
+    .sub-question {
+      margin-left: 10px;
+      margin-bottom:10px;
+    }
+
+    .options-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+      margin-left: 15px;
+    }
+
+    .options-row-inline {
+      display: flex;
+      justify-content: flex-start;
+      gap: 40px;
+      margin-top: 8px;
+      margin-left: 15px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
+    @media print {
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; border: none; }
+      .print-btn { display: none; }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download/Print PDF</button>
+
+  <div class="page">
+    <div class="exam-header">
+      <h1>4TH Internal Assessment - 2026</h1>
+      <h3 style="padding: 0;margin-top:4px;"> Topic: Matrices &nbsp; Class- XII &nbsp; &nbsp; Session: 2026-27</h3>
+      <div class="header-meta">
+        <span>Sub.- Mathematics</span>
+        <span>Time- 40 Minutes</span>
+        <span>F.M.- 20</span>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>নীচের প্রশ্নগুলির সঠিক উত্তরটি নির্বাচন করো :</span>
+      </div>
+
+      <div class="sub-question">
+        1. $A$ একটি বর্গ ম্যাট্রিক্স, তাহলে $(AA^T + A^TA)$ ম্যাট্রিক্সটি হবে —
+        <div class="options-row-inline">
+          <span>a. একক ম্যাট্রিক্স</span>
+          <span>b. শূন্য ম্যাট্রিক্স</span>
+          <span>c. প্রতিসম ম্যাট্রিক্স</span>
+          <span>d. বিপ্রতিসম ম্যাট্রিক্স</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        2. যদি $f(\theta) = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix}$ হয়, তবে $f(\alpha)f(\beta)$ হবে —
+        <div class="options-row-inline">
+          <span>a. $f(\alpha - \beta)$</span>
+          <span>b. $f(\alpha) + f(\beta)$</span>
+          <span>c. $f(\alpha + \beta)$</span>
+          <span>d. $0$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        3. $A$ এবং $B$ দুটি $n \times n$ ক্রমের বর্গ ম্যাট্রিক্স এবং $A^2 - B^2 = (A+B)(A-B)$, তবে নীচের সম্পর্কগুলির মধ্যে সঠিক সম্পর্কটি হল —
+        <div class="options-row">
+          <span>a. $AB = BA$</span>
+          <span>b. $A$ বা $B$ যেকোনো একটি শূন্য ম্যাট্রিক্স</span>
+          <span>c. $A = B$</span>
+          <span>d. $A$ বা $B$ যেকোনো একটি একক ম্যাট্রিক্স</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        4. $\begin{bmatrix} b+c & c+a \\ 7-d & 6-c \end{bmatrix} = \begin{bmatrix} 9-d & 8-d \\ a+b & a+b \end{bmatrix}$ হলে, $a, b, c, d$-এর মান নির্ণয় কর।
+        <div class="options-row">
+          <span>A. $a=1, b=2, c=3, d=4$</span>
+          <span>B. $a=2, b=-1, c=-3, d=2$</span>
+          <span>C. $a=-1, b=2, c=3, d=-4$</span>
+          <span>D. $a=3, b=2, c=1, d=4$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        5. $\begin{bmatrix} x & y & z \end{bmatrix} \begin{bmatrix} a & h & g \\ h & b & f \\ g & f & c \end{bmatrix} \begin{bmatrix} x \\ y \\ z \end{bmatrix}$-এর মান হবে —
+        <div class="options-row" style="grid-template-columns: 1fr;">
+          <span>a. $\begin{bmatrix} ax^2 + by^2 + cz^2 + 2hxy + 2fyz + 2gzx \end{bmatrix}$</span>
+          <span>b. $\begin{bmatrix} ax^2 + by^2 + cz^2 - 2hxy + 2fyz + 2gzx \end{bmatrix}$</span>
+          <span>c. $\begin{bmatrix} ax^2 + by^2 + cz^2 \\ 2hxy + 2fyz + 2gzx \end{bmatrix}$</span>
+          <span>d. $\begin{bmatrix} ax^2 & 0 & 2fyz \\ 2hxy & by^2 & 0 \\ 0 & 2gzx & cz^2 \end{bmatrix}$</span>
+        </div>
+      </div>
+
+       <div class="sub-question">
+        6. $A = \text{diag}\{2, -1, 3\}$, $B = \text{diag}\{-1, 3, 2\}$ হয়, তবে $A^2B$ হবে —
+        <div class="options-row-inline">
+          <span>a. $\text{diag}\{5, 4, 11\}$</span>
+          <span>b. $\text{diag}\{-4, 3, 18\}$</span>
+          <span>c. $\text{diag}\{3, 1, 8\}$</span>
+          <span>d. NOTA (None Of The Above)</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        7. $A = [a_{ij}]_{m \times n}$ একটি বর্গ ম্যাট্রিক্স, যেখানে $a_{ij} = i^2 - j^2$, তবে $A$ ম্যাট্রিক্সটি হবে —
+        <div class="options-row-inline">
+          <span>a. শূন্য ম্যাট্রিক্স</span>
+          <span>b. একক ম্যাট্রিক্স</span>
+          <span>c. প্রতিসম ম্যাট্রিক্স</span>
+          <span>d. বিপ্রতিসম ম্যাট্রিক্স</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        8. $A = \begin{bmatrix} 4 & 5 \\ 5 & 6 \end{bmatrix}$ হলে, $A^2 = $
+        <div class="options-row-inline">
+          <span>a. $10A - 2I$</span>
+          <span>b. $7A + 2I$</span>
+          <span>c. $4A + 5I$</span>
+          <span>d. $10A + I$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        9. যদি $A$ একটি বিপ্রতিসম ম্যাট্রিক্স হয়, তাহলে $A^n = ?$
+        <div class="options-row-inline" style="grid-template-columns: 1fr;">
+          <span>A. প্রতিসম হবে যদি $n$ যুগ্ম হয়,</span>
+          <span>B. প্রতিসম হবে যদি $n$ অযুগ্ম হয়,</span>
+          <span>C. বিপ্রতিসম হবে যদি $n$ যুগ্ম হয়,</span>
+          <span>D. NOTA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      Page - 1
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="question-block">
+
+      <div class="sub-question">
+        10. কোনো বর্গ ম্যাট্রিক্সের ক্ষেত্রে নীচের কোন্ বক্তব্যটি সত্য —
+        <div class="options-row" style="grid-template-columns: 1fr;">
+          <span>a. $AA^T$, $A^TA$ প্রতিসম ম্যাট্রিক্স, যখন $A$ প্রতিসম ম্যাট্রিক্স</span>
+          <span>b. $A$ বর্গ ম্যাট্রিক্স হলে, $(A + A^T)$ প্রতিসম ম্যাট্রিক্স</span>
+          <span>c. $A$ বর্গ ম্যাট্রিক্স হলে, $(A - A^T)$ প্রতিসম ম্যাট্রিক্স</span>
+          <span>d. যেকোনো বর্গ ম্যাট্রিক্সকে একটি প্রতিসম ও বিপ্রতিসম ম্যাট্রিক্সের সমষ্টির আকারে প্রকাশ করা যায়।</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        11. $A = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}$ হলে, $A^5 = ?$
+        <div class="options-row-inline" style="grid-template-columns: 1fr 1fr; gap: 20px 10px;">
+          <span>a. $\begin{bmatrix} \cos 2^5\theta & -\sin 2^5\theta \\ \sin 2^5\theta & \cos 2^5\theta \end{bmatrix}$</span>
+          <span>b. $\begin{bmatrix} \cos 10\theta & -\sin 10\theta \\ \sin 10\theta & \cos 10\theta \end{bmatrix}$</span>
+          <span>c. $\begin{bmatrix} \cos 10\theta & +\sin 10\theta \\ -\sin 10\theta & +\cos 10\theta \end{bmatrix}$</span>
+          <span>d. NOTA</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        12. যদি $P = \begin{bmatrix} 1 & 0 \\ \frac{1}{2} & 1 \end{bmatrix}$ হয়, তবে $P^{50} = ?$
+        <div class="options-row-inline">
+          <span>a. $\begin{bmatrix} 1 & 0 \\ 25 & 1 \end{bmatrix}$</span>
+          <span>b. $\begin{bmatrix} 1 & 25 \\ 0 & 1 \end{bmatrix}$</span>
+          <span>c. $\begin{bmatrix} 1 & 50 \\ 0 & 1 \end{bmatrix}$</span>
+          <span>d. $\begin{bmatrix} 1 & 0 \\ 50 & 1 \end{bmatrix}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        13. যদি $A = [a_{ij}]_{m \times n}$, $B = [b_{ij}]_{p \times q}$ এবং $AB = BA$ হয়, তবে সঠিক উক্তিটি হবে —
+        <div class="options-row-inline" style="gap: 35px;">
+          <span>a. $m = n = p = q$</span>
+          <span>b. $n = p$</span>
+          <span>c. $n = p, m = q$</span>
+          <span>d. $m = q$</span>
+        </div>
+      </div>
+
+     <div class="sub-question">
+        14. $A = \begin{bmatrix} 2 & 3 \\ 5 & -2 \end{bmatrix}$ এরূপ একটি ম্যাট্রিক্স যে $A^{-1} = \lambda A$, তবে $\lambda$-এর মান —
+        <div class="options-row-inline">
+          <span>A. $0$</span>
+          <span>B. $1/15$</span>
+          <span>C. $1/19$</span>
+          <span>D. $1/7$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        15. $A$ একটি বর্গ ম্যাট্রিক্স এবং $A^2 = A$ হলে, $7A - (I + A)^3 = ?$
+        <div class="options-row-inline">
+          <span>A. $I$</span>
+          <span>B. $-I$</span>
+          <span>C. $2I$</span>
+          <span>D. $3I$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        16. দুটি বর্গ ম্যাট্রিক্স $A$ ও $B$ এমন যে, $AB = B$ এবং $BA = A$; তবে $A^2 + B^2 = ?$
+        <div class="options-row-inline">
+          <span>A. $AB$</span>
+          <span>B. $2AB$</span>
+          <span>C. $A + B$</span>
+          <span>D. $2I$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        17. $A = \begin{bmatrix} \sin\alpha & \cos\alpha \\ -\cos\alpha & \sin\alpha \end{bmatrix}$ হয়, তবে $A^T A = ?$
+        <div class="options-row-inline">
+          <span>A. $2I$</span>
+          <span>B. $3I$</span>
+          <span>C. $4I$</span>
+          <span>D. $I$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        18. যদি $\begin{bmatrix} k & l & 3 \\ 2 & t & -1 \\ x & 1 & 0 \end{bmatrix}$ ম্যাট্রিক্সটি একটি বিপ্রতিসম ম্যাট্রিক্স হয়, তবে $\begin{bmatrix} l & t \\ x & k \end{bmatrix} = ?$
+        <div class="options-row-inline" style="grid-template-columns: 1fr 1fr; gap: 15px 10px;">
+          <span>A. $\begin{bmatrix} -2 & 0 \\ -3 & 0 \end{bmatrix}$</span>
+          <span>B. $\begin{bmatrix} -2 & -3 \\ 0 & 0 \end{bmatrix}$</span>
+          <span>C. $\begin{bmatrix} -2 & 0 \\ 0 & -3 \end{bmatrix}$</span>
+          <span>D. $\begin{bmatrix} 0 & 0 \\ -2 & -3 \end{bmatrix}$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        19. $A = \begin{bmatrix} 1 & 3 & y \\ x & z & -8 \\ -4 & w & 2 \end{bmatrix}$ একটি প্রতিসম ম্যাট্রিক্স হলে, $x + y - w = ?$
+        <div class="options-row-inline">
+          <span>A. $7$</span>
+          <span>B. $-4$</span>
+          <span>C. $-8$</span>
+          <span>D. $3$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        20. যদি $A = \begin{bmatrix} \alpha & 0 \\ 1 & 1 \end{bmatrix}$ এবং $B = \begin{bmatrix} 1 & 0 \\ 5 & 1 \end{bmatrix}$ এবং $A^2 = B$ হয়, তবে $\alpha = ?$
+        <div class="options-row" style="grid-template-columns: 1fr 1fr 1fr 1.5fr;">
+          <span>A. $5$</span>
+          <span>B. $-1$</span>
+          <span>C. $11$</span>
+          <span>D. $\alpha$-এর কোনো বাস্তব মান থাকবে না</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div class="wish-container" style="margin-top:30px;">
+      <p class="wish-message">🌟 BEST OF LUCK FOR YOUR EXAM! 🌟</p>
+      <p class="sub-wish">"Believe in yourself and all that you are."</p>
+    </div> -->
+    
+    <div class="footer">
+      Page - 2
+    </div>
+  </div>
+
+</body>
+</html>
