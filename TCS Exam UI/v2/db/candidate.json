@@ -1,8 +1,8 @@
 {
     "candidate_id": "202605191112",
     "candidate_name": "Sagar Nandy",
-    "candidate_photo": "",
-    "candidate_photo_path": "",
+    "candidate_photo": "userIcon.png",
+    "candidate_photo_path": "assets/images/",
     "candidate_live_photo": "",
     "candidate_live_photo_path": "",
     "password": "password123"
