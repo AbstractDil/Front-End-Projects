@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class XII Mathematics Assessment - Determinants</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+ 
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+    body {
+      font-family: "Roboto Condensed", sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 12px;
+    }
+
+    .wish-container {
+      margin-top: 40px;
+      padding: 15px;
+      text-align: center;
+      border: 2px dashed #2c3e50;
+      border-radius: 10px;
+      background-color: #fdfdfd;
+    }
+
+    .wish-message {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c3e50;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .sub-wish {
+      font-size: 13px;
+      color: #7f8c8d;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      outline: 2px solid #000;
+      outline-offset: -10px;
+    }
+
+    .page::before {
+      content: "SOURADEEP DAS";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 80px;
+      font-weight: 900;
+      color: rgba(0, 0, 0, 0.04);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .exam-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+
+    .exam-header h1 {
+      margin: 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .section-instruction {
+      font-weight: bold;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .question-block {
+      margin-bottom:18px;
+      line-height: 1.2;
+    }
+
+    .sub-question {
+      margin-left: 10px;
+      margin-bottom:15px;
+    }
+
+    .options-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+      margin-left: 15px;
+    }
+
+    .options-row-inline {
+      display: flex;
+      justify-content: flex-start;
+      gap: 50px;
+      margin-top: 8px;
+      margin-left: 15px;
+    }
+
+    /* ছোট প্রশ্নের ক্ষেত্রে প্রশ্ন এবং অপশন পাশাপাশি দেখানোর জন্য */
+.inline-question-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.inline-question-row .question-text {
+  flex: 0 0 auto;
+  font-weight: normal;
+}
+
+.inline-question-row .options-container-side {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex: 1;
+  margin-top:12px;
+}
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
+    @media print {
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; border: none; }
+      .print-btn { display: none; }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download/Print PDF</button>
+
+  <div class="page">
+    <div class="exam-header">
+      <h1>4TH Internal Assessment - 2026</h1>
+      <h3 style="padding: 0;margin-top:4px;"> Topic: Determinants &nbsp; Class- XII &nbsp; &nbsp; Session: 2026-27</h3>
+      <div class="header-meta">
+        <span>Sub.- Mathematics</span>
+        <span>Time- 40 Minutes</span>
+        <span>F.M.- 20</span>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="section-instruction">
+        <span>নীচের প্রশ্নগুলির সঠিক উত্তরটি নির্বাচন করো :</span>
+      </div>
+
+      <div class="inline-question-row" style="margin-left: 10px;">
+        <span class="question-text">1. $\Delta = \begin{vmatrix} 0 & g & h \\ -g & 0 & f \\ -h & -f & 0 \end{vmatrix} = ?$ </span>
+        <div class="options-container-side
+        ">
+          <span>a. $0$</span>
+          <span>b. $\Delta^2$</span>
+          <span>c. $2\Delta$</span>
+          <span>d. $\Delta^3$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        2. কোন্ বক্তব্যটি সঠিক নয় ?
+        <div class="options-row" style="grid-template-columns: 1fr;">
+          <span>a. $(AB)^{-1} = B^{-1}A^{-1}$</span>
+          <span>b. $A = [a_{ij}]_{n \times n}$ হলে, $\text{adj } A^T = (\text{adj } A)^T$</span>
+          <span>c. $\det(A^{-1}) = \det A \quad \langle \det A \neq 0 \rangle$</span>
+          <span>d. $|AB^T| = |A||B|$</span>
+        </div>
+      </div>
+
+      <div class="inline-question-row" style="margin-left: 10px;">
+        3. $A = \begin{bmatrix} 2 & \lambda & - 3 \\ 0 & 2 & 5 \\ 1 & 1 & 3 \end{bmatrix}$ , $A^{-1}$ exist করবে যদি —
+        <div class="options-container-side">
+          <span>a. $\lambda = 2$</span>
+          <span>b. $\lambda \neq 2$</span>
+          <span>c. $\lambda \neq -2$</span>
+          <span>d. NOTA</span>
+        </div>
+      </div>
+
+       <div class="inline-question-row" style="margin-left: 10px;">
+        <span class="question-text">
+            4.  $\begin{vmatrix} 1! & 2! & 3! \\ 2! & 3! & 4! \\ 3! & 4! & 5! \end{vmatrix} = ?$
+        </span>
+        <div class="options-container-side">
+          <span>a. $3!$</span>
+          <span>b. $4!$</span>
+          <span>c. $2!$</span>
+          <span>d. $5!$</span>
+        </div>
+      </div>
+
+      <div class="inline-question-row" style="margin-left: 10px;">
+        <span class="question-text">
+          5. $\begin{vmatrix} 1 & \omega & \omega^2 \\ \omega & \omega^2 & 1 \\ \omega^2 & 1 & \omega \end{vmatrix} = ?$
+        </span>
+        <div class="options-container-side">
+          <span>a. $0$</span>
+          <span>b. $\omega$</span>
+          <span>c. $\omega^2$</span>
+          <span>d. $1$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+        6. $\Delta = \begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix}$ হলে, এবং $A_1, B_1, C_1, \dots$ যথাক্রমে $a_1, b_1, c_1, \dots$-এর সহগুণনীয়ক (cofactors) হলে, $\Delta = ?$
+        <div class="options-row">
+          <span>A. $a_1A_1 + a_2A_2 + a_3A_3$</span>
+          <span>C. $a_1C_1 + a_2C_2 + a_3C_3$</span>
+          <span>B. $a_1B_1 + a_2B_2 + a_3B_3$</span>
+          <span>D. $a_1A_2 + a_2A_3 + a_3A_1$</span>
+        </div>
+      </div>
+
+      <div class="inline-question-row" style="margin-left: 10px;">
+        7. $\begin{vmatrix} 2x & 5 \\ 8 & x \end{vmatrix} = \begin{vmatrix} 6 & -2 \\ 7 & 3 \end{vmatrix}$ হলে, $x = ?$
+        <div class="options-container-side">
+          <span>A. $3$</span>
+          <span>B. $\pm 3$</span>
+          <span>C. $\pm 6$</span>
+          <span>D. $6$</span>
+        </div>
+      </div>
+
+      <div class="sub-question">
+  8. $(a_1, b_1)$, $(a_2, b_2)$ এবং $(a_1 + a_2, b_1 + b_2)$ বিন্দু তিনটি সমরেখ (collinear) হলে —
+  <div class="options-row-inline">
+    <span>a. $a_1b_2 = a_2b_1$</span>
+    <span>b. $a_1 + a_2 = b_1 + b_2$</span>
+    <span>c. $a_2b_2 = a_1b_1$</span>
+    <span>d. $a_1 + b_1 = a_2 + b_2$</span>
+  </div>
+</div>
+
+<div class="sub-question">
+  9. $P(4, 5)$, $Q(4, -2)$, $R(-6, 2)$ শীর্ষবিন্দু সম্পন্ন ত্রিভুজের ক্ষেত্রফল —
+  <div class="options-row-inline">
+    <span>a. $21\text{ sq unit}$</span>
+    <span>b. $35\text{ sq unit}$</span>
+    <span>c. $30\text{ sq unit}$</span>
+    <span>d. $40\text{ sq unit}$</span>
+  </div>
+</div>
+
+    </div>
+
+    <div class="footer">
+      Page - 1
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="question-block">
+
+     
+     <div class="sub-question">
+  10. $x + y + z = 6$, $x + 2y + 3z = 10$, $x + 2y + k_1z = k_2$ সমীকরণদ্বয়ের কোনো সমাধান না থাকলে, $k_1 + k_2$-এর মান হবে —
+  <div class="options-row-inline">
+    <span>A. $13$</span>
+    <span>B. $6$</span>
+    <span>C. $10$</span>
+    <span>D. $15$</span>
+  </div>
+</div>
+
+<div class="inline-question-row" style="margin-left: 10px;">
+  <span class="question-text">11. $A = \begin{bmatrix} \cos\alpha & -\sin\alpha \\ \sin\alpha & \cos\alpha \end{bmatrix}$ এবং $A(\text{adj } A) = \begin{bmatrix} \lambda & 0 \\ 0 & \lambda \end{bmatrix}$ হলে, $\lambda$-এর মান —</span>
+  <div class="options-container-side">
+    <span>A. $0$</span>
+    <span>B. $1$</span>
+    <span>C. $\sin\alpha\cos\alpha$</span>
+    <span>D. $\sin 2\alpha$</span>
+  </div>
+</div>
+
+<div class="inline-question-row" style="margin-left: 10px;">
+  <span class="question-text">12. $A = \begin{bmatrix} a & p & q \\ 0 & b & r \\ 0 & 0 & c \end{bmatrix}$ হলে, $|\text{adj } A| = ?$</span>
+  <div class="options-container-side">
+    <span>A. $abc$</span>
+    <span>B. $\frac{1}{abc}$</span>
+    <span>C. $a^3b^3c^3$</span>
+    <span>D. $a^2b^2c^2$</span>
+  </div>
+</div>
+
+<div class="sub-question">
+  13. $\begin{vmatrix} -a^2 & ab & ac \\ ab & -b^2 & bc \\ ac & bc & -c^2 \end{vmatrix} = K a^2b^2c^2$ হলে, $K = ?$
+  <div class="options-row-inline">
+    <span>A. $-4$</span>
+    <span>B. $2$</span>
+    <span>C. $4$</span>
+    <span>D. $8$</span>
+  </div>
+</div>
+
+<div class="sub-question">
+  14. $a, b, c \in \mathbb{R}$ এবং $a \neq b \neq c \neq 1$ হলে, $\begin{vmatrix} 1 & \log_a b & \log_a c \\ \log_b a & 1 & \log_b c \\ \log_c a & \log_c b & 1 \end{vmatrix} = ?$
+  <div class="options-row-inline">
+    <span>A. $0$</span>
+    <span>B. $1$</span>
+    <span>C. $\log_e abc$</span>
+    <span>D. $\log_e a \log_e b \log_e c$</span>
+  </div>
+</div>
+
+<div class="inline-question-row" style="margin-left: 10px;">
+  <span class="question-text">15. $A = \begin{bmatrix} 5 & 5\alpha & \alpha \\ 0 & \alpha & 5\alpha \\ 0 & 0 & 5 \end{bmatrix}$ এবং $|A^2| = 25$ হলে, $|A| = ?$</span>
+  <div class="options-container-side">
+    <span>A. $5^2$</span>
+    <span>B. $1$</span>
+    <span>C. $\frac{1}{5}$</span>
+    <span>D. $5$</span>
+  </div>
+</div>
+
+<div class="sub-question">
+  16. যদি $a\lambda^4 + b\lambda^3 + c\lambda^2 + d\lambda + e = \begin{vmatrix} \lambda^2 + 3\lambda & \lambda - 1 & \lambda - 3 \\ \lambda - 1 & -2\lambda & \lambda - 4 \\ \lambda - 3 & \lambda + 3 & 3\lambda \end{vmatrix}$ হয়, তবে $e = ?$
+  <div class="options-row-inline">
+    <span>A. $-3$</span>
+    <span>B. $3$</span>
+    <span>C. $-6$</span>
+    <span>D. $6$</span>
+  </div>
+</div>
+
+<div class="inline-question-row" style="margin-left: 10px;">
+  <span class="question-text">17. $\Delta = \begin{vmatrix} \cos 15^\circ & \sin 15^\circ \\ \sin 75^\circ & \cos 75^\circ \end{vmatrix}$ হলে, $\Delta = ?$</span>
+  <div class="options-container-side">
+    <span>a. $0$</span>
+    <span>b. $1$</span>
+    <span>c. $2$</span>
+    <span>d. $7$</span>
+  </div>
+</div>
+
+<div class="inline-question-row" style="margin-left: 10px;">
+  <span class="question-text">18. $\Delta = \begin{vmatrix} \log_3 512 & \log_4 3 \\ \log_3 8 & \log_4 9 \end{vmatrix}$ হলে, $\Delta = ?$</span>
+  <div class="options-container-side">
+    <span>a. $15/2$</span>
+    <span>b. $12$</span>
+    <span>c. $14/3$</span>
+    <span>d. $6$</span>
+  </div>
+</div>
+
+<div class="sub-question">
+  19. $\begin{vmatrix} a - b - c & 2a & 2a \\ 2b & b - c - a & 2b \\ 2c & 2c & c - a - b \end{vmatrix} = k(a + b + c)^3$ হলে, $k = ?$
+  <div class="options-row-inline">
+    <span>a. $0$</span>
+    <span>b. $1$</span>
+    <span>c. $2$</span>
+    <span>d. $3$</span>
+  </div>
+</div>
+
+<div class="sub-question">
+  20. যদি $abc \neq 0$ এবং $\begin{vmatrix} 1 + a & 1 & 1 \\ 1 & 1 + b & 1 \\ 1 & 1 & 1 + c \end{vmatrix} = 0$ হয়, তবে $\frac{1}{a} + \frac{1}{b} + \frac{1}{c} = ?$
+  <div class="options-row-inline">
+    <span>a. $1$</span>
+    <span>b. $2$</span>
+    <span>c. $-1$</span>
+    <span>d. $-3$</span>
+  </div>
+</div>
+
+
+
+
+      
+
+    </div>
+
+    <!-- <div class="wish-container" style="margin-top: 250px;">
+      <p class="wish-message">🌟 BEST OF LUCK FOR YOUR EXAM! 🌟</p>
+      <p class="sub-wish">"Believe in yourself and all that you are."</p>
+    </div> -->
+    
+    <div class="footer">
+      Page - 2
+    </div>
+  </div>
+
+</body>
+</html>
