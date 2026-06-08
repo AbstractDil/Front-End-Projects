@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Determinants & Special Matrices - Print-Optimized Notes</title>
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --border-thick: 2px solid #000000;
+      --border-thin: 1px solid #000000;
+      --border-dashed: 1px dashed #000000;
+      --grey-bg: #f9f9f9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f0f0; /* Screen preview backdrop */
+      color: var(--text-color);
+      line-height: 1.5;
+      padding: 20px 0;
+    }
+
+    /* Strict A4 Dimensions */
+    .a4-page {
+      background-color: var(--bg-color);
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto 30px auto;
+      padding: 20mm 15mm 20mm 15mm;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Premium Institute Header Style (Kept as requested) */
+    .institute-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-thick);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .institute-logo {
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+    }
+
+    .badge {
+      border: var(--border-thin);
+      padding: 2px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+
+    .meta-info {
+      font-size: 0.85rem;
+      text-align: right;
+    }
+
+    /* Typography styling */
+    h1.topic-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    h2.section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 15px 0 10px 0;
+      border-bottom: var(--border-thin);
+      padding-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Structured content list definitions */
+    .prop-list {
+      list-style: none;
+    }
+
+    .prop-item {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      text-align: justify;
+    }
+
+    .prop-num {
+      /* font-weight: 700; */
+      display: inline-block;
+      width: 25px;
+    }
+
+    /* High-contrast Black & White Concept Blocks */
+    .concept-box {
+      border: var(--border-thin);
+      background-color: var(--grey-bg);
+      padding: 12px;
+      margin: 12px 0;
+    }
+
+    .box-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      border-bottom: var(--border-dashed);
+      padding-bottom: 2px;
+    }
+
+    .math-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 10px 0;
+    }
+
+    .proof-block {
+      font-size: 0.9rem;
+      border-left: var(--border-thick);
+      padding-left: 10px;
+      margin-top: 5px;
+    }
+
+    /* Footer Pagination positioning */
+    .page-footer {
+      position: absolute;
+      bottom: 15mm;
+      left: 15mm;
+      right: 15mm;
+      display: flex;
+      justify-content: space-between;
+      border-top: var(--border-thin);
+      padding-top: 8px;
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    /* Print settings override */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      body {
+        background-color: transparent;
+        padding: 0;
+      }
+      .a4-page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        height: 297mm; /* Ensure strict adherence */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="a4-page">
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+        <span class="badge">JEE Advanced Focus</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+        <div>Class: <strong>XII Core Revision</strong></div>
+      </div>
+    </div>
+
+    <h1 class="topic-title">Determinants &amp; Fundamental Properties</h1>
+
+    <ul class="prop-list">
+      <li class="prop-item"><span class="prop-num">1.</span> $\det(A) = \det(A^T) \implies |A^T| = |A|$</li>
+      <li class="prop-item"><span class="prop-num">2.</span> If $A$ is a square matrix of order $n \times n$ and $c \in \mathbb{R}$ is any scalar, then: $\det(cA) = c^n \cdot \det(A)$</li>
+      <li class="prop-item"><span class="prop-num">3.</span> $\det(AB) = \det(A) \cdot \det(B)$</li>
+    </ul>
+
+    <div class="concept-box">
+      <div class="box-title">Important Note on Matrix Multiplication</div>
+      In general, matrix multiplication is non-commutative: $AB \neq BA$. <br>
+      However, their determinants satisfy absolute equality:
+      $$\mathbf{|AB| = |BA|}$$
+      <div class="proof-block">
+        <strong>Proof Hook:</strong> $|AB| = |A||B| = |B||A| = |BA|$ (Since scalar values commute freely).
+      </div>
+    </div>
+
+    <ul class="prop-list">
+      <li class="prop-item"><span class="prop-num">4.</span> $\det(A+B) \neq \det(A) + \det(B)$ in general.</li>
+    </ul>
+
+    <div class="concept-box">
+      <div class="box-title">Illustrative Example</div>
+      Let $A$ be a $3 \times 3$ matrix such that $\det(A) = 5$. Find $\det(-4A)$.
+      <div class="proof-block">
+        $$\det(-4A) = (-4)^3 \cdot \det(A)$$
+        $$\implies (-64) \times 5 = \mathbf{-320}$$
+      </div>
+    </div>
+
+    <h2 class="section-title">Adjoint and Inverse Matrix Identities</h2>
+    <p style="font-size:0.95rem; margin-bottom: 8px;">Let $A$ be a square matrix of order $n \times n$. The following identities hold firmly:</p>
+    
+    <div class="math-grid">
+      <div>
+        <ul class="prop-list">
+          <li class="prop-item"><span class="prop-num">5.</span> $\text{adj}(A^T) = (\text{adj } A)^T$</li>
+          <li class="prop-item"><span class="prop-num">6.</span> $\text{adj}(cA) = c^{n-1} \cdot \text{adj } A$</li>
+          <li class="prop-item"><span class="prop-num">7.</span> $\text{adj}(\text{adj } A) = |A|^{n-2} \cdot A$</li>
+          <li class="prop-item"><span class="prop-num">8.</span> $A \cdot (\text{adj } A) = (\text{adj } A) \cdot A = |A| \cdot I$</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="prop-list">
+          <li class="prop-item"><span class="prop-num">9.</span> $|\text{adj } A| = |A|^{n-1}$</li>
+          <li class="prop-item"><span class="prop-num">10.</span> $|\text{adj}(\text{adj } A)| = |A|^{(n-1)^2}$</li>
+          <li class="prop-item"><span class="prop-num">11.</span> $|A^{-1}| = \frac{1}{|A|}$</li>
+          <li class="prop-item"><span class="prop-num">12.</span> $A^{-1} = \frac{1}{|A|} \cdot \text{adj } A$</li>
+        </ul>
+      </div>
+    </div>
+
+    
+
+    <div class="page-footer">
+      <span>Alpha Academy - Mathematics Notes</span>
+      <span>Page 1</span>
+    </div>
+  </div>
+
+  <div class="a4-page">
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+        <span class="badge">JEE Advanced Focus</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+        <div>Class: <strong>XII Core Revision</strong></div>
+      </div>
+    </div>
+
+     <div class="concept-box">
+      <div class="box-title">Operational Shortcuts</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.95rem;">
+        <div>• $\mathbf{(AB)^{-1} = B^{-1}A^{-1}}$</div>
+        <div>• $\mathbf{\text{adj}(AB) = (\text{adj } B)(\text{adj } A)}$</div>
+        <div>• $\mathbf{(A^{-1})^{-1} = A}$</div>
+        <div>• $\mathbf{(A^T)^{-1} = (A^{-1})^T}$</div>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top:0;">Orthogonal Matrices</h2>
+    <p style="margin-bottom: 10px;">A square matrix $A$ of order $n \times n$ is defined as an <strong>orthogonal matrix</strong> if and only if:</p>
+    
+    <div class="concept-box" style="text-align: center; font-size: 1.1rem; font-weight: 700;">
+      $$A \cdot A^T = A^T \cdot A = I_n$$
+    </div>
+
+    <p style="font-weight: 700; margin-top: 10px;">Key Algebraic Properties:</p>
+    <ul class="prop-list" style="margin-left: 15px; margin-top: 5px;">
+      <li class="prop-item" style="list-style-type: disc;">Taking determinants on both sides: $|A \cdot A^T| = |I| \implies |A| \cdot |A^T| = 1 \implies |A|^2 = 1 \implies \mathbf{|A| = \pm 1}$.</li>
+      <li class="prop-item" style="list-style-type: disc;">If $\mathbf{|A| = 1}$, the matrix is specifically classified as a <strong>Proper Orthogonal Matrix</strong>.</li>
+    </ul>
+
+    <div class="concept-box">
+      <div class="box-title">The 2D Standard Rotation Matrix Case</div>
+      Let $A = \begin{bmatrix} \cos\alpha & -\sin\alpha \\ \sin\alpha & \cos\alpha \end{bmatrix}$. This matrix is proper orthogonal ($|A| = 1$).
+      <br><br>
+      <strong>General Matrix Power Property:</strong>
+      $$A^n = \begin{bmatrix} \cos(n\alpha) & -\sin(n\alpha) \\ \sin(n\alpha) & \cos(n\alpha) \end{bmatrix}$$
+      
+      <div class="proof-block" style="margin-top: 10px;">
+        <strong>Vector Interpretation (Column Vectors):</strong>
+        Let columns be vectors $\vec{c}_1 = [\cos\alpha, \sin\alpha]^T$ and $\vec{c}_2 = [-\sin\alpha, \cos\alpha]^T$.
+        <br>
+        1. <strong>Orthogonality Check:</strong> $\vec{c}_1 \cdot \vec{c}_2 = \cos\alpha(-\sin\alpha) + \sin\alpha\cos\alpha = 0$
+        <br>
+        2. <strong>Normality Check:</strong> $|\vec{c}_1| = \sqrt{\cos^2\alpha + \sin^2\alpha} = 1$, and $|\vec{c}_2| = \sqrt{(-\sin\alpha)^2 + \cos^2\alpha} = 1$
+      </div>
+    </div>
+
+  
+    <div class="page-footer">
+      <span>Alpha Academy - Mathematics Notes</span>
+      <span>Page 2</span>
+    </div>
+  </div>
+
+  <div class="a4-page">
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+        <span class="badge">JEE Advanced Focus</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+        <div>Class: <strong>XII Core Revision</strong></div>
+      </div>
+    </div>
+
+      <h2 class="section-title">Idempotent Matrices</h2>
+    <p style="margin-bottom: 10px;">A square matrix $A$ is classified as <strong>idempotent</strong> if and only if squaring the matrix yields itself:</p>
+    
+    <div class="concept-box" style="text-align: center; font-size: 1.1rem; font-weight: 700;">
+      $$A^2 = A$$
+    </div>
+
+    <div class="concept-box">
+      <div class="box-title">Theorem: Simultaneous Idempotency</div>
+      If two matrices $A$ and $B$ satisfy the relations $\mathbf{AB = B}$ and $\mathbf{BA = A}$, then both $A$ and $B$ are independently idempotent:
+      $$A^2 = A \quad \text{and} \quad B^2 = B$$
+      Furthermore, their sums satisfy the relation: $\mathbf{A^2 + B^2 = A + B}$
+    </div>
+
+    <div class="concept-box">
+      <div class="box-title">Theorem: Identity Complement Matrix</div>
+      If $A$ is an idempotent matrix ($A^2 = A$), then its identity complement matrix $(I - A)$ is also cleanly idempotent.
+      <div class="proof-block">
+        <strong>Proof Verification:</strong>
+        $$(I - A)^2 = (I - A)(I - A) = I^2 - I\cdot A - A\cdot I + A^2$$
+        $$= I - 2A + A^2$$
+        $$\text{Since } A^2 = A \implies = I - 2A + A = \mathbf{I - A}$$
+      </div>
+    </div>
+
+
+     <!-- Content for this page will go here -->
+
+     <div class="page-footer">
+      <span>Alpha Academy - Mathematics Notes</span>
+      <span>Page 3</span>
+     </div>
+  </div>
+
+  <div class="a4-page">
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+        <span class="badge">JEE Advanced Focus</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+        <div>Class: <strong>XII Core Revision</strong></div>
+      </div>
+    </div>
+
+    <h1 class="topic-title">Standard Cyclic Determinant Equations</h1>
+    <p style="font-size: 0.95rem; margin-bottom: 12px; text-align: center;">These structural cyclic patterns frequently surface in evaluations and should be evaluated directly:</p>
+
+    <div class="concept-box">
+      <div class="box-title">i. Type 1: Standard Linear-Square Vandermonde Form</div>
+      $$\begin{vmatrix} 1 & 1 & 1 \\ a & b & c \\ a^2 & b^2 & c^2 \end{vmatrix} = \mathbf{(a-b)(b-c)(c-a)}$$
+    </div>
+
+    <div class="concept-box">
+      <div class="box-title">ii. Type 2: Square-Cube Form (Linear Row Excluded)</div>
+      $$\begin{vmatrix} 1 & 1 & 1 \\ a^2 & b^2 & c^2 \\ a^3 & b^3 & c^3 \end{vmatrix} = \mathbf{(a-b)(b-c)(c-a)(ab+bc+ca)}$$
+    </div>
+
+    <div class="concept-box">
+      <div class="box-title">iii. Type 3: Linear-Cube Form (Square Row Excluded)</div>
+      $$\begin{vmatrix} 1 & 1 & 1 \\ a & b & c \\ a^3 & b^3 & c^3 \end{vmatrix} = \mathbf{(a-b)(b-c)(c-a)(a+b+c)}$$
+    </div>
+
+    <div class="concept-box">
+      <div class="box-title">iv. Type 4: Pure Cyclic Symmetric Cubic Structure</div>
+      $$\begin{vmatrix} a & b & c \\ b & c & a \\ c & a & b \end{vmatrix} = \mathbf{-(a^3+b^3+c^3-3abc)}$$
+    </div>
+
+   
+
+    <div class="page-footer">
+      <span>Alpha Academy - Mathematics Notes</span>
+      <span>Page 4</span>
+    </div>
+  </div>
+
+  <div class="a4-page">
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+        <span class="badge">JEE Advanced Focus</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+        <div>Class: <strong>XII Core Revision</strong></div>
+      </div>
+      </div>
+
+       <h2 class="section-title">Characteristic Equations via Cayley-Hamilton Theorem</h2>
+    <p style="font-size: 0.95rem; margin-bottom: 10px;">
+      Every square matrix $A$ structurally satisfies its own unique characteristic equation, yielding critical shortcuts:
+    </p>
+
+    <div class="concept-box">
+      <div class="box-title">Shortcut Formula for $2 \times 2$ Matrices</div>
+      $$A^2 - (\text{tr } A)A + (\det A)I = \mathbf{O}$$
+      <div style="font-size: 0.85rem; margin-top: 4px; color: #333;">
+        *Note: $\text{tr } A$ (Trace of $A$) = Sum of principal diagonal elements $= a_{11} + a_{22}$.
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <div class="box-title">Shortcut Formula for $3 \times 3$ Matrices</div>
+      $$A^3 - (\text{tr } A)A^2 + (A_{11} + A_{22} + A_{33})A - (\det A)I = \mathbf{O}$$
+      <div style="font-size: 0.85rem; margin-top: 4px; color: #333; text-align: justify;">
+        Where $A_{11}, A_{22}, A_{33}$ represent the principle diagonal cofactors of matrix $A$.
+        <br>
+        Alternatively defined as: $(A_{11} + A_{22} + A_{33}) = \text{trace}(\text{adj } A)$.
+      </div>
+    </div>
+
+
+     <div class="page-footer">
+      <span>Alpha Academy - Mathematics Notes</span>
+      <span>Page 5</span>
+     </div>
+
+  </div>
+
+</body>
+</html>
