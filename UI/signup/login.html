@@ -20,9 +20,21 @@
     <div class="container bg-gray-200 min-h-screen min-w-screen px-2">
       <div class="flex justify-center items-center h-screen">
         <div class="card bg-base-100 w-96 shadow">
-          <div class="card-body">
+          <div class="card-body p-8">
+
+            <!-- Logo -->
+            <div class="flex justify-center mb-4">
+              <img src="img/mathsquadz_Logo.jpeg" alt="Logo" class="w-36" />
+            </div>
+
+            <!-- Login Form -->
+             
+            <div class="text-center mb-4">
+              <h2 class="text-xl font-medium">Login to access your account</h2>
+            </div>
+
             <fieldset class="fieldset">
-              <label class="input">
+              <label class="input input-lg">
                 <svg
                   class="h-[1em] opacity-50"
                   xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +53,7 @@
                 </svg>
                 <input type="email" placeholder="Email" />
               </label>
-              <label class="input mt-2">
+              <label class="input input-lg mt-3">
                 <svg
                   class="h-[1em] opacity-50"
                   xmlns="http://www.w3.org/2000/svg"
@@ -60,8 +72,10 @@
                 </svg>
                 <input type="password" placeholder="Password" />
               </label>
-              <div><a class="link link-hover">Forgot password?</a></div>
-              <button class="btn btn-neutral mt-4">Login</button>
+              <div class="text-end">
+                <a class="link link-hover">Forgot password?</a>
+              </div>
+              <button class="btn btn-primary btn-lg mt-4">Login</button>
             </fieldset>
           </div>
         </div>
