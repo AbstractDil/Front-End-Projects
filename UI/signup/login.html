@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="corporate">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="container bg-gray-200 min-h-screen min-w-screen px-2">
+      <div class="flex justify-center items-center h-screen">
+        <div class="card bg-base-100 w-96 shadow">
+          <div class="card-body">
+            <fieldset class="fieldset">
+              <label class="input">
+                <svg
+                  class="h-[1em] opacity-50"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke-width="2.5"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </g>
+                </svg>
+                <input type="email" placeholder="Email" />
+              </label>
+              <label class="input mt-2">
+                <svg
+                  class="h-[1em] opacity-50"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke-width="2.5"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <rect width="16" height="10" x="4" y="11" rx="1"></rect>
+                    <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+                  </g>
+                </svg>
+                <input type="password" placeholder="Password" />
+              </label>
+              <div><a class="link link-hover">Forgot password?</a></div>
+              <button class="btn btn-neutral mt-4">Login</button>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
