@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Probability Theory - Complete Question Paper</title>
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --border-thick: 2px solid #000000;
+      --border-thin: 1px solid #000000;
+      --border-dashed: 1px dashed #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      color: var(--text-color);
+      line-height: 1.4;
+    }
+
+    /* Strict A4 Dimensions */
+    .a4-page {
+      background-color: var(--bg-color);
+      width: 210mm;
+      height: 297mm;
+      margin: 20px auto;
+      padding: 20mm 15mm 20mm 15mm;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exam-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+
+    .exam-header h1 {
+      margin: 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* Institute Header Style */
+    .institute-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-thick);
+      padding-bottom: 8px;
+      margin-bottom:8px;
+    }
+
+    .institute-logo {
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .exam_name {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+  
+
+    .badge {
+      border: var(--border-thin);
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+
+    .meta-info {
+      font-size: 0.85rem;
+      text-align: right;
+    }
+
+ 
+
+    /* Questions Grid/Layout */
+    .questions-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .question-block {
+      margin-bottom: 6px;
+    }
+
+    .question-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+      text-align: justify;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      padding-left: 25px;
+      font-size: 0.9rem;
+    }
+
+    /* Table Formatting */
+    .prob-table {
+      margin: 6px auto;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .prob-table td {
+      border: var(--border-thin);
+      padding: 3px 12px;
+      min-width: 40px;
+    }
+
+    /* Footer Pagination */
+    .page-footer {
+      position: absolute;
+      bottom: 15mm;
+      left: 15mm;
+      right: 15mm;
+      display: flex;
+      justify-content: space-between;
+      border-top: var(--border-thin);
+      padding-top: 6px;
+      font-size: 0.8rem;
+    }
+
+    /* Print settings override */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      body {
+        background-color: transparent;
+      }
+      .a4-page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        height: 297mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="a4-page">
+
+    <div class="exam-header" style="margin-top:0px;padding-top: 0px;">
+      <h1>5TH Internal Assessment - 2026</h1>
+      <h3 style="padding: 0;margin-top:4px;">Topic: Probability Theory &nbsp; &nbsp;Class- XII &nbsp; &nbsp; Session: 2026-27</h3>
+      <div class="header-meta">
+        <span>Sub.- Mathematics</span>
+        <span>Time- 60 Minutes</span>
+        <span>F.M.- 30</span>
+      </div>
+    </div>
+
+
+    <div class="questions-container">
+      <div class="question-block">
+        <div class="question-text">1. A ও B দুজন ছাত্রের একটি গণিতের অঙ্কের সমাধানের সম্ভাবনা যথাক্রমে $\frac{1}{2}$ এবং $\frac{1}{3}$। যদি তারা স্বাধীনভাবে অঙ্কটি সমাধান করতে চেষ্টা করে তবে ঠিক একজনের অঙ্কটি সমাধান করার সম্ভাবনা হবে —</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{2}$</div>
+          <div>B. $\frac{1}{3}$</div>
+          <div>C. $\frac{2}{3}$</div>
+          <div>D. NOTA</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">2. একটি যদৃচ্ছ পরীক্ষার দুটি ঘটনা A এবং B-এর জন্য $P(A)=\frac{3}{4}$, $P(B)=\frac{4}{5}$ এবং $P(A \cap B)=\frac{7}{10}$ হলে, $P(\bar{A}/B)$ এর মান —</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{4}$</div>
+          <div>B. $\frac{3}{4}$</div>
+          <div>C. $\frac{1}{8}$</div>
+          <div>D. $\frac{2}{3}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">3. A ও B দুটি পরস্পর স্বাধীন ঘটনা, A ও B ঘটনা দুটির একই সঙ্গে ঘটার সম্ভাবনা $\frac{1}{6}$ এবং কোনোটিই না ঘটার সম্ভাবনা $\frac{1}{3}$, তাহলে A ঘটনাটি ঘটার সম্ভাবনা —</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{2}$ অথবা $\frac{1}{3}$</div>
+          <div>B. $\frac{2}{3}$ অথবা $\frac{1}{4}$</div>
+          <div>C. $\frac{1}{6}$ অথবা $1$</div>
+          <div>D. $\frac{2}{3}$ অথবা $\frac{1}{3}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">4. এক ব্যক্তি 4 বার কথা বললে 3 বার সত্যি কথা বলেন। একটি পক্ষপাতহীন ছক্কা চালনা করে বললেন 6 পড়েছে। এটি সত্যিই 6 পড়ার সম্ভাবনা হবে—</div>
+        <div class="options-grid">
+          <div>A. $\frac{5}{8}$</div>
+          <div>B. $\frac{3}{8}$</div>
+          <div>C. $\frac{15}{17}$</div>
+          <div>D. $\frac{22}{45}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">5. যদি $a$ ও $b$ ধ্রুবক হয়, তবে $\text{var}(ax+b) =$</div>
+        <div class="options-grid">
+          <div>A. $a \cdot \text{var}(x)+b$</div>
+          <div>B. $a^2 \cdot \text{var}(x)+1$</div>
+          <div>C. $a^2 \cdot \text{var}(x)$</div>
+          <div>D. NOTA</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">6. একটি বিচ্ছিন্ন যদৃচ্ছ চলক হলে, $E(X-\bar{X}) = ?$</div>
+        <div class="options-grid">
+          <div>A. $0$</div>
+          <div>B. $1$</div>
+          <div>C. $>0$</div>
+          <div>D. $<0$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">7. একটি যদৃচ্ছ চলক X-এর সম্ভাবনা বিভাজন নিম্নরূপ হলে, $P(X>2) =$</div>
+        <table class="prob-table">
+          <tr><td>$X$</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><td>$P(X)$</td><td>$2c$</td><td>$3c$</td><td>$4c$</td><td>$3c$</td><td>$2c$</td></tr>
+        </table>
+        <div class="options-grid">
+          <div>A. $\frac{3}{14}$</div>
+          <div>B. $\frac{9}{14}$</div>
+          <div>C. $\frac{5}{14}$</div>
+          <div>D. $\frac{4}{7}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">8. $P(A)=\frac{1}{3}$, $P(B)=\frac{1}{4}$ এবং A ও B স্বাধীন ঘটনা হলে, $P(A^c \cap B^c) = ?$</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{12}$</div>
+          <div>B. $\frac{1}{6}$</div>
+          <div>C. $\frac{7}{12}$</div>
+          <div>D. $\frac{1}{2}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">9. A পাত্রটিতে 4টি সাদা ও 3টি কালো বল এবং B পাত্রটিতে 3টি সাদা ও 7টি কালো বল আছে। যদৃচ্ছভাবে একটি পাত্র নির্বাচন করে তার থেকে একটি বল তোলা হল। বলটি যদি সাদা হয় তবে বলটি A পাত্র থেকে আসার সম্ভাবনা হবে—</div>
+        <div class="options-grid">
+          <div>A. $\frac{40}{61}$</div>
+          <div>B. $\frac{40}{47}$</div>
+          <div>C. $\frac{21}{61}$</div>
+          <div>D. $\frac{7}{47}$</div>
+        </div>
+      </div>
+
+       
+
+    </div>
+
+    <div class="page-footer">
+      <span>Alpha Academy </span>
+      <span>Page 1</span>
+    </div>
+  </div>
+
+  <div class="a4-page">
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+        <span class="badge">Probability Theory</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+        <div>Total Questions: <strong>30</strong></div>
+      </div>
+    </div>
+
+    <div class="questions-container">
+      
+<div class="question-block">
+        <div class="question-text">10. X যদৃচ্ছ চলকের মধ্যক 3 এবং $E(X^2) = 14$ হলে, $\text{var}(X)$-এর মান—</div>
+        <div class="options-grid">
+          <div>A. $6$</div>
+          <div>B. $-6$</div>
+          <div>C. $5$</div>
+          <div>D. $8$</div>
+        </div>
+      </div>
+     
+
+      <div class="question-block">
+        <div class="question-text">11. যদি একটি মুদ্রাকে 2 বার টস করা হয় তবে হেড পড়ার সংখ্যার সম্ভাবনা বিভাজনের ভেদাঙ্ক হবে—</div>
+        <div class="options-grid">
+          <div>A. $1$</div>
+          <div>B. $2$</div>
+          <div>C. $\frac{1}{2}$</div>
+          <div>D. $\frac{1}{4}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">12. A ও B দুটি স্বাধীন ঘটনা এমন যে $P(A)=\frac{1}{5}$, $P(B)=\frac{1}{2}$ তবে $P\left(\frac{A}{A \cup B}\right) = ?$</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{3}$</div>
+          <div>B. $\frac{1}{4}$</div>
+          <div>C. $\frac{3}{8}$</div>
+          <div>D. $\frac{1}{2}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">13. 52টি তাসের প্যাকেট থেকে একটি তাস টানা হলে প্রাপ্ত তাসের সংখ্যার প্রত্যাশিত মান $E(X)$-এর মান হবে—</div>
+        <div class="options-grid">
+          <div>A. $7$</div>
+          <div>B. $6$</div>
+          <div>C. $5$</div>
+          <div>D. $8$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">14. $Y = \frac{X-m}{\sigma}$ যেখানে $E(X)=m$ এবং $\text{var}(X)=\sigma^2$ হলে, $E(Y)$ এবং $\text{var}(Y)$ যথাক্রমে—</div>
+        <div class="options-grid">
+          <div>A. $0, 1$</div>
+          <div>B. $1, 1$</div>
+          <div>C. $0, 2$</div>
+          <div>D. $1, 0$</div>
+        </div>
+      </div>
+
+       <div class="question-block">
+        <div class="question-text">15. $K$-এর মান কত হলে, $P(X=x) = Kx$ ($x=1,2,3,\dots,n$) দ্বারা একটি যদৃচ্ছ চলকের সম্ভাবনা বিভাজন প্রকাশিত হবে?</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{n}$</div>
+          <div>B. $\frac{2}{n+1}$</div>
+          <div>C. $\frac{2}{n}$</div>
+          <div>D. $\frac{2}{n(n+1)}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">16. একটি লিপ ইয়ার নয় এমন বছরকে যদৃচ্ছভাবে নির্বাচন করা হল, সেই বছরে 53টি রবিবার থাকার সম্ভাবনা হলো—</div>
+        <div class="options-grid">
+          <div>A. $\frac{3}{7}$</div>
+          <div>B. $\frac{2}{7}$</div>
+          <div>C. $\frac{1}{7}$</div>
+          <div>D. $\frac{5}{7}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">17. $A_1, A_2, \dots, A_n$ স্বাধীন ঘটনা এবং $P(A_i) = 1 - q_i$ ($i=1,2,\dots,n$) হলে, $P(A_1 \cup A_2 \cup \dots \cup A_n)$ হবে—</div>
+        <div class="options-grid">
+          <div>A. $1 + q_1 q_2 \dots q_n$</div>
+          <div>B. $1 - q_1 q_2 \dots q_n$</div>
+          <div>C. $q_1 q_2 \dots q_n$</div>
+          <div>D. $1$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">18. একটি যদৃচ্ছ চলক X-এর সম্ভাবনা বিভাজন নিচে দেওয়া হলো:</div>
+        <table class="prob-table">
+          <tr><td>$X$</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+          <tr><td>$P(X)$</td><td>$P_1$</td><td>$P_2$</td><td>$P_3$</td><td>$P_4$</td></tr>
+        </table>
+        <div class="question-text" style="margin-top: 4px;">যদি $P_1 + P_2 + P_3 = 0.8$ এবং $P_2 + P_3 + P_4 = 0.9$ হয়, তবে—</div>
+        <div class="options-grid">
+          <div>A. $P_1 = 0.2$</div>
+          <div>B. $P_1 + P_4 = 0.3$</div>
+          <div>C. $P_4 = 0.1$</div>
+          <div>D. $P_2 + P_3 = 0.7$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">19. একটি পক্ষপাতশূন্য ছক্কাকে চালনা করলে প্রাপ্ত সংখ্যার প্রত্যাশিত মান (বা গড় মান) হবে—</div>
+        <div class="options-grid">
+          <div>A. $\frac{2}{5}$</div>
+          <div>B. $\frac{7}{2}$</div>
+          <div>C. $\frac{3}{5}$</div>
+          <div>D. $\frac{35}{2}$</div>
+        </div>
+      </div>
+
+
+       <div class="question-block">
+        <div class="question-text">20. 5 সন্তানবিশিষ্ট একটি পরিবারের যে কোনো 2 সন্তানের জন্মদিন রবিবার হওয়ার সম্ভাবনা—</div>
+        <div class="options-grid">
+          <div>A. $\frac{10 \times 6^3}{7^5}$</div>
+          <div>B. $\frac{2 \times 6^3}{7^5}$</div>
+          <div>C. $\frac{6^3}{7^5}$</div>
+          <div>D. $\frac{6}{7^5}$</div>
+        </div>
+      </div>
+
+       <div class="question-block">
+        <div class="question-text">21. 'DICE' শব্দ থেকে যদৃচ্ছভাবে দুটি অক্ষর নেওয়া হলে কমপক্ষে একটি স্বরবর্ণ (Vowel) হওয়ার সম্ভাবনা—</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{3}$</div>
+          <div>B. $\frac{1}{6}$</div>
+          <div>C. $\frac{1}{2}$</div>
+          <div>D. $\frac{5}{6}$</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page-footer">
+      <span>Alpha Academy </span>
+      <span>Page 2</span>
+    </div>
+  </div>
+
+  
+
+  <div class="a4-page">
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+        <span class="badge">Probability Theory</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+        <div>Total Questions: <strong>30</strong></div>
+      </div>
+    </div>
+
+    <div class="questions-container">
+      <div class="question-block">
+        <div class="question-text">22. 1 থেকে 100 পর্যন্ত স্বাভাবিক সংখ্যা থেকে যদৃচ্ছভাবে একটি সংখ্যা নেওয়া হল। সংখ্যাটি 5 অথবা 7 দ্বারা বিভাজ্য হওয়ার সম্ভাবনা—</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{25}$</div>
+          <div>B. $\frac{7}{25}$</div>
+          <div>C. $\frac{1}{5}$</div>
+          <div>D. $\frac{8}{25}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">23. একটি পক্ষপাতশূন্য মুদ্রা 3 বার টস করা হলে ঠিক একটি হেড পাওয়ার সম্ভাবনা হবে—</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{2}$</div>
+          <div>B. $\frac{5}{8}$</div>
+          <div>C. $\frac{3}{4}$</div>
+          <div>D. $\frac{3}{8}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">24. $\sum_{i=1}^{9}(x_i - 5) = 9$ এবং $\sum_{i=1}^{9}(x_i - 5)^2 = 45$ হলে, $x_1, x_2, \dots, x_9$ এই ৯টি পদের সমক পার্থক্য (Standard Deviation) হবে—</div>
+        <div class="options-grid">
+          <div>A. $9$</div>
+          <div>B. $4$</div>
+          <div>C. $2$</div>
+          <div>D. $3$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">25. যদি কোনো যদৃচ্ছ চলক X-এর জন্য $\text{var}(X) = 2.25$ হয়, তবে $(5-4X)$-এর প্রমাণ বিচ্যুতির (Standard Deviation) মান হবে—</div>
+        <div class="options-grid">
+          <div>A. $1.5$</div>
+          <div>B. $6$</div>
+          <div>C. $7.5$</div>
+          <div>D. $7$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">26. প্রথম 20টি স্বাভাবিক সংখ্যা থেকে যদৃচ্ছভাবে তিনটি সংখ্যা নির্বাচন করা হল। সংখ্যা তিনটির গুণফল যুগ্ম (Even) হওয়ার সম্ভাবনা হল—</div>
+        <div class="options-grid">
+          <div>A. $\frac{15}{19}$</div>
+          <div>B. $\frac{17}{19}$</div>
+          <div>C. $\frac{3}{20}$</div>
+          <div>D. $\frac{9}{20}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">27. দুজন খেলোয়াড় A এবং B একটি পক্ষপাতহীন ছক্কাকে একজনের পর আরেকজন এইভাবে নিক্ষেপ করে যে, যে আগে 6 ফেলবে সে জিতে যাবে। যদি A খেলা শুরু করে, তবে A-এর জেতার সম্ভাবনা হবে—</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{11}$</div>
+          <div>B. $\frac{6}{11}$</div>
+          <div>C. $\frac{5}{11}$</div>
+          <div>D. $\frac{9}{11}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">28. একটি পক্ষপাতশূন্য পাশা একবার নিক্ষেপ করে দেওয়া হলে তার উপর প্রাপ্ত সংখ্যার ভেদমান (Variance) হবে—</div>
+        <div class="options-grid">
+          <div>A. $\frac{12}{35}$</div>
+          <div>B. $\frac{35}{12}$</div>
+          <div>C. $\frac{7}{2}$</div>
+          <div>D. $\frac{2}{7}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+  <div class="question-text">
+    29. কোনো বিমা কোম্পানি 2000 জন স্কুটার চালক, 4000 জন মোটর গাড়ি চালক এবং 6000 জন ট্রাক চালকের বিমা করে। স্কুটার চালক, মোটর গাড়ি চালক এবং ট্রাক চালকের দুর্ঘটনা ঘটানোর সম্ভাবনা যথাক্রমে $\frac{1}{100}$, $\frac{3}{100}$, $\frac{3}{20}$ হলে, বিমাকারী এক ব্যক্তি দুর্ঘটনা ঘটায়। ওই ব্যক্তির স্কুটার চালক হওয়ার সম্ভাবনা — 
+    <span style="font-size: 0.8rem; font-weight: normal; font-style: italic; float: right;">[Kola Union High School (HS) '23]</span>
+  </div>
+  <div class="options-grid" style="margin-top: 8px;">
+    <div>A. $\frac{1}{52}$</div>
+    <div>B. $\frac{3}{52}$</div>
+    <div>C. $\frac{5}{52}$</div>
+    <div>D. $\frac{9}{52}$</div>
+  </div>
+</div>
+
+
+
+    </div>
+
+    <div class="page-footer">
+      <span>Alpha Academy </span>
+      <span>Page 3</span>
+    </div>
+  </div>
+
+  <div class="a4-page"> 
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+        <span class="badge">Probability Theory</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+        <div>Total Questions: <strong>30</strong></div>
+      </div>
+    </div>
+    <div class="question-container">
+        <div class="question-block" style="margin-top: 20px;">
+  <div class="question-text">
+    30. একটি সম্ভাবনাশ্রয়ী চলক X-এর সম্ভাবনা বিভাজন নিম্নরূপ :
+  </div>
+  
+  <table class="prob-table">
+    <tr>
+      <td>$X$</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>$P(X)$</td>
+      <td>0.20</td>
+      <td>0.25</td>
+      <td>0.35</td>
+      <td>0.14</td>
+      <td>0.06</td>
+    </tr>
+  </table>
+
+  <div class="question-text" style="margin-top: 10px;">
+    $Y$ চলকের সম্ভাবনা বিভাজন, যেখানে $y = x^2 + 5$, হয় —
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; padding-left: 10px;">
+    
+    <div>
+      <span style="font-weight: bold;">A.</span>
+      <table class="prob-table" style="margin: 4px 0;">
+        <tr><td>$Y$</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+        <tr><td>$P(Y)$</td><td>0.20</td><td>0.25</td><td>0.35</td><td>0.14</td><td>0.06</td></tr>
+      </table>
+    </div>
+
+    <div>
+      <span style="font-weight: bold;">B.</span>
+      <table class="prob-table" style="margin: 4px 0;">
+        <tr><td>$Y$</td><td>0</td><td>1</td><td>4</td><td>9</td><td>16</td></tr>
+        <tr><td>$P(Y)$</td><td>0.20</td><td>0.25</td><td>0.35</td><td>0.14</td><td>0.06</td></tr>
+      </table>
+    </div>
+
+    <div>
+      <span style="font-weight: bold;">C.</span>
+      <table class="prob-table" style="margin: 4px 0;">
+        <tr><td>$Y$</td><td>5</td><td>6</td><td>9</td><td>19</td><td>21</td></tr>
+        <tr><td>$P(Y)$</td><td>0.20</td><td>0.25</td><td>0.35</td><td>0.06</td><td>0.14</td></tr>
+      </table>
+    </div>
+
+    <div>
+      <span style="font-weight: bold;">D.</span>
+      <table class="prob-table" style="margin: 4px 0;">
+        <tr><td>$Y$</td><td>5</td><td>6</td><td>9</td><td>19</td><td>21</td></tr>
+        <tr><td>$P(Y)$</td><td>0.20</td><td>0.25</td><td>0.35</td><td>0.14</td><td>0.06</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+    </div>
+
+    <div class="page-footer">
+      <span>Alpha Academy </span>
+      <span>Page 4</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
