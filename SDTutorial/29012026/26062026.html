@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Number System - Examination Paper</title>
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --border-thick: 2px solid #000000;
+      --border-thin: 1px solid #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    /* Strict A4 Dimensions */
+    .a4-page {
+      background-color: var(--bg-color);
+      width: 210mm;
+      height: 297mm;
+      margin: 20px auto;
+      padding: 20mm 15mm 20mm 15mm;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Premium Institute Header Style */
+    .institute-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-thick);
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
+
+    .institute-logo {
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .badge {
+      border: var(--border-thin);
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+
+    .meta-info {
+      font-size: 0.85rem;
+      text-align: right;
+    }
+
+    h1.topic-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-heading {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-bottom: var(--border-thin);
+      padding-bottom: 2px;
+      margin: 15px 0 12px 0;
+    }
+
+    /* Questions Structure */
+    .questions-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .question-block {
+      margin-bottom: 4px;
+      page-break-inside: avoid;
+    }
+
+    .question-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      text-align: justify;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      padding-left: 20px;
+      font-size: 0.9rem;
+    }
+
+    .sub-parts {
+      margin-top: 5px;
+      padding-left: 20px;
+      display: flex;
+      gap: 30px;
+    }
+
+    /* Footer Pagination */
+    .page-footer {
+      position: absolute;
+      bottom: 15mm;
+      left: 15mm;
+      right: 15mm;
+      display: flex;
+      justify-content: space-between;
+      border-top: var(--border-thin);
+      padding-top: 6px;
+      font-size: 0.8rem;
+    }
+
+    /* Print Setup */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      body {
+        background-color: transparent;
+      }
+      .a4-page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        height: 297mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="a4-page">
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+        <span class="badge">Class Test</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+        <div>Time: <strong>1 Hour</strong></div>
+      </div>
+    </div>
+
+    <h1 class="topic-title">Topic: Real Number System</h1>
+
+    <div class="section-heading">Group — A (Multiple Choice Questions) &nbsp;&nbsp;[10 × 1 = 10 Marks]</div>
+
+    <div class="questions-container">
+      <div class="question-block">
+        <div class="question-text">1. Which of the following is an irrational number?</div>
+        <div class="options-grid">
+          <div>A. $\sqrt{23}$</div>
+          <div>B. $\sqrt{225}$</div>
+          <div>C. $0.3799$</div>
+          <div>D. $7.\overline{478}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">2. Which of the following numbers is irrational?</div>
+        <div class="options-grid">
+          <div>A. $\sqrt{\frac{4}{9}}$</div>
+          <div>B. $\frac{\sqrt{1250}}{\sqrt{8}}$</div>
+          <div>C. $\sqrt{8}$</div>
+          <div>D. $\frac{\sqrt{24}}{\sqrt{6}}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">3. The product of two irrational numbers is:</div>
+        <div class="options-grid">
+          <div>A. always irrational</div>
+          <div>B. always rational</div>
+          <div>C. always an integer</div>
+          <div>D. sometimes rational &amp; sometimes irrational</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">4. A rational number lying between $\sqrt{2}$ and $\sqrt{3}$ is:</div>
+        <div class="options-grid">
+          <div>A. $\frac{\sqrt{2}+\sqrt{3}}{2}$</div>
+          <div>B. $\sqrt{6}$</div>
+          <div>C. $1.6$</div>
+          <div>D. $1.9$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">5. If $x = \frac{\sqrt{7}}{5}$ and $\frac{5}{x} = p\sqrt{7}$, then the value of $p$ is:</div>
+        <div class="options-grid">
+          <div>A. $\frac{7}{25}$</div>
+          <div>B. $\frac{25}{7}$</div>
+          <div>C. $\frac{7}{15}$</div>
+          <div>D. $\frac{15}{7}$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">6. Which of the following is a true statement?</div>
+        <div class="question-text" style="padding-left: 15px; font-weight: normal;">
+          A. $\pi$ and $\frac{22}{7}$ are both rationals.<br>
+          B. $\pi$ and $\frac{22}{7}$ are both irrationals.<br>
+          C. $\pi$ is rational and $\frac{22}{7}$ is irrational.<br>
+          D. $\pi$ is irrational and $\frac{22}{7}$ is rational.
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">7. If $\sqrt{2} = 1.414$, then the value of $\frac{1}{\sqrt{2}}$ is:</div>
+        <div class="options-grid">
+          <div>A. $0.075$</div>
+          <div>B. $0.75$</div>
+          <div>C. $0.705$</div>
+          <div>D. $7.05$</div>
+        </div>
+      </div>
+
+       <div class="question-block">
+        <div class="question-text">8. A rational number between $-3$ and $3$ is:</div>
+        <div class="options-grid">
+          <div>A. $0$</div>
+          <div>B. $-4.3$</div>
+          <div>C. $-3.4$</div>
+          <div>D. $1.101100110001\dots$</div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">9. Every point on a number line represents:</div>
+        <div class="options-grid">
+          <div>A. a rational number</div>
+          <div>B. a natural number</div>
+          <div>C. an irrational number</div>
+          <div>D. a unique number</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Alpha Academy — Real Number System</span>
+      <span>Page 1</span>
+    </div>
+  </div>
+
+  <div class="a4-page">
+    <div class="institute-header">
+      <div>
+        <span class="institute-logo">ALPHA ACADEMY</span>
+      </div>
+      <div class="meta-info">
+        <div>Subject: <strong>Mathematics</strong></div>
+      </div>
+    </div>
+
+    <div class="questions-container">
+     
+
+      <div class="question-block">
+        <div class="question-text">10. Two rational numbers between $\frac{2}{3}$ and $\frac{5}{3}$ are:</div>
+        <div class="options-grid">
+          <div>A. $\frac{1}{6}$ &amp; $\frac{2}{6}$</div>
+          <div>B. $\frac{1}{2}$ &amp; $\frac{2}{1}$</div>
+          <div>C. $\frac{5}{6}$ &amp; $\frac{7}{6}$</div>
+          <div>D. $\frac{2}{3}$ &amp; $\frac{4}{3}$</div>
+        </div>
+      </div>
+
+      <div class="section-heading">Group — B &nbsp;&nbsp;[4 × 2 = 8 Marks]</div>
+
+      <div class="question-block">
+        <div class="question-text">11. If $x = 9 - 4\sqrt{5}$, find the value of $x^2 + \frac{1}{x^2}$.</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">12. Prove that: $$\frac{1}{3+\sqrt{7}} + \frac{1}{\sqrt{7}+\sqrt{5}} + \frac{1}{\sqrt{5}+\sqrt{3}} + \frac{1}{\sqrt{3}+1} = 1$$</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">13. Find two different rational numbers between the rational numbers $\frac{3}{5}$ and $\frac{4}{5}$.</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">14. Without actual division, find which of the following rational numbers are terminating decimals:</div>
+        <div class="sub-parts">
+          <div>i) $\frac{5}{32}$</div>
+          <div>ii) $\frac{11}{24}$</div>
+          <div>iii) $\frac{3}{40}$</div>
+        </div>
+      </div>
+
+      <div class="section-heading">Group — C &nbsp;&nbsp;[2 × 3 = 6 Marks]</div>
+
+      <div class="question-block">
+        <div class="question-text">15. Prove that $\sqrt{3}$ is an irrational number.</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">16. Represent $\sqrt{5}$ on the real number line.</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Alpha Academy — Real Number System</span>
+      <span>Page 2</span>
+    </div>
+  </div>
+
+</body>
+</html>
