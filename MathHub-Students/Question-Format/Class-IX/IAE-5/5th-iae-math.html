@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSquadz Question Paper Engine - 5th Internal</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+        displayMath: [
+          ["$$", "$$"],
+          ["\\[", "\\]"],
+        ],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Noto Sans Bengali", sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm;
+      margin: 10mm auto;
+      background: white;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: url("../images/logo.png") no-repeat center;
+      background-size: contain;
+      opacity: 0.1;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .exam-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      border: 2px solid #333;
+      padding: 8px;
+      margin-bottom:12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-area img {
+      max-width: 92px;
+      max-height: 92px;
+    }
+
+    .header-info {
+      text-align: start;
+    }
+
+    .header-info h2 {
+      margin: 0;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .header-info p {
+      margin: 3px 0;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .exam-content {
+      padding: 10px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #000;
+    }
+
+    .question-section {
+      margin-bottom:8px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: bold;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed #666;
+    }
+
+    .question-item {
+      margin-bottom:0px;
+    }
+
+    .question-text {
+      display: flex;
+      gap: 8px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 30px; 
+      row-gap: 5px;    
+      padding-left: 30px;
+      margin-top: 5px;
+    }
+
+    .options-grid span {
+      white-space: nowrap; 
+    }
+
+    .marks {
+      font-weight: bold;
+      float: right;
+    }
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 12mm;
+      right: 12mm;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .footer-icon {
+      width: 34px;
+      height: 34px;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .footer-text b {
+      font-size: 12px;
+      display: block;
+    }
+
+    .footer-text span {
+      font-size: 11px;
+      color: #333;
+    }
+
+    @media print {
+      .print-btn { display: none; }
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; width: 100%; }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="print-btn" onclick="window.print()">
+    Download PDF
+  </button>
+
+  <div class="page">
+    <div class="exam-header">
+      <div class="logo-area">
+        <img src="../images/logo.png" alt="Logo" />
+      </div>
+      <div class="header-info">
+        <h2>5th Internal Assessment Examination</h2>
+        <p> Session: 2026 | Subject: Mathematics | Class: IX </p>
+        <p>
+           Full Marks: 30 | Time: 60 Minutes | Date: 28-06-2026 
+        </p>
+      </div>
+    </div>
+
+    <div style="background: #fff; border: 2px dotted #333; padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 12px; line-height: 1.6;">
+      <h3 style="margin-top: 0; margin-bottom: 3px; padding-bottom: 5px; font-size: 13px; color: #000;">
+        <i class="fa fa-info-circle"></i> General Instructions for Candidates:
+      </h3>
+      <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+        <li style="margin-bottom: 8px;">
+          This test is designed to evaluate your conceptual clarity in mathematics, assessing how deeply you understand the subject.
+        </li>
+        <li style="margin-bottom: 8px;">
+          You must solve all questions explicitly in your answer script. Selecting an answer based on guesswork without providing proper steps or rough calculation will not be awarded any marks, even if the answer is correct.
+        </li>
+        <li style="margin-bottom: 8px;">
+          Performance evaluation based on the marks obtained will be categorized as follows:
+          <ul style="list-style-type: circle; padding-left: 20px; margin-top: 4px;">
+            <li><b>26-30:</b> Very Good Score</li>
+            <li><b>22-26:</b> Good Score</li>
+            <li><b>18-22:</b> Average Score</li>
+            <li><b>16-18:</b> Below Average Score</li>
+            <li><b>0-16:</b> Poor Score, Needs Improvement</li>
+          </ul>
+        </li>
+        <li style="margin-bottom: 0; font-weight: bold; color: #e74c3c; list-style-type: none; padding-left: 0; margin-top: 10px;">
+          <i class="fa fa-thumbs-o-up"></i> Best of Luck for your Examination!
+        </li>
+      </ul>
+    </div>
+
+    <div class="exam-content">
+
+     
+
+      <div class="question-section">
+        <div class="section-title">
+          <span>নিম্নলিখিত প্রশ্নগুলির উত্তর দাও: (Any 15 Questions)</span>
+          <span>$2 \times 15 = 30$</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(1)</span>
+            <span>একটি ত্রিভুজের বাহুগুলি $51\text{ cm}$, $35\text{ cm}$, এবং $26\text{ cm}$ হয়। ত্রিভুজটির $35\text{ cm}$ বাহুর সংশ্লিষ্ট লম্ব উচ্চতা ($\text{cm}$ তে) কত?</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $53$</span>
+            <span>(b) $24$</span>
+            <span>(c) $60$</span>
+            <span>(d) $40$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(2)</span>
+            <span>একজন ব্যবসায়ী একটি পণ্য $16\%$ লাভে বিক্রি করেন। যদি তিনি পণ্যটি আরও $\unicode{x20B9}80$ বেশি দামে বিক্রি করতেন তবে তার $48\%$ লাভ হতো। পণ্যের মোট ক্রয়মূল্য $\unicode{x20B9}8000$ হলে, তিনি কয়টি পণ্য বিক্রি করেছিলেন?</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $25$</span>
+            <span>(b) $38$</span>
+            <span>(c) $35$</span>
+            <span>(d) $32$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(3)</span>
+            <span>$\unicode{x20B9}2000$ মুদ্রিত মূল্যের একটি জ্যাকেট ক্রমিক দুটি ছাড়ে পর $\unicode{x20B9}1530$ দামে বিক্রি হয়। যদি প্রথম ছাড়টি $15\%$ হয়, তবে দ্বিতীয় ছাড়ের শতকরা হার কত?</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $5\%$</span>
+            <span>(b) $12\%$</span>
+            <span>(c) $8\%$</span>
+            <span>(d) $10\%$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(4)</span>
+            <span>একটি রম্বসের কর্ণদ্বয় $5 : 12$ অনুপাতে রয়েছে। রম্বসটির ক্ষেত্রফল $240\text{ cm}^2$ হলে, কর্ণগুলির দৈর্ঘ্য ($\text{cm}$ তে) নির্ণয় করুন।</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $5$ এবং $12$</span>
+            <span>(b) $10$ এবং $24$</span>
+            <span>(c) $10\sqrt{2}$ এবং $24\sqrt{2}$</span>
+            <span>(d) $5\sqrt{2}$ এবং $12\sqrt{2}$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(5)</span>
+            <span>একটি সমদ্বিবাহু ত্রিভুজ $ABC$ তে, সমান বাহুদ্বয় $AB$ এবং $AC$ এর প্রতিটি $10\text{ cm}$ এবং ভূমি $BC$ হল $12\text{ cm}$, ত্রিভুজটির ক্ষেত্রফল নির্ণয় করুন।</span>  
+          </div>
+          <div class="options-grid">
+            <span>(a) $48\text{ cm}^2$</span>
+            <span>(b) $36\text{ cm}^2$</span>
+            <span>(c) $40\text{ cm}^2$</span>
+            <span>(d) $45\text{ cm}^2$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(6)</span>
+            <span>$\triangle ABC$ ত্রিভুজের $BC$, $CA$ এবং $AB$ বাহুর মধ্যবিন্দু যথাক্রমে $D, E$ ও $F$; $BE$ ও $DF$, $M$ বিন্দুতে এবং $CF$ ও $DE$, $N$ বিন্দুতে ছেদ করলে, $BC$-এর দৈর্ঘ্য নিচের কোনটির সমান?</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $4BC$</span>
+            <span>(b) $4MN$</span>
+            <span>(c) $\frac{1}{4}FE$</span>
+            <span>(d) $\frac{1}{4} MN$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+       
+
+       
+
+        
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>1</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page">
+
+    <div class="exam-content">
+
+       <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(7)</span>
+            <span>একটি তারকে বাঁকিয়ে বৃহত্তম ক্ষেত্রফল বিশিষ্ট একটি সমবাহু ত্রিভুজ তৈরি করা হলো। যদি ত্রিভুজটি দ্বারা বেষ্টিত অঞ্চলের ক্ষেত্রফল $49\sqrt{3}\text{ cm}^2$ হয়, তবে তারটির দৈর্ঘ্য কত ?</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $14\text{ cm}$</span>
+            <span>(b) $36\text{ cm}$</span>
+            <span>(c) $42\text{ cm}$</span>
+            <span>(d) $45\text{ cm}$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+       <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(8)</span>
+            <span>একটি বর্গক্ষেত্রের ক্ষেত্রফল একটি আয়তক্ষেত্রের ক্ষেত্রফলের সমান। আয়তক্ষেত্রটির দৈর্ঘ্য এবং প্রস্থ যথাক্রমে বর্গক্ষেত্রটির বাহুর দৈর্ঘ্য অপেক্ষা $5\text{ cm}$ বেশি এবং $4\text{ cm}$ কম। বর্গক্ষেত্রটির বাহুর দৈর্ঘ্য নির্ণয় করো।</span>
+          </div>
+
+          <div class="options-grid">
+            <span>(a) $30\text{ cm}^2$</span>
+            <span>(b) $20\text{ cm}^2$</span>
+            <span>(c) $25\text{ cm}^2$</span>
+            <span>(d) $15\text{ cm}^2$</span>
+          </div>
+
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(9)</span>
+            <span>একটি বৃত্তের ক্ষেত্রফল সাংখ্যমানের দিক থেকে তার পরিধির সমান। বৃত্তটির ক্ষেত্রফল নির্ণয় করো। ($\pi = 3.14$)</span>
+          </div>
+
+          <div class="options-grid">
+            <span>(a) $12.56\text{ unit}^2$</span>
+            <span>(b) $19.63\text{ unit}^2$</span>
+            <span>(c) $28.26\text{ unit}^2$</span>
+            <span>(d) $31.42\text{ unit}^2$</span>
+          </div>
+
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(10)</span>
+            <span>একটি বৃত্তের পরিধি তার ব্যাসের দৈর্ঘ্য অপেক্ষা $270\text{ cm}$ বেশি। বৃত্তটির ব্যাসের দৈর্ঘ্য নির্ণয় করো।</span>
+          </div>
+
+          <div class="options-grid">
+            <span>(a) $91\text{ cm}$</span>
+            <span>(b) $106\text{ cm}$</span>
+            <span>(c) $120\text{ cm}$</span>
+            <span>(d) $126\text{ cm}$</span>
+          </div>
+
+          <span class="marks">[2]</span>
+        </div>
+
+      <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(11)</span>
+            <span>একটি গাড়ির চাকার ব্যাসার্ধ $28\text{ cm}$। $4.4\text{ km}$ দূরত্ব অতিক্রম করতে চাকাটি কতবার সম্পূর্ণ ঘুরবে তা নির্ণয় করো।</span>
+          </div>
+ <div class="options-grid">
+            <span>(a) $2500$</span>
+            <span>(b) $4500$</span>
+            <span>(c) $5000$</span>
+            <span>(d) $6500$</span>
+          </div>
+          
+
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(12)</span>
+            <span>একটি সমপ্রস্থের বৃত্তাকার ট্র্যাকের ক্ষেত্রফল দুটি এককেন্দ্রিক বৃত্ত দ্বারা সীমাবদ্ধ। যদি ট্র্যাকটির ক্ষেত্রফল $1144\text{ m}^2$ এবং এর চওড়া বা প্রস্থ $14\text{ m}$ হয়; তবে বৃত্ত দুটির ব্যাসের দৈর্ঘ্য নির্ণয় করো।</span>
+          </div>
+
+           <div class="options-grid">
+            <span>(a) $38\text{ m}$ এবং $14\text{ m}$</span>
+            <span>(b) $40\text{ m}$ এবং $12\text{ m}$</span>
+            <span>(c) $42\text{ m}$ এবং $17\text{ m}$</span>
+            <span>(d) $44\text{ m}$ এবং $16\text{ m}$</span>
+          </div>
+
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(13)</span>
+            <span>যদি $y = 2x - 6$ এবং $y = 0$ হয়, তবে $5y - 2x$-এর মান নির্ণয় করো।</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $6$</span>
+            <span>(b) $-6$</span>
+            <span>(c) $3$</span>
+            <span>(d) $0$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(14)</span>
+            <span>সমাধান করো (বজ্রগুণন ): <br> $2x + 3y - 17 = 0$ এবং $3x - 2y - 6 = 0$</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $x = 4, y = 3$</span>
+            <span>(b) $x = 3, y = 4$</span>
+            <span>(c) $x = 2, y = 5$</span>
+            <span>(d) $x = 5, y = 2$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(15)</span>
+            <span>দুটি সংখ্যার যোগফল $12$ এবং তাদের বিয়োগফল $2$ হলে, সংখ্যা দুটি নির্ণয় করো।</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $8$ এবং $4$</span>
+            <span>(b) $9$ এবং $3$</span>
+            <span>(c) $7$ এবং $5$</span>
+            <span>(d) $10$ এবং $2$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(16)</span>
+            <span>$A$ এবং $B$-এর বর্তমান বয়সের অনুপাত $9 : 4$। সাত বছর পরে তাদের বয়সের অনুপাত হবে $5 : 3$। তাদের বর্তমান বয়স কত তা নির্ণয় করো।</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $18$ বছর এবং $8$ বছর</span>
+            <span>(b) $27$ বছর এবং $12$ বছর</span>
+            <span>(c) $36$ বছর এবং $16$ বছর</span>
+            <span>(d) $45$ বছর এবং $20$ বছর</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        <div class="question-item clearfix">
+          <div class="question-text">
+            <span>(17)</span>
+            <span>একটি সমকোণী ত্রিভুজ $ABC$-এর $\angle ABC = 90^\circ$ । যদি অতিভুজ $AC$-এর মধ্যবিন্দু $D$ হয় এবং $BD = 6\text{ cm}$, তবে $AC$-এর দৈর্ঘ্য কত হবে তা নির্ণয় করো।</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $3\text{ cm}$</span>
+            <span>(b) $6\text{ cm}$</span>
+            <span>(c) $12\text{ cm}$</span>
+            <span>(d) $24\text{ cm}$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+<div class="question-item clearfix">
+          <div class="question-text">
+            <span>(18)</span>
+            <span>কোনো শ্রেণিবিন্যাসিত রাশি তথ্যের একটি নির্দিষ্ট শ্রেণির পরিসংখ্যা $14$ এবং শ্রেণি-দৈর্ঘ্য $28$ হলে, ওই শ্রেণিটির পরিসংখ্যা ঘনত্ব (Frequency density) কত হবে?</span>
+          </div>
+          <div class="options-grid">
+            <span>(a) $2$</span>
+            <span>(b) $0.5$</span>
+            <span>(c) $1.4$</span>
+            <span>(d) $0.2$</span>
+          </div>
+          <span class="marks">[2]</span>
+        </div>
+
+        
+
+
+    </div>
+
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>2</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
