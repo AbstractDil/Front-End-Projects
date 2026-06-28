@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Face Auth – Exam System</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-dark" style="background:#1e293b; border-bottom:1px solid #334155;">
+  <div class="container-fluid px-4">
+    <span class="navbar-brand">🎓 SecureExam — FaceAuth</span>
+    <div id="nav-status"></div>
+  </div>
+</nav>
+
+<!-- SETUP PANEL -->
+<div id="setup-panel" class="px-3">
+  <div class="text-center mb-4 mt-5">
+    <h2 style="font-weight:700;">Candidate Verification</h2>
+    <p style="color:#94a3b8;">Upload your photo to begin the proctored exam</p>
+  </div>
+
+  <div id="loader">
+    <div class="spinner"></div>
+    <div id="model-status">Loading face detection models…</div>
+  </div>
+
+  <div id="upload-section" style="display:none;">
+    <div class="upload-box" id="upload-box" onclick="document.getElementById('file-input').click()">
+      <div id="upload-placeholder">
+        <div style="font-size:40px;margin-bottom:10px;">📷</div>
+        <div style="font-weight:600;margin-bottom:4px;">Click to upload candidate photo</div>
+        <div style="color:#64748b;font-size:13px;">JPG, JPEG, or PNG · Clear face required</div>
+      </div>
+      <div id="upload-preview" style="display:none;">
+        <img id="preview-img" src="" alt="Candidate">
+        <div style="margin-top:12px;font-size:13px;color:#22c55e;" id="preview-name"></div>
+      </div>
+    </div>
+    <input type="file" id="file-input" accept="image/*" style="display:none">
+
+    <div class="mt-3 text-center" id="face-check-msg" style="font-size:13px;min-height:24px;"></div>
+
+    <div class="mt-4 text-center">
+      <button class="btn-start" id="btn-start" disabled onclick="startExam()">
+        Start Exam →
+      </button>
+    </div>
+    <div class="text-center mt-3" style="color:#64748b;font-size:12px;">
+      Camera access required · All monitoring is local · No data is uploaded
+    </div>
+  </div>
+</div>
+
+<!-- EXAM PANEL -->
+<div id="exam-panel">
+  <div class="row g-4">
+    <!-- Left: Camera + status -->
+    <div class="col-12 col-md-4">
+      <div class="exam-card">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <img id="candidate-thumb" src="" alt="Candidate">
+          <div>
+            <div style="font-weight:600;font-size:14px;">Candidate</div>
+            <div style="font-size:12px;color:#64748b;">Proctored Session</div>
+          </div>
+        </div>
+        <div class="cam-wrapper mb-3">
+          <video id="video" autoplay muted playsinline></video>
+          <canvas id="overlay-canvas"></canvas>
+        </div>
+        <div id="status-badge-wrap" class="mb-2">
+          <span class="status-badge verified" id="status-badge">
+            <span class="dot green"></span> Verifying…
+          </span>
+        </div>
+        <div class="match-score mb-2" id="match-score">Match confidence: <span>—</span></div>
+        <div class="match-score" id="face-count">Faces detected: <span>0</span></div>
+        <hr style="border-color:#334155;margin:14px 0;">
+        <div class="d-flex justify-content-between align-items-center">
+          <div style="font-size:12px;color:#64748b;">Time remaining</div>
+          <div class="timer" id="timer">29:59</div>
+        </div>
+        <div class="mt-2" style="font-size:12px;color:#64748b;">
+          Violations: <span id="violation-count" style="color:#ef4444;font-weight:600;">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Questions -->
+    <div class="col-12 col-md-8">
+      <div class="exam-card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div style="font-weight:700;font-size:1.1rem;">Sample Examination</div>
+          <span style="font-size:12px;color:#64748b;" id="q-progress">Q 1 / 3</span>
+        </div>
+        <div id="question-area"></div>
+        <div class="d-flex gap-2 mt-4">
+          <button class="btn btn-outline-secondary btn-sm" onclick="prevQ()">← Prev</button>
+          <button class="btn btn-sm" style="background:#38bdf8;color:#0f172a;font-weight:600;" onclick="nextQ()">Next →</button>
+        </div>
+      </div>
+      <div class="exam-card mt-3" style="font-size:13px;color:#64748b;padding:14px 18px;">
+        <strong style="color:#f59e0b;">⚠ Monitoring Active:</strong> Your face must remain visible at all times. Looking away, covering your face, or leaving the frame will trigger a lockout.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOCK OVERLAY -->
+<div id="lock-overlay">
+  <div class="lock-card">
+    <div class="lock-icon">🔒</div>
+    <div class="lock-title">Exam Locked</div>
+    <div class="lock-sub">A face authentication violation was detected. Your session has been paused pending review.</div>
+    <ul class="violation-list" id="violation-reasons"></ul>
+    <div style="font-size:12px;color:#64748b;margin-bottom:20px;">Total violations: <strong id="modal-vcount" style="color:#ef4444;">0</strong></div>
+    <button class="btn-unlock" onclick="unlockExam()">Resume Exam</button>
+    <div style="font-size:11px;color:#475569;margin-top:12px;">All violations are logged and reported to the proctor</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
