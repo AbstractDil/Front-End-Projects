@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6th Internal Assessment - Physical Science</title>
+    <!-- Configure MathJax for rendering mathematical equations -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+            },
+            svg: { fontCache: "global" },
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+    <!-- Load required fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: "Noto Sans Bengali", sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Defines the standard A4 page layout for web viewing and printing */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 12mm;
+            margin: 10mm auto;
+            background: white;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Watermark styling */
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: url("https://abstractdil.github.io/Front-End-Projects/MathHub-Students/Question-Format/Class-IX/IAE-5/images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .exam-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            border: 2px solid #333;
+            padding: 8px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-area img {
+            max-width: 92px;
+            max-height: 92px;
+        }
+
+        .header-info {
+            text-align: start;
+        }
+
+        .header-info h2 {
+            margin: 0;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .header-info p {
+            margin: 3px 0;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .exam-content {
+            padding: 10px;
+            font-size: 15px; /* Slightly increased for readability */
+            line-height: 1.6;
+            color: #000;
+            position: relative;
+            z-index: 1;
+        }
+
+        .question-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: bold;
+            margin-bottom: 4px;
+            border-bottom: 1px dashed #666;
+        }
+
+        .question-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .question-number {
+            margin-right: 8px;
+            font-weight: bold;
+            min-width: 20px;
+        }
+
+        .question-text-wrapper {
+            flex-grow: 1;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Default 2 columns for MCQ options */
+            padding-left: 10px;
+            margin-top: 5px;
+            gap: 5px;
+        }
+        
+        .options-grid.four-col {
+            grid-template-columns: repeat(4, 1fr); /* 4 columns for shorter options */
+        }
+
+        .sub-question-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .sub-question-list li {
+            margin-bottom: 8px;
+            display: flex;
+        }
+        
+        .sub-question-list .list-num {
+            margin-right: 8px;
+            /* font-weight: bold; */
+            min-width: 15px;
+        }
+        
+        .sub-question-list .list-content {
+            flex-grow: 1;
+        }
+        
+        .marks-float {
+            float: right;
+            font-weight: bold;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 12mm;
+            right: 12mm;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .footer-icon {
+            width: 34px;
+            height: 34px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .footer-text {
+            line-height: 1.2;
+        }
+
+        .footer-text b {
+            font-size: 12px;
+            display: block;
+        }
+
+        .footer-text span {
+            font-size: 11px;
+            color: #333;
+        }
+        
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 22px auto;
+            max-width: 80%;
+        }
+
+        .wish-message {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Adjustments for printing to remove shadows and background */
+        @media print {
+            .print-btn {
+                display: none;
+            }
+
+            body {
+                background: none;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                page-break-after: always;
+            }
+            .page:last-child {
+                 page-break-after: auto;
+            }
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-btn" onclick="window.print()">Download / Print</button>
+
+    <!-- PAGE 1 -->
+    <div class="page">
+        <div class="exam-header">
+            <div class="logo-area">
+                <img src="https://abstractdil.github.io/Front-End-Projects/MathHub-Students/Question-Format/Class-IX/IAE-5/images/logo.png" alt="MathHub Logo" />
+            </div>
+            <div class="header-info">
+                <h2>6th Internal Assessment Examination</h2>
+                <p>Session: 2026 | Subject: Physical Science | Class: IX</p>
+                <p>Full Marks: 40 | Time: 80 Minutes | Last date of submission: 30 July, 2026</p>
+            </div>
+        </div>
+
+        <div class="exam-content">
+            
+            <div class="question-section">
+                <div class="section-title">Section - A: বহুবিকল্পভিত্তিক প্রশ্ন (MCQ)
+                    <span class="marks">$1 \times 8 = 8$</span>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-number">1.</div>
+                    <div class="question-text-wrapper">
+                        প্রদত্ত কোন ক্ষেত্রে অণুর সংখ্যা সর্বাধিক?
+                        <div class="options-grid four-col">
+                            <span>(a) 1 g CO$_2$</span>
+                            <span>(b) 1 g N$_2$</span>
+                            <span>(c) 1 g H$_2$</span>
+                            <span>(d) 1 g CH$_4$</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-number">2.</div>
+                    <div class="question-text-wrapper">
+                        STP-তে 44.8 L গ্যাসের ভর 64 g হলে গ্যাসটির সংকেত হবে---
+                        <div class="options-grid four-col">
+                            <span>(a) H$_2$</span>
+                            <span>(b) N$_2$</span>
+                            <span>(c) CH$_4$</span>
+                            <span>(d) O$_2$</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-number">3.</div>
+                    <div class="question-text-wrapper">
+                        স্প্রিং-এর বল ধ্রুবকের মাত্রার সংকেত হল---
+                        <div class="options-grid four-col">
+                            <span>(a) [MT$^{-2}$]</span>
+                            <span>(b) [MLT$^{-2}$]</span>
+                            <span>(c) [ML$^{-1}$T$^{-2}$]</span>
+                            <span>(d) [MT$^{-3}$]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-number">4.</div>
+                    <div class="question-text-wrapper">
+                        একটি সাইফনের নলের ব্যাস দ্বিগুণ করা হলো। তাহলে তার মধ্য দিয়ে তরলের প্রবাহের হার---
+                        <div class="options-grid">
+                            <span>(a) একই থাকবে</span>
+                            <span>(b) চারগুণ হবে</span>
+                            <span>(c) দ্বিগুণ হবে</span>
+                            <span>(d) আটগুণ হবে</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-number">5.</div>
+                    <div class="question-text-wrapper">
+                        প্রদত্ত কোন ক্ষেত্রে টিন্ডাল প্রভাব উপস্থিত?
+                        <div class="options-grid four-col">
+                            <span>(a) স্টার্চ দ্রবণ</span>
+                            <span>(b) NaCl দ্রবণ</span>
+                            <span>(c) CuSO$_4$ দ্রবণ</span>
+                            <span>(d) চিনির দ্রবণ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-number">6.</div>
+                    <div class="question-text-wrapper">
+                        প্রদত্ত কোনটি ক্ষারক নয়?
+                        <div class="options-grid four-col">
+                            <span>(a) NaOH</span>
+                            <span>(b) KOH</span>
+                            <span>(c) NH$_4$OH</span>
+                            <span>(d) C$_2$H$_5$OH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-number">7.</div>
+                    <div class="question-text-wrapper">
+                        কোন ধাতুটি লঘু HCl-এর সঙ্গে বিক্রিয়া করে H$_2$ গ্যাস উৎপন্ন করে না?
+                        <div class="options-grid four-col">
+                            <span>(a) Al</span>
+                            <span>(b) Cu</span>
+                            <span>(c) Zn</span>
+                            <span>(d) Fe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-number">8.</div>
+                    <div class="question-text-wrapper">
+                        কোনো বস্তুর ভর ও বেগ উভয়ই দ্বিগুণ করা হলে তার গতিশক্তি হবে---
+                        <div class="options-grid four-col">
+                            <span>(a) 4 গুণ</span>
+                            <span>(b) 8 গুণ</span>
+                            <span>(c) 16 গুণ</span>
+                            <span>(d) 20 গুণ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">Section - B: অতি সংক্ষিপ্ত উত্তরধর্মী প্রশ্ন
+                    <span class="marks">$1 \times 7 = 7$</span>
+                </div>
+                
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">1.</span>
+                        <span class="list-content">গ্রাম-আণবিক আয়তনের সংজ্ঞা দাও।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">2.</span>
+                        <span class="list-content">সংশক্তি ও আসঞ্জন বল কী? <br>
+                        <b>অথবা,</b> হুকের সূত্রের ধ্রুবকের নাম কী?</span>
+                    </li>
+                    <li>
+                        <span class="list-num">3.</span>
+                        <span class="list-content">সান্দ্রতাঙ্কের সংজ্ঞা দাও।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">4.</span>
+                        <span class="list-content">কোন বস্তুর গতিশক্তি কি ঋণাত্মক হতে পারে? যুক্তিসহ লেখ।</span>
+                    </li>
+                     <li>
+                        <span class="list-num">5.</span>
+                        <span class="list-content"> ঘনত্ব ও আপেক্ষিক গুরুত্বের মধ্যে পার্থক্য লেখ। <br>
+                        <b>অথবা,</b> অ্যাসিটিক অ্যাসিড ও সোডিয়াম হাইড্রোক্সাইডের প্রশমন বিক্রিয়ায় প্রশমক্ষণ নির্ণয় করার জন্য কোন নির্দেশক ব্যবহার করবে?</span>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>1</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <div class="exam-content">
+
+            <div class="question-section">
+                <!-- <div class="section-title">Section - B: অতি সংক্ষিপ্ত উত্তরধর্মী প্রশ্ন (continued)</div> -->
+                
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">6.</span>
+                        <span class="list-content">কলয়েডের ক্ষেত্রে দ্রাব্যতা লেখটি অঙ্কন করো।</span>
+                    </li>
+                     <li>
+                        <span class="list-num">7.</span>
+                        <span class="list-content">বাঁধের জলে কী ধরনের শক্তি সঞ্চিত থাকে?
+                            <b>অথবা,</b> $m$ ভরবিশিষ্ট একটি বস্তুকণা $t$ সময়ে $u$ থেকে $v$ বেগ লাভ করল। গতিশক্তির পরিবর্তন কত?</span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">Section - C: সংক্ষিপ্ত উত্তরধর্মী প্রশ্ন
+                    <span class="marks">$2 \times 8 = 16$</span>
+                </div>
+                
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">1.</span>
+                        <span class="list-content">
+বার্নোলির নীতিটি লেখ ও গাণিতিক রূপ দাও।
+<b>অথবা,</b> প্রান্তীয় বেগের রাশিমালাটি প্রতিষ্ঠা করো। 
+</span>
+                    </li>
+                    <li>
+                        <span class="list-num">2.</span>
+                        <span class="list-content">9 g জলে অণুর সংখ্যা n হলে, 44 g CO$_2$-তে উপস্থিত অণুর সংখ্যা কত?
+                            <b>অথবা,</b> 16 g সালফার ডাই-অক্সাইড (SO$_2$)-এর STP-তে আয়তন এবং মোল সংখ্যা নির্ণয় করো।
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">3.</span>
+                        <span class="list-content">
+                            
+                            একটি স্প্রিং এর দৈর্ঘ্য 4cm বৃদ্ধি করার জন্য 100N বলের প্রয়োজন হয়। স্প্রিং-টির বল ধ্রুবক কত?
+
+                        </span>
+                    </li>
+                     <li>
+                        <span class="list-num">4.</span>
+                        <span class="list-content">তরলে গ্যাসের দ্রাব্যতা কী কী বিষয়ের ওপর কীভাবে নির্ভর করে?
+                            <b>অথবা,</b> দুটি তরলের ঘনত্ব যথাক্রমে $d₁$ ও $d₂$, তরল দুটিকে সমভরে মিশ্রিত করলে মিশ্রণের ঘনত্ব নির্ণয়?</span>
+                        </span>
+                    </li>
+                     <li>
+                        <span class="list-num">5.</span>
+                        <span class="list-content">সালফিউরিক অ্যাসিড (H$_2$SO$_4$)-এর শনাক্তকরণ বিক্রিয়াসহ বর্ণনা করো।</span>
+                    </li>
+                     <li>
+                        <span class="list-num">6.</span>
+                        <span class="list-content">অ্যাসিড বৃষ্টির প্রভাবে মার্বেল পাথরের তৈরী সৌধে কিভাবে স্টোন ক্যানসার হয় তা সমীকরণসহ লেখ।</span>
+                    </li>
+                     <li>
+                        <span class="list-num">7.</span>
+                        <span class="list-content">বল প্রয়োগে সর্বদাই কার্য সম্পন্ন হয় কি? ব্যাখ্যা করো।
+                            <b>অথবা,</b> জুল ও আর্গের মধ্যে সম্পর্ক স্থাপন করো।
+                        </span>
+                    </li>
+                     <li>
+                        <span class="list-num">8.</span>
+                        <span class="list-content">$M$ ও $2M$ ভরের দুটি বস্তুর রৈখিক ভরবেগ সমান। এদের গতিশক্তি অনুপাত কত?</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">Section - D: রচনাধর্মী/গাণিতিক প্রশ্ন</div>
+                
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">1.</span>
+                        <span class="list-content">NaCl-এর ক্ষেত্রে আণবিক ভরের পরিবর্তে সংকেত ভর কথাটি প্রযোজ্য কেন? স্থির চাপে মোলার আয়তন উষ্ণতার ওপর কীভাবে নির্ভরশীল? <span class="marks-float">(2+1)</span></span>
+                    </li>
+                    <li>
+                        <span class="list-num">2.</span>
+                        <span class="list-content">
+                            5 মিটার দীর্ঘ একটি তারের এক প্রান্তে 10 কিলোগ্রাম ভার ওজনের একটি বস্তু ঝোলালে 5 মিলিমিটার দৈর্ঘ্য বৃদ্ধি হয়। তারের উপাদানের ইয়ং গুণাঙ্ক 9.8 × 10$^{11}$ ডাইন/সেমি² হলে তারের প্রস্থচ্ছেদের ক্ষেত্রফল নির্ণয় করো। g = 9.8 m/s²
+                             <span class="marks-float">(2+1)</span></span>
+                    </li>
+                    <li>
+                        <span class="list-num">3.</span>
+                        <span class="list-content">0.1 cm$^2$ প্রস্থচ্ছেদ ও 1 m দৈর্ঘ্যবিশিষ্ট একটি ইস্পাতের তার থেকে 2 kg ভরের একটি বস্তু ঝুলিয়ে দিলে তারটির দৈর্ঘ্য কত বৃদ্ধি পাবে? (ইস্পাতের ইয়ং গুণাঙ্ক = 2 $\times$ 10$^{11}$ dyn cm$^{-2}$) <span class="marks-float">(3)</span></span>
+                    </li>
+                    <li>
+                        <span class="list-num">4.</span>
+                        <span class="list-content">সম্পৃক্ত দ্রবণ কাকে বলে? তিনটি উদাহরণের সংকেত লেখো। <span class="marks-float">(2+1)</span></span>
+                    </li>
+                    <li>
+                        <span class="list-num">5.</span>
+                        <span class="list-content">120 mL NaOH দ্রবণে 0.04 g NaOH দ্রবীভূত আছে। দ্রবণটির মোলার মাত্রা নির্ণয় করো। <span class="marks-float">(3)</span></span>
+                    </li>
+                    <li>
+                        <span class="list-num">6.</span>
+                        <span class="list-content">অম্লরাজ (Aqua Regia) কী? উদ্দায়ী ও গাঢ় HNO$_3$-এর সঙ্গে Cu চূর্ণ মিশিয়ে উত্তপ্ত করলে কী ঘটে? সমীকরণসহ লেখো। <span class="marks-float">(2+3)</span></span>
+                    </li>
+                    <li>
+                        <span class="list-num">7.</span>
+                        <span class="list-content">স্টোন ক্যানসার কাকে বলে? সমীকরণসহ লেখো। মৃদু অ্যাসিড ও তীব্র ক্ষারের প্রশমন বিক্রিয়ায় কোন নির্দেশক ব্যবহার করা হয়? <span class="marks-float">(2+1)</span></span>
+                    </li>
+                    <li>
+                        <span class="list-num">8.</span>
+                        <span class="list-content">একটি মোটর প্রতি মিনিটে 2500 kg জল 10 m উচ্চতায় তোলে। মোটরটির ক্ষমতা নির্ণয় করো। <br><b>অথবা,</b> পতনশীল বস্তুর যান্ত্রিক শক্তির নিত্যতার সূত্রটি লেখো। <span class="marks-float">(2+1)</span></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="wish-container">
+                <div class="wish-message">$\ast$ --- $\ast$ --- $\ast$</div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>2</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
