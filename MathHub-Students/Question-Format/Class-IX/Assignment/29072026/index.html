@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গণিতের গুরুত্বপূর্ণ ফর্মুলা সমূহ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        body {
+            background-color: #f3f4f6; /* gray-100 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            box-sizing: border-box;
+            position: relative;
+        }
+        @media print {
+            body { background: white; margin: 0; }
+            .a4-page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                border: none;
+            }
+            .no-print { display: none; }
+        }
+        .section-title {
+            background-color: #1e3a8a; /* blue-900 */
+            color: white;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 6px 6px 0 0;
+            font-size: 1.1rem;
+        }
+        .section-content {
+            border: 2px solid #1e3a8a;
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            padding: 12px;
+            height: calc(100% - 44px);
+            background-color: #f8fafc;
+        }
+        ol {
+            padding-left: 1.2rem;
+            margin-bottom: 0;
+        }
+        li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .visual-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            border: 2px solid #333;
+        }
+        .v-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e2e8f0;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .v-a2 { background: #bfdbfe; }
+        .v-b2 { background: #bbf7d0; }
+        .shape-img {
+            float: right;
+            width: 80px;
+            height: auto;
+            margin-left: 10px;
+        }
+
+        /* Watermark styling */
+        .a4-page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: url("https://abstractdil.github.io/Front-End-Projects/MathHub-Students/Question-Format/Class-IX/IAE-5/images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Footer styling */
+        .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 12mm;
+            right: 12mm;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .footer-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-icon {
+            width: 34px;
+            height: 34px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        .footer-text {
+            line-height: 1.2;
+        }
+        .footer-text b {
+            font-size: 12px;
+            display: block;
+        }
+        .footer-text span {
+            font-size: 11px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Print Button (Hidden on actual print) -->
+    <div class="text-center mt-6 no-print">
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded shadow-lg transition duration-300">
+            🖨️ Print or Save as PDF
+        </button>
+    </div>
+
+    <!-- PAGE 1: Algebra & Circle -->
+    <div class="a4-page">
+        <!-- Header -->
+        <div class="text-center mb-6 border-b-4 border-blue-900 pb-4">
+            <div class="flex justify-center items-center px-4">
+                <h1 class="text-3xl font-extrabold text-blue-900">গণিতের সকল গুরুত্বপূর্ণ ফর্মুলা সমুহ</h1>
+            </div>
+            <p class="text-md text-gray-600 mt-2 font-semibold">স্কয়ার • কিউব • বৃত্ত • ত্রিভুজ • আয়তক্ষেত্র • বর্গক্ষেত্র • ট্রাপিজিয়াম • রম্বস • সামান্তরিক</p>
+        </div>
+
+        <!-- Two Column Grid for Page 1 -->
+        <div class="grid grid-cols-2 gap-6">
+            
+            <!-- Square Algebra -->
+            <div>
+                <div class="section-title">স্কয়ার (SQUARE) এর ফর্মুলা</div>
+                <div class="section-content">
+                    <ol>
+                        <li>$ (a+b)^{2}=a^{2}+2ab+b^{2} $</li>
+                        <li>$ (a-b)^{2}=a^{2}-2ab+b^{2} $</li>
+                        <li>$ a^{2}-b^{2}=(a+b)(a-b) $</li>
+                        <li>$ ab=\frac{(a+b)^{2}-(a^{2}+b^{2})}{2} $</li>
+                        <li>$ 2(a^{2}+b^{2})=(a+b)^{2}+(a-b)^{2} $</li>
+                        <li>$ 4ab=(a+b)^{2}-(a-b)^{2} $</li>
+                        <li>$ (a+b)^{2}=(a-b)^{2}+4ab $</li>
+                        <li>$ (a-b)^{2}=(a+b)^{2}-4ab $</li>
+                        <li>$ a^{2}+b^{2}=(a+b)^{2}-2ab $ <br> $ \quad \quad \;\; =(a-b)^{2}+2ab $</li>
+                    </ol>
+                    
+                    <div class="mt-4 border-t border-gray-300 pt-2 text-center">
+                        <span class="font-bold text-sm text-blue-800">দৃশ্যমান ব্যাখ্যা: $(a+b)^{2}$</span>
+                        <div class="visual-box">
+                            <div class="v-item v-a2">$a^{2}$</div>
+                            <div class="v-item">$ab$</div>
+                            <div class="v-item">$ab$</div>
+                            <div class="v-item v-b2">$b^{2}$</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cube Algebra -->
+            <div>
+                <div class="section-title">কিউব (CUBE) এর ফর্মুলা</div>
+                <div class="section-content">
+                    <ol>
+                        <li>$ (a+b)^{3}=a^{3}+b^{3}+3a^{2}b+3ab^{2} $</li>
+                        <li>$ (a-b)^{3}=a^{3}-b^{3}-3a^{2}b+3ab^{2} $</li>
+                        <li>$ a^{3}+b^{3}=(a+b)^{3}-3ab(a+b) $</li>
+                        <li>$ a^{3}-b^{3}=(a-b)^{3}+3ab(a-b) $</li>
+                        <li>$ a^{3}+b^{3}=(a+b)(a^{2}-ab+b^{2}) $</li>
+                        <li>$ a^{3}-b^{3}=(a-b)(a^{2}+ab+b^{2}) $</li>
+                        <li>$ (a+b)^{3}=(a+b)(a^{2}+ab+b^{2}) $</li>
+                        <li>$ (a-b)^{3}=(a-b)(a^{2}-ab+b^{2}) $</li>
+                        <li>$ a^{3}+b^{3}=(a+b)[(a+b)^{2}-3ab] $</li>
+                        <li>$ a^{3}-b^{3}=(a-b)[(a-b)^{2}+3ab] $</li>
+                    </ol>
+                    <div class="mt-4 border-t border-gray-300 pt-2 text-center text-sm">
+                        <span class="font-bold text-blue-800">দৃশ্যমান সমীকরণ</span><br>
+                        $a^{3}+3a^{2}b+3ab^{2}+b^{3}$
+                    </div>
+                </div>
+            </div>
+
+            <!-- Circle Full Width with Image -->
+            <div class="col-span-2">
+                <div class="section-title bg-blue-700">বৃত্ত (CIRCLE) এর ফর্মুলা</div>
+                <div class="section-content flex justify-between items-center gap-4">
+                    <div class="flex-1 grid grid-cols-2 gap-4">
+                        <div>
+                            <ol>
+                                <li>পরিধি (Circumference), $ C=2\pi r=\pi d $</li>
+                                <li>ব্যাসার্ধ (Radius), $ r=\frac{C}{2\pi} $</li>
+                                <li>ব্যাস (Diameter), $ d=\frac{C}{\pi}=2r $</li>
+                                <li>ক্ষেত্রফল (Area), $ A=\pi r^{2} $</li>
+                                <li>ব্যাসার্ধ (Area থেকে), $ r=\sqrt{\frac{A}{\pi}} $</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <ol start="6">
+                                <li>ব্যাস (Area থেকে), $ d=2\sqrt{\frac{A}{\pi}} $</li>
+                                <li>বৃত্তের আর্ক দৈর্ঘ্য, $ s=\frac{\theta}{360^{\circ}}\times 2\pi r $</li>
+                                <li>সেক্টরের ক্ষেত্রফল, $ A_{sec}=\frac{\theta}{360^{\circ}}\times \pi r^{2} $</li>
+                                <li>বৃত্তের জ্যা (Chord), $ AB=2r \sin\frac{\theta}{2} $</li>
+                            </ol>
+                            <div class="mt-2 text-xs text-gray-700 bg-yellow-50 p-1 rounded border border-yellow-200 text-center">
+                                $r$ = ব্যাসার্ধ, $d$ = ব্যাস, $\pi \approx 3.1416$
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Circle SVG -->
+                    <div class="w-32 h-32 flex-shrink-0 relative">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <circle cx="50" cy="50" r="45" fill="#e0f2fe" stroke="#1d4ed8" stroke-width="2"/>
+                            <!-- Radius line -->
+                            <line x1="50" y1="50" x2="95" y2="50" stroke="#dc2626" stroke-width="2"/>
+                            <!-- Diameter line (dashed) -->
+                            <line x1="5" y1="50" x2="50" y2="50" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,2"/>
+                            <!-- Center dot -->
+                            <circle cx="50" cy="50" r="2" fill="black"/>
+                            <!-- Labels -->
+                            <text x="70" y="45" font-size="12" fill="red" font-weight="bold">r</text>
+                            <text x="25" y="45" font-size="12" fill="red">r</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Page 1 Footer -->
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>1</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: Triangles -->
+    <div class="a4-page">
+        <div class="mb-2 text-center border-b-2 border-blue-900 pb-2">
+            <h2 class="text-2xl font-extrabold text-blue-900">ত্রিভুজ (TRIANGLE) এর ফর্মুলা</h2>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 mt-4">
+            
+            <!-- Equilateral -->
+            <div class="border border-blue-300 rounded-lg overflow-hidden shadow-sm">
+                <div class="bg-blue-100 text-blue-900 font-bold p-2 text-center border-b border-blue-300">১. সমবাহু ত্রিভুজ (Equilateral)</div>
+                <div class="p-3 flex items-center justify-between">
+                    <div>
+                        <ul class="list-disc pl-4 text-sm space-y-1">
+                            <li>পরিসীমা, $ P=3a $</li>
+                            <li>উচ্চতা, $ h=\frac{\sqrt{3}}{2}a $</li>
+                            <li>ক্ষেত্রফল, $ A=\frac{\sqrt{3}}{4}a^{2} $</li>
+                        </ul>
+                    </div>
+                    <!-- Equilateral SVG -->
+                    <svg viewBox="0 0 100 100" class="w-24 h-24">
+                        <polygon points="50,15 90,85 10,85" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+                        <line x1="50" y1="15" x2="50" y2="85" stroke="#15803d" stroke-dasharray="3,3" stroke-width="1"/>
+                        <text x="20" y="50" font-size="12">a</text>
+                        <text x="75" y="50" font-size="12">a</text>
+                        <text x="45" y="98" font-size="12">a</text>
+                        <text x="52" y="55" font-size="10" fill="gray">h</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Right Angle -->
+            <div class="border border-blue-300 rounded-lg overflow-hidden shadow-sm">
+                <div class="bg-blue-100 text-blue-900 font-bold p-2 text-center border-b border-blue-300">২. সমকোণী ত্রিভুজ (Right Angle)</div>
+                <div class="p-3 flex items-center justify-between">
+                    <div>
+                        <ul class="list-disc pl-4 text-sm space-y-1">
+                            <li>পিথাগোরাস, $ c^{2}=a^{2}+b^{2} $</li>
+                            <li>ক্ষেত্রফল, $ A=\frac{1}{2}ab $</li>
+                            <li>$ \sin \theta=\frac{a}{c}, \cos \theta=\frac{b}{c} $</li>
+                        </ul>
+                    </div>
+                    <!-- Right Angle SVG -->
+                    <svg viewBox="0 0 100 100" class="w-24 h-24">
+                        <polygon points="20,15 20,85 90,85" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+                        <rect x="20" y="75" width="10" height="10" fill="none" stroke="#b45309" stroke-width="1"/>
+                        <text x="5" y="50" font-size="12">a</text>
+                        <text x="50" y="98" font-size="12">b</text>
+                        <text x="60" y="45" font-size="12">c</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Isosceles -->
+            <div class="border border-blue-300 rounded-lg overflow-hidden shadow-sm">
+                <div class="bg-blue-100 text-blue-900 font-bold p-2 text-center border-b border-blue-300">৩. সমদ্বিবাহু ত্রিভুজ (Isosceles)</div>
+                <div class="p-3 flex items-center justify-between">
+                    <div>
+                        <ul class="list-disc pl-4 text-sm space-y-1">
+                            <li>পরিসীমা, $ P=2a+b $</li>
+                            <li>উচ্চতা, $ h=\sqrt{a^{2}-(\frac{b}{2})^{2}} $</li>
+                            <li>ক্ষেত্রফল, $ A=\frac{b}{4}\sqrt{4a^2-b^2} $</li>
+                        </ul>
+                    </div>
+                    <!-- Isosceles SVG -->
+                    <svg viewBox="0 0 100 100" class="w-24 h-24">
+                        <polygon points="50,15 80,85 20,85" fill="#fdf4ff" stroke="#a21caf" stroke-width="2"/>
+                        <line x1="50" y1="15" x2="50" y2="85" stroke="#a21caf" stroke-dasharray="3,3" stroke-width="1"/>
+                        <text x="25" y="50" font-size="12">a</text>
+                        <text x="70" y="50" font-size="12">a</text>
+                        <text x="45" y="98" font-size="12">b</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Scalene / General -->
+            <div class="border border-blue-300 rounded-lg overflow-hidden shadow-sm">
+                <div class="bg-blue-100 text-blue-900 font-bold p-2 text-center border-b border-blue-300">৪. বিষমবাহু / সাধারণ (Scalene)</div>
+                <div class="p-3 flex items-center justify-between">
+                    <div>
+                        <ul class="list-disc pl-4 text-sm space-y-1">
+                            <li>পরিসীমা, $ P=a+b+c $</li>
+                            <li>অর্ধ-পরিসীমা, $ s=\frac{a+b+c}{2} $</li>
+                            <li>$ A=\sqrt{s(s-a)(s-b)(s-c)} $</li>
+                        </ul>
+                    </div>
+                    <!-- Scalene SVG -->
+                    <svg viewBox="0 0 100 100" class="w-24 h-24">
+                        <polygon points="30,15 90,85 10,85" fill="#f0f9ff" stroke="#0369a1" stroke-width="2"/>
+                        <text x="10" y="45" font-size="12">a</text>
+                        <text x="65" y="40" font-size="12">b</text>
+                        <text x="45" y="98" font-size="12">c</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Triangle Rules Full Width -->
+            <div class="col-span-2 bg-blue-50 p-4 rounded-lg border border-blue-200 mt-2 shadow-sm">
+                <strong class="text-blue-900 text-lg border-b border-blue-300 pb-1 block mb-2">ত্রিভুজের গুরুত্বপূর্ণ সম্পর্ক:</strong>
+                <div class="grid grid-cols-2 gap-4">
+                    <ol class="list-decimal pl-5 text-sm space-y-1">
+                        <li>তিন বাহুর সমষ্টি যে কোনো দুই বাহুর সমষ্টি থেকে বড়।</li>
+                        <li>তিন বাহু নিয়ে একটি ত্রিভুজই তৈরি হয়।</li>
+                        <li>ত্রিভুজের তিন কোণের সমষ্টি ১৮০° ($180^\circ$)।</li>
+                    </ol>
+                    <div class="text-sm font-semibold space-y-1 bg-white p-2 rounded">
+                        <div class="text-green-700">সমবাহু $\Rightarrow$ তিন বাহু সমান</div>
+                        <div class="text-purple-700">সমদ্বিবাহু $\Rightarrow$ দুটি বাহু সমান</div>
+                        <div class="text-orange-700">সমকোণী $\Rightarrow$ একটি কোণ $90^{\circ}$</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Page 2 Footer -->
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>2</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Quadrilaterals -->
+    <div class="a4-page">
+        
+        <div class="mb-4 text-center border-b-2 border-blue-900 pb-2">
+            <h2 class="text-2xl font-extrabold text-blue-900">চতুর্ভুজ (QUADRILATERAL) এর ফর্মুলা</h2>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+            
+            <!-- Rectangle -->
+            <div class="border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+                <div class="bg-gray-200 text-gray-900 font-bold p-2 text-center border-b border-gray-300">আয়তক্ষেত্র (RECTANGLE)</div>
+                <div class="p-3 flex justify-between items-center">
+                    <ol class="text-sm space-y-1 pl-4 list-decimal">
+                        <li>ক্ষেত্রফল, $ A=l\times b $</li>
+                        <li>পরিসীমা, $ P=2(l+b) $</li>
+                        <li>কর্ণ (Diagonal), $ d=\sqrt{l^{2}+b^{2}} $</li>
+                    </ol>
+                    <svg viewBox="0 0 100 100" class="w-24 h-24">
+                        <rect x="15" y="30" width="70" height="40" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+                        <line x1="15" y1="30" x2="85" y2="70" stroke="#475569" stroke-dasharray="2,2"/>
+                        <text x="45" y="25" font-size="12">l</text>
+                        <text x="90" y="55" font-size="12">b</text>
+                        <text x="45" y="45" font-size="10" fill="gray">d</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Square (Geometry) -->
+            <div class="border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+                <div class="bg-gray-200 text-gray-900 font-bold p-2 text-center border-b border-gray-300">বর্গক্ষেত্র (SQUARE)</div>
+                <div class="p-3 flex justify-between items-center">
+                    <ol class="text-sm space-y-1 pl-4 list-decimal">
+                        <li>ক্ষেত্রফল, $ A=a^{2} $</li>
+                        <li>পরিসীমা, $ P=4a $</li>
+                        <li>কর্ণ, $ d=a\sqrt{2} $</li>
+                    </ol>
+                    <svg viewBox="0 0 100 100" class="w-24 h-24">
+                        <rect x="25" y="25" width="50" height="50" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+                        <line x1="25" y1="25" x2="75" y2="75" stroke="#475569" stroke-dasharray="2,2"/>
+                        <text x="45" y="20" font-size="12">a</text>
+                        <text x="80" y="55" font-size="12">a</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Parallelogram -->
+            <div class="border border-green-300 rounded-lg overflow-hidden shadow-sm">
+                <div class="bg-green-100 text-green-900 font-bold p-2 text-center border-b border-green-300">সামান্তরিক (PARALLELOGRAM)</div>
+                <div class="p-3 flex justify-between items-center">
+                    <ol class="text-sm space-y-1 pl-4 list-decimal">
+                        <li>ক্ষেত্রফল, $ A = b \times h $</li>
+                        <li>পরিসীমা, $ P = 2(a + b) $</li>
+                        <li>$ d_1^2 + d_2^2 = 2(a^2 + b^2) $</li>
+                    </ol>
+                    <svg viewBox="0 0 100 100" class="w-24 h-24">
+                        <polygon points="30,30 90,30 70,70 10,70" fill="#f0fdf4" stroke="#166534" stroke-width="2"/>
+                        <line x1="30" y1="30" x2="30" y2="70" stroke="#166534" stroke-dasharray="2,2"/>
+                        <text x="45" y="25" font-size="12">b</text>
+                        <text x="85" y="55" font-size="12">a</text>
+                        <text x="20" y="55" font-size="10">h</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Rhombus -->
+            <div class="border border-green-300 rounded-lg overflow-hidden shadow-sm">
+                <div class="bg-green-100 text-green-900 font-bold p-2 text-center border-b border-green-300">রম্বস (RHOMBUS)</div>
+                <div class="p-3 flex justify-between items-center">
+                    <ol class="text-sm space-y-1 pl-4 list-decimal">
+                        <li>ক্ষেত্রফল, $ A = \frac{1}{2} d_1 d_2 $</li>
+                        <li>পরিসীমা, $ P = 4a $</li>
+                        <li>বাহু, $ a = \frac{1}{2}\sqrt{d_1^2 + d_2^2} $</li>
+                    </ol>
+                    <svg viewBox="0 0 100 100" class="w-24 h-24">
+                        <polygon points="50,20 80,50 50,80 20,50" fill="#f0fdf4" stroke="#166534" stroke-width="2"/>
+                        <line x1="50" y1="20" x2="50" y2="80" stroke="#166534" stroke-dasharray="2,2"/>
+                        <line x1="20" y1="50" x2="80" y2="50" stroke="#166534" stroke-dasharray="2,2"/>
+                        <text x="68" y="35" font-size="12">a</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Trapezium (Spans 2 columns) -->
+            <div class="col-span-2 border border-purple-300 rounded-lg overflow-hidden shadow-sm mt-2">
+                <div class="bg-purple-100 text-purple-900 font-bold p-2 text-center border-b border-purple-300">ট্রাপিজিয়াম (TRAPEZIUM)</div>
+                <div class="p-4 flex justify-between items-center">
+                    <div class="flex-1">
+                        <ol class="text-sm space-y-2 pl-4 list-decimal">
+                            <li>
+                                <strong>ক্ষেত্রফল (Area):</strong> $ A = \frac{1}{2} \times (a + b) \times h $
+                                <p class="text-xs text-gray-600 mt-1">যেখানে $a$ এবং $b$ সমান্তরাল বাহু এবং $h$ হলো লম্ব উচ্চতা।</p>
+                            </li>
+                            <li>
+                                <strong>পরিসীমা (Perimeter):</strong> $ P = a + b + c + d $
+                                <p class="text-xs text-gray-600 mt-1">যেখানে $a, b, c, d$ হলো ট্রাপিজিয়ামের চারদিকের বাহু।</p>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="w-40 flex-shrink-0">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-sm">
+                            <polygon points="30,25 70,25 90,75 10,75" fill="#faf5ff" stroke="#6b21a8" stroke-width="2"/>
+                            <line x1="30" y1="25" x2="30" y2="75" stroke="#6b21a8" stroke-dasharray="2,2"/>
+                            <text x="48" y="20" font-size="12">a</text>
+                            <text x="48" y="90" font-size="12">b</text>
+                            <text x="20" y="55" font-size="10">h</text>
+                            <text x="83" y="50" font-size="10">c</text>
+                            <text x="12" y="50" font-size="10">d</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer / Tips -->
+        <div class="mt-8 bg-gray-800 text-white p-5 rounded-lg flex justify-between items-center shadow-lg">
+            <div class="text-xl font-bold text-yellow-300">
+                গাণিতিক জ্ঞানই ভবিষ্যতের চাবিকাঠি।
+            </div>
+            <div class="text-sm border-l-2 border-gray-600 pl-5">
+                <strong class="text-white block mb-1">স্মরণ রাখার টিপস:</strong>
+                <ul class="list-disc pl-4 text-gray-300 space-y-1">
+                    <li>নিয়মিত অনুশীলন করো</li>
+                    <li>সূত্রগুলো বোঝার চেষ্টা করো</li>
+                    <li>বেশি বেশি সমস্যা সমাধান করো</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Page 3 Footer -->
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>3</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

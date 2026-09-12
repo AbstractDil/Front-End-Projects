@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSK Center Diet & Menu Chart - A4 Print</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://cdn.msar.me/fonts/adorsho-lipi/font.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #1e293b;
+      --border-color: #334155;
+      --table-border: #475569;
+      --header-bg: #f1f5f9;
+      --accent-bg: #f8fafc;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'AdorshoLipi', Arial, sans-serif !important;
+      background-color: #e2e8f0;
+      color: var(--text-dark);
+      padding: 24px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Action bar on top for preview and print */
+    .action-bar {
+      width: 100%;
+      max-width: 210mm;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .action-info {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #2563eb;
+      color: #ffffff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease-in-out, transform 0.05s ease;
+    }
+
+    .print-btn:hover {
+      background-color: #1d4ed8;
+    }
+
+    .print-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* A4 Paper Container */
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 15mm 20mm;
+      background: #ffffff;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Header Section */
+    .header-box {
+      text-align: center;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .center-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-dark);
+      padding: 0 8px;
+    }
+
+    .info-item span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    /* Dual Schedule Layout */
+    .schedule-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .section-card {
+      border: 1.5px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+    }
+
+    .section-header {
+      background-color: var(--header-bg);
+      border-bottom: 1.5px solid var(--border-color);
+      text-align: center;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-dark);
+      padding: 10px 6px;
+      letter-spacing: 0.2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 19px;
+      table-layout: fixed;
+    }
+
+    th, td {
+      border: 1px solid var(--table-border);
+      padding: 8px 6px;
+      text-align: center;
+    }
+
+    th {
+      background-color: var(--accent-bg);
+      font-weight: 700;
+      color: var(--text-dark);
+      font-size: 19px;
+    }
+
+    th:first-child, td:first-child {
+      width: 36%;
+      text-align: left;
+      padding-left: 10px;
+    }
+
+    td:first-child {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #fafbfc;
+    }
+
+    /* Menu Box */
+    .menu-box {
+      border-top: 1.5px solid var(--border-color);
+      padding: 14px 16px;
+      background: #ffffff;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-title {
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      margin-bottom: 10px;
+      text-align: center;
+      color: var(--text-dark);
+    }
+
+    .menu-list {
+      list-style-type: disc;
+      margin: 0;
+      padding-left: 24px;
+      font-size: 19px;
+      line-height: 1.8;
+      color: #1e293b;
+    }
+
+    .menu-note {
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 19px;
+      color: #0f172a;
+    }
+
+    /* Footer Signatures */
+    .footer {
+      margin-top: 36px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 24px 10px;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .signature-line {
+      border-top: 1.5px dashed #475569;
+      width: 200px;
+      text-align: center;
+      padding-top: 6px;
+    }
+
+    /* Print Specific Styles */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm;
+    }
+
+    @media print {
+      body {
+        background-color: transparent !important;
+        padding: 0 !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .sheet {
+        width: 100% !important;
+        min-height: auto !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .section-card {
+        border-color: #000000 !important;
+      }
+
+      th, td {
+        border-color: #222222 !important;
+      }
+
+      .section-header {
+        background-color: #f1f5f9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      th {
+        background-color: #f8fafc !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Action Bar (Hidden when printing) -->
+  <div class="action-bar no-print">
+    <div class="action-info">
+      📄 <strong>A4 Printable Chart Preview</strong> — Use print to save as PDF
+    </div>
+    <button type="button" class="print-btn" onclick="triggerPrint()">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+        <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+      </svg>
+      Print / Save as PDF
+    </button>
+  </div>
+
+  <!-- A4 Printable Sheet -->
+  <div class="sheet">
+    
+    <!-- Top Header Area -->
+    <div class="header-box">
+      <div class="center-title">বাগআঁচড়া চিত্ত কলোনী S.S.K.</div>
+      <div class="info-row">
+        <div class="info-item"><span>CENTER NO :</span> 306</div>
+        <div class="info-item"><span>CENTER CODE :</span> 19336280312</div>
+      </div>
+    </div>
+
+    <!-- Two Column Tables Layout -->
+    <div class="schedule-container">
+      
+      <!-- Left Column: সোম - বুধ - শুক্র -->
+      <div class="section-card">
+        <div class="section-header">সোম - বুধ - শুক্র</div>
+        <table>
+          <thead>
+            <tr>
+              <th>উপকরণ (Item)</th>
+              <th>মা (Mother)</th>
+              <th>শিশু (Child)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>চাল</td>
+              <td>110 গ্রাম</td>
+              <td>50 গ্রাম</td>
+            </tr>
+            <tr>
+              <td>আলু</td>
+              <td>84 পয়সা</td>
+              <td>NIL</td>
+            </tr>
+            <tr>
+              <td>ডিম</td>
+              <td>8.50 পয়সা</td>
+              <td>8.50 পয়সা</td>
+            </tr>
+            <tr>
+              <td>তেল</td>
+              <td>2 মিলি</td>
+              <td>2 মিলি</td>
+            </tr>
+            <tr>
+              <td>লবণ</td>
+              <td>2 গ্রাম</td>
+              <td>2 গ্রাম</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Menu Section for Left Column -->
+        <div class="menu-box">
+          <div class="menu-title">মেনু</div>
+          <ul class="menu-list">
+            <li>সাদা ভাত</li>
+            <li>আলুর ঝোল</li>
+            <li>সিদ্ধ ডিম (গোটা)</li>
+          </ul>
+          <div class="menu-note">
+         • মা — 1 টি &nbsp;|&nbsp; শিশু — 1 টি
+       </div>
+        </div>
+      </div>
+
+      <!-- Right Column: মঙ্গল - বৃহস্পতি - শনি -->
+      <div class="section-card">
+        <div class="section-header">মঙ্গল - বৃহস্পতি - শনি</div>
+        <table>
+          <thead>
+            <tr>
+              <th>উপকরণ (Item)</th>
+              <th>মা (Mother)</th>
+              <th>শিশু (Child)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>চাল</td>
+              <td>75 গ্রাম</td>
+              <td>75 গ্রাম</td>
+            </tr>
+            <tr>
+              <td>ডাল</td>
+              <td>30 গ্রাম</td>
+              <td>30 গ্রাম</td>
+            </tr>
+            <tr>
+              <td>সবজি</td>
+              <td>23 পয়সা</td>
+              <td>41 পয়সা</td>
+            </tr>
+            <tr>
+              <td>আলু</td>
+              <td>1.40 পয়সা</td>
+              <td>1.68 পয়সা</td>
+            </tr>
+            <tr>
+              <td>তেল</td>
+              <td>2 মিলি</td>
+              <td>2 মিলি</td>
+            </tr>
+            <tr>
+              <td>লবণ</td>
+              <td>2 গ্রাম</td>
+              <td>2 গ্রাম</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Menu Section for Right Column -->
+        <div class="menu-box">
+          <div class="menu-title">মেনু</div>
+          <ul class="menu-list">
+            <li>সবজি খিচুড়ি</li>
+            <li>সিদ্ধ ডিম</li>
+          </ul>
+          <div class="menu-note">
+            • মা — 1 টি &nbsp;|&nbsp; শিশু — 1/2 (অর্ধেক)
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Official Signature Line Blocks -->
+    <!-- <div class="footer">
+      <div class="signature-line">সহায়িকার স্বাক্ষর</div>
+      <div class="signature-line">পরিদর্শকের স্বাক্ষর</div>
+    </div>
+  </div> -->
+
+  <script>
+    function triggerPrint() {
+      window.print();
+    }
+  </script>
+</body>
+</html>

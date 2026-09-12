@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রকৃতি পাঠ - নবম শ্রেণী প্রজেক্ট খাতা (৭ পৃষ্ঠা)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e293b;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* Top Action Bar */
+        .action-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: #0f172a;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 1000;
+        }
+
+        .action-bar h1 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #38bdf8;
+            font-family: 'Atma', sans-serif;
+        }
+
+        .btn-print {
+            background-color: #0284c7;
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            font-family: 'Noto Sans Bengali', sans-serif;
+        }
+
+        .btn-print:hover {
+            background-color: #0369a1;
+        }
+
+        /* Container for 7 Pages */
+        .pages-container {
+            margin-top: 80px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 35px;
+        }
+
+        /* A4 Page Formatting */
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background-color: #ffffff;
+            padding: 18mm 16mm 16mm 16mm;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Project Book Double Border */
+        .border-outer {
+            position: absolute;
+            top: 8mm;
+            left: 8mm;
+            right: 8mm;
+            bottom: 8mm;
+            border: 2px solid #0369a1;
+            pointer-events: none;
+        }
+
+        .border-inner {
+            position: absolute;
+            top: 9.5mm;
+            left: 9.5mm;
+            right: 9.5mm;
+            bottom: 9.5mm;
+            border: 1px dashed #38bdf8;
+            pointer-events: none;
+        }
+
+        /* Notebook Headers & Footers */
+        .notebook-header-line {
+            border-bottom: 2px solid #ef4444;
+            padding-bottom: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12.5px;
+            color: #0369a1;
+            font-weight: 700;
+        }
+
+        .notebook-footer-line {
+            border-top: 1px solid #94a3b8;
+            padding-top: 8px;
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11.5px;
+            color: #64748b;
+        }
+
+        .page-badge {
+            background-color: #0284c7;
+            color: #ffffff;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 11.5px;
+        }
+
+        /* Page Content Structure */
+        .page-body {
+            flex-grow: 1;
+        }
+
+        h2.page-heading {
+            color: #0f172a;
+            font-size: 19px;
+            border-left: 5px solid #0284c7;
+            padding-left: 12px;
+            margin-bottom: 15px;
+            font-family: 'Atma', cursive, sans-serif;
+            background: #f0f9ff;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        h3.section-subheading {
+            color: #0369a1;
+            font-size: 15.5px;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            font-weight: 700;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 3px;
+        }
+
+        p {
+            font-size: 13.5px;
+            text-align: justify;
+            margin-bottom: 8px;
+            color: #334155;
+            line-height: 1.65;
+        }
+
+        ul, ol {
+            margin-left: 22px;
+            margin-bottom: 10px;
+            font-size: 13.5px;
+            color: #334155;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        /* Highlight Boxes */
+        .math-box {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            text-align: center;
+            padding: 8px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 15px;
+            font-weight: bold;
+            color: #0369a1;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .info-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 10px 14px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 13.5px;
+        }
+
+        /* Tables */
+        .project-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+            background: #ffffff;
+        }
+
+        .project-table th {
+            background-color: #0284c7;
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            border: 1px solid #0369a1;
+            font-weight: 600;
+        }
+
+        .project-table td {
+            padding: 7px 10px;
+            border: 1px solid #cbd5e1;
+            text-align: center;
+        }
+
+        .project-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Cover Page Specific */
+        .cover-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            padding: 10mm 5mm;
+        }
+
+        .project-banner {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            border: 2px dashed #0284c7;
+            padding: 22px;
+            border-radius: 12px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .student-table td {
+            padding: 10px 15px;
+            border: 1px solid #e2e8f0;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .student-table td:first-child {
+            background-color: #f0f9ff;
+            color: #0369a1;
+            font-weight: bold;
+            width: 35%;
+        }
+
+        /* Print Media Rule */
+        @media print {
+            body {
+                background-color: #ffffff;
+            }
+            .action-bar {
+                display: none;
+            }
+            .pages-container {
+                margin: 0;
+                padding: 0;
+                gap: 0;
+            }
+            .a4-page {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+                width: 210mm;
+                height: 297mm;
+                page-break-after: always;
+                page-break-inside: avoid;
+                background-image: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="action-bar">
+        <h1>WBBSE নবম শ্রেণী ভৌত বিজ্ঞান প্রজেক্ট (৭ পৃষ্ঠা)</h1>
+        <button class="btn-print" onclick="window.print()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            প্রিন্ট / PDF হিসাবে সেভ করুন
+        </button>
+    </div>
+
+    <div class="pages-container">
+
+        <!-- ================= PAGE 1: COVER PAGE ================= -->
+        <div class="a4-page">
+            <div class="border-outer"></div>
+            <div class="border-inner"></div>
+
+            <div class="cover-content">
+                <div style="margin-top: 15mm;">
+                    <div style="font-size: 45px; margin-bottom: 5px;">🔬</div>
+                    <h2 style="font-size: 28px; color: #0f172a; font-family: 'Atma', cursive;">SANTIPUR MUNICIPAL HIGH SCHOOL (H.S.)</h2>
+                    <p style="font-size: 15px; color: #64748b; font-weight: 600;">পশ্চিমবঙ্গ মধ্যশিক্ষা পর্ষদ (WBBSE)</p>
+                </div>
+
+                <div style="width: 100%;">
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <span style="background: #e0f2fe; color: #0369a1; padding: 5px 16px; border-radius: 20px; font-weight: bold; font-size: 13px;">
+                            ভৌত বিজ্ঞান ও পরিবেশ — অন্তর্বর্তী প্রস্তুতকালীন মূল্যায়ন প্রজেক্ট
+                        </span>
+                    </div>
+
+                    <div class="project-banner">
+                        <p style="font-size: 14px; color: #0284c7; font-weight: bold;">নমুনা-২</p>
+                        <h1 style="font-size: 26px; color: #0369a1; font-family: 'Atma', cursive; margin-bottom: 8px;">প্রকৃতি পাঠ (Nature Study)</h1>
+                        <h3 style="font-size: 16px; color: #0f172a; font-weight: 600;">বিষয়: পরিচিত বিভিন্ন পদার্থের pH পরিমাপ ও প্রকৃতি নির্ধারণ</h3>
+                    </div>
+                </div>
+
+                <div style="width: 100%; margin-bottom: 15mm;">
+                    <h4 style="font-size: 15px; color: #0f172a; margin-bottom: 8px; text-align: left; border-left: 3px solid #0284c7; padding-left: 8px;">
+                        ছাত্র / ছাত্রীর পরিচয় (Student Credentials)
+                    </h4>
+                    <table class="student-table">
+                        <tr>
+                            <td>ছাত্র/ছাত্রীর নাম:</td>
+                            <td><strong>...................................................................</strong></td>
+                        </tr>
+                        <tr>
+                            <td>শ্রেণী ও বিভাগ:</td>
+                            <td><strong>নবম শ্রেণী (Class IX) | বিভাগ: .......</strong></td>
+                        </tr>
+                        <tr>
+                            <td>ক্রমিক সংখ্যা (Roll No):</td>
+                            <td><strong>...................................................................</strong></td>
+                        </tr>
+                        <tr>
+                            <td>রেজিস্ট্রেশন নম্বর:</td>
+                            <td><strong>...................................................................</strong></td>
+                        </tr>
+                        <tr>
+                            <td>বিষয় ও বিষয় কোড:</td>
+                            <td><strong>ভৌত বিজ্ঞান ও পরিবেশ (PHSC)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>শিক্ষাবর্ষ:</td>
+                            <td><strong>২০২৬ - ২০২৭</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="notebook-footer-line" style="width: 100%; border: none;">
+                    <span>স্থান: বিদ্যালয় পরীক্ষাগার</span>
+                    <span>পৃষ্ঠা সংখ্যা: ০৭</span>
+                    <span class="page-badge">পৃষ্ঠা ১ / ৭</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 2: INTRODUCTION & WORKING PLAN ================= -->
+        <div class="a4-page">
+            <div class="border-outer"></div>
+            <div class="border-inner"></div>
+
+            <div class="notebook-header-line">
+                <span>নবম শ্রেণী — ভৌত বিজ্ঞান প্রজেক্ট খাতা</span>
+                <span>প্রকৃতি পাঠ (Nature Study)</span>
+            </div>
+
+            <div class="page-body">
+                <h2 class="page-heading">১. প্রস্তাবনা, ভাবমূল ও কর্মপরিকল্পনা</h2>
+
+                <h3 class="section-subheading">১.১ ভূমিকা (Introduction):</h3>
+                <p>
+                    আমাদের চারপাশে দৈনন্দিন জীবনে আমরা বিভিন্ন প্রকারের খাদ্য উপাদান, তরল পানীয় এবং গৃহস্থালির রাসায়নিক দ্রবণ ব্যবহার করে থাকি। এদের মধ্যে কোনটি টক বা আম্লিক, কোনটি তিতো বা ক্ষারীয়, আবার কোনটি প্রশম প্রকৃতির হয়। পদার্থের এই রাসায়নিক বৈশিষ্ট্যটি সঠিকভাবে পরিমাপ করার বৈজ্ঞানিক স্কেল হলো pH স্কেল। প্রকৃতিজাত ও নিত্যব্যবহার্য পদার্থের pH পরিমাপ করে তাদের রাসায়নিক প্রকৃতি নির্ধারণ করাই এই প্রজেক্টের প্রধান মূলভাব।
+                </p>
+
+                <div class="info-box" style="background-color: #f8fafc; border-left-color: #0284c7;">
+                    <strong>✳ ভাবমূল:</strong> পদার্থের ভৌত ও রাসায়নিক ধর্মসমূহ (অ্যাসিড, ক্ষারক ও লবণ)।<br>
+                    <strong>✳ উপএকক:</strong> pH-এর সহজ উপস্থাপন।<br>
+                    <strong>✳ কাজের বিষয়:</strong> বিভিন্ন প্রকৃতিজাত ও পরিচিত পদার্থের pH পরিমাপ করা এবং তা থেকে তাদের প্রকৃতি নির্ধারণ।
+                </div>
+
+                <h3 class="section-subheading">১.২ প্রজেক্টের স্থান ও সময়সীমা:</h3>
+                <ul>
+                    <li><strong>স্থান:</strong> বিদ্যালয়ের শ্রেণিকক্ষ / ভৌত বিজ্ঞান গবেষণাগার।</li>
+                    <li><strong>সময়:</strong> ৩০ – ৪০ মিনিট।</li>
+                </ul>
+
+                <h3 class="section-subheading">১.৩ কাম্য শিখনপদ্ধতি (Expected Learning Abilities):</h3>
+                <ol>
+                    <li>হাতে-কলমে বিভিন্ন পদার্থের pH-এর অন্তত একটি আনুমানিক মান পরিমাপ করতে পারব।</li>
+                    <li>pH-এর মান থেকে যেকোনো পদার্থের প্রকৃতি (আম্লিক/ক্ষারীয়/প্রশম) বলতে পারব।</li>
+                </ol>
+
+                <h3 class="section-subheading">১.৪ কর্মপরিকল্পনা (Working Plan):</h3>
+                <p><strong>শিক্ষক/শিক্ষিকার ভূমিকা:</strong></p>
+                <ul>
+                    <li>শিক্ষার্থীদের ছোট দলে ভাগ করে কাজে ও আলোচনায় সাহায্য করবেন।</li>
+                    <li>শিক্ষার্থীদের pH কাগজ, টেস্টটিউব ও কয়েকটি বিকার সরবরাহ করবেন।</li>
+                    <li>কীভাবে শিক্ষার্থীরা বিভিন্ন পদার্থের pH পরিমাপ করবে তা বুঝিয়ে দেবেন।</li>
+                </ul>
+                <p><strong>শিক্ষার্থীদের কাজ:</strong></p>
+                <ul>
+                    <li>দলগতভাবে প্রকৃতিজাত ও পরিচিত পদার্থের নমুনা (যেমন— লেবুর রস, ভিনেগার, পানীয় জল, গোরুর দুধ ইত্যাদি) সংগ্রহ করে আনবে।</li>
+                    <li>টেস্টটিউবে প্রতিটি নমুনা ঢেলে তাতে pH কাগজ দিয়ে মান পরিমাপ করবে।</li>
+                </ul>
+            </div>
+
+            <div class="notebook-footer-line">
+                <span>WBBSE Class 9 Physical Science</span>
+                <span>নমুনা-২: প্রকৃতি পাঠ</span>
+                <span class="page-badge">পৃষ্ঠা ২ / ৭</span>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 3: THEORETICAL BACKGROUND (pH) ================= -->
+        <div class="a4-page">
+            <div class="border-outer"></div>
+            <div class="border-inner"></div>
+
+            <div class="notebook-header-line">
+                <span>নবম শ্রেণী — ভৌত বিজ্ঞান প্রজেক্ট খাতা</span>
+                <span>প্রকৃতি পাঠ (Nature Study)</span>
+            </div>
+
+            <div class="page-body">
+                <h2 class="page-heading">২. তত্ত্বীয় পটভূমি: pH স্কেলের ধারণা</h2>
+
+                <h3 class="section-subheading">২.১ pH-এর অর্থ ও গাণিতিক রূপ:</h3>
+                <p>
+                    বিজ্ঞানী <strong>Sorensen</strong> 1909 খ্রিস্টাব্দে pH এর ধারণা দেন। pH এর অর্থ হলো <strong>"potenz de Hydrogen"</strong> যার অর্থ H<sup>+</sup> আয়নের ক্ষমতা (power of H<sup>+</sup> ions)।
+                </p>
+                <p>
+                    <strong>সংজ্ঞা:</strong> কোনো লঘু জলীয় দ্রবণে হাইড্রোজেন আয়নের মোলার গাঢ়ত্বের [H<sup>+</sup>] ঋণাত্মক লগারিদমকে ওই দ্রবণের pH বলে।
+                </p>
+                
+                <div class="math-box">
+                    pH = -log<sub>10</sub>[H<sup>+</sup>]
+                </div>
+
+                <p>
+                    যেমন— কোনো দ্রবণের H<sup>+</sup> আয়নের গাঢ়ত্ব 10<sup>-2</sup> mol L<sup>-1</sup> হলে এর pH = -log<sub>10</sub> 10<sup>-2</sup> = -(-2) = 2.
+                </p>
+
+                <h3 class="section-subheading">২.২ pH স্কেলের সীমা (25°C তাপমাত্রায়):</h3>
+                <p>
+                    25°C তাপমাত্রায় বিশুদ্ধ জল বা প্রশম দ্রবণের H<sup>+</sup> আয়নের গাঢ়ত্ব [H<sup>+</sup>] = 10<sup>-7</sup>, অতএব ইহার pH = 7। কোনো দ্রবণের H<sup>+</sup> আয়নের গাঢ়ত্ব 1 mol L<sup>-1</sup> থেকে 10<sup>-14</sup> mol L<sup>-1</sup>-এর পাল্লার মধ্যে থাকলে সেই দ্রবণের আম্লিকতা বা ক্ষারকীয়তাকে pH স্কেলের সাহায্যে প্রকাশ করা হয়। 
+                </p>
+
+                <table class="project-table" style="margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">pH-এর সীমা</th>
+                            <th style="width: 50%;">দ্রবণের প্রকৃতি</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0 থেকে 2</td><td>তীব্র আম্লিক</td></tr>
+                        <tr><td>2 থেকে 4</td><td>মাঝারি আম্লিক</td></tr>
+                        <tr><td>4 থেকে 7 এর কম</td><td>মৃদু আম্লিক</td></tr>
+                        <tr style="background-color: #dcfce7; font-weight: bold;"><td>7</td><td>প্রশম (Neutral)</td></tr>
+                        <tr><td>7 এর বেশি থেকে 10</td><td>মৃদু ক্ষারকীয়</td></tr>
+                        <tr><td>10 থেকে 12</td><td>মাঝারি ক্ষারকীয়</td></tr>
+                        <tr><td>12 থেকে 14</td><td>তীব্র ক্ষারকীয়</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="notebook-footer-line">
+                <span>WBBSE Class 9 Physical Science</span>
+                <span>নমুনা-২: প্রকৃতি পাঠ</span>
+                <span class="page-badge">পৃষ্ঠা ৩ / ৭</span>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 4: UNIVERSAL INDICATOR ================= -->
+        <div class="a4-page">
+            <div class="border-outer"></div>
+            <div class="border-inner"></div>
+
+            <div class="notebook-header-line">
+                <span>নবম শ্রেণী — ভৌত বিজ্ঞান প্রজেক্ট খাতা</span>
+                <span>প্রকৃতি পাঠ (Nature Study)</span>
+            </div>
+
+            <div class="page-body">
+                <h2 class="page-heading">৩. ইউনিভার্সাল নির্দেশক (Universal Indicator)</h2>
+
+                <h3 class="section-subheading">৩.১ ইউনিভার্সাল নির্দেশক কী?</h3>
+                <p>
+                    pH পেপার ও তার ব্যবহার: ইউনিভার্সাল নির্দেশক (Universal Indicator) হল অনেকগুলি নির্দেশকের (indicator) মিশ্রণ। বিভিন্ন pH-এ এর বর্ণ বিভিন্ন হয়। ফিল্টার পেপারের স্ট্রিপকে এই দ্রবণে ভিজিয়ে শুকিয়ে নিলে তা pH পেপার হিসেবে কাজ করে। সাধারণ অবস্থায় এর কোনো নির্দিষ্ট বর্ণ থাকে না। 
+                </p>
+
+                <!-- Color Spectrum Illustration -->
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; margin: 15px 0; text-align: center;">
+                    <div style="font-size: 12.5px; font-weight: bold; color: #0f172a; margin-bottom: 8px;">
+                        চিত্র: বিভিন্ন pH-এ ইউনিভার্সাল নির্দেশকের আনুমানিক বর্ণ
+                    </div>
+                    <svg width="100%" height="70" viewBox="0 0 450 70">
+                        <!-- Acidic -->
+                        <rect x="0" y="0" width="30" height="30" fill="#dc2626" />
+                        <rect x="30" y="0" width="30" height="30" fill="#ea580c" />
+                        <rect x="60" y="0" width="30" height="30" fill="#f97316" />
+                        <rect x="90" y="0" width="30" height="30" fill="#facc15" />
+                        <rect x="120" y="0" width="30" height="30" fill="#eab308" />
+                        <rect x="150" y="0" width="30" height="30" fill="#84cc16" />
+                        <rect x="180" y="0" width="30" height="30" fill="#65a30d" />
+                        <!-- Neutral 7 -->
+                        <rect x="210" y="0" width="30" height="30" fill="#16a34a" stroke="#000" stroke-width="1.5"/>
+                        <!-- Basic -->
+                        <rect x="240" y="0" width="30" height="30" fill="#0d9488" />
+                        <rect x="270" y="0" width="30" height="30" fill="#0284c7" />
+                        <rect x="300" y="0" width="30" height="30" fill="#2563eb" />
+                        <rect x="330" y="0" width="30" height="30" fill="#4f46e5" />
+                        <rect x="360" y="0" width="30" height="30" fill="#7c3aed" />
+                        <rect x="390" y="0" width="30" height="30" fill="#9333ea" />
+                        <rect x="420" y="0" width="30" height="30" fill="#581c87" />
+
+                        <!-- Numbers below colors -->
+                        <text x="15" y="45" font-size="11" fill="#333" text-anchor="middle">1</text>
+                        <text x="45" y="45" font-size="11" fill="#333" text-anchor="middle">2</text>
+                        <text x="75" y="45" font-size="11" fill="#333" text-anchor="middle">3</text>
+                        <text x="105" y="45" font-size="11" fill="#333" text-anchor="middle">4</text>
+                        <text x="135" y="45" font-size="11" fill="#333" text-anchor="middle">5</text>
+                        <text x="165" y="45" font-size="11" fill="#333" text-anchor="middle">6</text>
+                        <text x="225" y="48" font-size="13" font-weight="bold" fill="#16a34a" text-anchor="middle">7</text>
+                        <text x="255" y="45" font-size="11" fill="#333" text-anchor="middle">8</text>
+                        <text x="285" y="45" font-size="11" fill="#333" text-anchor="middle">9</text>
+                        <text x="315" y="45" font-size="11" fill="#333" text-anchor="middle">10</text>
+                        <text x="345" y="45" font-size="11" fill="#333" text-anchor="middle">11</text>
+                        <text x="375" y="45" font-size="11" fill="#333" text-anchor="middle">12</text>
+                        <text x="405" y="45" font-size="11" fill="#333" text-anchor="middle">13</text>
+                        <text x="435" y="45" font-size="11" fill="#333" text-anchor="middle">14</text>
+
+                        <!-- Labels -->
+                        <path d="M 0 55 L 195 55" stroke="#ef4444" stroke-width="2" />
+                        <text x="97" y="68" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">অ্যাসিড ধর্ম বৃদ্ধি</text>
+                        
+                        <text x="225" y="68" font-size="10" font-weight="bold" fill="#16a34a" text-anchor="middle">প্রশম</text>
+
+                        <path d="M 240 55 L 450 55" stroke="#3b82f6" stroke-width="2" />
+                        <text x="345" y="68" font-size="10" font-weight="bold" fill="#3b82f6" text-anchor="middle">ক্ষার ধর্ম বৃদ্ধি</text>
+                    </svg>
+                </div>
+
+                <h3 class="section-subheading">৩.২ কয়েকটি অতিপরিচিত দ্রবণের pH-এর মান:</h3>
+                <p>
+                    পাঠ্যবইয়ের তথ্য অনুযায়ী আমাদের চারপাশের অতি পরিচিত কয়েকটি পদার্থের pH মান নিচে দেওয়া হলো:
+                </p>
+                <table class="project-table">
+                    <tr>
+                        <td><strong>মানুষের রক্ত</strong></td><td>7.36 – 7.42</td>
+                        <td><strong>ভিনিগার</strong></td><td>2.4 – 3.4</td>
+                    </tr>
+                    <tr>
+                        <td><strong>মানুষের মূত্র</strong></td><td>5.5 – 7.5</td>
+                        <td><strong>লালারস</strong></td><td>6.5 – 7.5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>পাকস্থলীর রস</strong></td><td>1.5 – 3.5</td>
+                        <td><strong>মিল্ক অব ম্যাগনেশিয়া</strong></td><td>10.5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>সমুদ্রের জল</strong></td><td>7.8 (প্রায়)</td>
+                        <td><strong>টম্যাটোর রস</strong></td><td>4 – 4.4</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="notebook-footer-line">
+                <span>WBBSE Class 9 Physical Science</span>
+                <span>নমুনা-২: প্রকৃতি পাঠ</span>
+                <span class="page-badge">পৃষ্ঠা ৪ / ৭</span>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 5: EXPERIMENT & OBSERVATION ================= -->
+        <div class="a4-page">
+            <div class="border-outer"></div>
+            <div class="border-inner"></div>
+
+            <div class="notebook-header-line">
+                <span>নবম শ্রেণী — ভৌত বিজ্ঞান প্রজেক্ট খাতা</span>
+                <span>প্রকৃতি পাঠ (Nature Study)</span>
+            </div>
+
+            <div class="page-body">
+                <h2 class="page-heading">৪. পরীক্ষণ ও সমীক্ষাপত্র (Observation Data)</h2>
+
+                <h3 class="section-subheading">৪.১ পরীক্ষণ পদ্ধতি:</h3>
+                <p>
+                    বিদ্যালয়ের গবেষণাগারে আমরা ৭টি পরিষ্কার টেস্টটিউবে বিভিন্ন প্রকৃতিজাত ও পরিচিত নমুনা সংগ্রহ করি। প্রতিটি নমুনায় ইউনিভার্সাল pH পেপার ডুবিয়ে তার বর্ণের পরিবর্তন লক্ষ করি এবং প্রমিত কালার চার্টের সঙ্গে মিলিয়ে আপাত pH মান নির্ণয় করি।
+                </p>
+
+                <h3 class="section-subheading">৪.২ পরীক্ষালব্ধ সমীক্ষাপত্র:</h3>
+                <table class="project-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">নমুনার নং</th>
+                            <th style="width: 30%;">নমুনার নাম</th>
+                            <th style="width: 25%;">pH-এর আপাত মান</th>
+                            <th style="width: 30%;">নমুনার প্রকৃতি</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>[১]</strong></td>
+                            <td>পাতিলেবুর রস</td>
+                            <td>2.0 – 2.3</td>
+                            <td style="color: #b91c1c; font-weight: bold;">তীব্র আম্লিক</td>
+                        </tr>
+                        <tr>
+                            <td><strong>[২]</strong></td>
+                            <td>ভিনেগার</td>
+                            <td>2.8</td>
+                            <td style="color: #b91c1c; font-weight: bold;">আম্লিক</td>
+                        </tr>
+                        <tr>
+                            <td><strong>[৩]</strong></td>
+                            <td>পানীয় জল</td>
+                            <td>7.0</td>
+                            <td style="color: #15803d; font-weight: bold;">প্রশম</td>
+                        </tr>
+                        <tr>
+                            <td><strong>[৪]</strong></td>
+                            <td>সোডা ওয়াটার</td>
+                            <td>3.0 – 4.0</td>
+                            <td style="color: #b91c1c; font-weight: bold;">আম্লিক</td>
+                        </tr>
+                        <tr>
+                            <td><strong>[৫]</strong></td>
+                            <td>চুনজল [Ca(OH)<sub>2</sub>]</td>
+                            <td>10.5</td>
+                            <td style="color: #1d4ed8; font-weight: bold;">ক্ষারীয়</td>
+                        </tr>
+                        <tr>
+                            <td><strong>[৬]</strong></td>
+                            <td>গোরুর দুধ</td>
+                            <td>6.6</td>
+                            <td style="color: #b91c1c; font-weight: bold;">মৃদু আম্লিক</td>
+                        </tr>
+                        <tr>
+                            <td><strong>[৭]</strong></td>
+                            <td>শসার রস</td>
+                            <td>5.5</td>
+                            <td style="color: #b91c1c; font-weight: bold;">মৃদু আম্লিক</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <strong>পর্যবেক্ষণ সারাংশ:</strong> উপরের তালিকা থেকে দেখা যায়, পাতিলেবু, ভিনেগার ও সোডা ওয়াটার লাল/হলুদ বর্ণ ধারণ করে যা অ্যাসিড নির্দেশ করে। চুনজল নীল বর্ণ ধারণ করে যা ক্ষার নির্দেশ করে। পানীয় জল সবুজ বর্ণ ধারণ করে, অর্থাৎ এটি প্রশম।
+                </div>
+            </div>
+
+            <div class="notebook-footer-line">
+                <span>WBBSE Class 9 Physical Science</span>
+                <span>নমুনা-২: প্রকৃতি পাঠ</span>
+                <span class="page-badge">পৃষ্ঠা ৫ / ৭</span>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 6: DAILY LIFE APPLICATIONS ================= -->
+        <div class="a4-page">
+            <div class="border-outer"></div>
+            <div class="border-inner"></div>
+
+            <div class="notebook-header-line">
+                <span>নবম শ্রেণী — ভৌত বিজ্ঞান প্রজেক্ট খাতা</span>
+                <span>প্রকৃতি পাঠ (Nature Study)</span>
+            </div>
+
+            <div class="page-body">
+                <h2 class="page-heading">৫. দৈনন্দিন জীবনে ও পরিবেশে pH-এর গুরুত্ব</h2>
+
+                <h3 class="section-subheading">৫.১ দাঁতের ক্ষয়ের উপর pH-এর প্রভাব:</h3>
+                <p>
+                    দাঁতের উপর যে সাদা বর্ণের এনামেল (enamel)-এর শক্ত আস্তরণ থাকে তা আসলে জলে অদ্রাব্য <strong>হাইড্রোক্সি অ্যাপেটাইট [Ca<sub>5</sub>(PO<sub>4</sub>)<sub>3</sub>(OH)]</strong>। মুখের মধ্যকার pH 5.5 থেকে কমে গেলে enamel দ্রবীভূত হতে শুরু করে। খাবার পর মুখের ব্যাকটেরিয়া খাদ্যকণা বিয়োজন ঘটিয়ে ল্যাকটিক অ্যাসিড উৎপন্ন করে। 
+                    <br><strong>প্রতিকার:</strong> ভালো টুথপেস্ট [pH~9] ব্যবহার করলে মুখ পরিষ্কার করার সাথে ক্ষারকীয় উপাদান মুখের অ্যাসিডকে প্রশমিত করে এবং দাঁতের ক্ষয় রোধ করে।
+                </p>
+
+                <h3 class="section-subheading">৫.২ কৃষিতে pH-এর গুরুত্ব (Liming the Soil):</h3>
+                <p>
+                    উদ্ভিদের মাটি থেকে প্রয়োজনীয় উপাদান গ্রহণের জন্য মাটির উপযুক্ত pH 5.5-7.0 এর মধ্যে হওয়া প্রয়োজন। অ্যামোনিয়াম সালফেট [(NH<sub>4</sub>)<sub>2</sub>SO<sub>4</sub>] এর মতো সার ব্যবহার বা অ্যাসিড বৃষ্টির ফলে মাটির অম্লত্ব বৃদ্ধি পায়। 
+                    <br><strong>প্রতিকার:</strong> মাটির pH হ্রাস পেলে উপযুক্ত পরিমাণ <strong>চুন (CaO)</strong> যোগ করে তা নিয়ন্ত্রণ করা হয়। একে 'liming the soil' বলে।
+                </p>
+
+                <h3 class="section-subheading">৫.৩ মৎস্যচাষে pH-এর গুরুত্ব:</h3>
+                <p>
+                    মাছ চাষের ক্ষেত্রে জলের pH 6.5 থেকে 9.5 এর মধ্যে থাকা উচিত। জলের pH 4.5 এর কম হলে বা 9.5 এর বেশি হলে মাছ মারা যায় এবং প্রজনন ক্ষমতা কমে যায়। পুকুরের জলের অম্লত্ব কমাতেও চুন মেশানো হয়।
+                </p>
+            </div>
+
+            <div class="notebook-footer-line">
+                <span>WBBSE Class 9 Physical Science</span>
+                <span>নমুনা-২: প্রকৃতি পাঠ</span>
+                <span class="page-badge">পৃষ্ঠা ৬ / ৭</span>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 7: CONCLUSION & EVALUATION ================= -->
+        <div class="a4-page">
+            <div class="border-outer"></div>
+            <div class="border-inner"></div>
+
+            <div class="notebook-header-line">
+                <span>নবম শ্রেণী — ভৌত বিজ্ঞান প্রজেক্ট খাতা</span>
+                <span>প্রকৃতি পাঠ (Nature Study)</span>
+            </div>
+
+            <div class="page-body">
+                <h2 class="page-heading">৬. সিদ্ধান্ত, অন্তর্বর্তী মূল্যায়ন ও কৃতজ্ঞতা স্বীকার</h2>
+
+                <h3 class="section-subheading">৬.১ পরিবেশগত দূষণ ও মনোযোগ (Evaluation Context):</h3>
+                <p>
+                    pH এর মতো ভৌত পরিবেশের অন্যান্য নিয়ামক যেমন শব্দ দূষণ (বিমান বা যানবাহনের তীব্র আওয়াজ) শিক্ষার্থীদের মনোযোগ এবং মানসিক শান্তিতে বিরূপ প্রভাব ফেলে। তাই রাসায়নিক পরিবেশের পাশাপাশি সুস্থ ভৌত পরিবেশ বজায় রাখাও অত্যাবশ্যক।
+                </p>
+
+                <h3 class="section-subheading">৬.২ সিদ্ধান্ত (Conclusion):</h3>
+                <p>
+                    পরীক্ষণ শেষে আমরা এই সিদ্ধান্তে উপনীত হলাম যে— প্রকৃতিজাত পাতিলেবু, ভিনেগার, দুধ ও শসার রস আম্লিক প্রকৃতির; বিশুদ্ধ পানীয় জল প্রশম এবং চুনজল হলো ক্ষারীয় প্রকৃতির। pH পেপারের সাহায্যে খুব সহজেই যেকোনো অজানা দ্রবণের প্রকৃতি নির্ভুলভাবে সনাক্ত করা সম্ভব।
+                </p>
+
+                <h3 class="section-subheading">৬.৩ কৃতজ্ঞতা স্বীকার (Acknowledgement):</h3>
+                <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; font-size: 13.5px; line-height: 1.7; text-align: justify; margin-top: 10px;">
+                    সম্পূর্ণ কাজটি করতে বিদ্যালয়ের শিক্ষক/শিক্ষিকা শ্রী/শ্রীমতী <strong>.....................................................................................</strong> মহাশয়/মহাশয়ার নিকট আমি আন্তরিকভাবে কৃতজ্ঞ। তিনি বিষয়বস্তুর ব্যাখ্যা, সমাজজীবনে এর গুরুত্ব, প্রয়োগ কতখানি তা জানতে ও উপলব্ধি করতে বিভিন্নভাবে সাহায্য করেছেন।
+                </div>
+
+                <!-- Signatures -->
+                <div style="display: flex; justify-content: space-between; margin-top: 50px; padding: 0 10px;">
+                    <div style="width: 40%; text-align: center;">
+                        <div style="border-top: 1.5px dashed #475569; margin-bottom: 6px;"></div>
+                        <div style="font-size: 13.5px; font-weight: bold; color: #1e293b;">শিক্ষক / শিক্ষিকার স্বাক্ষর</div>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 2px;">তারিখ: ............................</div>
+                    </div>
+                    <div style="width: 40%; text-align: center;">
+                        <div style="border-top: 1.5px dashed #475569; margin-bottom: 6px;"></div>
+                        <div style="font-size: 13.5px; font-weight: bold; color: #1e293b;">ছাত্র / ছাত্রীর স্বাক্ষর</div>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 2px;">তারিখ: ............................</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notebook-footer-line">
+                <span>WBBSE Class 9 Physical Science</span>
+                <span>নমুনা-২: প্রকৃতি পাঠ</span>
+                <span class="page-badge">পৃষ্ঠা ৭ / ৭</span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

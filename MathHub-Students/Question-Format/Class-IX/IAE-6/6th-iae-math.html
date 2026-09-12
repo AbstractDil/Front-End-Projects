@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6th Internal Assessment - Mathematics</title>
+    <!-- Configure MathJax for rendering mathematical equations -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+            },
+            svg: { fontCache: "global" },
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: "Noto Sans Bengali", sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 12mm;
+            margin: 10mm auto;
+            background: white;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: url("https://abstractdil.github.io/Front-End-Projects/MathHub-Students/Question-Format/Class-IX/IAE-5/images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .exam-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            border: 2px solid #333;
+            padding: 8px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-area img {
+            max-width: 92px;
+            max-height: 92px;
+        }
+
+        .header-info {
+            text-align: start;
+        }
+
+        .header-info h2 {
+            margin: 0;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .header-info p {
+            margin: 3px 0;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* Two Column Layout Integration - Balanced */
+        .exam-content {
+            padding: 5px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #000;
+            position: relative;
+            z-index: 1;
+            column-count: 2;
+            column-gap: 24px;
+            column-rule: 1px dashed #ccc;
+            column-fill: balance; /* Distributes content evenly between both columns */
+        }
+
+        /* Prevent specific elements from breaking awkwardly */
+        .question-section {
+            margin-bottom: 15px;
+            /* No keep-together here! Let sections flow between columns */
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: bold;
+            margin-bottom: 6px;
+            border-bottom: 1px dashed #666;
+            font-size: 15px;
+            break-after: avoid; /* Keep title attached to the first question */
+            page-break-after: avoid;
+        }
+
+        .question-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .question-number {
+            margin-right: 6px;
+            font-weight: bold;
+            min-width: 15px;
+        }
+
+        .question-text-wrapper {
+            flex-grow: 1;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding-left: 5px;
+            margin-top: 4px;
+            gap: 4px;
+            break-inside: avoid;
+        }
+        
+        .options-grid.four-col {
+            grid-template-columns: repeat(2, 1fr); /* Due to 2-column layout, 2x2 is better for options */
+        }
+
+        .sub-question-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        /* THE FIX: Apply break-inside avoid to individual questions, NOT the whole section */
+        .sub-question-list li {
+            margin-bottom: 8px;
+            display: flex;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .sub-question-list .list-num {
+            margin-right: 6px;
+            min-width: 18px;
+        }
+        
+        .sub-question-list .list-content {
+            flex-grow: 1;
+        }
+        
+        .marks-float {
+            float: right;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            break-inside: avoid; /* Prevent table splitting */
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #333;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 12mm;
+            right: 12mm;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .footer-icon {
+            width: 34px;
+            height: 34px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .footer-text {
+            line-height: 1.2;
+        }
+
+        .footer-text b {
+            font-size: 12px;
+            display: block;
+        }
+
+        .footer-text span {
+            font-size: 11px;
+            color: #333;
+        }
+        
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin: 10px auto;
+            max-width: 80%;
+            column-span: all; /* Spans across both columns beautifully */
+            break-inside: avoid;
+        }
+
+        .wish-message {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        @media print {
+            .print-btn { display: none; }
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; width: 100%; page-break-after: always; }
+            .page:last-child { page-break-after: auto; }
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-btn" onclick="window.print()">Download / Print</button>
+
+    <!-- PAGE 1 -->
+    <div class="page">
+        <div class="exam-header">
+            <div class="logo-area">
+                <img src="https://abstractdil.github.io/Front-End-Projects/MathHub-Students/Question-Format/Class-IX/IAE-5/images/logo.png" alt="MathHub Logo" />
+            </div>
+            <div class="header-info">
+                <h2>6th Internal Assessment Examination</h2>
+                <p>Session: 2026 | Subject: Mathematics | Class: IX</p>
+                <p>Full Marks: 40 | Time: 80 Minutes | Date: 28 July, 2026</p>
+            </div>
+        </div>
+
+        <div class="exam-content">
+            
+            <div class="question-section">
+                <div class="section-title">1. সঠিক উত্তরটি বেছে নিয়ে লেখো :
+                    <span class="marks-float">$1 \times 4 = 4$</span>
+                </div>
+                
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">ক্রয়মূল্য ও বিক্রয়মূল্যের অনুপাত 10:11 হলে, শতকরা লাভ কত হবে?
+                            <div class="options-grid four-col">
+                                <span>(a) $9\%$</span>
+                                <span>(b) $11\%$</span>
+                                <span>(c) $10\%$</span>
+                                <span>(d) কোনোটিই নয়।</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">কোনো বৃত্তের কেন্দ্র মূলবিন্দু এবং পরিধিস্থ একটি বিন্দু $(-5, 12)$ হলে, বৃত্তটির ব্যাস হবে —
+                            <div class="options-grid four-col">
+                                <span>(a) $5$ একক</span>
+                                <span>(b) $13$ একক</span>
+                                <span>(c) $26$ একক</span>
+                                <span>(d) কোনোটিই নয়।</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(iii)</span>
+                        <span class="list-content">একটি সমবাহু ত্রিভুজের ক্ষেত্রফল, পরিসীমা এবং উচ্চতা যথাক্রমে $a$, $s$ এবং $h$ হলে, $\frac{2a}{sh}$ -এর মান —
+                            <div class="options-grid four-col">
+                                <span>(a) $1$</span>
+                                <span>(b) $\frac{1}{2}$</span>
+                                <span>(c) $\frac{1}{3}$</span>
+                                <span>(d) $\frac{1}{4}$</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(iv)</span>
+                        <span class="list-content">$ABC$ ত্রিভুজের $BC$, $CA$ ও $AB$ বাহুর মধ্যবিন্দু যথাক্রমে $D$, $E$ ও $F$; $BE$ ও $DF$, $X$ বিন্দুতে এবং $CF$ ও $DE$, $Y$ বিন্দুতে ছেদ করলে, $XY$-এর দৈর্ঘ্য সমান
+                            <div class="options-grid">
+                                <span>(a) $\frac{1}{2} \times BC$</span>
+                                <span>(b) $\frac{1}{3} \times BC$</span>
+                                <span>(c) $\frac{1}{4} \times BC$</span>
+                                <span>(d) $\frac{1}{8} \times BC$</span>
+                            </div>
+                        </span>
+                    </li>
+
+                     <li>
+                        <span class="list-num">(v)</span>
+                        <span class="list-content">একটি পরিসংখ্যা বিভাজন তালিকায় একটি শ্রেণির মধ্যবিন্দু 10 এবং প্রতিটি শ্রেণির শ্রেণি-দৈর্ঘ্য 6; শ্রেণিটির নিম্নসীমা কত?
+                            <div class="options-grid" >
+                                <span>(a) $6$</span>
+                                <span>(b) $7$</span>
+                                <span>(c) $8$</span>
+                                <span>(d) $12$</span>
+                            </div>
+                        </span>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">2. নিম্নলিখিত প্রশ্নগুলির উত্তর দাও :
+                    <span class="marks-float">$2 \times 5 = 10$</span>
+                </div>
+                
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">চিনির মূল্য $25\%$ বৃদ্ধি পাওয়ায় চিনির ব্যবহার শতকরা কত হারে কমালে চিনি বাবদ খরচ অপরিবর্তিত থাকবে?</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">$\Delta ABC$-এর $BE$ ও $CF$ মধ্যমা $G$ বিন্দুতে ছেদ করে। $P$ ও $Q$ যথাক্রমে $BG$ এবং $CG$-এর মধ্যবিন্দু। $PQ = 3$ সেমি হলে, $BC$-এর দৈর্ঘ্য নির্ণয় করো।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(iii)</span>
+                        <span class="list-content">$(x, 2)$, $(-1, -3)$, $(-6, y)$ এবং $(13, 9)$ একটি রম্বসের শীর্ষবিন্দু হলে, দেখাও যে, $x - 4y = 2$।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(iv)</span>
+                        <span class="list-content">একটি আয়তক্ষেত্রের কর্ণের দৈর্ঘ্য $17$ সেমি ও পরিসীমা $46$ সেমি হলে, তার ক্ষেত্রফল কত?</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(v)</span>
+                        <span class="list-content">নীচে প্রদত্ত পরিসংখ্যা বিভাজন তালিকার প্রথম শ্রেণির পরিসংখ্যা ঘনত্ব নির্ণয় করো।
+                            <table class="data-table">
+                                <tr>
+                                    <td><b>শ্রেণি সীমা</b></td>
+                                    <td>$70 - 74$</td>
+                                    <td>$75 - 79$</td>
+                                    <td>$80 - 84$</td>
+                                    <td>$85 - 89$</td>
+                                </tr>
+                                <tr>
+                                    <td><b>পরিসংখ্যা</b></td>
+                                    <td>$3$</td>
+                                    <td>$4$</td>
+                                    <td>$5$</td>
+                                    <td>$8$</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(vi)</span>
+                        <span class="list-content">কোনো বর্গক্ষেত্রের অন্তর্বৃত্ত ও পরিবৃত্তের ব্যাসার্ধের অনুপাত কত?
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">3. যে-কোনো একটি প্রশ্নের উত্তর দাও :
+                    <span class="marks-float">3</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">জয়ন্তবাবু একটি টেলিভিশন $10\%$ লাভে বিক্রি করেন। যদি ক্রয়মূল্য $10\%$ কম এবং বিক্রয়মূল্য $180$ টাকা কম হত, তাহলে জয়ন্তবাবুর $20\%$ লাভ হত। টেলিভিশনটির ক্রয়মূল্য কত তা হিসাব করো।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">এক পুস্তক প্রকাশক উৎপাদন ব্যয়ের ওপর $30\%$ দাম বাড়িয়ে একটি বইয়ের দাম ছাপেন $286$ টাকা। কিন্তু বিক্রি করার সময় লিখিত দামের ওপর $10\%$ ছাড় দেন। পুস্তক প্রকাশকের শতকরা লাভ নির্ণয় করো।</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">4. যে-কোনো একটি সমাধান করো :
+                    <span class="marks-float">3</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">$(\frac{x}{2} + \frac{y}{3} - 8)^2 + (\frac{5x}{4} - 3y + 3)^2 = 0$ (অপনয়ন পদ্ধতিতে)</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">$2x + \frac{3}{y} = 5$; $\quad 5x - \frac{2}{y} = 3$ (পরিবর্ত পদ্ধতিতে)</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="question-section">
+                <div class="section-title">5. যে-কোনো একটি প্রশ্নের উত্তর দাও :
+                    <span class="marks-float">4</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">প্রমাণ করো, কোনো ত্রিভুজের দুটি বাহুর মধ্যবিন্দুদ্বয়ের সংযোজক সরলরেখাংশ তৃতীয় বাহুর সমান্তরাল ও অর্ধেক।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">প্রমাণ করো, কোনো ত্রিভুজ ও কোনো সামান্তরিক একই ভূমি ও একই সমান্তরাল যুগলের মধ্যে অবস্থিত হলে, ত্রিভুজের ক্ষেত্রফল সামান্তরিকের ক্ষেত্রফলের অর্ধেক হবে।</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div> <!-- End of Page 1 Content -->
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>1</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <div class="exam-content">
+
+            <div class="question-section">
+                <div class="section-title">6. যে-কোনো একটি প্রশ্নের উত্তর দাও :
+                    <span class="marks-float">3</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">$ABCD$ সামান্তরিকের $BD$ কর্ণের ওপর $P$ যে-কোনো একটি বিন্দু। প্রমাণ করো যে, $\Delta APD = \Delta CPD$।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">$\Delta ABC$-এর $AD$ মধ্যমার মধ্যবিন্দু $E$ এবং বর্ধিত $BE$, $AC$ বাহুকে $F$ বিন্দুতে ছেদ করেছে। প্রমাণ করো যে, $AF = \frac{1}{3} AC$।</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">7. যে-কোনো একটি প্রশ্নের উত্তর দাও :
+                    <span class="marks-float">4</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">6cm বাহুবিশিষ্ট একটি বর্গক্ষেত্র অঙ্কন করো এবং এই বর্গক্ষেত্রের সমান ক্ষেত্রফলবিশিষ্ট একটি ত্রিভুজ অঙ্কন করো।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">$\Delta ABC$ অঙ্কন করো যার $AB = 6$ সেমি, $BC = 9$ সেমি, $\angle ABC = 55^\circ$, $\Delta ABC$-এর সমান ক্ষেত্রফলবিশিষ্ট একটি সামান্তরিক অঙ্কন করো যার একটি কোণ $60^\circ$ এবং একটি বাহুর দৈর্ঘ্য $AC$ বাহুর দৈর্ঘ্যের অর্ধেক।</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">8. যে-কোনো একটি প্রশ্নের উত্তর দাও :
+                    <span class="marks-float">3</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">নীচের ক্রমযৌগিক পরিসংখ্যা বিভাজন ছকটি থেকে একটি পরিসংখ্যা বিভাজন ছক তৈরি করো এবং আয়তলেখ অঙ্কন করো।
+                            <table class="data-table">
+                                <tr>
+                                    <td><b>শ্রেণি</b></td>
+                                    <td>$10$-এর কম</td>
+                                    <td>$20$-এর কম</td>
+                                    <td>$30$-এর কম</td>
+                                    <td>$40$-এর কম</td>
+                                    <td>$50$-এর কম</td>
+                                    <td>$60$-এর কম</td>
+                                </tr>
+                                <tr>
+                                    <td><b>ছাত্রছাত্রীর সংখ্যা</b></td>
+                                    <td>$17$</td>
+                                    <td>$22$</td>
+                                    <td>$29$</td>
+                                    <td>$37$</td>
+                                    <td>$50$</td>
+                                    <td>$60$</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">বীরসিংহ গ্রামের বিদ্যাসাগর প্রাথমিক বিদ্যালয়ে $32$ জন শিক্ষক-শিক্ষিকাদের বয়স নীচের ছকে লেখা হল :
+                            <table class="data-table">
+                                <tr>
+                                    <td><b>বয়স (বছর)</b></td>
+                                    <td>$25 - 31$</td>
+                                    <td>$31 - 37$</td>
+                                    <td>$37 - 43$</td>
+                                    <td>$43 - 49$</td>
+                                    <td>$49 - 55$</td>
+                                </tr>
+                                <tr>
+                                    <td><b>শিক্ষক-শিক্ষিকার সংখ্যা</b></td>
+                                    <td>$10$</td>
+                                    <td>$13$</td>
+                                    <td>$5$</td>
+                                    <td>$3$</td>
+                                    <td>$1$</td>
+                                </tr>
+                            </table>
+                            উপরের তথ্যটির পরিসংখ্যা বহুভুজ অঙ্কন করো।
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">9. যে-কোনো দুটি প্রশ্নের উত্তর দাও :
+                    <span class="marks-float">$3 \times 2 = 6$</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">কোনো সমবাহু ত্রিভুজের অন্তঃস্থ কোনো বিন্দু থেকে ত্রিভুজের বাহুগুলির ওপর অঙ্কিত লম্বের দৈর্ঘ্য $10$ সেমি, $12$ সেমি এবং $8$ সেমি হলে, ত্রিভুজটির ক্ষেত্রফল কত হবে?</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">একটি রম্বসের বাহুর দৈর্ঘ্য ও একটি বর্গক্ষেত্রের বাহুর দৈর্ঘ্য সমান এবং বর্গক্ষেত্রটির কর্ণের দৈর্ঘ্য $40 \sqrt{2}$ সেমি.। যদি রম্বসের কর্ণদ্বয়ের দৈর্ঘ্যের অনুপাত $3:4$ হয়, তাহলে রম্বস আকার ক্ষেত্রের ক্ষেত্রফল কত হবে?</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(iii)</span>
+                        <span class="list-content">$196$ বর্গ সেমি. ক্ষেত্রফলের একটি বর্গাকার পিতলের পাত থেকে চারটি সর্ববৃহৎ বৃত্তাকার পাত কেটে নেওয়া হলো। প্রতিটি বৃত্তাকার পাতের পরিধি কত হবে?</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <!-- Note Message -->
+                <div style="padding: 10px; border: 1px solid #ccc;">
+
+                    <p><strong>Please Note:</strong> 
+                   If you find a typing error in any question during the examination, please solve it using the standard method. Marks will be awarded for showing the correct steps, regardless of the final answer.
+                    </p>
+                    
+                </div>
+            </div>
+
+            <div class="wish-container">
+                <div class="wish-message">$\ast$ --- $\ast$ --- $\ast$</div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>2</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life Science Question Paper</title>
+    <!-- Configure MathJax for rendering mathematical equations -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+            },
+            svg: { fontCache: "global" },
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- Load required fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --primary: #1e293b; /* Slate 800 */
+            --accent: #2563eb;  /* Blue 600 */
+            --bg-light: #f8fafc; /* Slate 50 */
+            --border-light: #e2e8f0; /* Slate 200 */
+        }
+
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: "Noto Sans Bengali", sans-serif;
+            background-color: #cbd5e1; /* Darker outside background */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Defines the standard A4 page layout for web viewing and printing */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm; /* Increased padding for the inner border */
+            margin: 10mm auto;
+            background: white;
+            box-sizing: border-box;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            /* Modern elegant inner border */
+            outline: 2px solid var(--primary);
+            outline-offset: -10px;
+        }
+
+        /* Watermark styling */
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 350px;
+            height: 350px;
+            background: url("https://abstractdil.github.io/Front-End-Projects/MathHub-Students/Question-Format/Class-IX/IAE-5/images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.06;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .exam-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-top: 5px solid var(--accent);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-area img {
+            max-width: 90px;
+            max-height: 90px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .header-info {
+            text-align: left;
+        }
+
+        .header-info h2 {
+            margin: 0 0 6px 0;
+            font-size: 22px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header-info p {
+            margin: 4px 0;
+            font-weight: 600;
+            font-size: 13.5px;
+            color: #475569; /* Slate 600 */
+        }
+        
+        .header-info p.details {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .exam-content {
+            padding: 5px;
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: #000;
+            position: relative;
+            z-index: 1;
+            column-count: 2;
+            column-gap: 30px;
+            column-rule: 1.5px dashed var(--border-light);
+        }
+
+        .group-title-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 15px 0;
+            column-span: all;
+        }
+        
+        .group-title {
+            background: linear-gradient(135deg, var(--primary), #334155);
+            color: #fff;
+            padding: 6px 28px;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 9999px; /* Pill shape */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14.5px;
+            column-span: all;
+            
+            /* Modern styling */
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--accent);
+            padding: 8px 12px;
+            border-radius: 0 6px 6px 0;
+            border: 1px solid var(--border-light);
+            border-left-width: 4px;
+        }
+
+        .section-title-full {
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 15px;
+            break-inside: avoid;
+            column-span: all;
+        }
+
+        .question-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            break-inside: avoid;
+        }
+        
+        .question-number {
+            margin-right: 6px;
+            font-weight: bold;
+            min-width: 15px;
+        }
+
+        .question-text-wrapper {
+            flex-grow: 1;
+        }
+
+        .options-inline {
+            display: inline;
+        }
+        
+        .options-inline span {
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+
+        .sub-question-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .sub-question-list li {
+            margin-bottom: 10px;
+            display: flex;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .sub-question-list .list-num {
+            margin-right: 6px;
+            min-width: 22px;
+            font-weight: 600;
+        }
+        
+        .sub-question-list .list-content {
+            flex-grow: 1;
+        }
+
+        .sub-sub-question-list {
+            list-style-type: none;
+            padding-left: 20px;
+            margin: 4px 0;
+        }
+
+        .sub-sub-question-list li {
+             margin-bottom: 4px;
+        }
+        
+        /* Modern Marks Badge */
+        .marks-float {
+            float: right;
+            font-weight: 600;
+            margin-left: 10px;
+            background-color: var(--border-light);
+            color: var(--primary);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            border: 1px solid #cbd5e1;
+        }
+        
+        /* Specific override for flex titles */
+        .section-title .marks-float {
+            float: none;
+            background-color: #fff;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-size: 13.5px;
+            background: #fff;
+            break-inside: avoid;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .data-table th, .data-table td {
+            border-bottom: 1px solid var(--border-light);
+            border-right: 1px solid var(--border-light);
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .data-table th:last-child, .data-table td:last-child {
+            border-right: none;
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-table th {
+            background-color: var(--bg-light);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .or-text {
+            font-weight: bold;
+            margin: 8px 0;
+            color: var(--accent);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 15mm;
+            left: 15mm;
+            right: 15mm;
+            border-top: 2px dashed var(--border-light);
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .footer-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), #334155);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .footer-text {
+            line-height: 1.3;
+        }
+
+        .footer-text b {
+            font-size: 12.5px;
+            display: block;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-text span {
+            font-size: 11.5px;
+            color: #64748b;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin: 15px auto;
+            max-width: 80%;
+            column-span: all;
+        }
+
+        .wish-message {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: var(--accent);
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        @media print {
+            .print-btn { display: none; }
+            body { background: none; }
+            .page { 
+                margin: 0; 
+                box-shadow: none; 
+                width: 100%; 
+                page-break-after: always;
+                /* Re-apply outline for print */
+                outline: 2px solid var(--primary);
+                outline-offset: -10px;
+            }
+            .page:last-child { page-break-after: auto; }
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: transform 0.2s;
+        }
+        
+        .print-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-btn" onclick="window.print()"><i class="fa fa-print" style="margin-right: 8px;"></i> Download / Print</button>
+
+    <!-- PAGE 1 -->
+    <div class="page">
+        <div class="exam-header">
+            <div class="logo-area">
+                <img src="https://abstractdil.github.io/Front-End-Projects/MathHub-Students/Question-Format/Class-IX/IAE-5/images/logo.png" alt="Logo" />
+            </div>
+            <div class="header-info">
+                <h2>6th Internal Assessment Examination</h2>
+                <p>বিষয়: জীবন বিজ্ঞান (Life Science) | শ্রেণি: নবম (Class IX)</p>
+                <p class="details">পূর্ণমান (Full Marks): 40 | সময় (Time): 80 Minutes | Date: 29 July, 2026</p>
+            </div>
+        </div>
+
+        <div class="exam-content">
+            
+            <div class="group-title-container">
+                <div class="group-title">বিভাগ - ক</div>
+            </div>
+            
+            <div class="section-title">
+                <span>1. সঠিক উত্তরটি নির্বাচন করে বাক্যটি সম্পূর্ণ করে লেখো :</span>
+                <span class="marks-float">$1 \times 5 = 5$</span>
+            </div>
+            
+            <ul class="sub-question-list">
+                <li>
+                    <span class="list-num">(i)</span>
+                    <span class="list-content">মানুষের ছেদক দাঁতের সংখ্যা হল — 
+                        <div class="options-inline">
+                            <span>(a) 2 টি,</span> <span>(b) 4 টি,</span> <span>(c) 6 টি,</span> <span>(d) 8 টি।</span>
+                        </div>
+                    </span>
+                </li>
+                <li>
+                    <span class="list-num">(ii)</span>
+                    <span class="list-content">রক্তবাহে উপস্থিত রক্ততঞ্চনরোধক পদার্থটি হল — 
+                        <div class="options-inline">
+                            <span>(a) প্রোথ্রম্বিন,</span> <span>(b) হেপারিন,</span> <span>(c) সোডিয়াম সাইট্রেট,</span> <span>(d) অণুচক্রিকা।</span>
+                        </div>
+                    </span>
+                </li>
+                <li>
+                    <span class="list-num">(iii)</span>
+                    <span class="list-content">সালোকসংশ্লেষ প্রক্রিয়ায় কী ধরনের শক্তির রূপান্তর ঘটে? —
+                         <div style="margin-top: 4px;">
+                            (a) আলোক শক্তি $\rightarrow$ খাদ্য মধ্যস্থ স্থৈতিক শক্তি $\rightarrow$ চৌম্বক শক্তি,<br>
+                            (b) আলোক শক্তি $\rightarrow$ তাপশক্তি $\rightarrow$ রাসায়নিক শক্তি,<br>
+                            (c) আলোক শক্তি $\rightarrow$ রাসায়নিক শক্তি $\rightarrow$ খাদ্য মধ্যস্থ স্থৈতিক শক্তি,<br>
+                            (d) রাসায়নিক শক্তি $\rightarrow$ স্থৈতিক শক্তি $\rightarrow$ আলোক শক্তি।
+                        </div>
+                    </span>
+                </li>
+                <li>
+                    <span class="list-num">(iv)</span>
+                    <span class="list-content">ফিতাকৃমির রেচন অঙ্গ হল — 
+                        <div class="options-inline">
+                            <span>(a) নেফ্রিডিয়া,</span> <span>(b) ম্যালপিজিয়ান নালিকা,</span> <span>(c) ফ্লেমকোশ,</span> <span>(d) বৃক্ক।</span>
+                        </div>
+                    </span>
+                </li>
+                <li>
+                    <span class="list-num">(v)</span>
+                    <span class="list-content">প্রদত্ত কোন্ জোড়টি সঠিক? — 
+                        <div style="margin-top: 4px;">
+                            (a) রসের উৎস্রোত — জাইলেম কলা,<br>
+                            (b) অক্সিজেন পরিবহণ — WBC,<br>
+                            (c) গ্লাইকোলাইসিস — মাইটোকনড্রিয়া,<br>
+                            (d) সালোকসংশ্লেষ আলোক নিরপেক্ষ দশা — গ্রানা।
+                        </div>
+                    </span>
+                </li>
+            </ul>
+
+            <div class="group-title-container">
+                <div class="group-title">বিভাগ - খ</div>
+            </div>
+
+            <div class="section-title">
+                <span>2. নিম্নলিখিত প্রশ্নগুলির নির্দেশমতো উত্তর দাও :</span>
+                <span class="marks-float">$1 \times 10 = 10$</span>
+            </div>
+            
+            <div style="margin-bottom: 8px;">
+                <span style="font-weight: bold; color: var(--primary);">A. একটি বাক্যে উত্তর দাও : (যে-কোনো 3টি)</span>
+                <span class="marks-float" style="font-weight: normal; font-size: 12px; padding: 1px 6px;">$1 \times 3$</span>
+            </div>
+            <ul class="sub-question-list">
+                <li><span class="list-num">(i)</span><span class="list-content">মানব হৃৎপিণ্ডের আবরণীকে কী বলে?</span></li>
+                <li><span class="list-num">(ii)</span><span class="list-content">বৃক্ক থেকে ক্ষরিত হয় এমন একটি উপাদানের নাম লেখো, যা RBC উৎপাদনে সাহায্য করে।</span></li>
+                <li><span class="list-num">(iii)</span><span class="list-content">ক্লোরোফিল অণুর কেন্দ্রীয় ধাতু হিসেবে কোন্ খনিজ মৌল থাকে?</span></li>
+                <li><span class="list-num">(iv)</span><span class="list-content">বিসদৃশ শব্দটি বেছে লেখো : পেপসিন, লাইপেজ, ট্রিপসিন, ইরেপসিন।</span></li>
+            </ul>
+
+            <div style="margin-top: 15px; margin-bottom: 8px;">
+                <span style="font-weight: bold; color: var(--primary);">B. শূন্যস্থান পূরণ করো : (যে-কোনো 2টি)</span>
+                <span class="marks-float" style="font-weight: normal; font-size: 12px; padding: 1px 6px;">$1 \times 2$</span>
+            </div>
+            <ul class="sub-question-list">
+                <li><span class="list-num">(i)</span><span class="list-content">যকৃতে অরনিথিন চক্রের মাধ্যমে ______________ তৈরি হয়।</span></li>
+                <li><span class="list-num">(ii)</span><span class="list-content">বাষ্পমোচন মাপার যন্ত্রের নাম হল ______________।</span></li>
+                <li><span class="list-num">(iii)</span><span class="list-content">সবাত শ্বসনে গ্লাইকোলাইসিস কোশের ______________ ঘটে।</span></li>
+            </ul>
+
+            <div style="margin-top: 15px; margin-bottom: 8px;">
+                <span style="font-weight: bold; color: var(--primary);">C. সত্য বা মিথ্যা নিরূপণ করো : (যে-কোনো 2টি)</span>
+                <span class="marks-float" style="font-weight: normal; font-size: 12px; padding: 1px 6px;">$1 \times 2$</span>
+            </div>
+            <ul class="sub-question-list">
+                <li><span class="list-num">(i)</span><span class="list-content">ট্যানিন হল কার্বনযুক্ত রেচন পদার্থ।</span></li>
+                <li><span class="list-num">(ii)</span><span class="list-content">স্বর্ণলতা একটি পূর্ণ পরজীবী উদ্ভিদ।</span></li>
+                <li><span class="list-num">(iii)</span><span class="list-content">পিত্তাশয়ে পিত্ত উৎপন্ন হয়।</span></li>
+            </ul>
+
+             <div style="margin-top: 15px; margin-bottom: 8px;">
+                <span style="font-weight: bold; color: var(--primary);">D. বামস্তম্ভের সঙ্গে ডানস্তম্ভের সম্পর্ক স্থাপন করো :</span>
+                <span class="marks-float" style="font-weight: normal; font-size: 12px; padding: 1px 6px;">$1 \times 3$</span>
+            </div>
+            <table class="data-table">
+                <tr>
+                    <th>বামস্তম্ভ</th>
+                    <th>ডানস্তম্ভ</th>
+                </tr>
+                <tr>
+                    <td>(i) কফি</td>
+                    <td>(a) লালারস</td>
+                </tr>
+                <tr>
+                    <td>(ii) জাইমেজ</td>
+                    <td>(b) ক্যাফিন</td>
+                </tr>
+                <tr>
+                    <td>(iii) টায়ালিন</td>
+                    <td>(c) ইস্ট নিঃসৃত উৎসেচক</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>(d) ট্যানিন</td>
+                </tr>
+            </table>
+            
+        </div> <!-- End of Page 1 Content -->
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page</b><span>1</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <div class="exam-content">
+
+            <div class="group-title-container">
+                <div class="group-title">বিভাগ - গ</div>
+            </div>
+
+            <div class="section-title">
+                <span>3. যে-কোনো পাঁচটি প্রশ্নের উত্তর দাও :</span>
+                <span class="marks-float">$2 \times 5 = 10$</span>
+            </div>
+            <ul class="sub-question-list">
+                <li><span class="list-num">(i)</span><span class="list-content">মানবদেহে শ্বাসক্রিয়ায় সহায়ক দুটি পেশির নাম লেখো।</span></li>
+                <li><span class="list-num">(ii)</span><span class="list-content">থিবেসিয়ান কপাটিকার অবস্থান ও কাজ লেখো। <span class="marks-float" style="padding:1px 6px; font-size:12px;">1+1</span></span></li>
+                <li><span class="list-num">(iii)</span><span class="list-content">গ্লোমেরুলাস দ্বারা পরিশ্রুত তরলকে মূত্র বলা যায় না কেন?</span></li>
+                <li><span class="list-num">(iv)</span><span class="list-content">কোন্ কোন্ বলের দ্বারা রসের উৎস্রোত ঘটে?</span></li>
+                <li><span class="list-num">(v)</span><span class="list-content">স্ট্রোমা ও স্টোমাটার দুটি পার্থক্য লেখো।</span></li>
+                <li><span class="list-num">(vi)</span><span class="list-content">ফোটোলাইসিস বলতে কী বোঝো?</span></li>
+                <li><span class="list-num">(vii)</span><span class="list-content">EMP পথ কাকে বলে?</span></li>
+            </ul>
+
+            <div class="group-title-container">
+                <div class="group-title">বিভাগ - ঘ</div>
+            </div>
+
+            <div class="section-title" style="column-span: all;">
+                <span>4. নিম্নলিখিত প্রশ্নগুলির উত্তর দাও : (বিকল্প প্রশ্নগুলি লক্ষণীয়)</span>
+                <span class="marks-float">$5 \times 3 = 15$</span>
+            </div>
+            
+            <div style="column-span: all;">
+                <ul class="sub-question-list" style="display: block;">
+                    <li style="display: block; margin-bottom: 18px;">
+                        <div style="display: flex;">
+                            <span class="list-num">(i)</span>
+                            <span class="list-content">জালকবিহীন নেফ্রনের পরিষ্কার চিত্র অঙ্কন করে নিম্নলিখিত অংশগুলি চিহ্নিত করো —
+                                <span class="marks-float" style="padding:1px 6px; font-size:12px;">3+2</span>
+                                <ul class="sub-sub-question-list" style="margin-top: 8px;">
+                                    <li>(a) বাওম্যানস ক্যাপসুল, (b) গ্লোমেরুলাস, (c) হেনলির লুপ, (d) সংগ্রাহক নালিকা। </li>
+                                </ul>
+                            </span>
+                        </div>
+                        <div class="or-text">অথবা</div>
+                        <div style="display: flex;">
+                            <span class="list-content" style="margin-left: 28px;">মানবদেহের পৌষ্টিকতন্ত্রের পরিষ্কার চিত্র অঙ্কন করে নিম্নলিখিত অংশগুলি চিহ্নিত করো —
+                                <span class="marks-float" style="padding:1px 6px; font-size:12px;">3+2</span>
+                                <ul class="sub-sub-question-list" style="margin-top: 8px;">
+                                    <li>(a) লালাগ্রন্থি, (b) অগ্ন্যাশয়, (c) ক্ষুদ্রান্ত্র, (d) রেকটাম। </li>
+                                </ul>
+                            </span>
+                        </div>
+                    </li>
+
+                    <li style="display: block; margin-bottom: 18px;">
+                        <div style="display: flex;">
+                            <span class="list-num">(ii)</span>
+                            <span class="list-content">অবাত ও সবাত শ্বসনের তিনটি গুরুত্বপূর্ণ পার্থক্য লেখো। সালোকসংশ্লেষকে 'উপচিতি বিপাক' বলা হয় কেন? <span class="marks-float" style="padding:1px 6px; font-size:12px;">3+2</span></span>
+                        </div>
+                        <div class="or-text">অথবা</div>
+                        <div style="display: flex;">
+                            <span class="list-content" style="margin-left: 28px;">একটি করে শর্করা ভঙ্গক, প্রোটিন ভঙ্গক ও লিপিড ভঙ্গক উৎসেচকের নাম ও তাদের উৎস লেখো। অ্যাপোএনজাইম কী? <span class="marks-float" style="padding:1px 6px; font-size:12px;">3+2</span></span>
+                        </div>
+                    </li>
+
+                    <li style="display: block;">
+                        <div style="display: flex;">
+                            <span class="list-num">(iii)</span>
+                            <span class="list-content">রক্ততঞ্চনের বিভিন্ন পর্যায় ছকের সাহায্যে দেখাও। ধমনিতে স্পন্দন দেখা গেলেও শিরায় দেখা যায় না কেন, তা কারণসহ লেখো। <span class="marks-float" style="padding:1px 6px; font-size:12px;">3+2</span></span>
+                        </div>
+                        <div class="or-text">অথবা</div>
+                        <div style="display: flex;">
+                            <span class="list-content" style="margin-left: 28px;">উদ্ভিদের তিনটি নাইট্রোজেনযুক্ত রেচন পদার্থের নাম ও তাদের অর্থকরী গুরুত্ব লেখো। রেচনে যকৃতের ভূমিকা লেখো। <span class="marks-float" style="padding:1px 6px; font-size:12px;">3+2</span></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="wish-container">
+                <div class="wish-message">$\ast$ --- $\ast$ --- $\ast$</div>
+            </div>
+
+        </div> <!-- End of Page 2 Content -->
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page</b><span>2</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
