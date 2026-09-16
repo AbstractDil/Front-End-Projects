@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7th Internal Assessment - Mathematics</title>
+    <!-- Configure MathJax for rendering mathematical equations -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+            },
+            svg: { fontCache: "global" },
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.msar.me/fonts/adorsho-lipi/font.css" rel="stylesheet">
+
+    <style>
+        body {
+           font-family: 'AdorshoLipi', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 12mm;
+            margin: 10mm auto;
+            background: white;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: url("https://abstractdil.github.io/Front-End-Projects/MathHub-Students/Question-Format/Class-IX/IAE-5/images/logo.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .exam-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            border: 2px solid #333;
+            padding: 8px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        .logo-area img {
+            max-width: 92px;
+            max-height: 92px;
+        }
+
+        .header-info {
+            text-align: start;
+        }
+
+        .header-info h2 {
+            margin: 0;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .header-info p {
+            margin: 3px 0;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* Two Column Layout Integration - Balanced */
+        .exam-content {
+            padding: 5px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #000;
+            position: relative;
+            z-index: 1;
+            column-count: 2;
+            column-gap: 24px;
+            column-rule: 1px dashed #ccc;
+            column-fill: balance; /* Distributes content evenly between both columns */
+        }
+
+        /* Prevent specific elements from breaking awkwardly */
+        .question-section {
+            margin-bottom: 15px;
+            /* No keep-together here! Let sections flow between columns */
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: bold;
+            margin-bottom: 6px;
+            border-bottom: 1px dashed #666;
+            font-size: 15px;
+            break-after: avoid; /* Keep title attached to the first question */
+            page-break-after: avoid;
+        }
+
+        .question-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .question-number {
+            margin-right: 6px;
+            font-weight: bold;
+            min-width: 15px;
+        }
+
+        .question-text-wrapper {
+            flex-grow: 1;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding-left: 5px;
+            margin-top: 4px;
+            gap: 4px;
+            break-inside: avoid;
+        }
+        
+        .options-grid.four-col {
+            grid-template-columns: repeat(2, 1fr); /* Due to 2-column layout, 2x2 is better for options */
+        }
+
+        .sub-question-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        /* THE FIX: Apply break-inside avoid to individual questions, NOT the whole section */
+        .sub-question-list li {
+            margin-bottom: 8px;
+            display: flex;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .sub-question-list .list-num {
+            margin-right: 6px;
+            min-width: 18px;
+        }
+        
+        .sub-question-list .list-content {
+            flex-grow: 1;
+        }
+        
+        .marks-float {
+            float: right;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            break-inside: avoid; /* Prevent table splitting */
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #333;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 12mm;
+            right: 12mm;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .footer-icon {
+            width: 34px;
+            height: 34px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .footer-text {
+            line-height: 1.2;
+        }
+
+        .footer-text b {
+            font-size: 12px;
+            display: block;
+        }
+
+        .footer-text span {
+            font-size: 11px;
+            color: #333;
+        }
+        
+        .wish-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin: 10px auto;
+            max-width: 80%;
+            column-span: all; /* Spans across both columns beautifully */
+            break-inside: avoid;
+        }
+
+        .wish-message {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        @media print {
+            .print-btn { display: none; }
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; width: 100%; page-break-after: always; }
+            .page:last-child { page-break-after: auto; }
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-btn" onclick="window.print()">Download / Print</button>
+
+    <!-- PAGE 1 -->
+    <div class="page">
+        <div class="exam-header">
+            <div class="logo-area">
+                <img src="https://abstractdil.github.io/Front-End-Projects/MathHub-Students/Question-Format/Class-IX/IAE-5/images/logo.png" alt="MathHub Logo" />
+            </div>
+            <div class="header-info">
+                <h2>7th Internal Assessment Examination</h2>
+                <p>Session: 2026 | Subject: Mathematics | Class: IX</p>
+                <p>Full Marks: 40 | Time: 80 Minutes | Date: 17/09/2026</p>
+            </div>
+        </div>
+
+        <div class="exam-content">
+            
+            <div class="question-section">
+                <div class="section-title">1. সঠিক উত্তরটি বেছে নিয়ে লেখো :
+                    <span class="marks-float">$1 \times 7 = 7$</span>
+                </div>
+                
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">একটি দ্রব্য $x$ টাকা $y$ পয়সায় ক্রয় করে $y$ টাকা $x$ পয়সায় বিক্রয় করা হল এবং তাতে $z$ টাকা ক্ষতি হলে —
+                            <div class="options-grid">
+                                <span>(a) $\frac{x+y}{z} = 0.99$</span>
+                                <span>(b) $\frac{z}{x-y} = 0.99$</span>
+                                <span>(c) $\frac{z}{x+y} = 0.99$</span>
+                                <span>(d) $\frac{x-y}{z} = 0.99$</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">$\frac{(17)^3 - (10)^3}{(17)^2 + 270}$-এর সরলতম মানটি কত দ্বারা বিভাজ্য হবে?
+                            <div class="options-grid four-col">
+                                <span>(a) $7$</span>
+                                <span>(b) $10$</span>
+                                <span>(c) $27$</span>
+                                <span>(d) $17$</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(iii)</span>
+                        <span class="list-content">$2x^3 - Kx^2 + 5K^2x + 2K^3$ বহুপদী সংখ্যামালাকে $x - K$ দ্বারা ভাগ করলে ভাগশেষ হয় $1$, তাহলে $K$-এর মান —
+                            <div class="options-grid four-col">
+                                <span>(a) $1$</span>
+                                <span>(b) $-\frac{1}{2}$</span>
+                                <span>(c) $\frac{1}{2}$</span>
+                                <span>(d) $-1$</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(iv)</span>
+                        <span class="list-content">$\frac{1}{1 + a^{x-y}} + \frac{1}{1 + a^{y-x}}$-এর মান —
+                            <div class="options-grid four-col">
+                                <span>(a) $1$</span>
+                                <span>(b) $2$</span>
+                                <span>(c) $-1$</span>
+                                <span>(d) $-2$</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(v)</span>
+                        <span class="list-content">$K$-এর কোন্ মানের জন্য $2x + 5y = 8$ এবং $2x - Ky = 3$ সমীকরণদ্বয়ের কোনো সমাধান থাকবে না?
+                            <div class="options-grid four-col">
+                                <span>(a) $2$</span>
+                                <span>(b) $-3$</span>
+                                <span>(c) $-4$</span>
+                                <span>(d) $-5$</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(vi)</span>
+                        <span class="list-content">$4, 12, 25, 15, 18, 17, 20, 26, 6, 22$ তথ্যের প্রসার —
+                            <div class="options-grid four-col">
+                                <span>(a) $10$</span>
+                                <span>(b) $15$</span>
+                                <span>(c) $20$</span>
+                                <span>(d) $22$</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="list-num">(vii)</span>
+                        <span class="list-content">$1 - 5,\ 6 - 10,\ 11 - 15$ শ্রেণির শ্রেণি দৈর্ঘ্য —
+                            <div class="options-grid four-col">
+                                <span>(a) $3$</span>
+                                <span>(b) $4$</span>
+                                <span>(c) $5$</span>
+                                <span>(d) $6$</span>
+                            </div>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">2. নিম্নলিখিত প্রশ্নগুলির উত্তর দাও :
+                    <span class="marks-float">$2 \times 7 = 14$</span>
+                </div>
+                
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">সমাধান করো : $4^{\log_9 3} + 9^{\log_2 4} = 10^{\log_x 83}$</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">$y$-অক্ষের ওপর একটি বিন্দুর স্থানাঙ্ক নির্ণয় করো যার থেকে $(2, 3)$ এবং $(-1, 2)$ বিন্দু দুটির দূরত্ব সমান।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(iii)</span>
+                        <span class="list-content">$(px^2 + 5x + r)$ বহুপদী সংখ্যামালার $(x - 2)$ এবং $(x - \frac{1}{2})$ উভয়েই উৎপাদক হলে, $p$ ও $r$-এর মধ্যে সম্পর্ক নির্ণয় করো।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(iv)</span>
+                        <span class="list-content">$a = 999$, $b = 998$ এবং $c = 997$ হলে, $(a^3 + b^3 + c^3 - 3abc)$-এর মান কত?</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(v)</span>
+                        <span class="list-content">$ABC$ ত্রিভুজের $BC$, $CA$ এবং $AB$ বাহুর মধ্যবিন্দু যথাক্রমে $P$, $Q$ এবং $R$। যদি $AC = 21$ সেমি, $BC = 29$ সেমি এবং $AB = 30$ সেমি হয়, তাহলে $ARPQ$ চতুর্ভুজের পরিসীমা কত?</span>
+                    </li>
+
+                    <li>
+                        <span class="list-num">(vi)</span>
+                        <span class="list-content">একটি পরিসংখ্যা বিভাজন তালিকায় একটি শ্রেণির মধ্যবিন্দু $x$ এবং প্রতিটি শ্রেণির শ্রেণি-দৈর্ঘ্য $y$ হলে, শ্রেণিটির উচ্চসীমা ও নিম্নসীমা কত?</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(vii)</span>
+                        <span class="list-content">কোনো রম্বসের একটি কর্ণের দৈর্ঘ্য 6 সেমি এবং ক্ষেত্রফল 24 বর্গসেমি হলে, রম্বসের প্রতিটি বাহুর দৈর্ঘ্য কত?</span> 
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">3. যে-কোনো একটি প্রশ্নের উত্তর দাও :
+                    <span class="marks-float">3</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">যদি $a = \frac{3^{x-2}}{3^{x-5}}$, $b = \frac{3^x}{3^{-x-2}}$ এবং $a - b = 0$ হয়, তবে $x$-এর মান নির্ণয় করো।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">$a + b + c = 0$ হলে প্রমাণ করো,
+                            $$\frac{1}{x^b + x^{-c} + 1} + \frac{1}{x^c + x^{-a} + 1} + \frac{1}{x^a + x^{-b} + 1} = 1$$
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">4. যে-কোনো একটি সমাধান করো :
+                    <span class="marks-float">3</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">$ax + by = 1$; $bx + ay = \frac{2ab}{a^2 + b^2}$ (বজ্রগুণন পদ্ধতি)</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">$\frac{14}{x + y} + \frac{3}{x - y} = 5$; $\frac{21}{x + y} - \frac{1}{x - y} = 2$ (অপনয়ন পদ্ধতি)</span>
+                    </li>
+                </ul>
+            </div>
+            
+           
+
+        </div> <!-- End of Page 1 Content -->
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>1</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <div class="exam-content">
+
+             <div class="question-section">
+                <div class="section-title">5. যে-কোনো একটি প্রশ্নের উত্তর দাও :
+                    <span class="marks-float">3</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">এক ব্যক্তি দুটি কাঠের চেয়ার একই দামে তৈরি করলেন এবং চেয়ার দুটির প্রত্যেকটির ধার্যমূল্য ঠিক করলেন 1250 টাকা। তিনি একটি চেয়ার $8\%$ ছাড়ে বিক্রি করে $15\%$ লাভ করলেন। যদি তিনি দ্বিতীয় চেয়ারটি 1120 টাকায় বিক্রি করেন, তাহলে তার মোটের ওপর শতকরা কত লাভ বা ক্ষতি হলো নির্ণয় করো।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">এক ব্যক্তি 2 টাকায় 15টি হিসাবে কিছু লজেন্স কিনলেন। তিনি অর্ধেক টাকায় 5টি দরে এবং বাকি অর্ধেক টাকায় 10টি দরে বিক্রি করলেন। এতে তাঁর শতকরা কত লাভ বা ক্ষতি হলো নির্ণয় করো।</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">6. সমীকরণ গঠন করে সমাধান করো (যে-কোনো একটি) :
+                    <span class="marks-float">3</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">একটি দুই অঙ্কের সংখ্যা লেখো যার অঙ্ক দুটির সমষ্টি 14 এবং সংখ্যাটি থেকে 29 বিয়োগ করলে অঙ্ক দুটি সমান হবে। দুই অঙ্কের সংখ্যাটি কী?</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">পিতা ও পুত্রের বর্তমান বয়সের সমষ্টি 46 বছর। যখন পুত্রের বয়স পিতার বর্তমান বয়সের সমান, তখন তাদের বয়সের যোগফল 102 বছর। তাদের প্রত্যেকের বর্তমান বয়স কত?</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <div class="section-title">7. নীচের পরিসংখ্যা বিভাজন ছকটির পরিসংখ্যা বহুভুজ অঙ্কন করো :
+                    <span class="marks-float">4</span>
+                </div>
+                <table class="data-table">
+                    <tr>
+                        <th>শ্রেণি</th>
+                        <td>0 - 5</td>
+                        <td>5 - 10</td>
+                        <td>10 - 15</td>
+                        <td>15 - 20</td>
+                        <td>20 - 25</td>
+                        <td>25 - 30</td>
+                    </tr>
+                    <tr>
+                        <th>পরিসংখ্যা</th>
+                        <td>4</td>
+                        <td>10</td>
+                        <td>24</td>
+                        <td>12</td>
+                        <td>20</td>
+                        <td>8</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="question-section">
+                <div class="section-title">8. যে-কোনো 1টি প্রশ্নের উত্তর দাও :
+                    <span class="marks-float">$3 \times 1 = 3$</span>
+                </div>
+                <ul class="sub-question-list">
+                    <li>
+                        <span class="list-num">(i)</span>
+                        <span class="list-content">বকুলতলার বৃত্তাকার মাঠের বাইরের চারদিকে একটি সমপরিসরের রাস্তা আছে। রাস্তাটির বাইরের সীমারেখার দৈর্ঘ্য ভিতরের সীমারেখার দৈর্ঘ্য অপেক্ষা 132 মিটার বেশি। পথটির ক্ষেত্রফল 14190 বর্গ মি. হলে, বৃত্তাকার মাঠটির ক্ষেত্রফল হিসাব করে লেখো।</span>
+                    </li>
+                    <li>
+                        <span class="list-num">(ii)</span>
+                        <span class="list-content">একটি বৃত্তাকার পার্কের ভিতরের চারিদিকে সমান চওড়া একটি রাস্তা আছে। রাস্তাটির বাইরের এবং ভেতরের পরিসীমার অন্তর 22 মিটার এবং রাস্তাটির ক্ষেত্রফল 2733.5 বর্গমিটার। পার্কটির বাইরের এবং ভেতরের ব্যাসার্ধ নির্ণয় করো।</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="question-section">
+                <!-- Note Message -->
+                <div style="padding: 10px; border: 1px solid #ccc;">
+                    <p style="margin: 0;"><strong>Please Note:</strong> 
+                   If you find a typing error in any question during the examination, please solve it using the standard method. Marks will be awarded for showing the correct steps, regardless of the final answer.
+                    </p>
+                </div>
+            </div>
+
+            <div class="wish-container">
+                <div class="wish-message">$\ast$ --- $\ast$ --- $\ast$</div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-globe"></i></div>
+                <div class="footer-text"><b>Web Portal :</b><span>https://students.nandysagar.in</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+                <div class="footer-text"><b>Page no.:</b><span>2</span></div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+                <div class="footer-text"><b>Email ID :</b><span>nandysagar@yahoo.com</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
