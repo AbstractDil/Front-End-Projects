@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSquadz Question Paper Engine</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.msar.me/fonts/adorsho-lipi/font.css" rel="stylesheet">
+
+  <style>
+    body { font-family: 'AdorshoLipi', sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+    .page { width: 210mm; min-height: 297mm; padding: 12mm; margin: 10mm auto; background: white; box-sizing: border-box; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); position: relative; }
+    .page::before { content: ""; position: absolute; top: 50%; left: 50%; width: 300px; height: 300px; background: url("logo.png") no-repeat center; background-size: contain; opacity: 0.1; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; }
+   
+  .exam-header-classic {
+    /* border-top: 2px solid #000; */
+    border-bottom: 1.5px solid #000;
+    padding: 2px 0;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-main-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #777;
+  }
+
+  .logo-box img {
+    max-width: 68px;
+    max-height: 68px;
+    display: block;
+  }
+
+  .center-title {
+    text-align: center;
+    flex: 1;
+  }
+
+  .center-title h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .center-title .sub-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 2px;
+    color: #333;
+  }
+
+  .header-sub-row {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #222;
+  }
+    /* .logo-area img { max-width: 90px; max-height: 90px; }
+    .header-info { text-align: start; }
+    .header-info h2 { margin: 0; font-size: 19px; text-transform: uppercase; }
+    .header-info p { margin: 2px 0; font-weight: bold; font-size: 13px; } */
+    .exam-content { padding: 4px 6px; font-size: 14px; line-height: 1.5; color: #000; position: relative; z-index: 1; }
+    .question-section { margin-bottom: 12px; }
+    .section-title { display: flex; justify-content: space-between; align-items: baseline; font-weight: bold; margin-bottom: 4px; border-bottom: 1px dashed #666; font-size: 14px; }
+    .question-item { margin-bottom: 7px; }
+    .options-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding-left: 18px; margin-top: 1px; font-size: 14px; }
+    .sub-question-list { list-style-type: none; padding-left: 16px; margin: 4px 0; }
+    .sub-question-list li { margin-bottom: 4px; }
+    .marks { font-weight: bold; float: right; }
+    .matching-table { width: 100%; border-collapse: collapse; margin-top: 8px; margin-bottom: 8px; font-size: 13px; }
+    .matching-table td, .matching-table th { border: 1px solid #333; padding: 4px 8px; text-align: left; }
+    .wish-container { display: flex; justify-content: center; align-items: center; padding: 12px; margin-top: 20rem; max-width: 80%; border: 1px solid #ccc; border-radius: 8px; }
+    .wish-message { font-family: 'Poppins', sans-serif; font-size: 16px; color: #2c3e50; font-weight: 600; text-align: center; line-height: 1.3; }
+    .footer { position: absolute; bottom: 10mm; left: 12mm; right: 12mm; border-top: 1px solid #ccc; padding-top: 10px; display: flex; justify-content: space-around; align-items: center;  font-family: 'Poppins', sans-serif !important;}
+    .footer-item { display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .footer-icon { width: 30px; height: 30px; background: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 15px; }
+    .footer-text { line-height: 1.15; }
+    .footer-text b { font-size: 11px; display: block; }
+    .footer-text span { font-size: 10.5px; color: #333; }
+    @media print { 
+      .print-btn { display: none; } 
+      body { background: none; } 
+      .page { margin: 0; box-shadow: none; width: 100%; page-break-after: always; min-height: 297mm; } 
+    }
+    .print-btn { position: fixed; top: 20px; right: 20px; padding: 10px 20px; background: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; z-index: 1000; font-weight: bold; }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download</button>
+
+  <!-- ================= PAGE 1 ================= -->
+  <div class="page">
+
+
+<div class="exam-header-classic">
+  <div class="header-main-row">
+    <div class="logo-box">
+      <img src="logo.png" alt="Logo" />
+    </div>
+    <div class="center-title">
+      <h2>7TH Internal Assessment Examination</h2>
+      <div class="sub-title">Session: 2026 &nbsp;|&nbsp; Subject: Life Science &nbsp;|&nbsp; Class: IX</div>
+    </div>
+    <!-- Balances the layout on the right -->
+    <!-- <div style="width: 68px; text-align: right; font-size: 11px; font-weight: bold; color: #555;">
+      SET: B
+    </div> -->
+  </div>
+  <div class="header-sub-row">
+    <span><b>Date:</b> 22/09/2026</span>
+    <span><b>Time:</b> 1 hr. 20 min.</span>
+    <span><b>Full Marks:</b> 40</span>
+  </div>
+</div>
+
+    <div class="exam-content">
+      <!-- বিভাগ - ক (MCQ - 10 Marks) -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - ক</span>
+          <span class="marks">$1 \times 10 = 10$</span>
+        </div>
+        <p style="margin: 4px 0 6px 0;"><strong>1. সঠিক উত্তরটি নির্বাচন করো:</strong></p>
+        
+        <div class="question-item">
+          (i) টিনোফোরা পর্বভুক্ত প্রাণীদেহে কোম্বপ্লেটের সংখ্যা হল—
+          <div class="options-grid">
+            <span>(a) 10 টি</span><span>(b) 6 টি</span><span>(c) 9 টি</span><span>(d) 8 টি</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (ii) মাইক্রোস্ফিয়ার ধারণার প্রবক্তা হলেন—
+          <div class="options-grid">
+            <span>(a) দানিকেন</span><span>(b) হ্যালডেন</span><span>(c) সিডনি ফক্স</span><span>(d) ওপারিন</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (iii) পাইনাস যে গোষ্ঠীর উদ্ভিদ তা হল—
+          <div class="options-grid">
+            <span>(a) একবীজপত্রী</span><span>(b) জিমনোস্পার্ম</span><span>(c) ব্রায়োফাইটা</span><span>(d) টেরিডোফাইটা</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (iv) নীচের কোনটি কেঁচোর বৈশিষ্ট্য নয়?
+          <div class="options-grid">
+            <span>(a) মেটামিয়ার</span><span>(b) বন্ধ সংবহন</span><span>(c) মুক্ত সংবহন</span><span>(d) নেফ্রিডিয়া</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (v) নীচের কোনটি একটি ট্যাক্সোনমিক ক্যাটাগরি (লিনিয়ান হায়ারার্কি)?
+          <div class="options-grid">
+            <span>(a) ম্যাঙ্গিফেরা</span><span>(b) স্যাপিয়েন্স</span><span>(c) পর্ব</span><span>(d) হোমো</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (vi) দেহ প্রতিরক্ষায় সাহায্যকারী কোন্ প্রোটিনটি রক্তরসে বা প্লাজমায় পাওয়া যায়?
+          <div class="options-grid">
+            <span>(a) অ্যান্টিজেন</span><span>(b) টক্সিন</span><span>(c) ইমিউনোগ্লোবিউলিন</span><span>(d) টক্সয়েড</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (vii) অ্যান্টিজেনের যে অংশে অ্যান্টিবডি বন্ধনে আবদ্ধ হয়, তা হল—
+          <div class="options-grid">
+            <span>(a) এপিটোপ</span><span>(b) অ্যাগ্রোটোপ</span><span>(c) আইসোটোপ</span><span>(d) প্যারাটোপ</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (viii) মায়ের দেহ থেকে ভ্রূণ অমরা বা প্লাসেন্টার মাধ্যমে যে অনাক্রম্যতা লাভ করে, তা হল—
+          <div class="options-grid">
+            <span>(a) সক্রিয় ইমিউনিটি</span><span>(b) নিষ্ক্রিয় ইমিউনিটি</span><span>(c) যান্ত্রিক প্রতিরক্ষা</span><span>(d) কোশীয় ইমিউনিটি</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (ix) সবচেয়ে বিপজ্জনক ও মারণ ম্যালেরিয়া ব্যাধি সৃষ্টিকারী পরজীবীটি হল—
+          <div class="options-grid">
+            <span>(a) কোয়ার্টান ম্যালেরিয়া</span><span>(b) বিনাইন টার্শিয়ান</span><span>(c) ম্যালিগন্যান্ট ম্যালেরিয়া</span><span>(d) ওভেল টার্শিয়ান</span>
+          </div>
+        </div>
+
+        <div class="question-item">
+          (x) জেনার প্রথম যে টিকা প্রস্তুত করেছিলেন, তাতে কোন্ রোগের উপাদান বা তরল ব্যবহার করেছিলেন?
+          <div class="options-grid">
+            <span>(a) গুটিবসন্ত</span><span>(b) গো-বসন্ত</span><span>(c) ম্যালেরিয়া</span><span>(d) ফাইলেরিয়া</span>
+          </div>
+        </div>
+      </div>
+
+     
+      <!-- বিভাগ - খ (VSAQ & SSAQ) -->
+      <div class="question-section">
+          <div class="section-title">
+            <span>বিভাগ - খ</span>
+            <span class="marks">$1 \times 10 = 10$</span>
+          </div>
+          <p style="margin: 4px 0;"><strong>2. একটি বাক্যে উত্তর দাও:</strong> </p>
+          <ul class="sub-question-list">
+            <li>(i) টিটেনাস রোগের জীবাণুটির বিজ্ঞানসম্মত নাম লেখো।</li>
+            <li>(ii) AIDS সৃষ্টিকারী ভাইরাসটির পুরো নাম কী?</li>
+            <li>(iii) প্রতি বছর কোন্ দিনটিতে 'বিশ্ব এইডস দিবস' পালিত হয়?</li>
+            <li>(iv) জীববিদ্যার জনক কাকে বলা হয়?</li>
+            <li>(v) ওপারিন রচিত বিখ্যাত গ্রন্থটির নাম কী?</li>
+            <li>(vi) ICBN-এর সম্পূর্ণ রূপটি লেখো।</li>
+            <li>(vii) লজ্জাবতীর পাতায় স্পর্শ করলে তা বুজে যায়— এটি জীবনের কোন্ বৈশিষ্ট্যকে নির্দেশ করে?</li>
+            <li>(viii) জৈবিক নিয়ন্ত্রণের ক্ষেত্রে ব্যবহার করা যায় এমন একটি ভাইরাসের নাম লেখো।</li>
+            <li>
+              (ix) লিনিয়ান হায়ারার্কির সর্বোচ্চ ধাপের নাম কী? 
+            </li>
+            <li>
+              (x) বিসদৃশ শব্দটি বেছে লেখো: ডিপথেরিয়া, নিউমোনিয়া, AIDS, টিটেনাস 
+            </li>
+          </ul>
+      </div>
+
+
+    </div>
+
+    <!-- Footer Page 1 -->
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>1</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2 ================= -->
+  <div class="page">
+    <div class="exam-content">
+      <!-- বিভাগ - গ (SAQ - 8 Marks) -->
+    <div class="question-section">
+        <div class="section-title">
+          <span>বিভাগ - গ</span>
+          <span class="marks">$2 \times 10 = 20$</span>
+        </div>
+        <p style="margin: 4px 0;"><strong>6. সংক্ষিপ্ত উত্তর দাও: (যে-কোনো 10টি)</strong></p>
+        <ul class="sub-question-list">
+          <li>(i) দ্বিপদ নামকরণের দুটি আন্তর্জাতিক নিয়ম (ICBN) সংক্ষেপে লেখো।</li>
+          <li>(ii) প্রদত্ত বৈশিষ্ট্যের ভিত্তিতে কনড্রিক্থিস ও অসটিক্থিসের মধ্যে পার্থক্য লেখো— (ক) অন্তঃকঙ্কাল, (খ) পটকা।</li>
+          <li>(iii) ব্রায়োফাইটাকে 'উদ্ভিদজগতের উভচর' বলা হয় কেন?</li>
+          <li>(iv) সহজাত অনাক্রম্যতা ও অর্জিত অনাক্রম্যতার সংজ্ঞা দাও।</li>
+          <li>(v) কোশ-নির্ভর অনাক্রম্যতা (CMI) ও রস-নির্ভর অনাক্রম্যতার (HMI) মধ্যে দুটি মূল পার্থক্য লেখো।</li>
+          <li>(vi) বিজ্ঞানী এডওয়ার্ড জেনারের টিকাকরণের মূল নীতিটি সংক্ষেপে লেখো।</li>
+          <li>(vii) হেপাটাইটিস A রোগের সংক্রমণ পদ্ধতিটি উল্লেখ করো।</li>
+          <li>(viii) AIDS রোগের প্রধান দুটি উপসর্গ বা লক্ষণ লিপিবদ্ধ করো।</li>
+          <li>(ix) স্বাস্থ্যরক্ষায় নিয়মিত হস্তধৌতকরণের দুটি প্রধান গুরুত্ব লেখো।</li>
+          <li>(x) ক্ষতিকারক পতঙ্গ দমনে জৈবিক নিয়ন্ত্রণের (Biological Control) দুটি সুবিধা লেখো।</li>
+          <li>(xi) অণুজীব সার (Biofertilizer) কাকে বলে? এর একটি উদাহরণ দাও।</li>
+          <li>(xii) VAM (ভ্যাম) কী? কৃষিক্ষেত্রে এর একটি প্রয়োজনীয় ভূমিকা উল্লেখ করো।</li>
+          <li>(xiii) নিউমোনিয়া রোগের দুটি প্রধান কারণ বা জীবাণুর নাম উল্লেখ করো।</li>
+          <li>(xiv) তীব্র ডায়ারিয়া রোগে মানবদেহে কী কী লক্ষণ বা সমস্যা দেখা যায়?</li>
+          <li>(xv) কোনো ব্যক্তি যক্ষ্মা (TB) রোগে আক্রান্ত হলে কী কী প্রাথমিক উপসর্গ লক্ষ্য করা যায়?</li>
+        </ul>
+      </div>
+
+   
+    </div>
+
+    <center>
+      _______ x ________
+      <div class="wish-container">
+        <div class="wish-message">
+          <p>Wish you all the best for your examination!</p>
+          <p>
+            May your hard work and dedication lead you to success. Remember to stay calm, focused, and confident during the exam. Good luck!
+          </p>
+        </div>
+      </div>
+    </center>
+
+    <!-- Footer Page 2 -->
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>2</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
