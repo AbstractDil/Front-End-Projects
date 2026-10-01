@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MSMS - MathHub Student Management System</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 4 CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+
+</head>
+
+<body>
+
+  <!-- Top Utilities Bar -->
+  <section class="top-utility-bar py-1">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <div class="d-flex align-items-center py-1">
+        <i class="fa fa-clock-o mr-2 text-info"></i>
+        <span>Date &amp; Time: <strong id="currentDateTime" class="text-white font-weight-normal">Loading...</strong></span>
+      </div>
+      <div class="d-flex align-items-center py-1">
+        <i class="fa fa-map-marker mr-2 text-danger"></i>
+        <span>Santipur, Nadia, West Bengal</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Header -->
+  <header class="py-3 bg-white border-bottom">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between">
+      
+      <!-- Brand Logo & Title -->
+      <a href="index_2.html" class="d-flex align-items-center text-decoration-none mr-3">
+        <img src="assets/images/logo.png" alt="MathHub Logo" class="brand-logo mr-3">
+        <div>
+          <div class="d-flex align-items-baseline">
+            <h1 class="h4 font-weight-bold text-dark mb-0 mr-2">MSMS</h1>
+            <span class="badge badge-light text-primary font-weight-bold border">v2.0</span>
+          </div>
+          <p class="text-muted small mb-0 font-weight-500">MathHub Student Management System</p>
+        </div>
+      </a>
+
+      <!-- Quick Contact Pills -->
+      <div class="d-none d-xl-flex align-items-center">
+        <div class="contact-chip mr-3">
+          <span class="chip-icon"><i class="fa fa-phone"></i></span>
+          <div>
+            <span class="text-muted small d-block font-weight-500">Helpline</span>
+            <strong class="text-dark">+91 6295980525</strong>
+          </div>
+        </div>
+        <div class="contact-chip">
+          <span class="chip-icon"><i class="fa fa-envelope-o"></i></span>
+          <div>
+            <span class="text-muted small d-block font-weight-500">Support Desk</span>
+            <strong class="text-dark">hello@nandysagar.in</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="d-none d-sm-block">
+        <button type="button" class="btn btn-outline-secondary btn-sm px-3" data-toggle="modal" data-target="#AdminLoginModal">
+          <i class="fa fa-lock mr-1"></i> Admin Portal
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-msms sticky-top py-2">
+    <div class="container">
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#mainNavbar"
+        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa fa-home mr-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-file-text-o mr-1"></i> User Manual</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-user-circle-o mr-1"></i> Educator Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-comments-o mr-1"></i> Contact Us</a>
+          </li>
+          <li class="nav-item d-sm-none">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#AdminLoginModal"><i class="fa fa-lock mr-1"></i> Admin Login</a>
+          </li>
+        </ul>
+
+        <div class="my-2 my-lg-0">
+          <button type="button" class="btn btn-white btn-sm px-3 shadow-sm font-weight-bold" data-toggle="modal" data-target="#loginModal">
+            <i class="fa fa-sign-in mr-1 text-primary"></i> Student Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Carousel Banner Section -->
+  <section class="banner-carousel">
+    <div id="heroCarousel" class="carousel slide" data-ride="carousel" data-interval="4500">
+      <ol class="carousel-indicators">
+        <li data-target="#heroCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#heroCarousel" data-slide-to="1"></li>
+        <li data-target="#heroCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="assets/images/c1.png" class="d-block w-100" alt="MathHub Interactive Learning">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/images/c1.png" class="d-block w-100" alt="Comprehensive Assessment Portal">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/images/c1.png" class="d-block w-100" alt="Personalized Educator Guidance">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-target="#heroCarousel" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-target="#heroCarousel" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Clean News Ticker Bar -->
+  <div class="ticker-bar py-2">
+    <div class="container d-flex align-items-center">
+      <span class="ticker-tag mr-3 flex-shrink-0">
+        <i class="fa fa-bullhorn mr-1"></i> ANNOUNCEMENT
+      </span>
+      <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="text-dark small font-weight-500 m-0">
+        Welcome to MathHub Student Management System! New semester registrations, test schedules, and chapter modules are now available for access.
+      </marquee>
+    </div>
+  </div>
+
+  <!-- Quick Highlight Metrics -->
+  <section class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-md-3 mb-3 mb-md-0">
+          <div class="stat-pill">
+            <div class="stat-icon bg-light text-primary">
+              <i class="fa fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h6 class="font-weight-bold mb-0 text-dark">500+</h6>
+              <span class="small text-muted">Active Students</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 mb-3 mb-md-0">
+          <div class="stat-pill">
+            <div class="stat-icon bg-light text-success">
+              <i class="fa fa-book"></i>
+            </div>
+            <div>
+              <h6 class="font-weight-bold mb-0 text-dark">120+</h6>
+              <span class="small text-muted">Study Modules</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 mb-3 mb-md-0">
+          <div class="stat-pill">
+            <div class="stat-icon bg-light text-warning">
+              <i class="fa fa-pencil-square-o"></i>
+            </div>
+            <div>
+              <h6 class="font-weight-bold mb-0 text-dark">Weekly</h6>
+              <span class="small text-muted">Mock Tests</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 mb-3 mb-md-0">
+          <div class="stat-pill">
+            <div class="stat-icon bg-light text-info">
+              <i class="fa fa-trophy"></i>
+            </div>
+            <div>
+              <h6 class="font-weight-bold mb-0 text-dark">100%</h6>
+              <span class="small text-muted">Guidance Rate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three-Card Main Section -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="row">
+
+        <!-- Column 1: Announcements -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="portal-card">
+            <div class="card-header">
+              <span class="card-header-icon"><i class="fa fa-bell-o"></i></span>
+              <span>Announcements</span>
+            </div>
+            <div class="scroll-list">
+              <a href="#" class="portal-list-item">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="badge badge-primary font-weight-500">Notice</span>
+                  <span class="small text-muted">Today</span>
+                </div>
+                <p class="mb-1 text-dark font-weight-500 small">Upcoming semester test schedules and syllabus published.</p>
+                <span class="badge badge-pill badge-danger font-weight-normal small">New</span>
+              </a>
+
+              <a href="#" class="portal-list-item">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="badge badge-secondary font-weight-500">Study Material</span>
+                  <span class="small text-muted">Yesterday</span>
+                </div>
+                <p class="mb-1 text-dark font-weight-500 small">Mathematics practice paper Set-IV uploaded for download.</p>
+                <span class="badge badge-pill badge-danger font-weight-normal small">New</span>
+              </a>
+
+              <a href="#" class="portal-list-item">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="badge badge-secondary font-weight-500">Class Routine</span>
+                  <span class="small text-muted">3 days ago</span>
+                </div>
+                <p class="mb-1 text-dark font-weight-500 small">Special weekend revision batch timetable finalized.</p>
+              </a>
+
+              <a href="#" class="portal-list-item">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="badge badge-secondary font-weight-500">Fee Notice</span>
+                  <span class="small text-muted">5 days ago</span>
+                </div>
+                <p class="mb-1 text-dark font-weight-500 small">Last date for online term registration and fee clearance.</p>
+              </a>
+            </div>
+            <div class="p-3 border-top bg-white mt-auto text-center">
+              <a href="#" class="small font-weight-600 text-primary">View All Announcements <i class="fa fa-arrow-right ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Student Quick Login (Clean Form) -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="portal-card">
+            <div class="card-header">
+              <span class="card-header-icon"><i class="fa fa-user-circle"></i></span>
+              <span>Student Corner</span>
+            </div>
+            <div class="card-body p-4 d-flex flex-column justify-content-center">
+              <div class="text-center mb-3">
+                <!-- <div class="d-inline-flex p-3 rounded-circle bg-light text-primary mb-2">
+                  <i class="fa fa-sign-in fa-2x"></i>
+                </div>
+                <h6 class="font-weight-bold mb-1 text-dark">Portal Access</h6>
+                <p class="text-muted small">Sign in to review notes, attendance, and exam marks</p> -->
+                <div class="alert alert-warning">
+                 Please use your Student ID for Login.
+                </div>
+              </div>
+
+              <!-- Proper Form Layout (No illegal table wrapping) -->
+              <form>
+                <div class="form-group mb-3">
+                  <label for="studentEmailField" class="small font-weight-bold text-muted mb-1">Email or Student ID</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-light border-right-0"><i class="fa fa-envelope text-muted"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-left-0" id="studentEmailField" placeholder="student@mathhub.in" required>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="studentPasswordField" class="small font-weight-bold text-muted mb-1">Password</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-light border-right-0"><i class="fa fa-key text-muted"></i></span>
+                    </div>
+                    <input type="password" class="form-control border-left-0" id="studentPasswordField" placeholder="••••••••" required>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="rememberSession">
+                    <label class="custom-control-label small text-muted" for="rememberSession">Remember me</label>
+                  </div>
+                  <a href="#" class="small text-primary font-weight-500">Forgot?</a>
+                </div>
+
+                <button type="submit" class="btn btn-brand btn-block py-2 font-weight-600 shadow-sm">
+                  <i class="fa fa-sign-in mr-1"></i> Sign In to Portal
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Admin Corner & Guides -->
+        <div class="col-lg-4 col-md-12 mb-4">
+          <div class="portal-card">
+            <div class="card-header">
+              <span class="card-header-icon"><i class="fa fa-compass"></i></span>
+              <span>Guides &amp; Resources</span>
+            </div>
+            <div class="scroll-list">
+              <a href="#" class="portal-list-item">
+                <div class="d-flex align-items-center">
+                  <span class="mr-3 text-primary"><i class="fa fa-file-pdf-o fa-lg"></i></span>
+                  <div class="flex-grow-1">
+                    <span class="d-block font-weight-600 text-dark small">Portal Navigation Guide</span>
+                    <span class="text-muted small">Step-by-step handbook on logging in and submitting tests.</span>
+                  </div>
+                  <span class="badge badge-light border">PDF</span>
+                </div>
+              </a>
+
+              <a href="#" class="portal-list-item">
+                <div class="d-flex align-items-center">
+                  <span class="mr-3 text-success"><i class="fa fa-cloud-download fa-lg"></i></span>
+                  <div class="flex-grow-1">
+                    <span class="d-block font-weight-600 text-dark small">Downloading Study Materials</span>
+                    <span class="text-muted small">How to browse lectures and offline practice modules.</span>
+                  </div>
+                  <span class="badge badge-light border">Guide</span>
+                </div>
+              </a>
+
+              <a href="#" class="portal-list-item">
+                <div class="d-flex align-items-center">
+                  <span class="mr-3 text-warning"><i class="fa fa-credit-card fa-lg"></i></span>
+                  <div class="flex-grow-1">
+                    <span class="d-block font-weight-600 text-dark small">Payment &amp; E-Receipts</span>
+                    <span class="text-muted small">Generating and downloading invoice receipts online.</span>
+                  </div>
+                  <span class="badge badge-light border">Info</span>
+                </div>
+              </a>
+
+              <a href="#" class="portal-list-item">
+                <div class="d-flex align-items-center">
+                  <span class="mr-3 text-info"><i class="fa fa-question-circle fa-lg"></i></span>
+                  <div class="flex-grow-1">
+                    <span class="d-block font-weight-600 text-dark small">Helpdesk &amp; Troubleshooting</span>
+                    <span class="text-muted small">Frequently asked technical and account questions.</span>
+                  </div>
+                  <span class="badge badge-light border">FAQ</span>
+                </div>
+              </a>
+            </div>
+            <div class="p-3 border-top bg-white mt-auto text-center">
+              <a href="#" class="small font-weight-600 text-primary">Need Help? Contact Educator <i class="fa fa-envelope-o ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modals -->
+
+  <!-- Admin Login Modal -->
+  <div class="modal fade" id="AdminLoginModal" tabindex="-1" aria-labelledby="AdminLoginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
+        <div class="modal-header border-bottom py-3">
+          <div class="d-flex align-items-center">
+            <span class="card-header-icon mr-2 mb-0"><i class="fa fa-lock"></i></span>
+            <h5 class="modal-title font-weight-bold text-dark mb-0" id="AdminLoginModalLabel">Admin Portal</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form>
+          <div class="modal-body p-4">
+            <div class="form-group mb-3">
+              <label for="adminUsernameInput" class="small font-weight-bold text-muted mb-1">Username</label>
+              <input type="text" class="form-control" id="adminUsernameInput" placeholder="Enter administrative username" required>
+            </div>
+            <div class="form-group mb-0">
+              <label for="adminPasswordInput" class="small font-weight-bold text-muted mb-1">Password</label>
+              <input type="password" class="form-control" id="adminPasswordInput" placeholder="Enter administrative password" required>
+            </div>
+          </div>
+          <div class="modal-footer border-top bg-light py-2">
+            <button type="button" class="btn btn-secondary btn-sm px-3" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-brand btn-sm px-3">
+              <i class="fa fa-sign-in mr-1"></i> Authenticate
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
+        <div class="modal-header border-bottom py-3">
+          <div class="d-flex align-items-center">
+            <span class="card-header-icon mr-2 mb-0"><i class="fa fa-user"></i></span>
+            <h5 class="modal-title font-weight-bold text-dark mb-0" id="loginModalLabel">Student Login</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form>
+          <div class="modal-body p-4">
+            <div class="form-group mb-3">
+              <label for="modalStudentId" class="small font-weight-bold text-muted mb-1">Student ID / Registration No.</label>
+              <input type="text" class="form-control" id="modalStudentId" placeholder="e.g. MH-2026-001" required>
+            </div>
+            <div class="form-group mb-0">
+              <label for="modalStudentPassword" class="small font-weight-bold text-muted mb-1">Password</label>
+              <input type="password" class="form-control" id="modalStudentPassword" placeholder="••••••••" required>
+            </div>
+          </div>
+          <div class="modal-footer border-top bg-light py-2">
+            <button type="button" class="btn btn-secondary btn-sm px-3" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-brand btn-sm px-3">
+              <i class="fa fa-sign-in mr-1"></i> Sign In
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 border-top">
+    <div class="container">
+      <div class="row align-items-center text-center text-md-left">
+        <div class="col-md-6 mb-2 mb-md-0">
+          <p class="mb-0 small">
+            &copy; <span id="Year"></span> <strong class="text-white">MSMS MathHub</strong>. All Rights Reserved.
+          </p>
+        </div>
+        <div class="col-md-6 text-md-right">
+          <span class="small">
+            Designed &amp; Developed by <strong class="text-white">Sagar Nandy</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Live Date-Time Script Fallback -->
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const options = { 
+        weekday: 'short', 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit' 
+      };
+      const timeElem = document.getElementById('currentDateTime');
+      if (timeElem) {
+        timeElem.textContent = now.toLocaleDateString('en-IN', options);
+      }
+      const yearElem = document.getElementById('Year');
+      if (yearElem) {
+        yearElem.textContent = now.getFullYear();
+      }
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+
+</body>
+
+</html>
