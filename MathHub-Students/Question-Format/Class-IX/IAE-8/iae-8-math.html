@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSquadz Question Paper Engine</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        processEscapes: true
+      },
+      svg: { fontCache: "global" }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.msar.me/fonts/adorsho-lipi/font.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'AdorshoLipi', 'Noto Sans Bengali', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #111;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm 14mm;
+      margin: 10mm auto;
+      background: white;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 280px;
+      height: 280px;
+      background: url("../images/logo.png") no-repeat center;
+      background-size: contain;
+      opacity: 0.08;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .exam-header-classic {
+      border-bottom: 1.5px solid #000;
+      padding: 2px 0 6px 0;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed #777;
+    }
+
+    .logo-box img {
+      max-width: 65px;
+      max-height: 65px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .center-title {
+      text-align: center;
+      flex: 1;
+    }
+
+    .center-title h2 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .center-title .sub-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 3px;
+      color: #333;
+    }
+
+    .header-sub-row {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .exam-content {
+      padding: 4px 6px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #000;
+      position: relative;
+      z-index: 1;
+    }
+
+    .question-section {
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: bold;
+      margin-bottom: 6px;
+      border-bottom: 1px dashed #666;
+      padding-bottom: 3px;
+      font-size: 14.5px;
+    }
+
+    .question-item {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 10px;
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .q-num {
+      flex-shrink: 0;
+      width: 28px;
+      font-weight: 600;
+    }
+
+    .q-text {
+      flex: 1;
+    }
+
+    .two-column-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 26px;
+      row-gap: 14px;
+    }
+
+    .two-column-grid .question-item {
+      margin-bottom: 0;
+    }
+
+    .marks {
+      font-weight: bold;
+      float: right;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 14mm;
+      right: 14mm;
+      border-top: 1px solid #ccc;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-family: 'Poppins', sans-serif !important;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .footer-icon {
+      width: 28px;
+      height: 28px;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 13px;
+    }
+
+    .footer-text {
+      line-height: 1.2;
+    }
+
+    .footer-text b {
+      font-size: 11px;
+      display: block;
+    }
+
+    .footer-text span {
+      font-size: 10px;
+      color: #333;
+    }
+
+    @media print {
+      .print-btn {
+        display: none;
+      }
+      body {
+        background: none;
+      }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        page-break-after: always;
+        min-height: 297mm;
+      }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download / Print PDF</button>
+
+  <!-- ================= PAGE 1 ================= -->
+  <div class="page">
+    <div class="exam-header-classic">
+      <div class="header-main-row">
+        <div class="logo-box">
+          <img src="../images/logo.png" alt="MathSquadz" onerror="this.src='logo.png'" />
+        </div>
+        <div class="center-title">
+          <h2>8TH Internal Assessment Examination</h2>
+          <div class="sub-title">Session: 2026 &nbsp;|&nbsp; Subject: Mathematics &nbsp;|&nbsp; Class: IX</div>
+        </div>
+      </div>
+      <div class="header-sub-row">
+        <span><b>Date:</b> 06/10/2026</span>
+        <span><b>Time:</b> 1 hr.</span>
+        <span><b>Full Marks:</b> 30</span>
+      </div>
+    </div>
+
+    <div class="exam-content">
+      <!-- প্রশ্ন ১ : সংক্ষিপ্ত উত্তরধর্মী প্রশ্ন -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>1. যে-কোনো দুটি প্রশ্নের উত্তর দাও:</span>
+          <span class="marks">$2 \times 3 = 6$</span>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(i)</span>
+          <div class="q-text">$p$-এর কোন মানের জন্য $px + 6y - p = 0$ এবং $(p - 1)x + 4y + (p - 5) = 0$ সমীকরণদ্বয়ের একাধিক সমাধান থাকবে?</div>
+        </div>
+
+        <!-- <div class="question-item">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">বাস্তব সমাধান নির্ণয় করো: $(2x + 3y - 5)^2 + (3x + 2y - 5)^2 = 0$</div>
+        </div> -->
+
+        <div class="question-item">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">$k$-এর কোন মানের জন্য $kx - 21y + 15 = 0$ এবং $8x - 7y = 0$ সমীকরণদ্বয়ের একটিমাত্র সমাধান থাকবে?</div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(iii)</span>
+          <div class="q-text">$a$ এবং $b$-এর কোন মানের জন্য $5x + 8y = 7$ এবং $(a+b)x + (a-b)y = (2a + b + 1)$ সমীকরণদ্বয়ের অসংখ্য সমাধান থাকবে?</div>
+        </div>
+      </div>
+
+      <!-- প্রশ্ন ২ : সমীকরণ সমাধান -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>2. সমাধান করো (যে-কোনো দুটি):</span>
+          <span class="marks">$2 \times 3 = 6$</span>
+        </div>
+
+        <div class="two-column-grid">
+          <div class="question-item">
+            <span class="q-num">(i)</span>
+            <div class="q-text">
+              $\begin{aligned}[t]
+                x + y &= a + b \\
+                ax - by &= a^2 - b^2
+              \end{aligned}$
+            </div>
+          </div>
+
+          <div class="question-item">
+            <span class="q-num">(ii)</span>
+            <div class="q-text">
+              $\begin{aligned}[t]
+                \frac{x + y}{5} + \frac{x - y}{4} &= 5 \\[4pt]
+                \frac{x + y}{4} + \frac{x - y}{5} &= 5\frac{4}{5}
+              \end{aligned}$
+            </div>
+          </div>
+
+          <div class="question-item">
+            <span class="q-num">(iii)</span>
+            <div class="q-text">
+              $p(x + y) = q(x - y) = 2pq$
+            </div>
+          </div>
+
+          <div class="question-item">
+            <span class="q-num">(iv)</span>
+            <div class="q-text">
+              $\begin{aligned}[t]
+                \frac{x}{2} + \frac{y}{3} &= 1 \\[4pt]
+                \frac{x}{3} + \frac{y}{2} &= 1
+              \end{aligned}$
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- প্রশ্ন ৩ : বহুপদী সংখ্যামালা -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>3. যে-কোনো দুটি প্রশ্নের উত্তর দাও:</span>
+          <span class="marks">$2 \times 3 = 6$</span>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(i)</span>
+          <div class="q-text">$x^3 + 2x^2 - px - 7$ এবং $x^3 + px^2 - 12x + 6$ এই দুটি বহুপদী সংখ্যামালাকে যথাক্রমে $(x + 1)$ ও $(x - 2)$ দ্বারা ভাগ করলে যদি $R_1$ ও $R_2$ ভাগশেষ পাওয়া যায় এবং যদি $2R_1 + R_2 = 6$ হয়, তবে $p$-এর মান কত হিসাব করে লেখো।</div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">$x^4 - 2x^3 + 3x^2 - ax + b$ বহুপদী সংখ্যামালাকে $(x - 1)$ এবং $(x + 1)$ দ্বারা ভাগ করলে ভাগশেষ যথাক্রমে $5$ এবং $19$ হয়। ওই বহুপদী সংখ্যামালাকে $(x + 2)$ দ্বারা ভাগ করলে ভাগশেষ কত হবে হিসাব করে লেখো।</div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(iii)</span>
+          <div class="q-text">যদি $ax^2 + 3x - 5$ এবং $x^2 - 2x + a$ বহুপদী সংখ্যামালাদ্বয়কে $(x - 3)$ দ্বারা ভাগ করলে একই ভাগশেষ থাকে, তবে $a$-এর মান হিসাব করে লেখো।</div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(iv)</span>
+          <div class="q-text">যদি $f(x) = \dfrac{a(x - b)}{a - b} + \dfrac{b(x - a)}{b - a}$ হয়, তাহলে দেখাও যে, $f(a) + f(b) = f(a + b)$।</div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(v)</span>
+          <div class="q-text">$f(x) = ax^2 + bx + c$ এবং $f(0) = 2$, $f(1) = 1$ ও $f(4) = 6$ হলে, $a$, $b$ ও $c$-এর মান নির্ণয় করো।</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>1</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2 ================= -->
+  <div class="page">
+    <div class="exam-content">
+      <!-- প্রশ্ন ৪ : বাস্তব সমস্যাভিত্তিক সমীকরণ গঠন ও সমাধান -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>4. সহসমীকরণ গঠন করে সমাধান করো (যে-কোনো দুটি):</span>
+          <span class="marks">$2 \times 3 = 6$</span>
+        </div>
+
+        <div class="question-item" style="margin-bottom: 14px;">
+          <span class="q-num">(i)</span>
+          <div class="q-text">একটি নৌকা 10 ঘণ্টায় স্রোতের অনুকূলে 44 কিমি এবং প্রতিকূলে 30 কিমি গেল। আবার ওই নৌকা 13 ঘণ্টায় স্রোতের অনুকূলে 55 কিমি এবং প্রতিকূলে 40 কিমি গেল। সহসমীকরণ গঠন করে স্থির জলে নৌকার বেগ ও স্রোতের বেগ হিসাব করে লেখো।</div>
+        </div>
+
+        <div class="question-item" style="margin-bottom: 14px;">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">হাওড়া স্টেশন থেকে একটি ট্রেন ছাড়ার 1 ঘণ্টা পরে বিশেষ কারণে 1 ঘণ্টা দেরি করে এবং তারপর পূর্বের বেগের $\frac{3}{5}$ অংশ বেগে চলে নির্দিষ্ট সময়ের 3 ঘণ্টা পরে গন্তব্যস্থলে পৌঁছায়। যদি বিশেষ কারণটি পূর্বস্থান থেকে আরও 50 কিমি দূরবর্তী স্থানে হতো, তাহলে ট্রেনটি আগের চেয়ে 1 ঘণ্টা 20 মিনিট পূর্বে গন্তব্যস্থানে পৌঁছাতো। ট্রেনটি মোট কত পথ চলেছিল এবং পূর্বের বেগ কত ছিল?</div>
+        </div>
+
+        <div class="question-item" style="margin-bottom: 14px;">
+          <span class="q-num">(iii)</span>
+          <div class="q-text">আয়তক্ষেত্রাকার মেঝের দৈর্ঘ্য $2$ মিটার এবং প্রস্থ $3$ মিটার বৃদ্ধি করলে ক্ষেত্রফল $75$ বর্গমিটার বৃদ্ধি পায়। কিন্তু দৈর্ঘ্য $2$ মিটার হ্রাস এবং প্রস্থ $3$ মিটার বৃদ্ধি করলে ক্ষেত্রফল $15$ বর্গমিটার বৃদ্ধি পায়।  আয়তক্ষেত্রাকার  মেঝের দৈর্ঘ্য ও প্রস্থ কত ?</div>
+        </div>
+
+      </div>
+
+      <!-- প্রশ্ন ৫ : লাভ ও ক্ষতি -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>5. যে-কোনো দুটি প্রশ্নের উত্তর দাও:</span>
+          <span class="marks">$2 \times 3 = 6$</span>
+        </div>
+
+        <div class="question-item" style="margin-bottom: 12px;">
+          <span class="q-num">(i)</span>
+          <div class="q-text">রমেনকাকু তাঁর দোকানে একটি টেবিল ও একটি চেয়ার $3000$ টাকায় কিনে আনেন। তিনি টেবিলটি $15\%$ লাভে এবং চেয়ারটি $10\%$ ক্ষতিতে বিক্রি করে মোট ক্রয়মূল্যের ওপর $8\frac{1}{3}\%$ লাভ করেন। টেবিল ও চেয়ারটি রমেনকাকু কত দামে কিনেছিলেন হিসাব করে লেখো।</div>
+        </div>
+
+        <div class="question-item" style="margin-bottom: 12px;">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">রবিনকাকু $3000$ টাকার চাল কিনলেন। তিনি $\frac{1}{3}$ অংশ $20\%$ ক্ষতিতে এবং $\frac{2}{5}$ অংশ $25\%$ লাভে বিক্রি করলেন। শতকরা কত লাভে তিনি বাকি অংশ বিক্রি করলে তাঁর মোটের উপর $10\%$ লাভ হবে?</div>
+        </div>
+
+        <div class="question-item" style="margin-bottom: 12px;">
+          <span class="q-num">(iii)</span>
+          <div class="q-text">এক ব্যবসায়ী এক ধরনের চা $80$ টাকা প্রতি কিগ্রা দরে বিক্রি করে $20\%$ ক্ষতি এবং অপর এক ধরনের চা $200$ টাকা প্রতি কিগ্রা দরে বিক্রি করে $25\%$ লাভ করেন। তিনি দু-ধরনের চা কি অনুপাতে মিশিয়ে প্রতি কিগ্রা $150$ টাকা দরে বিক্রি করলে $25\%$ লাভ হবে?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>2</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
