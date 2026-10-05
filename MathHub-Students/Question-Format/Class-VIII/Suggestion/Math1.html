@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSquadz Question Paper Engine</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        processEscapes: true
+      },
+      svg: { fontCache: "global" }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.msar.me/fonts/adorsho-lipi/font.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Poppins', 'AdorshoLipi', 'Noto Sans Bengali', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #111;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm 14mm;
+      margin: 10mm auto;
+      background: white;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 280px;
+      height: 280px;
+      background: url("../images/logo.png") no-repeat center;
+      background-size: contain;
+      opacity: 0.08;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .exam-header-classic {
+      padding: 2px 0 6px 0;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed #777;
+    }
+
+    .logo-box img {
+      max-width: 65px;
+      max-height: 65px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .center-title {
+      text-align: center;
+      flex: 1;
+    }
+
+    .center-title h2 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .center-title .sub-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 3px;
+      color: #333;
+    }
+
+    .exam-content {
+      padding: 4px 6px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #000;
+      position: relative;
+      z-index: 1;
+    }
+
+    .question-section {
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: bold;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed #666;
+      padding-bottom: 4px;
+      font-size: 15px;
+    }
+
+    .question-item {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 14px;
+      text-align: justify;
+      line-height: 1.65;
+    }
+
+    .q-num {
+      flex-shrink: 0;
+      width: 32px;
+      font-weight: 600;
+    }
+
+    .q-text {
+      flex: 1;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 14mm;
+      right: 14mm;
+      border-top: 1px solid #ccc;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-family: 'Poppins', sans-serif !important;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .footer-icon {
+      width: 28px;
+      height: 28px;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 13px;
+    }
+
+    .footer-text {
+      line-height: 1.2;
+    }
+
+    .footer-text b {
+      font-size: 11px;
+      display: block;
+    }
+
+    .footer-text span {
+      font-size: 10px;
+      color: #333;
+    }
+
+    @media print {
+      .print-btn {
+        display: none;
+      }
+      body {
+        background: none;
+      }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        page-break-after: always;
+        min-height: 297mm;
+      }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download / Print PDF</button>
+
+  <!-- ================= PAGE 1 ================= -->
+  <div class="page">
+    <div class="exam-header-classic">
+      <div class="header-main-row">
+        <div class="logo-box">
+          <img src="../images/logo.png" alt="MathSquadz" onerror="this.src='logo.png'" />
+        </div>
+        <div class="center-title">
+          <h2>Assignment on Mathematics</h2>
+          <div class="sub-title">Session: 2026 &nbsp;|&nbsp; Subject: Mathematics &nbsp;|&nbsp; Class: VIII</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-content">
+      <div class="question-section">
+        <div class="section-title">
+          <span>Chapter 11. Percentage:</span>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(i)</span>
+          <div class="q-text">
+            If the bamboo is $2\text{ metres}$ long and of which $38\text{ cm}$ is coloured with yellow, then what is the percentage of yellow colour in relation to the whole length of the bamboo?
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">
+            A train will go to Burdwan from Howrah station. The distance of chord line between Burdwan and Howrah is $85\text{ km}$. But the distance in the main line is $5\%$ more than chord line. Let's calculate the distance between Howrah and Burdwan in the main line by the method of proportion.
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(iii)</span>
+          <div class="q-text">
+            The income of Amina Bibi was increased by $20\%$ and later decreased by $20\%$. Let's work out the total change of percentage of her income.
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(iv)</span>
+          <div class="q-text">
+            The length of a rectangle is increased by $15\%$ and the breadth is reduced by $15\%$. Let's work out in percentage the increase or decrease of area.
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(v)</span>
+          <div class="q-text">
+            In a legislative election, $80\%$ voters cast their votes and the winning candidate got $65\%$ of the cast votes. Let's work out the percentage of total voters who supported him.
+          </div>
+        </div>
+
+         <div class="question-item">
+          <span class="q-num">(vi)</span>
+          <div class="q-text">
+            The price of sugar has increased by $20\%$. Let's work out the percentage of decrease in consumption of sugar if the monthly expenses of sugar remain same.
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(vii)</span>
+          <div class="q-text">
+            The length of each arm of a square was increased by $10\%$. Let's work out the increase of percentage of area by the Rule of Three.
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(viii) </span>
+          <div class="q-text" style="margin-left:8px">
+             Uma Devi of Pahalampur has used high-yielding seeds in her fields. As a result, the production of paddy has increased by $20\%$, but the cost of production of paddy has increased by $25\%$. Earlier she used to get the production worth $\text{Rs. } 1560$ by spending $\text{Rs. } 600$. Let's work out how much she will earn more now using high-yielding seeds.
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(ix)</span>
+          <div class="q-text">
+            Niyamat uncle of Faridpur has used high-yielding paddy seed in his field. For this the production of paddy has increased by $35\%$ but the cost of cultivation has increased by $35\%$. Let's work out the present profit of Niyamat uncle in comparison with the previous return of $\text{Rs. } 1220$ by investing $\text{Rs. } 450$ in the same field.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>1</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2 ================= -->
+  <div class="page">
+    <div class="exam-content">
+      <div class="question-section">
+        <div class="section-title">
+          <span>Chapter 11. Percentage (Continued):</span>
+        </div>
+
+       
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>2</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
