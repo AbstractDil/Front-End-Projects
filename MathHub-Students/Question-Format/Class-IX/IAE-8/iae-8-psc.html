@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathSquadz - Physical Science Question Paper</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        processEscapes: true
+      },
+      svg: { fontCache: "global" }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.msar.me/fonts/adorsho-lipi/font.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'AdorshoLipi', 'Noto Sans Bengali', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #111;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm 14mm;
+      margin: 10mm auto;
+      background: white;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 280px;
+      height: 280px;
+      background: url("../images/logo.png") no-repeat center;
+      background-size: contain;
+      opacity: 0.08;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .exam-header-classic {
+      border-bottom: 1.5px solid #000;
+      padding: 2px 0 6px 0;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed #777;
+    }
+
+    .logo-box img {
+      max-width: 65px;
+      max-height: 65px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .center-title {
+      text-align: center;
+      flex: 1;
+    }
+
+    .center-title h2 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .center-title .sub-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 3px;
+      color: #333;
+    }
+
+    .header-sub-row {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .exam-content {
+      padding: 2px 4px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #000;
+      position: relative;
+      z-index: 1;
+    }
+
+    .question-section {
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: bold;
+      margin-bottom: 5px;
+      border-bottom: 1px dashed #666;
+      padding-bottom: 2px;
+      font-size: 14px;
+    }
+
+    .question-item {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 8px;
+      text-align: justify;
+      line-height: 1.5;
+    }
+
+    .q-num {
+      flex-shrink: 0;
+      width: 28px;
+      font-weight: 600;
+    }
+
+    .q-text {
+      flex: 1;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 8px;
+      margin-top: 2px;
+      font-size: 13px;
+    }
+
+    .marks {
+      font-weight: bold;
+      float: right;
+    }
+
+    .or-divider {
+      text-align: center;
+      font-weight: bold;
+      margin: 4px 0;
+      font-size: 13px;
+      color: #333;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 14mm;
+      right: 14mm;
+      border-top: 1px solid #ccc;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-family: 'Poppins', sans-serif !important;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .footer-icon {
+      width: 28px;
+      height: 28px;
+      background: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 13px;
+    }
+
+    .footer-text {
+      line-height: 1.2;
+    }
+
+    .footer-text b {
+      font-size: 11px;
+      display: block;
+    }
+
+    .footer-text span {
+      font-size: 10px;
+      color: #333;
+    }
+
+    @media print {
+      .print-btn {
+        display: none;
+      }
+      body {
+        background: none;
+      }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        page-break-after: always;
+        min-height: 297mm;
+      }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <button class="print-btn" onclick="window.print()">Download / Print PDF</button>
+
+  <!-- ================= PAGE 1 ================= -->
+  <div class="page">
+    <div class="exam-header-classic">
+      <div class="header-main-row">
+        <div class="logo-box">
+          <img src="../images/logo.png" alt="MathSquadz" onerror="this.src='logo.png'" />
+        </div>
+        <div class="center-title">
+          <h2>8th Internal Assessment Examination</h2>
+          <div class="sub-title">Session: 2026 &nbsp;|&nbsp; Subject: Physical Science &nbsp;|&nbsp; Class: IX</div>
+        </div>
+      </div>
+      <div class="header-sub-row">
+        <span><b>Date:</b> 13/10/2026</span>
+        <span><b>Time:</b> 1 hr. 10 min.</span>
+        <span><b>Full Marks:</b> 35</span>
+      </div>
+    </div>
+
+    <div class="exam-content">
+      <!-- ১. সঠিক উত্তরটি নির্বাচন করো (MCQ) -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>1. সঠিক উত্তরটি নির্বাচন করে লেখো (সকল প্রশ্নের উত্তর দাও):</span>
+          <span class="marks">$10 \times 1 = 10$</span>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(i)</span>
+          <div class="q-text">
+            কোনটি $\text{Mg}$ পরমাণুর সঠিক ইলেকট্রন বিন্যাস—
+            <div class="options-grid">
+              <span>(a) $3, 8, 1$</span>
+              <span>(b) $2, 8, 2$</span>
+              <span>(c) $1, 8, 3$</span>
+              <span>(d) $8, 2, 2$</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">
+            একটি পরমাণু $\text{M}$-এর ভরসংখ্যা $27$ এবং নিউট্রনের সংখ্যা $14$ হলে $\text{M}^{3+}$-এ ইলেকট্রন সংখ্যা কত?—
+            <div class="options-grid">
+              <span>(a) $13$</span>
+              <span>(b) $10$</span>
+              <span>(c) $14$</span>
+              <span>(d) $16$</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(iii)</span>
+          <div class="q-text">
+            প্রথম পরমাণু মডেলের ধারণা দেন—
+            <div class="options-grid">
+              <span>(a) নীলস বোর</span>
+              <span>(b) রাদারফোর্ড</span>
+              <span>(c) চ্যাডউইক</span>
+              <span>(d) জে. জে. থমসন</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(iv)</span>
+          <div class="q-text">
+            কোন ক্ষেত্রে আধান/ভর $(e/m)$-এর অনুপাত সর্বোচ্চ—
+            <div class="options-grid">
+              <span>(a) প্রোটন</span>
+              <span>(b) নিউট্রন</span>
+              <span>(c) ইলেকট্রন</span>
+              <span>(d) আলফাকণা</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(v)</span>
+          <div class="q-text">
+            একটি পরমাণুর তৃতীয় কক্ষের সর্বোচ্চ ইলেকট্রন সংখ্যা—
+            <div class="options-grid">
+              <span>(a) $8$</span>
+              <span>(b) $18$</span>
+              <span>(c) $10$</span>
+              <span>(d) $32$</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(vi)</span>
+          <div class="q-text">
+            রাদারফোর্ডের $\alpha$-কণা বিচ্ছুরণ পরীক্ষা থেকে প্রথম জানা যায় যে পরমাণুতে—
+            <div class="options-grid">
+              <span>(a) নিউক্লিয়াস আছে</span>
+              <span>(b) ইলেকট্রন আছে</span>
+              <span>(c) প্রোটন আছে</span>
+              <span>(d) নিউট্রন আছে</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(vii)</span>
+          <div class="q-text">
+            কোন পরমাণুর নিউক্লিয়াসে কোনো নিউট্রন নেই—
+            <div class="options-grid">
+              <span>(a) হিলিয়াম</span>
+              <span>(b) লিথিয়াম</span>
+              <span>(c) প্রোটিয়াম</span>
+              <span>(d) ট্রিটিয়াম</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(viii)</span>
+          <div class="q-text">
+            তরলের মধ্যে কোনো বিন্দুতে চাপ ($P$) তরলের ঘনত্বের ($d$) ওপর কীভাবে নির্ভর করে?—
+            <div class="options-grid">
+              <span>(a) $P \propto d$</span>
+              <span>(b) $P \propto \dfrac{1}{d}$</span>
+              <span>(c) $P = d$</span>
+              <span>(d) $P \neq d$</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(ix)</span>
+          <div class="q-text">
+            নিম্নলিখিত কোনটি ইয়ং গুণাঙ্কের একক নয়?—
+            <div class="options-grid">
+              <span>(a) $\text{N}\cdot\text{m}^{-1}$</span>
+              <span>(b) $\text{N}\cdot\text{m}^{-2}$</span>
+              <span>(c) $\text{dyne}\cdot\text{cm}^{-2}$</span>
+              <span>(d) $\text{Pa}$</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(x)</span>
+          <div class="q-text">
+            যদি অভিকর্ষ না থাকে তবে কোনো প্রবাহীর ক্ষেত্রে নীচের কোনটি থাকবে না?—
+            <div class="options-grid">
+              <span>(a) স্থিতিস্থাপকতা</span>
+              <span>(b) সান্দ্রতা</span>
+              <span>(c) পৃষ্ঠটান</span>
+              <span>(d) প্লবতা</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ২. সংক্ষিপ্ত উত্তরধর্মী প্রশ্ন -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>2. সংক্ষিপ্ত উত্তর দাও:</span>
+          <span class="marks">$4 \times 2 = 8$</span>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(i)</span>
+          <div class="q-text">বার্নৌলির উপপাদ্যটি বিবৃত করো।</div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">তরলের পৃষ্ঠটান কোন্ কোন্ বিষয়ের উপর নির্ভর করে সংক্ষেপে লেখো।</div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(iii)</span>
+          <div class="q-text">$_b^a\text{X}$ এবং $_d^c\text{Y}$ যদি পরস্পরের আইসোটোপ হয়, তবে $b$ এবং $d$-এর মধ্যে সম্পর্ক কী? প্রমাণ করো যে, $(b - d)(a + c) = 0$।</div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(iv)</span>
+          <div class="q-text">$^{234}_{90}\text{X}$ পরমাণুর সঙ্গে 2টি প্রোটন যোগ করলে যদি $\text{Y}$ পরমাণু সৃষ্টি হয়, তবে $\text{Y}$ পরমাণুটি কী প্রকারে লিখবে? ওই পরমাণুতে নিউট্রন সংখ্যাই বা কত?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>1</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2 ================= -->
+  <div class="page">
+    <div class="exam-content">
+      <!-- ৩. দীর্ঘ উত্তরধর্মী ও গাণিতিক প্রশ্ন -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>3. নিম্নলিখিত গাণিতিক ও ব্যাখ্যাধর্মী প্রশ্নগুলির উত্তর দাও:</span>
+          <span class="marks">$3 \times 3 = 9$</span>
+        </div>
+
+        <div class="question-item" style="margin-bottom: 16px;">
+          <span class="q-num">(i)</span>
+          <div class="q-text">
+            $10\text{ m}$ দীর্ঘ ও $2\text{ mm}$ ব্যাসের একটি ইস্পাতের তারে $168\text{ kg}$ ভর চাপানো হলো। তারটির দৈর্ঘ্যবৃদ্ধি কত হবে নির্ণয় করো।<br />
+            [ইস্পাতের ইয়ং গুণাঙ্ক $Y = 21 \times 10^{11}\text{ dyne/cm}^2$, $g = 9.8\text{ m/s}^2$]
+          </div>
+        </div>
+
+        <div class="question-item" style="margin-bottom: 16px;">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">
+            একই দৈর্ঘ্য ও প্রস্থচ্ছেদ বিশিষ্ট দুটি দণ্ডের উপাদানের ইয়ং গুণাঙ্ক যথাক্রমে $Y_1$ ও $Y_2$। দণ্ড দুটিকে একটির অপরটির সাথে যুক্ত করে দৈর্ঘ্য বরাবর জোড়া লাগানো হলে দেখাও যে,  দণ্ডটির ইয়ং গুণাঙ্ক হবে—
+            $\frac{2Y_1 Y_2}{Y_1 + Y_2}$
+          </div>
+        </div>
+
+        <div class="question-item">
+            <span class="q-num">(iii)</span>
+            <div class="q-text">
+               ঘনত্ব ও আপেক্ষিক গুরুত্বের মধ্যে পার্থক্য লেখ।পৃষ্ঠটান এর মাত্রা নির্ণয় করো।
+            </div>
+        </div>
+
+        <!-- <div class="or-divider">— অথবা —</div>
+
+        <div class="question-item" style="margin-bottom: 16px;">
+          <span class="q-num"></span>
+          <div class="q-text">
+            $d_1$ ও $d_2$ ঘনত্ববিশিষ্ট দুটি তরলকে সমভরের অনুপাতে মেশানো হলো। দেখাও যে, উৎপন্ন মিশ্রণটির তুল্য ঘনত্ব হবে—
+            $$d = \frac{2d_1 d_2}{d_1 + d_2}$$
+          </div>
+        </div> -->
+
+       
+      </div>
+
+      <!-- ৪. বর্ণনামূলক প্রশ্ন -->
+      <div class="question-section">
+        <div class="section-title">
+          <span>4. নিম্নলিখিত প্রশ্নের উত্তর দাও:</span>
+          <span class="marks">$4 \times 2 = 8$</span>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(i)</span>
+          <div class="q-text">
+            প্রান্তীয় বেগের রাশিমালাটি প্রতিষ্ঠা করো। একটি স্প্রিং এর দৈর্ঘ্য 4cm বৃদ্ধি করার জন্য 100N বলের প্রয়োজন হয় । স্প্রিং-টির বল ধ্রুবক কত?
+          </div>
+        </div>
+
+        <div class="question-item">
+          <span class="q-num">(ii)</span>
+          <div class="q-text">
+            রাদারফোর্ডের পরমাণু মডেলের প্রধান স্বীকার্যগুলি উল্লেখ করো এবং এই মডেলের দুটি প্রধান ত্রুটি বা সীমাবদ্ধতা আলোচনা করো।
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-globe"></i></div>
+        <div class="footer-text">
+          <b>Web Portal :</b>
+          <span>https://students.nandysagar.in</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+        <div class="footer-text">
+          <b>Page no.:</b>
+          <span>2</span>
+        </div>
+      </div>
+      <div class="footer-item">
+        <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+        <div class="footer-text">
+          <b>Email ID :</b>
+          <span>nandysagar@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
