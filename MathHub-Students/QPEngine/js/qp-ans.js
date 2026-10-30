@@ -44,7 +44,7 @@ createApp({
 
       try {
        
-        const resMeta = await fetch("data2.json");
+        const resMeta = await fetch("data.json");
         const allExams = await resMeta.json();
         const found = allExams.find((e) => e.id == targetId);
 
