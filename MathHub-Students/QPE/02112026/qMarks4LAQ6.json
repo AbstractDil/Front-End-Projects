@@ -1,0 +1,38 @@
+[
+  {
+    "qid": "L661",
+    "q": "পরিসংখ্যা বিভাজন ছকটির পরিসংখ্যা বহুভুজ অঙ্কন করো।<br><br><table border=\"1\" style=\"border-collapse: collapse; text-align: center;\"><tr><th style=\"padding: 5px;\">প্রাপ্ত নম্বর</th><th style=\"padding: 5px;\">$1 - 10$</th><th style=\"padding: 5px;\">$11 - 20$</th><th style=\"padding: 5px;\">$21 - 30$</th><th style=\"padding: 5px;\">$31 - 40$</th><th style=\"padding: 5px;\">$41 - 50$</th></tr><tr><td style=\"padding: 5px;\">ছাত্রছাত্রীর সংখ্যা</td><td style=\"padding: 5px;\">$8$</td><td style=\"padding: 5px;\">$3$</td><td style=\"padding: 5px;\">$9$</td><td style=\"padding: 5px;\">$12$</td><td style=\"padding: 5px;\">$4$</td></tr></table>",
+    "marks": null,
+    "children": []
+  },
+  {
+    "qid": "L662",
+    "q": "আয়তলেখ অঙ্কন করো।<br><br><table border=\"1\" style=\"border-collapse: collapse; text-align: center;\"><tr><th style=\"padding: 5px;\">উচ্চতা (সেমি)</th><th style=\"padding: 5px;\">$136 - 142$</th><th style=\"padding: 5px;\">$142 - 148$</th><th style=\"padding: 5px;\">$148 - 154$</th><th style=\"padding: 5px;\">$154 - 160$</th><th style=\"padding: 5px;\">$160 - 166$</th></tr><tr><td style=\"padding: 5px;\">বন্ধুদের সংখ্যা</td><td style=\"padding: 5px;\">$12$</td><td style=\"padding: 5px;\">$18$</td><td style=\"padding: 5px;\">$26$</td><td style=\"padding: 5px;\">$14$</td><td style=\"padding: 5px;\">$5$</td></tr></table>",
+    "marks": null,
+    "children": []
+  },
+  {
+    "qid": "L663",
+    "q": "নীচের পরিসংখ্যা বিভাজন তালিকা থেকে ক্ষুদ্রতর সূচক পরিসংখ্যা বিভাজন তালিকা এবং বৃহত্তর সূচক পরিসংখ্যা বিভাজন তালিকা তৈরি করো।<br><br><table border=\"1\" style=\"border-collapse: collapse; text-align: center;\"><tr><th style=\"padding: 5px;\">শ্রেণি</th><th style=\"padding: 5px;\">$10 - 20$</th><th style=\"padding: 5px;\">$20 - 30$</th><th style=\"padding: 5px;\">$30 - 40$</th><th style=\"padding: 5px;\">$40 - 50$</th><th style=\"padding: 5px;\">$50 - 60$</th><th style=\"padding: 5px;\">$60 - 70$</th></tr><tr><td style=\"padding: 5px;\">পরিসংখ্যা</td><td style=\"padding: 5px;\">$80$</td><td style=\"padding: 5px;\">$40$</td><td style=\"padding: 5px;\">$50$</td><td style=\"padding: 5px;\">$70$</td><td style=\"padding: 5px;\">$40$</td><td style=\"padding: 5px;\">$20$</td></tr></table>",
+    "marks": null,
+    "children": []
+  },
+  {
+    "qid": "L664",
+    "q": "$7x + 6y = 42$ সমীকরণের লেখচিত্র অঙ্কন করো। লেখচিত্র এবং অক্ষদ্বয় দ্বারা গঠিত ত্রিভুজের ক্ষেত্রফল নির্ণয় করো।",
+    "marks": 4,
+    "children": []
+  },
+  {
+    "qid": "L665",
+    "q": "লেখচিত্রের সাহায্যে সমাধান করো : $4x - 3y = 16$ ও $6x + 5y = 62$।",
+    "marks": 4,
+    "children": []
+  },
+  {
+    "qid": "L666",
+    "q": "লেখচিত্র অঙ্কন করো এবং ছেদবিন্দুর স্থানাঙ্ক নির্ণয় করো : $3x - 5y = 16$ এবং $2x - 9y = 5$।",
+    "marks": null,
+    "children": []
+  }
+]

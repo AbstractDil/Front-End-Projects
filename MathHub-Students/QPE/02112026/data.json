@@ -5,9 +5,10 @@
   "class": "IX",
   "topic": "Full Syllabus",
   "examDate": "2026-11-02",
-  "fullMarks": 35,
+  "fullMarks": 50,
   "time": "2 Hours",
   "questionSet": "B",
+  "setIdDigits": 3,
   "website": "https://students.nandysagar.in",
   "email": "nandysagar@yahoo.com",
   "settings": {
@@ -28,7 +29,10 @@
     "LAQ1": "qMarks3LAQ1.json",
     "LAQ2": "qMarks3LAQ2.json",
     "LAQ3": "qMarks3LAQ3.json",
-    "LAQ4": "qMarks3LAQ4.json"
+    "LAQ4": "qMarks3LAQ4.json",
+    "LAQ5": "qMarks4LAQ5.json",
+    "LAQ6": "qMarks4LAQ6.json",
+    "LAQ7": "qMarks4LAQ7.json"
 
   },
   "paperStructure": [
@@ -66,9 +70,9 @@
       "type": "LAQ2",
       "title": "নিচের প্রশ্নগুলির উত্তর দাও",
       "marksEach": 3,
-      "count": 8,
-      "noOfVisibleQuestions": 2,
-      "attempt":1
+      "count": 12,
+      "noOfVisibleQuestions": 4,
+      "attempt":2
     },
     {
       "number": 5,
@@ -87,6 +91,33 @@
       "count": 20,
       "noOfVisibleQuestions": 4,
       "attempt":2
+    },
+    {
+      "number": 7,
+      "type": "LAQ5",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 4,
+      "count": 4,
+      "noOfVisibleQuestions": 2,
+      "attempt":1
+    },
+    {
+      "number": 8,
+      "type": "LAQ6",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 4,
+      "count": 6,
+      "noOfVisibleQuestions": 2,
+      "attempt":1
+    },
+    {
+      "number": 9,
+      "type": "LAQ7",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 4,
+      "count": 4,
+      "noOfVisibleQuestions": 2,
+      "attempt":1
     }
     
   ]

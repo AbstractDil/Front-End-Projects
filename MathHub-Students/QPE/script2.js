@@ -2,7 +2,9 @@
  *
  * URL example:
  *   index.html?folder=02112026
- *
+ *   index.html?folder=02112026&qpp=6
+ *   index.html?folder=02112026&set=4821
+ * 
  * Each exam folder contains:
  *   data.json
  *   qMarks1MCQ.json
@@ -290,6 +292,18 @@ createApp({
         const dataUrl = `${folderPath}/data.json`;
         this.examData = await this.fetchJson(dataUrl);
         this.settings = this.examData.settings || {};
+
+        // Random Question Set ID (3 or 4 digits). Fixed with ?set=1234 in the URL.
+      const setParam = params.get("set");
+      if (setParam) {
+        this.examData.questionSet = setParam;
+      } else {
+        const cfg = this.examData.setIdDigits;            // 3, 4 or "any" (data.json)
+        const digits = cfg === "any" ? (Math.random() < 0.5 ? 3 : 4) : (Number(cfg) === 3 ? 3 : 4);
+        const min = Math.pow(10, digits - 1);
+        const max = Math.pow(10, digits) - 1;
+        this.examData.questionSet = String(Math.floor(Math.random() * (max - min + 1)) + min);
+      }
 
         if (!Array.isArray(this.examData.paperStructure) ||
             this.examData.paperStructure.length === 0) {

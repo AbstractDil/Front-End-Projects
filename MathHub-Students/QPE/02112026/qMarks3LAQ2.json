@@ -1,49 +1,79 @@
 [
   {
-    "qid": "L021",
+    "qid": "L221",
     "q": "$f(x) = \\frac{a(x - b)}{a - b} + \\frac{b(x - a)}{b - a}$ হলে দেখাও যে, $f(a) + f(b) = f(a + b)$।",
     "marks": 3,
     "children": []
   },
   {
-    "qid": "L022",
+    "qid": "L222",
     "q": "$(x^3 + 3x^2 + 2ax + b)$ বহুপদী সংখ্যামালার দুটি উৎপাদক যথাক্রমে $(x + 1)$ ও $(x + 2)$ হলে, $a$ ও $b$-এর মান নির্ণয় করো।",
     "marks": 3,
     "children": []
   },
   {
-    "qid": "L023",
+    "qid": "L223",
     "q": "$x^{\\frac{1}{a}} = y^{\\frac{1}{b}} = z^{\\frac{1}{c}}$ এবং $xyz = 1$ হলে, দেখাও যে, $a + b + c = 0$।",
     "marks": 3,
     "children": []
   },
   {
-    "qid": "L024",
+    "qid": "L224",
     "q": "$x + z = 2y$ এবং $b^2 = ac$ হলে, দেখাও যে, $a^{y-z} \\cdot b^{z-x} \\cdot c^{x-y} = 1$।",
     "marks": 3,
     "children": []
   },
   {
-    "qid": "L025",
+    "qid": "L225",
     "q": "$ax^4 + 2x^3 - 3x^2 + bx - 4$ বহুপদী সংখ্যামালার উৎপাদক $(x^2 - 4)$ হলে, $a$ ও $b$-এর মান নির্ণয় করো।",
     "marks": 3,
     "children": []
   },
   {
-    "qid": "L026",
+    "qid": "L226",
     "q": "$f(x) = ax^2 + bx + c$ এবং $f(0) = 2$, $f(1) = 1$ এবং $f(4) = 6$ হলে, $f(-1) =$ কত?",
     "marks": 3,
     "children": []
   },
   {
-    "qid": "L027",
+    "qid": "L227",
     "q": "$2^x = 3^y = 12^z$ হলে, প্রমাণ করো যে, $xy = z(x + 2y)$।",
     "marks": 3,
     "children": []
   },
   {
-    "qid": "L028",
+    "qid": "L228",
     "q": "যদি $a^x = bc, b^y = ca, c^z = ab$ হয় তাহলে দেখাও যে, $\\frac{x}{x + 1} + \\frac{y}{y + 1} + \\frac{z}{z + 1} = 2$।",
+    "marks": 3,
+    "children": []
+  },
+  {
+    "qid": "L229",
+    "q": "দেখাও যে, $\\log_{10}3$-এর মান $\\frac{1}{3}$ এবং $\\frac{1}{2}$-এর মধ্যে আছে।",
+    "marks": 3,
+    "children": []
+  },
+  {
+    "qid": "L230",
+    "q": "যদি $\\log\\frac{x+y}{5} = \\frac{1}{2}(\\log x + \\log y)$ হয় তাহলে দেখাও যে, $\\frac{x}{y} + \\frac{y}{x} = 23$।",
+    "marks": 3,
+    "children": []
+  },
+  {
+    "qid": "L231",
+    "q": "$\\frac{x(y+z-x)}{\\log x} = \\frac{y(x+z-y)}{\\log y} = \\frac{z(y+x-z)}{\\log z}$ হলে, প্রমাণ করো, $y^z z^y = x^z z^x = y^x x^y$।",
+    "marks": 3,
+    "children": []
+  },
+  {
+    "qid": "L232",
+    "q": "দেখাও যে, $\\log_6\\sqrt{6\\sqrt{6\\sqrt{6\\sqrt{6\\ldots\\infty}}}} = 1$।",
+    "marks": 3,
+    "children": []
+  },
+  {
+    "qid": "L233",
+    "q": "$\\frac{\\log a}{y-z} = \\frac{\\log b}{z-x} = \\frac{\\log c}{x-y}$ হয়, তবে $a^x b^y c^z = 1$।",
     "marks": 3,
     "children": []
   }
