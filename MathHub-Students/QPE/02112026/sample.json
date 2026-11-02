@@ -1,0 +1,91 @@
+{
+  "id": "MATH9-02112026",
+  "examName": "9TH INTERNAL ASSESSMENT EXAMINATION",
+  "subject": "Mathematics",
+  "class": "IX",
+  "topic": "Algebra and Geometry",
+  "examDate": "2026-11-02",
+  "fullMarks": 50,
+  "time": "2 Hours",
+  "questionSet": "B",
+  "website": "https://students.nandysagar.in",
+  "email": "nandysagar@yahoo.com",
+  "settings": {
+    "shuffleOptions": true,
+    "showMarks": true,
+    "showAnswerKey": true
+  },
+  "layout": {
+    "autoFit": true,
+    "questionsPerPage": 0,
+    "footerReserveMm": 14,
+    "safetyMm": 4
+  },
+  "instructions": [
+    "সব প্রশ্নের উত্তর দাও।",
+    "প্রতিটি প্রশ্নের পাশে পূর্ণমান উল্লেখ করা আছে।"
+  ],
+  "questionFiles": {
+    "MCQ": "qMarks1MCQ.json",
+    "SAQ": "qMarks2SAQ.json",
+    "LAQ": "qMarks5LAQ.json"
+  },
+  "paperStructure": [
+    {
+      "number": 1,
+      "type": "MCQ",
+      "title": "সঠিক উত্তরটি নির্বাচন করো",
+      "marksEach": 1,
+      "count": 10
+    },
+    {
+      "number": 2,
+      "type": "SAQ",
+      "title": "সংক্ষিপ্ত উত্তর দাও",
+      "marksEach": 2,
+      "count": 5
+    },
+    {
+      "number": 3,
+      "type": "LAQ",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 5,
+      "count": 1
+    },
+    {
+      "number": 4,
+      "type": "LAQ",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 5,
+      "count": 1
+    },
+    {
+      "number": 5,
+      "type": "LAQ",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 5,
+      "count": 1
+    },
+    {
+      "number": 6,
+      "type": "LAQ",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 5,
+      "count": 1
+    },
+    {
+      "number": 7,
+      "type": "LAQ",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 5,
+      "count": 1
+    },
+    {
+      "number": 8,
+      "type": "LAQ",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 5,
+      "count": 1
+    }
+  ]
+}

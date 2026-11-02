@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathSquadz Question Paper Engine</title>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+      },
+      options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"] },
+      svg: { fontCache: "global" }
+    };
+  </script>
+  <script async id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.msar.me/fonts/adorsho-lipi/font.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <div class="toolbar" v-if="loaded">
+    <label title="0 = fill each page automatically">
+      Questions / page
+      <input type="number" min="0" v-model.number="layout.questionsPerPage" @change="repaginate">
+    </label>
+    <button class="secondary" @click="reloadPage">Reload</button>
+    <button @click="printPaper"><i class="fa fa-print"></i> Print / Save PDF</button>
+  </div>
+
+  <div v-if="loading" class="loading">Loading examination and question banks...</div>
+  <div v-if="error" class="error-box">{{ error }}</div>
+
+  <template v-if="loaded && !error">
+
+    <!-- Hidden area used to measure every block before splitting into pages -->
+    <div class="measure" v-if="measuring" ref="measure">
+      <div class="mini-header" ref="miniHeader">
+        <span>{{ examData.examName }} | {{ examData.subject }} | Class {{ examData.class }}</span>
+        <span>Set: {{ examData.questionSet || 'A' }}</span>
+      </div>
+      <div v-for="(b, i) in blocks" :key="'m' + i" class="blk" :class="'blk-' + b.type">
+        <paper-block :block="b" :exam="examData" :show-marks="settings.showMarks !== false"></paper-block>
+      </div>
+    </div>
+
+    <template v-if="!measuring">
+      <section class="page" v-for="(page, pi) in pages" :key="'p' + pi">
+        <div class="watermark"></div>
+        <div class="paper-content">
+          <div class="mini-header" v-if="pi > 0">
+            <span>{{ examData.examName }} | {{ examData.subject }} | Class {{ examData.class }}</span>
+            <span>Set: {{ examData.questionSet || 'A' }}</span>
+          </div>
+
+          <div v-for="(b, bi) in page" :key="bi" class="blk" :class="'blk-' + b.type">
+            <paper-block :block="b" :exam="examData" :show-marks="settings.showMarks !== false"></paper-block>
+          </div>
+
+          <footer class="footer">
+            <div class="footer-item">
+              <div class="footer-icon"><i class="fa fa-globe"></i></div>
+              <div class="footer-text"><b>Web Portal</b><span>{{ examData.website || ' ' }}</span></div>
+            </div>
+            <div class="footer-item">
+              <div class="footer-icon"><i class="fa fa-file-text"></i></div>
+              <div class="footer-text"><b>Page</b><span>{{ pi + 1 }} / {{ pages.length }}</span></div>
+            </div>
+            <div class="footer-item">
+              <div class="footer-icon"><i class="fa fa-envelope"></i></div>
+              <div class="footer-text"><b>Email</b><span>{{ examData.email || ' ' }}</span></div>
+            </div>
+          </footer>
+          <!-- <div class="page-no">Page {{ pi + 1 }} / {{ pages.length }}</div> -->
+        </div>
+      </section>
+
+      <section class="page answer-page" v-if="settings.showAnswerKey !== false && answerKey.length">
+        <div class="paper-content">
+          <header class="exam-header">
+            <div class="header-info">
+              <h1>Answer Key</h1>
+              <p>{{ examData.examName }} | {{ examData.subject }} | Class: {{ examData.class }}</p>
+            </div>
+          </header>
+          <table class="answer-table">
+            <thead>
+              <tr><th>Q. No.</th><th>QID</th><th>Correct Answer</th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="answer in answerKey" :key="answer.qid">
+                <td>{{ answer.displayNumber }}</td>
+                <td>#{{ answer.qid }}</td>
+                <td><b>{{ answer.answer }}</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </template>
+  </template>
+</div>
+
+<script src="script2.js"></script>
+</body>
+</html>

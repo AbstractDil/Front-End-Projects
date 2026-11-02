@@ -1,0 +1,93 @@
+{
+  "id": "MATH9-02112026",
+  "examName": "9TH INTERNAL ASSESSMENT EXAMINATION",
+  "subject": "Mathematics",
+  "class": "IX",
+  "topic": "Full Syllabus",
+  "examDate": "2026-11-02",
+  "fullMarks": 35,
+  "time": "2 Hours",
+  "questionSet": "B",
+  "website": "https://students.nandysagar.in",
+  "email": "nandysagar@yahoo.com",
+  "settings": {
+    "shuffleOptions": true,
+    "showMarks": true,
+    "showAnswerKey": true
+  },
+  "layout": {
+    "autoFit": true,
+    "questionsPerPage": 0,
+    "footerReserveMm": 14,
+    "safetyMm": 4
+  },
+ 
+  "questionFiles": {
+    "MCQ": "qMarks1MCQ.json",
+    "SAQ": "qMarks2SAQ.json",
+    "LAQ1": "qMarks3LAQ1.json",
+    "LAQ2": "qMarks3LAQ2.json",
+    "LAQ3": "qMarks3LAQ3.json",
+    "LAQ4": "qMarks3LAQ4.json"
+
+  },
+  "paperStructure": [
+    {
+      "number": 1,
+      "type": "MCQ",
+      "title": "সঠিক উত্তরটি নির্বাচন করো",
+      "marksEach": 1,
+      "count": 10,
+      "noOfVisibleQuestions": 10,
+      "attempt": 6
+    },
+    {
+      "number": 2,
+      "type": "SAQ",
+      "title": "সংক্ষিপ্ত উত্তর দাও",
+      "marksEach": 2,
+      "count": 22,
+      "noOfVisibleQuestions": 10,
+      "attempt": 7
+
+    },
+    {
+      "number": 3,
+      "type": "LAQ1",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 3,
+      "count": 8,
+      "noOfVisibleQuestions": 2,
+      "attempt":1
+    },
+
+    {
+      "number": 4,
+      "type": "LAQ2",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 3,
+      "count": 8,
+      "noOfVisibleQuestions": 2,
+      "attempt":1
+    },
+    {
+      "number": 5,
+      "type": "LAQ3",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 3,
+      "count": 8,
+      "noOfVisibleQuestions": 2,
+      "attempt":1
+    },
+    {
+      "number": 6,
+      "type": "LAQ4",
+      "title": "নিচের প্রশ্নগুলির উত্তর দাও",
+      "marksEach": 3,
+      "count": 20,
+      "noOfVisibleQuestions": 4,
+      "attempt":2
+    }
+    
+  ]
+}
