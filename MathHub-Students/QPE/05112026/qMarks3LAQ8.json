@@ -1,0 +1,32 @@
+[
+     {
+    "qid": "L229",
+    "q": "দেখাও যে, $\\log_{10}3$-এর মান $\\frac{1}{3}$ এবং $\\frac{1}{2}$-এর মধ্যে আছে।",
+    "marks": 3,
+    "children": []
+  },
+  {
+    "qid": "L230",
+    "q": "যদি $\\log\\frac{x+y}{5} = \\frac{1}{2}(\\log x + \\log y)$ হয় তাহলে দেখাও যে, $\\frac{x}{y} + \\frac{y}{x} = 23$।",
+    "marks": 3,
+    "children": []
+  },
+  {
+    "qid": "L231",
+    "q": "$\\frac{x(y+z-x)}{\\log x} = \\frac{y(x+z-y)}{\\log y} = \\frac{z(y+x-z)}{\\log z}$ হলে, প্রমাণ করো, $y^z z^y = x^z z^x = y^x x^y$।",
+    "marks": 3,
+    "children": []
+  },
+  {
+    "qid": "L232",
+    "q": "দেখাও যে, $\\log_6\\sqrt{6\\sqrt{6\\sqrt{6\\sqrt{6\\ldots\\infty}}}} = 1$।",
+    "marks": 3,
+    "children": []
+  },
+  {
+    "qid": "L233",
+    "q": "$\\frac{\\log a}{y-z} = \\frac{\\log b}{z-x} = \\frac{\\log c}{x-y}$ হয়, তবে $a^x b^y c^z = 1$।",
+    "marks": 3,
+    "children": []
+  }
+]
