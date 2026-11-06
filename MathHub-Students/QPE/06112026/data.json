@@ -1,0 +1,46 @@
+{
+  "id": "MATH9-02112026",
+  "examName": "9TH INTERNAL ASSESSMENT EXAMINATION",
+  "subject": "Physical Science",
+  "class": "IX",
+  "topic": "Chapter 1,5 and 7",
+  "examDate": "2026-11-06",
+  "fullMarks": 30,
+  "time": "1 Hours",
+  "questionSet": "B",
+  "setIdDigits": 3,
+  "website": "https://students.nandysagar.in",
+  "email": "nandysagar@yahoo.com",
+  "settings": {
+    "shuffleOptions": true,
+    "showMarks": true,
+    "showAnswerKey": true
+  },
+  "layout": {
+    "autoFit": true,
+    "questionsPerPage": 0,
+    "footerReserveMm": 14,
+    "safetyMm": 4
+  },
+ 
+  "questionFiles": {
+  
+    "SAQ": "qMarks2SAQ.json"
+   
+
+  },
+  "paperStructure": [
+    
+    {
+      "number": 1,
+      "type": "SAQ",
+      "title": "সংক্ষিপ্ত উত্তর দাও",
+      "marksEach": 2,
+      "count": 16,
+      "noOfVisibleQuestions": 16,
+      "attempt": 15
+
+    }
+   
+  ]
+}
